@@ -3,17 +3,19 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import AppRouter from './AppRouter';
 import teachingStore from './TeachingsStore';
+import {getTopics} from './Actions';
 import './index.css';
 
 const store=teachingStore();
  
 const easyMath = (
     <Provider store={store}>
+        {console.log('started')}
         <AppRouter />
     </Provider>
 );
  
-//store.dispatch(func).then(() => {
+//store.dispatch(getTopics()).then(() => {
     ReactDOM.render(easyMath, document.getElementById('root'));
 //});
 

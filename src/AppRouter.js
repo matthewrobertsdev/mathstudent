@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import TopicsView from './TopicsView';
+import topics_view from './TopicsView';
 
 const AppRouter= () => (
     <BrowserRouter>
         <div>
             <Switch>
-                <Route path="/" component={TopicsView}/>
+                <Route path="/" component={topics_view}/>
             </Switch>
         </div>
     </BrowserRouter>
