@@ -7,7 +7,9 @@ const _getTopics = (topics) => ({
  
 export const getTopics = () => {
     return (dispatch) => {
-        return axiosConnect.get('topics').then(response => {
+        return axiosConnect.get('curriculum').then(response => {
+
+            
             console.log('axios connect result')
             const topics=response.data;
             for(var k in response){
@@ -19,6 +21,7 @@ export const getTopics = () => {
                     }
                 }
             }
+            
             //topics=result
  
             dispatch(_getTopics(topics));
