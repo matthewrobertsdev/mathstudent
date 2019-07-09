@@ -1,4 +1,4 @@
-import axiosConnect from './AxiosConnect';
+import home_connect from './HomeConnect';
 
 const _getTopics = (topics) => ({
     type: 'GET_TOPICS',
@@ -7,11 +7,11 @@ const _getTopics = (topics) => ({
  
 export const getTopics = () => {
     return (dispatch) => {
-        return axiosConnect.get('curriculum').then(response => {
+        return home_connect.get('curriculum').then(response => {
 
             
-            console.log('axios connect result')
-            const topics=response.data;
+            console.log('axios connect result');
+            console.log(response.data)
             for(var k in response){
                 console.log(k)
                 for(var k2 in k)
@@ -24,7 +24,7 @@ export const getTopics = () => {
             
             //topics=result
  
-            dispatch(_getTopics(topics));
+            dispatch(_getTopics(response.data));
         }).catch(function(error) {
             //console.log(error.response.data);
          });

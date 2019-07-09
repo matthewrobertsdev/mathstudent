@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import AppRouter from './AppRouter';
 import teachingStore from './TeachingsStore';
-import {getTopics} from './Actions';
 import './index.css';
 
 const store=teachingStore();

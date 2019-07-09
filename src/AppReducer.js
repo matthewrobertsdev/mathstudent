@@ -1,9 +1,20 @@
+import { bindActionCreators } from "redux";
 
-const appReducer=(state, action) => {
+const initialState = {
+    loaded: false,
+    topics: {curriculum:[1]},
+    teaching: null,
+    error: null
+  };
+
+const appReducer=(state=initialState, action) => {
     switch (action.type) {
         case 'GET_TOPICS':
             console.log('should get topics')
-            return action.topics.result;
+            return {
+                ...state,
+                topics: action.topics
+              };
         default:
             return state;
     }
