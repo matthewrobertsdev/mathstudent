@@ -1,14 +1,17 @@
-import { bindActionCreators } from "redux";
+
 
 const initialState = {
     loaded: false,
-    topics: {curriculum:[1]},
-    teaching: null,
-    error: null
+    //all topics for now
+    topics: {},
+    //the teaching being taught
+    teaching: {},
+    error: {}
   };
 
 const appReducer=(state=initialState, action) => {
     switch (action.type) {
+        //action for getting topics for user choice
         case 'GET_TOPICS':
             console.log('should get topics')
             return {
