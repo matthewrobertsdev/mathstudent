@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import subjects_view from './SubjectsView';
+import Teaching_View from './TeachingView';
 
 const AppRouter= () => (
     <BrowserRouter>
@@ -8,7 +9,8 @@ const AppRouter= () => (
             {/*changes components based on changes to path*/}
             <Switch>
                 {/*displays all topics from home*/}
-                <Route path="/" component={subjects_view}/>
+                <Route path="/" exact component={subjects_view}/>
+                <Route path="/teachings" component={Teaching_View}/>
             </Switch>
         </div>
     </BrowserRouter>

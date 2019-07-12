@@ -1,19 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import {getTopics} from './Actions';
 import { Link } from 'react-router-dom';
-
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    //will get teaching from home of teachings once implemented
-    getTeaching: () => {
-
-      //dispatch(getTopics());
-      console.log("Link clicked")
-    }
-  }
-};
 
 //for displaying a link to a teaching, that displays its name and loads that teaching when clicked
 class TopicsView extends React.Component{
@@ -22,13 +8,13 @@ class TopicsView extends React.Component{
         super(props);
         this.state=this.props.topic
       }
-
+//onClick={() => this.props.getTeaching(this.props.topic.teachingName)}>
       render() {
         return(
   
             //will take user to teaching with these names.  Will get teaching from home first.
           <div>
-              <Link to="/teaching" onClick={this.props.getTeaching}>{this.props.topic.displayName}</Link>
+              <Link to={{pathname: `/teachings/${this.props.topic.teachingName}`, query:this.props.topic}}>{this.props.topic.displayName}</Link>
           </div>
   
         );
@@ -36,6 +22,6 @@ class TopicsView extends React.Component{
 
 }
 
-const Topic_View=connect(mapDispatchToProps)(TopicsView)
+const Topic_View=TopicsView;
 
 export default Topic_View;

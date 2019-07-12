@@ -42,10 +42,10 @@ class SubjectView extends React.Component{
       //takes array of topics from props and makes a list of Topic_Views
       createSubjectsList(){
         console.log(this.props.topics);
-        if (this.props.topics.topicsList==null){
+        if (this.props.topics==null){
           return;
         }
-        const subjects_list = this.props.topics.topicsList.map( (topic) => {
+        const subjects_list = this.props.topics.map( (topic) => {
           return (
               <Topic_View topic={topic}></Topic_View>
           );

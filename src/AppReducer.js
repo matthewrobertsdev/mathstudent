@@ -3,7 +3,7 @@
 const initialState = {
     loaded: false,
     //all topics for now
-    topics: {},
+    topics: [],
     //the teaching being taught
     teaching: {},
     error: {}
@@ -17,6 +17,12 @@ const appReducer=(state=initialState, action) => {
             return {
                 ...state,
                 topics: action.topics
+              };
+        case 'GET_TEACHING':
+            console.log('should get teaching')
+            return {
+                ...state,
+                topics: action.teaching
               };
         default:
             return state;
