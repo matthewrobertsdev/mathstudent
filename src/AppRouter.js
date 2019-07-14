@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import subjects_view from './SubjectsView';
-import Teaching_View from './TeachingView';
+import subjects_view from './View/SubjectsView';
+import Teaching_View from './View/TeachingView';
 
 const AppRouter= () => (
     <BrowserRouter>

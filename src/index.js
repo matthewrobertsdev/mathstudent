@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import AppRouter from './AppRouter';
-import teachingStore from './TeachingsStore';
+import teachingStore from './Model/TeachingsStore';
 
 const store=teachingStore();
  
