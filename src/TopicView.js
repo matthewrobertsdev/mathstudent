@@ -14,7 +14,7 @@ class TopicsView extends React.Component{
   
             //will take user to teaching with these names.  Will get teaching from home first.
           <div>
-              <Link to={{pathname: `/teachings/${this.props.topic.teachingName}`, query:this.props.topic}}>{this.props.topic.displayName}</Link>
+              <Link to={`/teachings/${this.props.topic.teachingName}`}>{this.props.topic.displayName}</Link>
           </div>
   
         );

@@ -20,10 +20,21 @@ const appReducer=(state=initialState, action) => {
               };
         case 'GET_TEACHING':
             console.log('should get teaching')
+            console.log('hello teaching')
+            console.log(action.teaching)
+            console.log('hello teaching')
+            if (action.teaching==null){
+                return initialState
+            }
             return {
                 ...state,
-                topics: action.teaching
+                teaching: action.teaching
               };
+        case 'CLEAR_TEACHING':
+                return {
+                    ...state,
+                    teaching: action.teaching
+                  };
         default:
             return state;
     }

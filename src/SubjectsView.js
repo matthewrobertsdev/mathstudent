@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {getTopics} from './Actions';
 import Topic_View from './TopicView';
+import './app.css';
 
 //pass in array of topics in an object
 const mapStateToProps = (state) => {
@@ -35,7 +36,12 @@ class SubjectView extends React.Component{
 
       render() {
         return(
-          <div>{this.createSubjectsList()}</div>
+          <div className='SubjectView'>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+          {this.createSubjectsList()}</div>
         );
       }
 
@@ -47,7 +53,10 @@ class SubjectView extends React.Component{
         }
         const subjects_list = this.props.topics.map( (topic) => {
           return (
+              <div>
               <Topic_View topic={topic}></Topic_View>
+              <br></br>
+              </div>
           );
         });
         return subjects_list

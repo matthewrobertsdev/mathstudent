@@ -10,7 +10,7 @@ const AppRouter= () => (
             <Switch>
                 {/*displays all topics from home*/}
                 <Route path="/" exact component={subjects_view}/>
-                <Route path="/teachings" component={Teaching_View}/>
+                <Route path="/teachings/:teachingName" component={Teaching_View}/>
             </Switch>
         </div>
     </BrowserRouter>

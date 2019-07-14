@@ -6,7 +6,12 @@ const _getTopics = (topics) => ({
 });
 
 const _getTeaching = (teaching) => ({
-    type: 'GET_TEACHINGS',
+    type: 'GET_TEACHING',
+    teaching
+});
+
+const _clearTeaching = (teaching) => ({
+    type: 'CLEAR_TEACHING',
     teaching
 });
 
@@ -30,5 +35,11 @@ export const getTeaching = (teachingName) => {
         }).catch(function(error) {
             console.log(error.response.data);
          });
+    };
+};
+
+export const clearTeaching = () => {
+    return (dispatch) => {
+        return dispatch(_clearTeaching({}));
     };
 };
