@@ -29,7 +29,7 @@ export const getTopics = () => {
 
 export const getTeaching = (teachingName) => {
     return (dispatch) => {
-        return home_connect.get(`teachings/${teachingName}`).then(response => {
+        return home_connect.get(`create/${teachingName}`).then(response => {
             console.log(response.data);
             dispatch(_getTeaching(response.data));
         }).catch(function(error) {
