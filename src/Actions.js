@@ -1,5 +1,4 @@
-import home_connect from './HomeConnect';
-import curriculum from './mathteacher/curriculum/Curriculum';
+import curriculum from  './Model/Curriculum';
 
 const _getTopics = (topics) => ({
     type: 'GET_TOPICS',
@@ -34,6 +33,22 @@ export const getTopics = () => {
 };
 
 export const getTeaching = (teachingName) => {
+    /*
+    return  (dispatch)=>{
+        console.log('abcd')
+        console.log(teachingName)
+        dispatch(_getTeaching(math_teacher_instance.giveTeaching(teachingName)));
+    };
+    */
+   return (dispatch) => {
+    return import(`./Model/math/${teachingName}`).then(teachingObj => {
+        console.log(teachingObj);
+        dispatch(_getTeaching(teachingObj.default.teaching));
+    }).catch(function(error) {
+        console.log(error);
+     });
+};
+    /*
     return (dispatch) => {
         return home_connect.get(`create/${teachingName}`).then(response => {
             console.log(response.data);
@@ -42,6 +57,7 @@ export const getTeaching = (teachingName) => {
             console.log(error.response.data);
          });
     };
+    */
 };
 
 export const clearTeaching = () => {

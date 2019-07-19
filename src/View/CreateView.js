@@ -57,6 +57,7 @@ class TeachingView extends React.Component{
 
       createCreatorViews(){
         if (this.props.teaching.creationMethodSignatures==undefined){
+          console.log('creation methods are undefined');
           return;
         }
         console.log("abcd1");

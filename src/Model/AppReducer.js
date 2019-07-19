@@ -24,6 +24,7 @@ const appReducer=(state=initialState, action) => {
             console.log(action.teaching)
             console.log('hello teaching')
             if (action.teaching==null){
+                console.log('teaching was undefined')
                 return initialState
             }
             return {

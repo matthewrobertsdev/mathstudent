@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import DecimalInputView from './DecimalInputView';
 import './app.css';
 
 
@@ -22,6 +23,26 @@ class CreatorView extends React.Component{
           </div>
   
         );
+      }
+      createView2(){
+        var creatorView=[];
+        var displayName="";
+        for (var i=0; i<this.props.methodSignature.length; i++){
+          if (i<2){
+            //do nothing
+          }
+          else{
+            if (i%2==0){
+              displayName=this.props.methodSignature[i];
+            }
+            else{
+              console.log(i);
+              console.log(displayName);
+                creatorView.push(<DecimalInputView displayName={displayName}></DecimalInputView>);
+            }
+          }
+        }
+        return creatorView;
       }
 
       createView(){
