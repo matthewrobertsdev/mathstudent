@@ -30,18 +30,18 @@ class UnconnectedCreatorView extends React.Component{
       }
 
       createView(){
-        const inputTextBoxes = this.props.methodSignature.map( (arg,  index) => {
-          if (index<2){
-            return undefined;
+        var creatorView=[];
+        for (var i=0; i<this.props.methodSignature.length; i++){
+          if (i<2){
           }
-          if (index%2===0){
-              return  <span className='small-right-margin'>{arg+':'}</span>
+          else if (i%2===0){
+            creatorView.push(<span className='small-right-margin'>{this.props.methodSignature[i]+':'}</span>);
+          }else{
+            creatorView.push(<span className='medium-right-margin'><input></input></span>);
+            creatorView.push(<br className='hide-for-not-small'></br>);
           }
-          return (
-              <span className='medium-right-margin'><input></input></span>
-          );
-        });
-        return inputTextBoxes;
+        }
+        return creatorView;
       }
 
 }
