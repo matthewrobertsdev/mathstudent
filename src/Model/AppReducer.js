@@ -6,7 +6,8 @@ const initialState = {
     topics: [],
     //the teaching being taught
     teaching: {},
-    error: {}
+    error: {},
+    URL: ''
   };
 
 const appReducer=(state=initialState, action) => {
@@ -36,6 +37,11 @@ const appReducer=(state=initialState, action) => {
                     ...state,
                     teaching: action.teaching
                   };
+        case 'UPDATE_URL':
+            return {
+                    ...state,
+                    URLpathname: action.URLpathname
+                };
         default:
             return state;
     }

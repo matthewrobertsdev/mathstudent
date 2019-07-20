@@ -1,82 +1,82 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {getTeaching, clearTeaching} from '../Actions';
-import Creator_View from './CreatorView';
+import { getTeaching, clearTeaching, updateURL } from '../Actions';
+import CreatorView from './CreatorView';
 import './app.css';
 
+/*
+This view is for the UI for creating a MathTeachingObject
+*/
 
 const mapStateToProps = (state) => {
-    return {
-      teaching: state.teaching
-    }
-  };
+  return {
+    teaching: state.teaching
+  }
+};
 
-  const mapDispatchToProps = (dispatch) => {
-    return {
-      //gets teaching from home of teaching
-      getTeaching: (teachingName) => {
-          dispatch(getTeaching(teachingName));
-      },
-      clearTeaching: () => {
-        dispatch(clearTeaching());
+const mapDispatchToProps = (dispatch) => {
+  return {
+    //gets teaching from home of teaching
+    getTeaching: (teachingName) => {
+      dispatch(getTeaching(teachingName));
+    },
+    clearTeaching: () => {
+      dispatch(clearTeaching());
+    },
+    updateURL: () => {
+      dispatch(updateURL());
     }
-    }
-  };
+  }
+};
 
 //for displaying a link to a teaching, that displays its name and loads the CreateView for it when clicked
-class TeachingView extends React.Component{
+class UnconnectedCreateView extends React.Component {
 
-    constructor(props) {
-        super(props);
-      }
+  componentWillMount() {
+    const { match: { params } } = this.props;
+    const { getTeaching, updateURL } = this.props;
+    getTeaching(params.teachingName);
+    updateURL();
+  }
 
-      componentWillMount() {
-        const { match: { params } } = this.props;
-        const { getTeaching} = this.props;
-        getTeaching(params.teachingName);
-      }
+  componentWillUnmount() {
+    const { clearTeaching } = this.props;
+    clearTeaching();
+  }
 
-      componentWillUnmount(){
-        const { clearTeaching} = this.props;
-        clearTeaching();
-      }
+  render() {
+    return (
 
-      render() {
-        return(
-  
-          <div>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-              {this.createCreatorViews()}
-          </div>
-  
-        );
-      }
+      <div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        {this.createCreatorViews()}
+      </div>
 
-      createCreatorViews(){
-        if (this.props.teaching.creationMethodSignatures==undefined){
-          console.log('creation methods are undefined');
-          return;
-        }
-        console.log("abcd1");
-        console.log(this.props.teaching);
-        console.log("abcd2");
-        const creatorViews = this.props.teaching.creationMethodSignatures.map( (arg) => {
-          return (
-              <div>
-              <Creator_View methodSignature={arg}></Creator_View>
-              <br></br>
-              <br></br>
-              </div>
-          );
-        });
-        return creatorViews;
-      }
+    );
+  }
+
+  createCreatorViews() {
+    if (this.props.teaching.creationMethodSignatures === undefined) {
+      console.log('creation methods are undefined');
+      return;
+    }
+    const creatorViews = this.props.teaching.creationMethodSignatures.map((arg) => {
+      return (
+        <div>
+          <CreatorView methodSignature={arg}></CreatorView>
+          <br></br>
+          <br></br>
+        </div>
+      );
+    });
+    return creatorViews;
+  }
 
 }
 
-const Creation_View=connect(mapStateToProps,mapDispatchToProps)(TeachingView)
+const CreateView = connect(mapStateToProps, mapDispatchToProps)(UnconnectedCreateView)
 
-export default Creation_View;
+export default CreateView;

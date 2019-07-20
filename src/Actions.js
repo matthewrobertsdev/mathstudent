@@ -15,6 +15,11 @@ const _clearTeaching = (teaching) => ({
     teaching
 });
 
+const _updateURL = (URLpathname) => ({
+    type: 'UPDATE_URL',
+    URLpathname
+});
+
 //gets all topics for now for teaching
 export const getTopics = () => {
     return  (dispatch)=>{
@@ -63,5 +68,12 @@ export const getTeaching = (teachingName) => {
 export const clearTeaching = () => {
     return (dispatch) => {
         return dispatch(_clearTeaching({}));
+    };
+};
+
+export const updateURL = () => {
+    return (dispatch) => {
+        console.log();
+        return dispatch(_updateURL(window.location.pathname));
     };
 };

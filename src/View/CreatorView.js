@@ -1,12 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import DecimalInputView from './DecimalInputView';
 import './app.css';
 
-
+const mapStateToProps = (state) => {
+  return {
+    teaching: state.teaching
+  }
+};
 
 //for displaying a link to a teaching, that displays its name and loads that teaching when clicked
-class CreatorView extends React.Component{
+class UnconnectedCreatorView extends React.Component{
 
     constructor(props) {
         super(props);
@@ -19,38 +22,19 @@ class CreatorView extends React.Component{
   
             //will take user to teaching with these names.  Will get teaching from home first.
           <div className='CreatorView'>
-              {this.createView()}<button>Create a {this.props.methodSignature[0]}</button>
+              <h3>{this.props.methodSignature[0]}</h3>
+              {this.createView()}<button>Create a {this.props.teaching.displayNameSingular}</button>
           </div>
   
         );
-      }
-      createView2(){
-        var creatorView=[];
-        var displayName="";
-        for (var i=0; i<this.props.methodSignature.length; i++){
-          if (i<2){
-            //do nothing
-          }
-          else{
-            if (i%2==0){
-              displayName=this.props.methodSignature[i];
-            }
-            else{
-              console.log(i);
-              console.log(displayName);
-                creatorView.push(<DecimalInputView displayName={displayName}></DecimalInputView>);
-            }
-          }
-        }
-        return creatorView;
       }
 
       createView(){
         const inputTextBoxes = this.props.methodSignature.map( (arg,  index) => {
           if (index<2){
-            return;
+            return undefined;
           }
-          if (index%2==0){
+          if (index%2===0){
               return  <span className='small-right-margin'>{arg+':'}</span>
           }
           return (
@@ -62,6 +46,6 @@ class CreatorView extends React.Component{
 
 }
 
-const Creator_View=connect(null,null)(CreatorView)
+const CreatorView=connect(mapStateToProps, null)(UnconnectedCreatorView)
 
-export default Creator_View;
+export default CreatorView;

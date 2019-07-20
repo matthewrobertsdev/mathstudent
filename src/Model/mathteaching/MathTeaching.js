@@ -3,7 +3,8 @@ class MathTeaching{
 
     constructor(){
         this.teachingObjName="";
-        this.displayName="";
+        this.displayNameSingular="";
+        this.displayNamePlural="";
         this.creationTeaching="";
         this.creationSummary="";
         this.creationMethodSignatures=[];
