@@ -13,25 +13,30 @@ class UnconnectHeaderView extends React.Component{
       render() {
         return(
   
-            <div>{this.createHeaderView()}</div>
+            <div>{this.createNavBar()}</div>
   
         );
       }
 
-      createHeaderView(){
+      createNavBar(){
+        var headerView=[];
         if (this.props.URLpathname==='/'){
-            return (
-            <div></div>
-            );
+          headerView.push(this.createDownloadPageLink());
         }
-        else{
-            return (
-            <div className='NavBar'>
-            <NavLink to='/'>Curriculum</NavLink>
-            </div>
-        );
+        else if (this.props.URLpathname!=='/'){
+          headerView.push(this.createCurriculumLink());
         }
+        return headerView;
       }
+
+      createCurriculumLink(){
+          return (<NavLink className='float-left' to='/'>Curriculum</NavLink>);
+      }
+
+      createDownloadPageLink(){
+        return (<NavLink className='float-right' to='/'>Download</NavLink>);
+    }
+
 }
 
 const HeaderView=connect(mapStateToProps,null)(UnconnectHeaderView)

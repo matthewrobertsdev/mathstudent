@@ -20,3 +20,11 @@
         display: none;
     }
 }
+
+.float-left{
+    float: left;
+}
+
+.float-right{
+    float: right;
+}
