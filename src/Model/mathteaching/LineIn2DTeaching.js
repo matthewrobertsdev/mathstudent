@@ -5,6 +5,7 @@ class LineIn2DTeaching extends MathTeaching{
     constructor(){
         super();
         this.displayNameSingular="Line";
+        this.displayNamePlural="Lines";
         this.creationMethodSignatures=[];
         const POINT_SLOPE=["Create a line with a slope and a point", "createPointSlope", "slope", "decimal", "x1", "decimal", "y1", "decimal"];
         this.creationMethodSignatures.push(POINT_SLOPE);
