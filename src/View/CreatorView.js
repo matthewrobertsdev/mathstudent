@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './app.css';
+import FractionInputView from './FractionInputView';
 
 const mapStateToProps = (state) => {
   return {

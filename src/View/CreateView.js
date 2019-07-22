@@ -37,6 +37,17 @@ class UnconnectedCreateView extends React.Component {
     const { getTeaching, updateURL } = this.props;
     getTeaching(params.teachingName);
     updateURL();
+    window.addEventListener ? window.addEventListener('focus', this.onFoucsChange, true) : window.attachEvent('onfocusout', this.onFoucsChange);  
+    window.addEventListener ? window.addEventListener('blur', this.onBlur, true) : window.attachEvent('onblur', this.onBlur);
+    
+  }
+
+  onFoucsChange(){
+    console.log("focused changed");
+  }
+
+  onBlur(){
+    console.log("focus of element lost");
   }
 
   componentWillUnmount() {
