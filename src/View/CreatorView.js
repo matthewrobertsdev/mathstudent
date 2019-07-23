@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import FractionInput from './FractionInput';
 import './app.css';
-import FractionInputView from './FractionInputView';
 
 const mapStateToProps = (state) => {
   return {
@@ -38,7 +38,7 @@ class UnconnectedCreatorView extends React.Component{
           else if (i%2===0){
             creatorView.push(<span className='small-right-margin'>{this.props.methodSignature[i]+':'}</span>);
           }else{
-            creatorView.push(<span className='medium-right-margin'><input></input></span>);
+            creatorView.push(<span className='medium-right-margin'><FractionInput></FractionInput></span>);
             creatorView.push(<br className='hide-for-not-small'></br>);
           }
         }
