@@ -1,6 +1,5 @@
 .CreatorView{
     text-align: center;
-
 }
 
 .SubjectView{
@@ -14,4 +13,22 @@
 
 .medium-right-margin{
     margin-right: 20px;
+}
+
+@media (min-width: 100px){
+    .hide-for-not-small{
+        display: none;
+    }
+}
+
+.float-left{
+    float: left;
+}
+
+.float-right{
+    float: right;
+}
+
+.fraction{
+    
 }

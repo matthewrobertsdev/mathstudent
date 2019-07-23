@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {getTopics} from '../Actions';
-import Topic_View from './TopicView';
+import {getTopics, updateURL} from '../Actions';
+import TopicView from './TopicView';
 import './app.css';
 
 //pass in array of topics in an object
@@ -15,23 +15,23 @@ const mapDispatchToProps = (dispatch) => {
   return {
     //gets array of topics in an object
     getTopics: () => {
+      console.log("this works");
       dispatch(getTopics());
+    },
+    updateURL: () => {
+      console.log("does this work");
+      dispatch(updateURL());
     }
   }
 };
 
-class SubjectView extends React.Component{
-
-    constructor(props) {
-        super(props);
-        
-      }
+class UnconnectedSubjectView extends React.Component{
 
       //get topics when the component will mount
       componentWillMount() {
-        console.log('component will mount');
-        const { getTopics} = this.props;
+        const { getTopics, updateURL} = this.props;
         getTopics();
+        updateURL();
       }
 
       render() {
@@ -54,7 +54,7 @@ class SubjectView extends React.Component{
         const subjects_list = this.props.topics.map( (topic) => {
           return (
               <div>
-              <Topic_View topic={topic}></Topic_View>
+              <TopicView topic={topic}></TopicView>
               <br></br>
               </div>
           );
@@ -65,6 +65,6 @@ class SubjectView extends React.Component{
 
 }
 
-const subjects_view=connect(mapStateToProps, mapDispatchToProps)(SubjectView)
+const SubjectsView=connect(mapStateToProps, mapDispatchToProps)(UnconnectedSubjectView)
 
-export default subjects_view;
+export default SubjectsView;
