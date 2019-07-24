@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import FractionInput from './FractionInput';
 import {createTeaching} from '../Actions'
 import './app.css';
-
 const mapStateToProps = (state) => {
   return {
     teaching: state.teaching
@@ -19,28 +18,22 @@ const mapDispatchToProps = (dispatch) => {
 };
 //for displaying a link to a teaching, that displays its name and loads that teaching when clicked
 class UnconnectedCreatorView extends React.Component{
-
     constructor(props) {
         super(props);
         this.state={methodSignature: this.props.methodSignature,
           callingStrings: []};
-          this.handler = this.handler.bind(this);
+          this.latexHandler = this.latexHandler.bind(this);
           this.createCallingStrings();
       }
-
-
       render() {
         return(
-  
             //will take user to teaching with these names.  Will get teaching from home first.
           <div className='CreatorView'>
               <h3>{this.props.methodSignature[0]}</h3>
-              {this.createView()}<button onClick={() => this.handleClick(this.getMethodInfo())}>Create a {this.props.teaching.displayNameSingular}</button>
+              {this.createView()}<button onClick={() => this.handleClick()}>Create a {this.props.teaching.displayNameSingular}</button>
           </div>
-  
         );
       }
-
       createView(){
         var creatorView=[];
         var index=1;
@@ -56,45 +49,27 @@ class UnconnectedCreatorView extends React.Component{
         }
         return creatorView;
       }
-
       createCallingStrings(){
         for (var i=0; i<this.props.methodSignature.length/2; i++){
           this.state.callingStrings.push("");
         }
         this.state.callingStrings[0]=this.props.methodSignature[1];
       }
-
       //bring index to array
       createFractionInput(i){
-        let fractionInput=<FractionInput index={i} handler={this.handler}></FractionInput>;
+        let fractionInput=<FractionInput index={i} latexHandler={this.latexHandler}></FractionInput>;
         return fractionInput;
       }
-
       updateFractionArray(i, latex){
         this.state.callingString[i]=latex;
       }
-
-      getMethodInfo(){
-        //let methodStrings=[];
-        //methodStrings.push(this.props.methodSignature[1]);
-        //methodStrings.concat(this.state.fractionStrings)
-        return this.state.callingStrings
-      }
-
-      handler(i, latex){
+      latexHandler(i, latex){
         this.state.callingStrings[i]=latex;
-        console.log(i);
-        console.log(latex);
       }
-
       handleClick(){
         const { createTeaching } = this.props;
-        createTeaching(this.getMethodInfo());
+        createTeaching(this.state.callingStrings);
       }
-      
-
 }
-
 const CreatorView=connect(mapStateToProps, mapDispatchToProps)(UnconnectedCreatorView);
-
 export default CreatorView;
