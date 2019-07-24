@@ -21,9 +21,10 @@ class UnconnectedCreatorView extends React.Component{
     constructor(props) {
         super(props);
         this.state={methodSignature: this.props.methodSignature,
-          callingStrings: []};
+          callingStrings: [] };
           this.latexHandler = this.latexHandler.bind(this);
           this.createCallingStrings();
+          this.state.callingStrings[0]=this.props.methodSignature[1]
       }
       render() {
         return(
@@ -51,9 +52,12 @@ class UnconnectedCreatorView extends React.Component{
       }
       createCallingStrings(){
         for (var i=0; i<this.props.methodSignature.length/2; i++){
-          this.state.callingStrings.push("");
+          //this.state.callingStrings.push("");
+          this.setState(previousState => ({
+                ...previousState ,
+                callingStrings: previousState.callingStrings.push('')
+        }))
         }
-        this.state.callingStrings[0]=this.props.methodSignature[1];
       }
       //bring index to array
       createFractionInput(i){
