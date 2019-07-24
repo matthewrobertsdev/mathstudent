@@ -34,7 +34,7 @@ class UnconnectedCreateView extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state={latex: ""};
+    this.state={};
   }
 
   componentWillMount() {
@@ -42,6 +42,10 @@ class UnconnectedCreateView extends React.Component {
     const { getTeaching, updateURL } = this.props;
     getTeaching(params.teachingName);
     updateURL();
+  }
+
+  componentDidMount() {
+    
   }
 
   componentWillUnmount() {
@@ -57,7 +61,7 @@ class UnconnectedCreateView extends React.Component {
         <br></br>
         <br></br>
         <h1>Create {this.props.teaching.displayNamePlural}</h1>
-        Enter numbers as whole numbers or fractions.  If you want a demoninator, type '/' to sepaarate the numerator from the denominator.
+        Enter numbers as integers or fractions.  If you want a fraction, type '/' to sepaarate the deominator from the numerator.
         <br></br>
         <br></br>
         <br></br>
@@ -69,12 +73,11 @@ class UnconnectedCreateView extends React.Component {
 
   createCreatorViews() {
     if (this.props.teaching.creationMethodSignatures === undefined) {
-      console.log('creation methods are undefined');
       return;
     }
-    const creatorViews = this.props.teaching.creationMethodSignatures.map((arg) => {
+    const creatorViews = this.props.teaching.creationMethodSignatures.map((arg, index) => {
       return (
-        <div>
+        <div key={index} id={index}>
           <CreatorView methodSignature={arg}></CreatorView>
           <br></br>
           <br></br>

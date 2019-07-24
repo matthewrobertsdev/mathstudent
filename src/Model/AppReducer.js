@@ -14,18 +14,12 @@ const appReducer=(state=initialState, action) => {
     switch (action.type) {
         //action for getting topics for user choice
         case 'GET_TOPICS':
-            console.log('should get topics')
             return {
                 ...state,
                 topics: action.topics
               };
         case 'GET_TEACHING':
-            console.log('should get teaching')
-            console.log('hello teaching')
-            console.log(action.teaching)
-            console.log('hello teaching')
             if (action.teaching==null){
-                console.log('teaching was undefined')
                 return initialState
             }
             return {
