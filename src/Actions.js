@@ -45,6 +45,7 @@ export const getTeaching = (teachingName) => {
 
 export const createTeaching = (methodInfo) => {
     return (dispatch) => {
+            console.log(methodInfo);
             return dispatch(_createTeaching(methodInfo));
     };
  };

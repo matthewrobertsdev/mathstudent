@@ -23,8 +23,9 @@ class UnconnectedCreatorView extends React.Component{
     constructor(props) {
         super(props);
         this.state={methodSignature: this.props.methodSignature,
-          fractionStrings: []};
+          callingStrings: []};
           this.handler = this.handler.bind(this);
+          this.createCallingStrings();
       }
 
 
@@ -42,38 +43,48 @@ class UnconnectedCreatorView extends React.Component{
 
       createView(){
         var creatorView=[];
+        var index=1;
         for (var i=0; i<this.props.methodSignature.length; i++){
           if (i<2){
           }
           else if (i%2===0){
             creatorView.push(<span className='small-right-margin' key={i} id={i}>{this.props.methodSignature[i]+':'}</span>);
           }else{
-            creatorView.push(<span key={i} id={i}><span className='medium-right-margin'>{this.createFractionInput(i)}</span><br className='hide-for-not-small'></br></span>);
+            creatorView.push(<span key={i} id={i}><span className='medium-right-margin'>{this.createFractionInput(index)}</span><br className='hide-for-not-small'></br></span>);
+            index++
           }
         }
         return creatorView;
       }
 
+      createCallingStrings(){
+        for (var i=0; i<this.props.methodSignature.length/2; i++){
+          this.state.callingStrings.push("");
+        }
+        this.state.callingStrings[0]=this.props.methodSignature[1];
+      }
+
       //bring index to array
       createFractionInput(i){
         let fractionInput=<FractionInput index={i} handler={this.handler}></FractionInput>;
-        this.state.fractionStrings.push('');
         return fractionInput;
       }
 
       updateFractionArray(i, latex){
-        this.state.fractionStrings[i]=latex;
+        this.state.callingString[i]=latex;
       }
 
       getMethodInfo(){
-        let methodStrings=[];
-        methodStrings.push(this.props.methodSignature[1]);
-        console.log(this.state.fractionInputs);
-        return methodStrings;
+        //let methodStrings=[];
+        //methodStrings.push(this.props.methodSignature[1]);
+        //methodStrings.concat(this.state.fractionStrings)
+        return this.state.callingStrings
       }
 
-      handler(){
-        console.log("abcd");
+      handler(i, latex){
+        this.state.callingStrings[i]=latex;
+        console.log(i);
+        console.log(latex);
       }
 
       handleClick(){

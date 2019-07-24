@@ -21,7 +21,7 @@ class FractionInput extends React.Component{
             console.log('latex changed:', latex);
             console.log('text changed:', text);
             this.setState({ latex, text });
-            this.props.handler();
+            this.props.handler(this.state.index, this.state.latex);
           }}
           mathquillDidMount={el => {
             this.mathQuillEl = el
