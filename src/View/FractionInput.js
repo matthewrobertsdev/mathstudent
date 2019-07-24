@@ -21,11 +21,13 @@ class FractionInput extends React.Component{
         latex={this.state.latex} // Initial latex value for the input field
         onChange={latex => {
           // Called everytime the input changes
-          this.setState({ latex })
+          this.setState({ latex });
+          this.props.onChange(latex);
         }}
       />
     )
   }
+  
 
 
 }
