@@ -10,21 +10,20 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    //gets array of topics in an object
     createTeaching: (methodInfo) => {
       dispatch(createTeaching(methodInfo));
     }
   }
 };
-//for displaying a link to a teaching, that displays its name and loads that teaching when clicked
 class UnconnectedCreatorView extends React.Component{
     constructor(props) {
         super(props);
+        //methods strings to create view, calling strings to call method
         this.state={methodSignature: this.props.methodSignature,
           callingStrings: [] };
-          this.latexHandler = this.latexHandler.bind(this);
-          this.createCallingStrings();
-          this.state.callingStrings[0]=this.props.methodSignature[1]
+        this.state.callingStrings=this.createCallingStrings();
+        this.state.callingStrings[0]=this.props.methodSignature[1];
+        this.latexHandler = this.latexHandler.bind(this);
       }
       render() {
         return(
@@ -51,29 +50,29 @@ class UnconnectedCreatorView extends React.Component{
         return creatorView;
       }
       createCallingStrings(){
+        var callingStrings=[];
         for (var i=0; i<this.props.methodSignature.length/2; i++){
-          //this.state.callingStrings.push("");
-          this.setState(previousState => ({
-                ...previousState ,
-                callingStrings: previousState.callingStrings.push('')
-        }))
-        }
+          callingStrings.push('');
+        };
+        return callingStrings;
       }
       //bring index to array
       createFractionInput(i){
-        let fractionInput=<FractionInput index={i} latexHandler={this.latexHandler}></FractionInput>;
+        let fractionInput=<FractionInput index={i} latexHandler={(i, latex) => this.latexHandler(i, latex)}></FractionInput>;
         return fractionInput;
       }
-      updateFractionArray(i, latex){
-        this.state.callingString[i]=latex;
-      }
       latexHandler(i, latex){
-        this.state.callingStrings[i]=latex;
+        let tempCallingStrings=this.state.callingStrings
+        tempCallingStrings[i]=latex;
+        this.setState(previousState => ({
+          ...previousState ,
+          callingStrings: tempCallingStrings
+        }))
       }
-      handleClick(){
-        const { createTeaching } = this.props;
-        createTeaching(this.state.callingStrings);
-      }
+  handleClick(){
+    const { createTeaching } = this.props;
+      createTeaching(this.state.callingStrings);
+    }
 }
 const CreatorView=connect(mapStateToProps, mapDispatchToProps)(UnconnectedCreatorView);
 export default CreatorView;
