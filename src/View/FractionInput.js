@@ -18,13 +18,20 @@ class FractionInput extends React.Component{
   render() {
     return (
       <MathQuill
-        latex={this.state.latex} // Initial latex value for the input field
-        onChange={latex => {
-          // Called everytime the input changes
-          this.setState({ latex });
-          this.props.onChange(latex);
-        }}
-      />
+          className="mathquill-example-field"
+          latex={this.state.latex}
+          onChange={mathField => {
+            const latex = mathField.latex()
+            const text = mathField.text()
+            console.log('latex changed:', latex)
+            console.log('text changed:', text)
+            this.setState({ latex, text })
+            this.props.onChange(latex);
+          }}
+          mathquillDidMount={el => {
+            this.mathQuillEl = el
+          }}
+        />
     )
   }
   
@@ -36,3 +43,10 @@ class FractionInput extends React.Component{
 export default FractionInput;
 
 //<input className='fraction'></input><input className='fraction'></input>
+
+/*
+
+
+
+
+*/

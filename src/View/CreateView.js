@@ -113,7 +113,7 @@ class UnconnectedCreateView extends React.Component {
       default:
         e.preventDefault();
     }
-    if (this.state.latex.match("\n")&&e.key=='/'){
+    if (this.state.latex.match("frac")&&e.key=='/'){
       e.preventDefault();
     }
     if ( typeof document.activeElement==MathQuill){
@@ -125,9 +125,11 @@ class UnconnectedCreateView extends React.Component {
   
   onChange(latex) {
     //this.setState( latex.__controller.container.context.innerText );
-    this.state.latex=latex.__controller.container.context.innerText
-    console.log(latex.__controller.container.context.innerText);
-    console.log(latex);
+    //this.state.latex=latex.__controller.container.context.innerText
+    this.state.latex=latex;
+    console.log("Here's some latex "+latex);
+    //console.log(latex.__controller.container.context.innerText);
+    //console.log(latex);
   }
 
 }
