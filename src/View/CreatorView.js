@@ -38,7 +38,7 @@ class UnconnectedCreatorView extends React.Component{
           else if (i%2===0){
             creatorView.push(<span className='small-right-margin'>{this.props.methodSignature[i]+':'}</span>);
           }else{
-            creatorView.push(<span className='medium-right-margin'><FractionInput onChange={this.props.onChange.bind(this)}></FractionInput></span>);
+            creatorView.push(<span className='medium-right-margin'><FractionInput></FractionInput></span>);
             creatorView.push(<br className='hide-for-not-small'></br>);
           }
         }
