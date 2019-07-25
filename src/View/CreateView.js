@@ -61,7 +61,7 @@ class UnconnectedCreateView extends React.Component {
         <br></br>
         <br></br>
         <h1>Create {this.props.teaching.displayNamePlural}</h1>
-        Enter numbers as integers or fractions.  If you want a fraction, type '/' to sepaarate the deominator from the numerator.
+        Enter numbers as integers or fractions.  If you want a fraction, type '/' to separate the deominator from the numerator.
         <br></br>
         <br></br>
         <br></br>

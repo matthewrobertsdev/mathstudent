@@ -1,4 +1,5 @@
 import curriculum from  './Model/Curriculum';
+import InputValidator from './Model/InputValidator';
 
 const _getTopics = (topics) => ({
     type: 'GET_TOPICS',
@@ -45,8 +46,17 @@ export const getTeaching = (teachingName) => {
 
 export const createTeaching = (methodInfo) => {
     return (dispatch) => {
-            console.log(methodInfo);
+        console.log(methodInfo);
+            /*
+            if (InputValidator.isLatexFraction(methodInfo[1])){
+                console.log("should be");
+            }
+            if (InputValidator.isLatexFraction('abcd')){
+                console.log("shouldn't be");
+            }
             return dispatch(_createTeaching(methodInfo));
+            */
+        return dispatch(_createTeaching(methodInfo));
     };
  };
  

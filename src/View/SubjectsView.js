@@ -39,7 +39,6 @@ class UnconnectedSubjectView extends React.Component{
       }
       //takes array of topics from props and makes a list of Topic_Views
       createSubjectsList(){
-        console.log(this.props.topics);
         if (this.props.topics==null){
           return;
         }

@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import FractionInput from './FractionInput';
 import {createTeaching} from '../Actions'
+import InputValidator from '../Model/InputValidator';
 import './app.css';
+
 const mapStateToProps = (state) => {
   return {
     teaching: state.teaching
@@ -71,7 +73,9 @@ class UnconnectedCreatorView extends React.Component{
       }
   handleClick(){
     const { createTeaching } = this.props;
-      createTeaching(this.state.callingStrings);
+      if(InputValidator.handleAttemptedFraction(this.state.callingStrings)){
+        createTeaching(this.state.callingStrings);
+      }
     }
 }
 const CreatorView=connect(mapStateToProps, mapDispatchToProps)(UnconnectedCreatorView);
