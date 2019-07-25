@@ -47,6 +47,7 @@ export const getTeaching = (teachingName) => {
 export const createTeaching = (methodInfo) => {
     return (dispatch) => {
         console.log(methodInfo);
+
             /*
             if (InputValidator.isLatexFraction(methodInfo[1])){
                 console.log("should be");

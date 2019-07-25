@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import FractionInput from './FractionInput';
 import {createTeaching} from '../Actions'
 import InputValidator from '../Model/InputValidator';
+import { withRouter } from "react-router-dom";
 import './app.css';
 
 const mapStateToProps = (state) => {
@@ -75,8 +76,9 @@ class UnconnectedCreatorView extends React.Component{
     const { createTeaching } = this.props;
       if(InputValidator.handleAttemptedFraction(this.state.callingStrings)){
         createTeaching(this.state.callingStrings);
+        this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
       }
     }
 }
-const CreatorView=connect(mapStateToProps, mapDispatchToProps)(UnconnectedCreatorView);
+const CreatorView=connect(mapStateToProps, mapDispatchToProps)((withRouter)(UnconnectedCreatorView));
 export default CreatorView;

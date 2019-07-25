@@ -4,6 +4,7 @@ class LineIn2DTeaching extends MathTeaching{
 
     constructor(){
         super();
+        this.objectName="LineIn2D";
         this.displayNameSingular="Line";
         this.displayNamePlural="Lines";
         this.creationMethodSignatures=[];
