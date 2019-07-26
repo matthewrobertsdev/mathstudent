@@ -10,7 +10,7 @@
 .medium-right-margin{
     margin-right: 20px;
 }
-@media (min-width: 100px){
+@media (min-width: 500px){
     .hide-for-not-small{
         display: none;
     }
