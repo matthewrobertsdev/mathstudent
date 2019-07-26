@@ -11,6 +11,21 @@ class FractionInput extends React.Component{
       index: this.props.index
     }
     this.state.index=this.props.index;
+    window.addEventListener ? window.addEventListener('focus', this.onFoucsChange, true) : window.attachEvent('onfocusout', this.onFoucsChange);  
+    window.addEventListener ? window.addEventListener('blur', this.onBlur, true) : window.attachEvent('onblur', this.onBlur);
+  }
+  onFoucsChange(){
+    document.activeElement.focus({preventScroll:true});
+    /*
+    var scrollPosition = [
+      document.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
+      document.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop
+    ];
+    window.scrollTo(scrollPosition[0], scrollPosition[1]);
+    */
+  }
+  onBlur(){
+
   }
   render() {
     return (
@@ -29,6 +44,7 @@ class FractionInput extends React.Component{
   }
   onKeyPressed(e) {
     switch (e.key) {
+      case 'Tab': case ' ':
       case '1':case '2':case '3':case '4':case '5':
       case '6':case '7':case '8':case '9':case '0':
       case '/':case '-':
