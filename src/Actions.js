@@ -1,38 +1,30 @@
 import curriculum from  './Model/Curriculum';
-import InputValidator from './Model/InputValidator';
-
 const _getTopics = (topics) => ({
     type: 'GET_TOPICS',
     topics
 });
-
 const _getTeaching = (teaching) => ({
     type: 'GET_TEACHING',
     teaching
 });
-
 const _createTeaching = (teaching) => ({
     type: 'CREATE_TEACHING',
     teaching
 });
-
 const _clearTeaching = (teaching) => ({
     type: 'CLEAR_TEACHING',
     teaching
 });
-
 const _updateURL = (URLpathname) => ({
     type: 'UPDATE_URL',
     URLpathname
 });
-
 //gets all topics for now for teaching
 export const getTopics = () => {
     return  (dispatch)=>{
         dispatch(_getTopics(curriculum));
     };
 };
-
 export const getTeaching = (teachingName) => {
    return (dispatch) => {
     return import(`./Model/math/${teachingName}`).then(teachingObj => {
@@ -42,32 +34,16 @@ export const getTeaching = (teachingName) => {
         });
     };
 };
-
-
 export const createTeaching = (methodInfo) => {
     return (dispatch) => {
-        console.log(methodInfo);
-
-            /*
-            if (InputValidator.isLatexFraction(methodInfo[1])){
-                console.log("should be");
-            }
-            if (InputValidator.isLatexFraction('abcd')){
-                console.log("shouldn't be");
-            }
-            return dispatch(_createTeaching(methodInfo));
-            */
         return dispatch(_createTeaching(methodInfo));
     };
  };
- 
-
 export const clearTeaching = () => {
     return (dispatch) => {
         return dispatch(_clearTeaching({}));
     };
 };
-
 export const updateURL = () => {
     return (dispatch) => {
         return dispatch(_updateURL(window.location.pathname));

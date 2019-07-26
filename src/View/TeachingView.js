@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {getTeaching, clearTeaching} from  '../Actions';
 import './app.css';
-
 const mapStateToProps = (state) => {
   return {
     teaching: state.teaching
@@ -23,7 +22,6 @@ class UnconnectedTeachingView extends React.Component{
     constructor(props) {
         super(props);
         this.state={};
-        console.log(this.props.teaching);
       }
       componentWillMount() {
         const { match: { params } } = this.props;
@@ -44,7 +42,6 @@ class UnconnectedTeachingView extends React.Component{
           </div>
         );
       }
-      
 }
 const TeachingView=connect(mapStateToProps, mapDispatchToProps)(UnconnectedTeachingView);
 export default TeachingView;

@@ -3,17 +3,14 @@ import { connect } from 'react-redux';
 import { getTeaching, clearTeaching, updateURL } from '../Actions';
 import CreatorView from './CreatorView';
 import './app.css';
-
 /*
 This view is for the UI for creating a MathTeachingObject
 */
-
 const mapStateToProps = (state) => {
   return {
     teaching: state.teaching
   }
 };
-
 const mapDispatchToProps = (dispatch) => {
   return {
     //gets teaching from home of teaching
@@ -28,34 +25,24 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 };
-
 //for displaying a link to a teaching, that displays its name and loads the CreateView for it when clicked
 class UnconnectedCreateView extends React.Component {
-
   constructor(props) {
     super(props);
     this.state={};
   }
-
   componentWillMount() {
     const { match: { params } } = this.props;
     const { getTeaching, updateURL } = this.props;
     getTeaching(params.teachingName);
     updateURL();
   }
-
-  componentDidMount() {
-    
-  }
-
   componentWillUnmount() {
     const { clearTeaching } = this.props;
     clearTeaching();
   }
-
   render() {
     return (
-
       <div>
         <br></br>
         <br></br>
@@ -69,10 +56,8 @@ class UnconnectedCreateView extends React.Component {
         <br></br>
         {this.createCreatorViews()}
       </div>
-
     );
   }
-
   createCreatorViews() {
     if (this.props.teaching.creationMethodSignatures === undefined) {
       return;
@@ -88,9 +73,6 @@ class UnconnectedCreateView extends React.Component {
     });
     return creatorViews;
   }
-
 }
-
 const CreateView = connect(mapStateToProps, mapDispatchToProps)(UnconnectedCreateView)
-
 export default CreateView;

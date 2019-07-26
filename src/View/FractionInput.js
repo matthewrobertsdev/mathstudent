@@ -15,7 +15,7 @@ class FractionInput extends React.Component{
   render() {
     return (
       <span onKeyDown={(e) => this.onKeyPressed(e)}>
-        <MathQuill className="mathquill-field" latex={this.state.latex} onChange={mathField => {
+        <MathQuill className="mathquill-field" onKeyPress={console.log("a")}latex={this.state.latex} onChange={mathField => {
             const latex = mathField.latex();
             const text = mathField.text();
             this.setState({ latex, text });

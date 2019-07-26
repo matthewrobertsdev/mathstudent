@@ -1,5 +1,3 @@
-
-
 const initialState = {
     loaded: false,
     //all topics for now
@@ -9,7 +7,6 @@ const initialState = {
     error: {},
     URL: ''
   };
-
 const appReducer=(state=initialState, action) => {
     switch (action.type) {
         //action for getting topics for user choice
@@ -40,5 +37,4 @@ const appReducer=(state=initialState, action) => {
             return state;
     }
 };
-
 export default appReducer;

@@ -4,7 +4,6 @@ import SubjectsView from './View/SubjectsView';
 import CreateView from './View/CreateView';
 import TeachingView from './View/TeachingView';
 import HeaderView from './View/HeaderView';
-
 const AppRouter= () => (
     <BrowserRouter>
         <div>
@@ -21,5 +20,4 @@ const AppRouter= () => (
         </div>
     </BrowserRouter>
 );
-
 export default AppRouter;

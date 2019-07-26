@@ -5,7 +5,6 @@ import {createTeaching} from '../Actions'
 import InputValidator from '../Model/InputValidator';
 import { withRouter } from "react-router-dom";
 import './app.css';
-
 const mapStateToProps = (state) => {
   return {
     teaching: state.teaching

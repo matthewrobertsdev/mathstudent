@@ -1,34 +1,26 @@
 .CreatorView{
     text-align: center;
 }
-
 .SubjectView{
     margin-left: 10%;
-
 }
-
 .small-right-margin{
     margin-right: 10px;
 }
-
 .medium-right-margin{
     margin-right: 20px;
 }
-
 @media (min-width: 100px){
     .hide-for-not-small{
         display: none;
     }
 }
-
 .float-left{
     float: left;
 }
-
 .float-right{
     float: right;
 }
-
 .center-text{
     text-align: center;
 }
