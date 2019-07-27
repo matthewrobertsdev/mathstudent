@@ -3,6 +3,7 @@
 }
 .SubjectView{
     margin-left: 10%;
+    background-color: brown;
 }
 .small-right-margin{
     margin-right: 10px;
@@ -23,4 +24,79 @@
 }
 .center-text{
     text-align: center;
+}
+
+.Link{
+    color: gold;
+    background-color: rgb(110, 60, 14);
+    padding: 3px 14px;
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.Link:hover{
+    background-color: rgb(158, 89, 25);
+}
+
+.CreatorView{
+    color: gold;
+}
+
+.CreateView{
+    color: gold;
+}
+
+.main-colors{
+    color: gold;
+    background-color: rgb(110, 60, 14);
+}
+
+.NavLink{
+    color: gold;
+    background-color: rgb(110, 60, 14);
+    padding: 3px 14px;
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.NavLink:hover{
+    background-color: rgb(158, 89, 25);
+}
+
+.MathText:focus{
+    outline: none !important;
+    border-color: gold;
+    box-shadow: 0 0 10px gold;
+}
+
+.mathquill-field{
+    background-color: rgb(228, 171, 85);
+    border-color: rgb(110, 60, 14);
+    color: rgb(110, 60, 14);
+    border-radius: 3.5px;
+}
+
+.mathquill-field:focus{
+    outline: none !important;
+    border-color: gold;
+    box-shadow: 0 0 10px gold;
+}
+.MathText{
+    background-color: rgb(228, 171, 85);
+    color: rgb(97, 53, 11);
+    border-radius: 3.5px;
+}
+
+.actionButton{
+    background-color: rgb(139, 219, 199);
+    color: rgb(110, 60, 14);
+    border-radius: 7px;
+}
+
+.Heading{
+    color: rgb(61, 32, 6);
 }

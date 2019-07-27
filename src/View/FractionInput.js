@@ -23,7 +23,7 @@ class FractionInput extends React.Component{
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
             return (
                     <span onKeyDown={(e) => this.onKeyPressed(e)}>
-                    <input type="number" value={this.state.value} onChange={(event) => {
+                    <input className="MathText" type="number" value={this.state.value} onChange={(event) => {
                         this.setState({index: this.state.index, value: event.target.value });
                         this.props.textHandler(this.state.index, this.state.value);
                     }}/>

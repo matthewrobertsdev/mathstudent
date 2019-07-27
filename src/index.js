@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import AppRouter from './AppRouter';
 import teachingStore from './Model/TeachingsStore';
-import * as homeWorker from './serviceWorker'
+import * as homeWorker from './serviceWorker';
+import './View/app.css';
+document.body.style.backgroundColor = "brown";
 const store=teachingStore();
 const easyMath = (
     <Provider store={store}>

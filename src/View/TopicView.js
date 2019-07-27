@@ -10,7 +10,7 @@ class TopicView extends React.Component{
         return(
             //will take user to teaching with these names.  Will get teaching from model first.
           <div>
-              <Link to={`/create/${this.props.topic.codeName}`}>{this.props.topic.displayName}</Link>
+              <Link className="Link" to={`/create/${this.props.topic.codeName}`}>{this.props.topic.displayName}</Link>
           </div>
         );
       }

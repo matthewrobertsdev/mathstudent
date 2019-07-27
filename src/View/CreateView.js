@@ -48,8 +48,8 @@ class UnconnectedCreateView extends React.Component {
         <br></br>
         <br></br>
         <div className='center-text'>
-        <h1>Create {this.props.teaching.displayNamePlural}</h1>
-        <h3>Enter numbers as integers or fractions.  If you want a fraction, type '/' to separate the denominator from the numerator.</h3>
+        <h1 className="CreateView">Create {this.props.teaching.displayNamePlural}</h1>
+        <h3 className="Heading">Enter numbers as integers or fractions.  If you want a fraction, type '/' to separate the denominator from the numerator.</h3>
         </div>
         <br></br>
         <br></br>
@@ -65,7 +65,7 @@ class UnconnectedCreateView extends React.Component {
     const creatorViews = this.props.teaching.creationMethodSignatures.map((arg, index) => {
       return (
         <div key={index} id={index}>
-          <CreatorView methodSignature={arg}></CreatorView>
+          <CreatorView className="CreatorView" methodSignature={arg}></CreatorView>
           <br></br>
           <br></br>
         </div>

@@ -32,7 +32,7 @@ class UnconnectedCreatorView extends React.Component{
             //will take user to teaching with these names.  Will get teaching from home first.
           <div className='CreatorView'>
               <h3>{this.props.methodSignature[0]}</h3>
-              {this.createView()}<button onClick={() => this.handleClick()}>Create a {this.props.teaching.displayNameSingular}</button>
+              {this.createView()}<button className="actionButton" onClick={() => this.handleClick()}>Create a {this.props.teaching.displayNameSingular}</button>
           </div>
         );
       }
