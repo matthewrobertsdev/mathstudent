@@ -75,8 +75,8 @@
 
 .mathquill-field{
     background-color: rgb(228, 171, 85);
-    border-color: rgb(110, 60, 14);
-    color: rgb(110, 60, 14);
+    border-color: rgb(61, 32, 6);
+    color: rgb(61, 32, 6);
     border-radius: 3.5px;
 }
 
@@ -87,13 +87,13 @@
 }
 .MathText{
     background-color: rgb(228, 171, 85);
-    color: rgb(97, 53, 11);
+    color: rgb(61, 32, 6);
     border-radius: 3.5px;
 }
 
 .actionButton{
     background-color: rgb(139, 219, 199);
-    color: rgb(110, 60, 14);
+    color: rgb(61, 32, 6);
     border-radius: 7px;
 }
 
