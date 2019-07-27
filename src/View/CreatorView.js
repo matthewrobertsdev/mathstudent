@@ -25,7 +25,7 @@ class UnconnectedCreatorView extends React.Component{
           callingStrings: [] };
         this.state.callingStrings=this.createCallingStrings();
         this.state.callingStrings[0]=this.props.methodSignature[1];
-        this.latexHandler = this.latexHandler.bind(this);
+        this.textHandler = this.textHandler.bind(this);
       }
       render() {
         return(
@@ -60,12 +60,13 @@ class UnconnectedCreatorView extends React.Component{
       }
       //bring index to array
       createFractionInput(i){
-        let fractionInput=<FractionInput index={i} latexHandler={(i, latex) => this.latexHandler(i, latex)}></FractionInput>;
+          let fractionInput=<FractionInput index={i} textHandler={(i, value) => this.textHandler(i, value)}></FractionInput>;
+    
         return fractionInput;
       }
-      latexHandler(i, latex){
+      textHandler(i, value){
         let tempCallingStrings=this.state.callingStrings
-        tempCallingStrings[i]=latex;
+        tempCallingStrings[i]=value;
         this.setState(previousState => ({
           ...previousState ,
           callingStrings: tempCallingStrings
