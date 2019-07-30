@@ -43,7 +43,7 @@ class UnconnectedCreatorView extends React.Component{
           if (i<2){
           }
           else if (i%2===0){
-            creatorView.push(<span className='small-right-margin' key={i} id={i}>{this.props.methodSignature[i]+':'}</span>);
+            creatorView.push(<span className='small-right-margin creator-text-size' key={i} id={i}>{this.props.methodSignature[i]+':'}</span>);
           }else{
             creatorView.push(<span key={i} id={i}><span className='medium-right-margin'>{this.createFractionInput(index)}</span><br className='hide-for-not-small'></br></span>);
             index++
@@ -61,14 +61,13 @@ class UnconnectedCreatorView extends React.Component{
       //bring index to array
       createFractionInput(i){
           let fractionInput=<FractionInput index={i} textHandler={(i, value) => this.textHandler(i, value)}></FractionInput>;
-    
         return fractionInput;
       }
       textHandler(i, value){
         let tempCallingStrings=this.state.callingStrings
         tempCallingStrings[i]=value;
         this.setState(previousState => ({
-          ...previousState ,
+          ...previousState,
           callingStrings: tempCallingStrings
         }))
       }

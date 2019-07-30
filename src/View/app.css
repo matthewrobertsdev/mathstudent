@@ -16,6 +16,11 @@
         display: none;
     }
 }
+@media (max-width: 500px){
+    .creator-text-size{
+        font-size: 20px;
+    }
+}
 .float-left{
     float: left;
 }
@@ -65,12 +70,6 @@
 
 .NavLink:hover{
     background-color: rgb(158, 89, 25);
-}
-
-.MathText:focus{
-    outline: none !important;
-    border-color: gold;
-    box-shadow: 0 0 10px gold;
 }
 
 .mathquill-field{

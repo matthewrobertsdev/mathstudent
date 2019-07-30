@@ -1,11 +1,12 @@
 import React from 'react';
 import './app.css';
 import MathQuill, { addStyles as addMathquillStyles } from 'react-mathquill';
+import isMobile from '../Model/utilities/IsMobile';
 addMathquillStyles();
 class FractionInput extends React.Component{
     constructor(props) {
         super(props);
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        if( isMobile()) {
             this.state = {
             value: '',
             index: this.props.index
@@ -18,14 +19,30 @@ class FractionInput extends React.Component{
             }
         }
         this.state.index=this.props.index;
+        if( isMobile() ) {
+            window.addEventListener ? window.addEventListener('focus', this.onFoucsChange, true) : window.attachEvent('onfocusout', this.onFoucsChange);  
+            window.addEventListener ? window.addEventListener('blur', this.onBlur, true) : window.attachEvent('onblur', this.onBlur);
+        }
     }
+    onFoucsChange(){
+        console.log("focused changed");
+      }
+    
+      onBlur(){
+        console.log("focus of element lost");
+      }
     render() {
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        if( isMobile() ) {
             return (
                     <span onKeyDown={(e) => this.onKeyPressed(e)}>
-                    <input className="MathText" type="number" value={this.state.value} onChange={(event) => {
+                    <input className="MathText creator-text-size" pattern='^(-?\\d\\/-?\\d)$|^(-?\\d+)$' readOnly={true} value={this.state.value} onChange={(event) => {
+                        //window.alert(this.state.value)
+                        if (event.key==='/'){
+                            console.log("a win");
+                        }
                         this.setState({index: this.state.index, value: event.target.value });
-                        this.props.textHandler(this.state.index, this.state.value);
+                        this.props.textHandler(this.state.index, event.target.value);
+                        console.log(event.target.value)
                     }}/>
                     </span>
                     )
@@ -35,7 +52,7 @@ class FractionInput extends React.Component{
                     <MathQuill className="mathquill-field" latex={this.state.latex} onChange={mathField => {
                         const latex = mathField.latex();
                         const text = mathField.text();
-                        this.setState({ latex, text });
+                        this.setState({latex: latex, text: text, index: this.state.index});
                         this.props.textHandler(this.state.index, this.state.latex);
                     }}
                     mathquillDidMount={el => {
@@ -59,7 +76,7 @@ class FractionInput extends React.Component{
                 e.preventDefault();
                 
         }
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        if( isMobile() ) {
             if (this.state.value.match("/")&&e.key==='/'){
                 e.preventDefault();
             }
