@@ -35,7 +35,7 @@ class FractionInput extends React.Component{
         if( isMobile() ) {
             return (
                     <span onKeyDown={(e) => this.onKeyPressed(e)}>
-                    <input className="MathText creator-text-size" pattern='^(-?\\d\\/-?\\d)$|^(-?\\d+)$' readOnly={true} value={this.state.value} onChange={(event) => {
+                    <button className="MathText creator-text-size" pattern='^(-?\\d\\/-?\\d)$|^(-?\\d+)$' readOnly={true} value={this.state.value} onChange={(event) => {
                         //window.alert(this.state.value)
                         if (event.key==='/'){
                             console.log("a win");

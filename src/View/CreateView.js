@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getTeaching, clearTeaching, updateURL } from '../Actions';
 import CreatorView from './CreatorView';
+import isMobile from '../Model/utilities/IsMobile';
+import Keyboard from 'react-simple-keyboard';
+import 'react-simple-keyboard/build/css/index.css';
 import './app.css';
 /*
 This view is for the UI for creating a MathTeachingObject
@@ -51,6 +54,14 @@ class UnconnectedCreateView extends React.Component {
         </div>
         <br></br>
         {this.createCreatorViews()}
+        {this.addKeyboardForMobile()}
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
       </div>
     );
   }
@@ -61,12 +72,24 @@ class UnconnectedCreateView extends React.Component {
     const creatorViews = this.props.teaching.creationMethodSignatures.map((arg, index) => {
       return (
         <div key={index} id={index}>
-          <CreatorView className="CreatorView" methodSignature={arg}></CreatorView>
+          <CreatorView className='CreatorView' methodSignature={arg}></CreatorView>
           <br></br>
         </div>
       );
     });
     return creatorViews;
+  }
+  addKeyboardForMobile(){
+    if( isMobile() ){
+      return <div className='keyboard-container'>
+        <Keyboard className='Keyboard' layout={{
+            default: [
+              " 1 2 3 4",
+              " 5 6 7 8 9",
+              " 0 - / {bksp}"
+            ]}}/>
+      </div>
+   }
   }
 }
 const CreateView = connect(mapStateToProps, mapDispatchToProps)(UnconnectedCreateView)
