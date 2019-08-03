@@ -21,9 +21,11 @@ class UnconnectedCreatorView extends React.Component{
     constructor(props) {
         super(props);
         //methods strings to create view, calling strings to call method
+        this.state=this.props.classID
         this.state={methodSignature: this.props.methodSignature,
           callingStrings: [] };
         this.state.callingStrings=this.createCallingStrings();
+        this.state.classID=props.classID;
         this.state.callingStrings[0]=this.props.methodSignature[1];
         this.textHandler = this.textHandler.bind(this);
       }
@@ -60,7 +62,7 @@ class UnconnectedCreatorView extends React.Component{
       }
       //bring index to array
       createFractionInput(i){
-          let fractionInput=<FractionInput index={i} textHandler={(i, value) => this.textHandler(i, value)}></FractionInput>;
+          let fractionInput=<FractionInput id={this.state.classID+"-"+i} classID={this.state.classID+"-"+i} index={i} textHandler={(i, value) => this.textHandler(i, value)}></FractionInput>;
         return fractionInput;
       }
       textHandler(i, value){

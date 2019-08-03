@@ -9,34 +9,49 @@ class FractionInput extends React.Component{
         if( isMobile()) {
             this.state = {
             value: '',
-            index: this.props.index
+            index: this.props.index,
+            classID: this.props.classID,
+            active: false
             }
         } else {
             this.state = {
             latex: '',
             text: '',
-            index: this.props.index
+            index: this.props.index,
+            classID: this.props.classID,
             }
         }
-        this.state.index=this.props.index;
         if( isMobile() ) {
             window.addEventListener ? window.addEventListener('focus', this.onFoucsChange, true) : window.attachEvent('onfocusout', this.onFoucsChange);  
             window.addEventListener ? window.addEventListener('blur', this.onBlur, true) : window.attachEvent('onblur', this.onBlur);
         }
+        this.mathQuillEl = null
     }
     onFoucsChange(){
+        //document.activeElement.blur();
         console.log("focused changed");
       }
     
       onBlur(){
         console.log("focus of element lost");
       }
+
+      selectButton(){
+          //let element=document.getElementById(this.state.classID);
+          //console.log("abcd"+this.state.classID);
+          //element.style.backgroundColor='red';
+          this.setState(previousState => ({
+            ...previousState,
+            active: true
+          }));
+      }
+      
     render() {
         if( isMobile() ) {
             return (
                     <span onKeyDown={(e) => this.onKeyPressed(e)}>
-                    <button className="MathText creator-text-size" pattern='^(-?\\d\\/-?\\d)$|^(-?\\d+)$' readOnly={true} value={this.state.value} onChange={(event) => {
-                        //window.alert(this.state.value)
+                    <button className={this.state.active ? "SelectedMathText creator-text-size" : "MathText creator-text-size"} pattern='^(-?\\d\\/-?\\d)$|^(-?\\d+)$' value={this.state.value} onClick={() => this.selectButton()} onChange={(event) => {
+                        window.alert(this.state.value)
                         if (event.key==='/'){
                             console.log("a win");
                         }
@@ -56,12 +71,17 @@ class FractionInput extends React.Component{
                         this.props.textHandler(this.state.index, this.state.latex);
                     }}
                     mathquillDidMount={el => {
-                    this.mathQuillEl = el
+                    this.mathQuillEl = el;
                     }}/>
                     </span>
                     )
         }
     }
+    createSubsittuteTextArea(){
+        return (<span tabindex={0}> </span>);
+    }
+
+    
     onKeyPressed(e) {
         if (e.metaKey && (e.key==="h"||e.key==="q")){
             return;
@@ -88,3 +108,25 @@ class FractionInput extends React.Component{
     }
 }
 export default FractionInput;
+
+
+/*
+<button className="MathText creator-text-size" pattern='^(-?\\d\\/-?\\d)$|^(-?\\d+)$' value={this.state.value} onChange={(event) => {
+                        window.alert(this.state.value)
+                        if (event.key==='/'){
+                            console.log("a win");
+                        }
+                        this.setState({index: this.state.index, value: event.target.value });
+                        this.props.textHandler(this.state.index, event.target.value);
+                        console.log(event.target.value)
+                    }}/>
+<MathQuill className="mathquill-field" latex={this.state.latex} config={{substituteTextarea: this.createSubsittuteTextArea}}onChange={mathField => {
+                        const latex = mathField.latex();
+                        const text = mathField.text();
+                        this.setState({latex: latex, text: text, index: this.state.index});
+                        this.props.textHandler(this.state.index, this.state.latex);
+                    }}
+                    mathquillDidMount={el => {
+                    this.mathQuillEl = el
+                    }}/>
+*/

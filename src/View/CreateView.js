@@ -71,8 +71,8 @@ class UnconnectedCreateView extends React.Component {
     }
     const creatorViews = this.props.teaching.creationMethodSignatures.map((arg, index) => {
       return (
-        <div key={index} id={index}>
-          <CreatorView className='CreatorView' methodSignature={arg}></CreatorView>
+        <div key={index}>
+          <CreatorView className='CreatorView' methodSignature={arg} id={this.createID(index)} classID={this.createID(index)}></CreatorView>
           <br></br>
         </div>
       );
@@ -84,12 +84,15 @@ class UnconnectedCreateView extends React.Component {
       return <div className='keyboard-container'>
         <Keyboard className='Keyboard' layout={{
             default: [
-              " 1 2 3 4",
-              " 5 6 7 8 9",
-              " 0 - / {bksp}"
+              " 1 2 3 4 5",
+              " 6 7 8 9 0",
+              " . - / {bksp}"
             ]}}/>
       </div>
    }
+  }
+  createID(index){
+    return this.props.teaching.objectName+"-"+index;
   }
 }
 const CreateView = connect(mapStateToProps, mapDispatchToProps)(UnconnectedCreateView)
