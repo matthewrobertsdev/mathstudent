@@ -34,7 +34,8 @@ class UnconnectedCreatorView extends React.Component{
             //will take user to teaching with these names.  Will get teaching from home first.
           <div className='CreatorView'>
               <h3>{this.props.methodSignature[0]}</h3>
-              {this.createView()}<button className="actionButton" onClick={() => this.handleClick()}>Create a {this.props.teaching.displayNameSingular}</button>
+              {this.createView()}<button className="actionButton" onClick={() => this.handleClick()}>
+                Create a {this.props.teaching.displayNameSingular}</button>
           </div>
         );
       }
@@ -62,7 +63,9 @@ class UnconnectedCreatorView extends React.Component{
       }
       //bring index to array
       createFractionInput(i){
-          let fractionInput=<FractionInput id={this.state.classID+"-"+i} classID={this.state.classID+"-"+i} index={i} textHandler={(i, value) => this.textHandler(i, value)}></FractionInput>;
+          let fractionInput=<FractionInput id={this.state.classID+"-"+i} classID={this.state.classID+"-"+i} 
+          index={i} textHandler={(i, value) => this.textHandler(i, value)} activateInputHandler={this.props.activateInputHandler}>
+          </FractionInput>;
         return fractionInput;
       }
       textHandler(i, value){

@@ -1,9 +1,23 @@
 import React from 'react';
 import './app.css';
 import MathQuill, { addStyles as addMathquillStyles } from 'react-mathquill';
+import { connect } from 'react-redux';
+import {updateMobileInputText} from '../Actions';
 import isMobile from '../Model/utilities/IsMobile';
 addMathquillStyles();
-class FractionInput extends React.Component{
+const mapStateToProps = (state) => {
+    return {
+      value: state.value
+    }
+  };
+const mapDispatchToProps = (dispatch) => {
+    return {
+      updateMobileInputText: () => {
+        dispatch(updateMobileInputText());
+      }
+    }
+  };
+class UnconnectedFractionInput extends React.Component{
     constructor(props) {
         super(props);
         if( isMobile()) {
@@ -37,20 +51,26 @@ class FractionInput extends React.Component{
       }
 
       selectButton(){
-          //let element=document.getElementById(this.state.classID);
-          //console.log("abcd"+this.state.classID);
-          //element.style.backgroundColor='red';
-          this.setState(previousState => ({
-            ...previousState,
-            active: true
-          }));
+        let selectedElements=document.getElementsByClassName("SelectedMathText");
+        if(selectedElements){
+        for (var i=0; i<selectedElements.length; i++){
+            selectedElements[i].className="MathText creator-text-size";
+        }
+    }
+        document.getElementById(this.props.classID).className="SelectedMathText creator-text-size";
+
       }
+
+    
       
     render() {
         if( isMobile() ) {
             return (
+                // className={this.state.active ? "SelectedMathText creator-text-size" : "MathText creator-text-size"}
                     <span onKeyDown={(e) => this.onKeyPressed(e)}>
-                    <button className={this.state.active ? "SelectedMathText creator-text-size" : "MathText creator-text-size"} pattern='^(-?\\d\\/-?\\d)$|^(-?\\d+)$' value={this.state.value} onClick={() => this.selectButton()} onChange={(event) => {
+                    <button  className={"MathText creator-text-size"} 
+                    pattern='^(-?\\d\\/-?\\d)$|^(-?\\d+)$' value={this.state.value} onClick={() => updateMobileInputText(this.state.value)} 
+                    onChange={(event) => {
                         window.alert(this.state.value)
                         if (event.key==='/'){
                             console.log("a win");
@@ -107,6 +127,7 @@ class FractionInput extends React.Component{
         }
     }
 }
+const FractionInput=connect(mapStateToProps, mapDispatchToProps)(UnconnectedFractionInput)
 export default FractionInput;
 
 

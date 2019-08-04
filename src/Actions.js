@@ -19,6 +19,10 @@ const _updateURL = (URLpathname) => ({
     type: 'UPDATE_URL',
     URLpathname
 });
+const _updateMobileInputText = (value) => ({
+    type: 'UPDATE_MOBILE_INPUT_TEXT',
+    value
+});
 //gets all topics for now for teaching
 export const getTopics = () => {
     return  (dispatch)=>{
@@ -47,5 +51,15 @@ export const clearTeaching = () => {
 export const updateURL = () => {
     return (dispatch) => {
         return dispatch(_updateURL(window.location.pathname));
+    };
+};
+export const clearSelectedFields = () => {
+    return (dispatch) => {
+        return dispatch(_updateURL(window.location.pathname));
+    };
+};
+export const updateMobileInputText = (value) => {
+    return (dispatch) => {
+        return dispatch(_updateMobileInputText(value));
     };
 };

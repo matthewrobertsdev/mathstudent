@@ -33,6 +33,16 @@ const appReducer=(state=initialState, action) => {
                     ...state,
                     URLpathname: action.URLpathname
                 };
+        case 'UPDATE_MOBILE_INPUT_TEXT':
+                return {
+                    ...state,
+                    value: action.value
+                };
+        case 'CLEAR_MOBILE_INPUT_TEXT':
+                return {
+                    ...state,
+                    value: action.value
+                };
         default:
             return state;
     }

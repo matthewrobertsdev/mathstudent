@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getTeaching, clearTeaching, updateURL } from '../Actions';
+import { getTeaching, clearTeaching, updateURL, updateMobileInputText} from '../Actions';
 import CreatorView from './CreatorView';
 import isMobile from '../Model/utilities/IsMobile';
 import Keyboard from 'react-simple-keyboard';
@@ -11,7 +11,8 @@ This view is for the UI for creating a MathTeachingObject
 */
 const mapStateToProps = (state) => {
   return {
-    teaching: state.teaching
+    teaching: state.teaching,
+    value: state.value
   }
 };
 const mapDispatchToProps = (dispatch) => {
@@ -25,6 +26,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateURL: () => {
       dispatch(updateURL());
+    },
+    updateMobileInputText: () => {
+      dispatch(updateMobileInputText());
     }
   }
 };
@@ -32,8 +36,11 @@ const mapDispatchToProps = (dispatch) => {
 class UnconnectedCreateView extends React.Component {
   constructor(props) {
     super(props);
-    this.state={};
+    this.state={
+      activeText: null
+    };
   }
+  activeInput='';
   componentWillMount() {
     const { match: { params } } = this.props;
     const { getTeaching, updateURL } = this.props;
@@ -72,13 +79,23 @@ class UnconnectedCreateView extends React.Component {
     const creatorViews = this.props.teaching.creationMethodSignatures.map((arg, index) => {
       return (
         <div key={index}>
-          <CreatorView className='CreatorView' methodSignature={arg} id={this.createID(index)} classID={this.createID(index)}></CreatorView>
+          <CreatorView className='CreatorView' methodSignature={arg} 
+           activateInputHandler={this.activateInputHandler}></CreatorView>
           <br></br>
         </div>
       );
     });
     return creatorViews;
   }
+
+  onChange = input => {
+    this.activeInput=input;
+    console.log("Input changed", input);
+  };
+  onKeyPress = button => {
+    console.log("Button pressed", button);
+    if (button === "{shift}" || button === "{lock}") this.handleShift();
+  };
   addKeyboardForMobile(){
     if( isMobile() ){
       return <div className='keyboard-container'>
@@ -87,13 +104,24 @@ class UnconnectedCreateView extends React.Component {
               " 1 2 3 4 5",
               " 6 7 8 9 0",
               " . - / {bksp}"
-            ]}}/>
+            ]}}
+            
+            onChange={input => this.onChange(input)}
+          onKeyPress={button => this.onKeyPress(button)}/>
       </div>
    }
   }
+  /*
   createID(index){
     return this.props.teaching.objectName+"-"+index;
+  }
+  */
+  activateInputHandler(input){
+      this.activeInput=input;
   }
 }
 const CreateView = connect(mapStateToProps, mapDispatchToProps)(UnconnectedCreateView)
 export default CreateView;
+
+//id={this.createID(index)}
+//ref={this.createID(index)}
