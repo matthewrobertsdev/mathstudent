@@ -5,11 +5,13 @@ import {createTeaching} from '../Actions'
 import InputValidator from '../Model/InputValidator';
 import { withRouter } from "react-router-dom";
 import './app.css';
+//gets the teaching for this method
 const mapStateToProps = (state) => {
   return {
     teaching: state.teaching
   }
 };
+//so that the creator view can get the teaching
 const mapDispatchToProps = (dispatch) => {
   return {
     createTeaching: (methodInfo) => {
@@ -17,15 +19,14 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 };
+//for creating a teaching, but not connected yet
 class UnconnectedCreatorView extends React.Component{
     constructor(props) {
         super(props);
         //methods strings to create view, calling strings to call method
-        this.state=this.props.classID
         this.state={methodSignature: this.props.methodSignature,
-          callingStrings: [] };
+          callingStrings: [], key: undefined};
         this.state.callingStrings=this.createCallingStrings();
-        this.state.classID=props.classID;
         this.state.callingStrings[0]=this.props.methodSignature[1];
         this.textHandler = this.textHandler.bind(this);
       }
@@ -63,7 +64,7 @@ class UnconnectedCreatorView extends React.Component{
       }
       //bring index to array
       createFractionInput(i){
-          let fractionInput=<FractionInput id={this.state.classID+"-"+i} classID={this.state.classID+"-"+i} 
+          let fractionInput=<FractionInput key={this.props.key+"-"+i} 
           index={i} textHandler={(i, value) => this.textHandler(i, value)} activateInputHandler={this.props.activateInputHandler}>
           </FractionInput>;
         return fractionInput;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getTeaching, clearTeaching, updateURL, updateMobileInputText} from '../Actions';
+import { getTeaching, clearTeaching, updateURL} from '../Actions';
 import CreatorView from './CreatorView';
 import isMobile from '../Model/utilities/IsMobile';
 import Keyboard from 'react-simple-keyboard';
@@ -26,9 +26,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateURL: () => {
       dispatch(updateURL());
-    },
-    updateMobileInputText: () => {
-      dispatch(updateMobileInputText());
     }
   }
 };
@@ -80,7 +77,7 @@ class UnconnectedCreateView extends React.Component {
       return (
         <div key={index}>
           <CreatorView className='CreatorView' methodSignature={arg} 
-           activateInputHandler={this.activateInputHandler}></CreatorView>
+           activateInputHandler={this.activateInputHandler} key={this.createKey(index)}></CreatorView>
           <br></br>
         </div>
       );
@@ -93,6 +90,7 @@ class UnconnectedCreateView extends React.Component {
     console.log("Input changed", input);
   };
   onKeyPress = button => {
+
     console.log("Button pressed", button);
     if (button === "{shift}" || button === "{lock}") this.handleShift();
   };
@@ -111,11 +109,9 @@ class UnconnectedCreateView extends React.Component {
       </div>
    }
   }
-  /*
-  createID(index){
+  createKey(index){
     return this.props.teaching.objectName+"-"+index;
   }
-  */
   activateInputHandler(input){
       this.activeInput=input;
   }

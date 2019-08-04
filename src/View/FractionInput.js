@@ -1,19 +1,19 @@
 import React from 'react';
 import './app.css';
 import MathQuill, { addStyles as addMathquillStyles } from 'react-mathquill';
+import { addToMap } from '../Actions';
 import { connect } from 'react-redux';
-import {updateMobileInputText} from '../Actions';
 import isMobile from '../Model/utilities/IsMobile';
 addMathquillStyles();
 const mapStateToProps = (state) => {
     return {
-      value: state.value
+      map: state.map
     }
   };
 const mapDispatchToProps = (dispatch) => {
     return {
-      updateMobileInputText: () => {
-        dispatch(updateMobileInputText());
+    addToMap: (key, value) => {
+        dispatch(addToMap(key, value));
       }
     }
   };
@@ -69,7 +69,7 @@ class UnconnectedFractionInput extends React.Component{
                 // className={this.state.active ? "SelectedMathText creator-text-size" : "MathText creator-text-size"}
                     <span onKeyDown={(e) => this.onKeyPressed(e)}>
                     <button  className={"MathText creator-text-size"} 
-                    pattern='^(-?\\d\\/-?\\d)$|^(-?\\d+)$' value={this.state.value} onClick={() => updateMobileInputText(this.state.value)} 
+                    pattern='^(-?\\d\\/-?\\d)$|^(-?\\d+)$' value={this.state.value}
                     onChange={(event) => {
                         window.alert(this.state.value)
                         if (event.key==='/'){
@@ -77,7 +77,7 @@ class UnconnectedFractionInput extends React.Component{
                         }
                         this.setState({index: this.state.index, value: event.target.value });
                         this.props.textHandler(this.state.index, event.target.value);
-                        console.log(event.target.value)
+                        console.log(event.target.value);
                     }}/>
                     </span>
                     )

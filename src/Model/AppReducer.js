@@ -5,7 +5,8 @@ const initialState = {
     //the teaching being taught
     teaching: {},
     error: {},
-    URL: ''
+    URL: '',
+    map: new Map()
   };
 const appReducer=(state=initialState, action) => {
     switch (action.type) {
@@ -33,16 +34,21 @@ const appReducer=(state=initialState, action) => {
                     ...state,
                     URLpathname: action.URLpathname
                 };
-        case 'UPDATE_MOBILE_INPUT_TEXT':
-                return {
-                    ...state,
-                    value: action.value
-                };
         case 'CLEAR_MOBILE_INPUT_TEXT':
                 return {
                     ...state,
                     value: action.value
                 };
+        case 'ADD_TO_MAP':
+            return {
+                ...state,
+                map: map.set(action.key, action.value)
+            };
+        case 'CLEAR_MOBILE_INPUT_TEXT':
+            return {
+                ...state,
+                value: action.value
+            };
         default:
             return state;
     }

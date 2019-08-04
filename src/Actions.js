@@ -19,8 +19,9 @@ const _updateURL = (URLpathname) => ({
     type: 'UPDATE_URL',
     URLpathname
 });
-const _updateMobileInputText = (value) => ({
-    type: 'UPDATE_MOBILE_INPUT_TEXT',
+const _addToMap = (key, value) => ({
+    type: 'ADD_TO_MAP',
+    key,
     value
 });
 //gets all topics for now for teaching
@@ -58,8 +59,8 @@ export const clearSelectedFields = () => {
         return dispatch(_updateURL(window.location.pathname));
     };
 };
-export const updateMobileInputText = (value) => {
+export const addToMap = (key, value) => {
     return (dispatch) => {
-        return dispatch(_updateMobileInputText(value));
+        return dispatch(_addToMap(key, value));
     };
 };
