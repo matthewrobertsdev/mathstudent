@@ -42,7 +42,7 @@ const appReducer=(state=initialState, action) => {
         case 'ADD_TO_MAP':
             return {
                 ...state,
-                map: map.set(action.key, action.value)
+                map: state.map.set(action.key, action.value)
             };
         case 'CLEAR_MOBILE_INPUT_TEXT':
             return {
