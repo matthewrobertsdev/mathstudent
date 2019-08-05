@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getTeaching, clearTeaching, updateURL} from '../Actions';
+import { getTeaching, clearTeaching, updateURL, updateActiveValue} from '../Actions';
 import CreatorView from './CreatorView';
 import isMobile from '../Model/utilities/IsMobile';
 import Keyboard from 'react-simple-keyboard';
@@ -25,8 +25,8 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateURL: () => {
       dispatch(updateURL());
-    }
-  }
+    },
+    updateActiveValue: (key) => { dispatch(updateActiveValue(key)); } }
 };
 //for displaying a link to a teaching, that displays its name and loads the CreateView for it when clicked
 class UnconnectedCreateView extends React.Component {
@@ -85,12 +85,13 @@ class UnconnectedCreateView extends React.Component {
   }
 
   onChange = input => {
-    this.activeInput=input;
     console.log("Input changed", input);
   };
   onKeyPress = button => {
-
+    const {updateActiveValue}=this.props;
+    updateActiveValue(button);
     console.log("Button pressed", button);
+
     if (button === "{shift}" || button === "{lock}") this.handleShift();
   };
   addKeyboardForMobile(){

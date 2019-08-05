@@ -8,7 +8,8 @@ const initialState = {
     URL: '',
     inputMap: [],
     activeMap: {},
-    activeKey: ''
+    activeKey: '',
+    activeValue: ''
   };
 const appReducer=(state=initialState, action) => {
     switch (action.type) {
@@ -33,10 +34,17 @@ const appReducer=(state=initialState, action) => {
             return {
                     ...state, URLpathname: action.URLpathname
                 };
-        case 'UPDATE_ACTIVE_KEY':
+        case 'UPDATE_ACTIVE_KEY_AND_VALUE':
             console.log("please please"+action.type)
             return {
-                    ...state, activeKey: action.activeKey
+                    ...state, activeKey: action.activeKey, activeValue: action.value
+                };
+        case 'UPDATE_ACTIVE_VALUE':
+            console.log("please please"+action.type)
+            let oldValue=state.activeValue;
+            console.log("hey"+oldValue)
+            return {
+                    ...state, activeValue: oldValue+=action.key
                 };
         default:
             return state;

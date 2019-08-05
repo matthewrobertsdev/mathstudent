@@ -33,9 +33,13 @@ const _changeSelected = (keyID) => ({
     type: 'CHANGE_SELECTED',
     keyID
 });
-const _updateActiveKey = (activeKey) => ({
-    type: 'UPDATE_ACTIVE_KEY',
+const _updateActiveKeyAndValue = (activeKey) => ({
+    type: 'UPDATE_ACTIVE_KEY_AND_VALUE',
     activeKey
+});
+const _updateActiveValue = (key) => ({
+    type: 'UPDATE_ACTIVE_VALUE',
+    key
 });
 //gets all topics for now for teaching
 export const getTopics = () => {
@@ -90,9 +94,15 @@ export const changeSelected = (keyID) => {
         return dispatch(_changeSelected(keyID));
     };
 };
-export const updateActiveKey = (keyID) => {
+export const updateActiveKeyAndValue = (keyID, value) => {
     console.log('is this working');
     return (dispatch) => {
-        return dispatch(_updateActiveKey(keyID));
+        return dispatch(_updateActiveKeyAndValue(keyID, value));
+    };
+};
+export const updateActiveValue = (key) => {
+    console.log('is this working');
+    return (dispatch) => {
+        return dispatch(_updateActiveValue(key));
     };
 };

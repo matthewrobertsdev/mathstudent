@@ -1,16 +1,16 @@
 import React from 'react';
 import './app.css';
 import MathQuill, { addStyles as addMathquillStyles } from 'react-mathquill';
-import { addToInputMap, addToActiveMap, changeSelected, updateActiveKey} from '../Actions';
+import { addToInputMap, addToActiveMap, changeSelected, updateActiveKeyAndValue} from '../Actions';
 import { connect } from 'react-redux';
 import isMobile from '../Model/utilities/IsMobile';
 addMathquillStyles();
 const mapStateToProps = (state) => {
     console.log(state)
-    return { inputMap: state.inputMap, activeMap: state.activeMap, teaching: state.teaching, activeKey: state.activeKey} };
+    return { inputMap: state.inputMap, activeMap: state.activeMap, teaching: state.teaching, activeKey: state.activeKey, activeValue: state.activeValue} };
 const mapDispatchToProps = (dispatch) => {
     return {
-                updateActiveKey: (keyID) => { dispatch(updateActiveKey(keyID)); } } 
+        updateActiveKeyAndValue: (keyID, value) => { dispatch(updateActiveKeyAndValue(keyID, value)); } }
     };
 class UnconnectedFractionInput extends React.Component{
     constructor(props) {
@@ -23,7 +23,6 @@ class UnconnectedFractionInput extends React.Component{
         this.mathQuillEl = null
     }
     componentWillMount() {
-        updateActiveKey(this.props.keyID);
       }
     render() {
         if( isMobile() ) {
@@ -31,7 +30,7 @@ class UnconnectedFractionInput extends React.Component{
                 // className={this.state.active ? "SelectedMathText creator-text-size" : "MathText creator-text-size"}
                     <span onKeyDown={(e) => this.onKeyPressed(e)}>
                     <button  className={this.props.keyID===this.props.activeKey ? "SelectedMathText creator-text-size" : "MathText creator-text-size"} pattern='^(-?\\d\\/-?\\d)$|^(-?\\d+)$' 
-                    onClick={() =>this.forClick()}/>
+                    onClick={() =>this.forClick()}>{this.getMobileValue()}</button>
                     </span>
                     )
         } else {
@@ -51,8 +50,25 @@ class UnconnectedFractionInput extends React.Component{
         }
     }
     forClick(){
-        const { updateActiveKey } = this.props;
-        updateActiveKey(this.props.keyID); console.log("please hello again")
+        const { updateActiveKeyAndValue} = this.props;
+        if (this.mobileValue){
+            updateActiveKeyAndValue(this.props.keyID, this.mobileValue); console.log("please hello again")
+        }
+        else{
+            updateActiveKeyAndValue(this.props.keyID, 'abcd'); console.log("please hello again")
+        }
+    }
+    getMobileValue(){
+        if (this.props.keyID===this.props.activeKey){
+            if (this.mobileValue===''){
+                this.mobileValue=this.props.activeValue
+            }
+            else {
+                this.activeValue=''
+                this.mobileValue=''
+            }
+        }
+        return this.props.mobileValue;
     }
     createSubsittuteTextArea(){
         return (<span tabindex={0}> </span>);
