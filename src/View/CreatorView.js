@@ -8,7 +8,7 @@ import './app.css';
 //gets the teaching for this method
 const mapStateToProps = (state) => {
   return {
-    teaching: state.teaching
+    teaching: state.teaching, topics: state.topics
   }
 };
 //so that the creator view can get the teaching
@@ -37,6 +37,7 @@ class UnconnectedCreatorView extends React.Component{
               <h3>{this.props.methodSignature[0]}</h3>
               {this.createView()}<button className="actionButton" onClick={() => this.handleClick()}>
                 Create a {this.props.teaching.displayNameSingular}</button>
+                {console.log('12345'+this.props.topics[0])}
           </div>
         );
       }

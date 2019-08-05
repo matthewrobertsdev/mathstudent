@@ -7,7 +7,7 @@ import isMobile from '../Model/utilities/IsMobile';
 addMathquillStyles();
 const mapStateToProps = (state) => {
     console.log(state)
-    return { inputMap: state.inputMap, activeMap: state.activeMap } };
+    return { inputMap: state.inputMap, activeMap: state.activeMap, teaching: state.teaching } };
 const mapDispatchToProps = (dispatch) => {
     return {    addToInputMap: (keyID, value) => { dispatch(addToInputMap(keyID, value)); },
                 addToActiveMap: (keyID, value) => { dispatch(addToActiveMap(keyID, value)); },
@@ -17,18 +17,16 @@ class UnconnectedFractionInput extends React.Component{
     constructor(props) {
         super(props);
         if( isMobile()) {
-            this.state = { mobileValue: '', mobileState: false, index: this.props.index, 
-            classID: this.props.classID, active: false }
+            this.state = { mobileValue: '', mobileState: false, index: this.props.index}
         } else {
             this.state = { latex: '', text: '', index: this.props.index, classID: this.props.classID }
         }
         this.mathQuillEl = null
-        addToInputMap(this.props.keyID, this.state.mobileValue); addToActiveMap(this.props.keyID, this.state.mobileState);
-        console.log("abcd"+this.props.activeMap['LineIn2D-1-4']);
-        console.log(this.props.keyID);
     }
     componentWillMount() {
-       
+        addToInputMap("abcdefg", this.state.mobileValue); addToActiveMap(this.props.keyID, this.state.mobileState);
+        console.log("abcdefg"+JSON.stringify(this.props));
+        console.log(this.props.keyID);
       }
     onFoucsChange(){
         //document.activeElement.blur();
@@ -43,7 +41,7 @@ class UnconnectedFractionInput extends React.Component{
                 // className={this.state.active ? "SelectedMathText creator-text-size" : "MathText creator-text-size"}
                     <span onKeyDown={(e) => this.onKeyPressed(e)}>
                     <button  className={this.props.activeMap[this.props.keyID] ? "SelectedMathText creator-text-size" : "MathText creator-text-size"} pattern='^(-?\\d\\/-?\\d)$|^(-?\\d+)$' 
-                    onClick={() =>{changeSelected(this.props.keyID); console.log("abcd"+this.props.activeMap[this.props.keyID])}}/>
+                    onClick={() =>{changeSelected(this.props.keyID); console.log("abcd"+this.props.activeMap)}}/>
                     </span>
                     )
         } else {

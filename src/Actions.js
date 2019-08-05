@@ -19,19 +19,19 @@ const _updateURL = (URLpathname) => ({
     type: 'UPDATE_URL',
     URLpathname
 });
-const _addToInputMap = (key, value) => ({
+const _addToInputMap = (keyID, value) => ({
     type: 'ADD_TO_INPUT_MAP',
-    key,
-    value
+    key: keyID,
+    v: value
 });
-const _addToActiveMap = (key, value) => ({
+const _addToActiveMap = (keyID, value) => ({
     type: 'ADD_TO_ACTIVE_MAP',
-    key,
+    keyID,
     value
 });
-const _changeSelected = (key) => ({
+const _changeSelected = (keyID) => ({
     type: 'CHANGE_SELECTED',
-    key
+    keyID
 });
 //gets all topics for now for teaching
 export const getTopics = () => {
@@ -40,6 +40,7 @@ export const getTopics = () => {
     };
 };
 export const getTeaching = (teachingName) => {
+    console.log('please look');
    return (dispatch) => {
     return import(`./Model/math/${teachingName}`).then(teachingObj => {
         dispatch(_getTeaching(teachingObj.default.teaching));
@@ -69,12 +70,14 @@ export const clearSelectedFields = () => {
     };
 };
 export const addToInputMap = (keyID, value) => {
+    console.log('please look');
     return (dispatch) => {
         return dispatch(_addToInputMap(keyID, value));
     };
 };
 export const addToActiveMap = (keyID, value) => {
     return (dispatch) => {
+        console.log('please look');
         return dispatch(_addToActiveMap(keyID, value));
     };
 };

@@ -6,7 +6,7 @@ const initialState = {
     teaching: {},
     error: {},
     URL: '',
-    inputMap: {},
+    inputMap: [],
     activeMap: {}
   };
 const appReducer=(state=initialState, action) => {
@@ -32,21 +32,42 @@ const appReducer=(state=initialState, action) => {
                     ...state, URLpathname: action.URLpathname
                 };
         case 'ADD_TO_INPUT_MAP':
-            return {
-                ...state, inputMap: {...state.inputMap, [action.keyID]: action.value}
-            };
-        case 'ADD_TO_ACTIVE_MAP':
-            console.log(state.activeMap);
-            return {
-                ...state, activeMap: {...state.activeMap, [action.keyID]: action.value}
-            };
-        case 'CHANGE_SELECTED':
-            console.log(state.activeMap);
-            return {
-                ...state, activeMap: {...state.activeMap, [action.keyID]: true}
-            };
+                console.log('please look'+action.keyID);
+                return Object.assign({}, state.inputMap.concat({[action.key]: action.value}));
+                    case 'ADD_TO_ACTIVE_MAP':
+                        return {...state, [action.keyID]: action.value};
+                    case 'CHANGE_SELECTED':
+                        console.log(state.activeMap);
+                        return {...state, [action.keyID]: true};
         default:
             return state;
     }
 };
 export default appReducer;
+
+/*
+
+case 'ADD_TO_INPUT_MAP':
+            return Object.assign({}, state, {inputMap: [...state.inputMap, {[action.keyID]: action.value}]});
+        case 'ADD_TO_ACTIVE_MAP':
+            console.log(state.activeMap);
+            return Object.assign({}, state, {activeMap: [...state.activeMap, {[action.keyID]: action.value}]});
+        case 'CHANGE_SELECTED':
+            console.log(state.activeMap);
+            return Object.assign({}, state, {activeMap: [...state.activeMap, {[action.keyID]: true}]});
+
+
+
+
+case 'ADD_TO_INPUT_MAP':
+            return {...state, inputMap: {...state.inputMap, [action.keyID]: action.value}};
+        case 'ADD_TO_ACTIVE_MAP':
+            console.log(state.activeMap);
+            return {...state, activeMap: {...state.activeMap, [action.keyID]: action.value}};
+        case 'CHANGE_SELECTED':
+            console.log(state.activeMap);
+            return {...state, activeMap: {...state.activeMap, [action.keyID]: true}};
+        default:
+            return state;
+
+*/
