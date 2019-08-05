@@ -42,8 +42,8 @@ class UnconnectedFractionInput extends React.Component{
             return (
                 // className={this.state.active ? "SelectedMathText creator-text-size" : "MathText creator-text-size"}
                     <span onKeyDown={(e) => this.onKeyPressed(e)}>
-                    <button  className={this.props.activeMap.get(this.props.keyID) ? "SelectedMathText creator-text-size" : "MathText creator-text-size"} pattern='^(-?\\d\\/-?\\d)$|^(-?\\d+)$' 
-                    onClick={() =>{changeSelected(this.props.keyID); console.log("abcd"+this.props.activeMap.get(this.props.keyID))}}/>
+                    <button  className={this.props.activeMap[this.props.keyID] ? "SelectedMathText creator-text-size" : "MathText creator-text-size"} pattern='^(-?\\d\\/-?\\d)$|^(-?\\d+)$' 
+                    onClick={() =>{changeSelected(this.props.keyID); console.log("abcd"+this.props.activeMap[this.props.keyID])}}/>
                     </span>
                     )
         } else {

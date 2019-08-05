@@ -6,8 +6,8 @@ const initialState = {
     teaching: {},
     error: {},
     URL: '',
-    inputMap: new Map(),
-    activeMap: new Map()
+    inputMap: {},
+    activeMap: {}
   };
 const appReducer=(state=initialState, action) => {
     switch (action.type) {
@@ -32,19 +32,18 @@ const appReducer=(state=initialState, action) => {
                     ...state, URLpathname: action.URLpathname
                 };
         case 'ADD_TO_INPUT_MAP':
-                console.log(state.inputMap);
             return {
-                ...state, inputMap: state.inputMap.set(action.keyID, action.value)
+                ...state, inputMap: {...state.inputMap, [action.keyID]: action.value}
             };
         case 'ADD_TO_ACTIVE_MAP':
             console.log(state.activeMap);
             return {
-                ...state, activeMap: state.activeMap.set(action.keyID, action.value)
+                ...state, activeMap: {...state.activeMap, [action.keyID]: action.value}
             };
         case 'CHANGE_SELECTED':
             console.log(state.activeMap);
             return {
-                ...state, activeMap: state.activeMap.set(action.keyID, true)
+                ...state, activeMap: {...state.activeMap, [action.keyID]: true}
             };
         default:
             return state;
