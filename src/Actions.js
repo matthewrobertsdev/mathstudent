@@ -91,6 +91,7 @@ export const changeSelected = (keyID) => {
     };
 };
 export const updateActiveKey = (keyID) => {
+    console.log('is this working');
     return (dispatch) => {
         return dispatch(_updateActiveKey(keyID));
     };

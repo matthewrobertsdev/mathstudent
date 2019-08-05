@@ -11,8 +11,7 @@ This view is for the UI for creating a MathTeachingObject
 */
 const mapStateToProps = (state) => {
   return {
-    teaching: state.teaching,
-    value: state.value
+    teaching: state.teaching, value: state.value
   }
 };
 const mapDispatchToProps = (dispatch) => {

@@ -9,9 +9,7 @@ const mapStateToProps = (state) => {
     console.log(state)
     return { inputMap: state.inputMap, activeMap: state.activeMap, teaching: state.teaching, activeKey: state.activeKey} };
 const mapDispatchToProps = (dispatch) => {
-    return {    addToInputMap: (keyID, value) => { dispatch(addToInputMap(keyID, value)); },
-                addToActiveMap: (keyID, value) => { dispatch(addToActiveMap(keyID, value)); },
-                changeSelected: (keyID) => { dispatch(changeSelected(keyID)); },
+    return {
                 updateActiveKey: (keyID) => { dispatch(updateActiveKey(keyID)); } } 
     };
 class UnconnectedFractionInput extends React.Component{
@@ -25,17 +23,7 @@ class UnconnectedFractionInput extends React.Component{
         this.mathQuillEl = null
     }
     componentWillMount() {
-        addToInputMap("abcdefg", this.state.mobileValue); addToActiveMap(this.props.keyID, this.state.mobileState);
-        console.log("abcdefg"+JSON.stringify(this.props));
-        console.log(this.props.keyID);
         updateActiveKey(this.props.keyID);
-      }
-    onFoucsChange(){
-        //document.activeElement.blur();
-        console.log("focused changed");
-      }
-      onBlur(){
-        console.log("focus of element lost");
       }
     render() {
         if( isMobile() ) {
@@ -43,7 +31,7 @@ class UnconnectedFractionInput extends React.Component{
                 // className={this.state.active ? "SelectedMathText creator-text-size" : "MathText creator-text-size"}
                     <span onKeyDown={(e) => this.onKeyPressed(e)}>
                     <button  className={this.props.keyID===this.props.activeKey ? "SelectedMathText creator-text-size" : "MathText creator-text-size"} pattern='^(-?\\d\\/-?\\d)$|^(-?\\d+)$' 
-                    onClick={() =>{updateActiveKey(this.props.keyID); console.log("please"+JSON.stringify(this.props.activeKey))}}/>
+                    onClick={() =>this.forClick()}/>
                     </span>
                     )
         } else {
@@ -61,6 +49,10 @@ class UnconnectedFractionInput extends React.Component{
                     </span>
                     )
         }
+    }
+    forClick(){
+        const { updateActiveKey } = this.props;
+        updateActiveKey(this.props.keyID); console.log("please hello again")
     }
     createSubsittuteTextArea(){
         return (<span tabindex={0}> </span>);
@@ -140,4 +132,8 @@ export default FractionInput;
     }
         document.getElementById(this.props.classID).className="SelectedMathText creator-text-size";
       }
+
+      addToInputMap: (keyID, value) => { dispatch(addToInputMap(keyID, value)); },
+                addToActiveMap: (keyID, value) => { dispatch(addToActiveMap(keyID, value)); },
+                changeSelected: (keyID) => { dispatch(changeSelected(keyID)); },
 */
