@@ -19,10 +19,19 @@ const _updateURL = (URLpathname) => ({
     type: 'UPDATE_URL',
     URLpathname
 });
-const _addToMap = (key, value) => ({
-    type: 'ADD_TO_MAP',
+const _addToInputMap = (key, value) => ({
+    type: 'ADD_TO_INPUT_MAP',
     key,
     value
+});
+const _addToActiveMap = (key, value) => ({
+    type: 'ADD_TO_ACTIVE_MAP',
+    key,
+    value
+});
+const _changeSelected = (key) => ({
+    type: 'CHANGE_SELECTED',
+    key
 });
 //gets all topics for now for teaching
 export const getTopics = () => {
@@ -59,8 +68,18 @@ export const clearSelectedFields = () => {
         return dispatch(_updateURL(window.location.pathname));
     };
 };
-export const addToMap = (key, value) => {
+export const addToInputMap = (keyID, value) => {
     return (dispatch) => {
-        return dispatch(_addToMap(key, value));
+        return dispatch(_addToInputMap(keyID, value));
+    };
+};
+export const addToActiveMap = (keyID, value) => {
+    return (dispatch) => {
+        return dispatch(_addToActiveMap(keyID, value));
+    };
+};
+export const changeSelected = (keyID) => {
+    return (dispatch) => {
+        return dispatch(_changeSelected(keyID));
     };
 };

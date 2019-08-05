@@ -77,7 +77,7 @@ class UnconnectedCreateView extends React.Component {
       return (
         <div key={index}>
           <CreatorView className='CreatorView' methodSignature={arg} 
-           activateInputHandler={this.activateInputHandler} key={this.createKey(index)}></CreatorView>
+           activateInputHandler={this.activateInputHandler} keyID={this.createKey(index)}></CreatorView>
           <br></br>
         </div>
       );

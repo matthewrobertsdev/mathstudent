@@ -64,7 +64,7 @@ class UnconnectedCreatorView extends React.Component{
       }
       //bring index to array
       createFractionInput(i){
-          let fractionInput=<FractionInput key={this.props.key+"-"+i} 
+          let fractionInput=<FractionInput keyID={this.props.keyID+"-"+i} 
           index={i} textHandler={(i, value) => this.textHandler(i, value)} activateInputHandler={this.props.activateInputHandler}>
           </FractionInput>;
         return fractionInput;
