@@ -7,7 +7,8 @@ const initialState = {
     error: {},
     URL: '',
     inputMap: [],
-    activeMap: {}
+    activeMap: {},
+    activeKey: ''
   };
 const appReducer=(state=initialState, action) => {
     switch (action.type) {
@@ -17,6 +18,7 @@ const appReducer=(state=initialState, action) => {
                 ...state, topics: action.topics
               };
         case 'GET_TEACHING':
+                console.log("please please"+action.type)
             if (action.teaching==null){
                 return initialState
             }
@@ -31,14 +33,11 @@ const appReducer=(state=initialState, action) => {
             return {
                     ...state, URLpathname: action.URLpathname
                 };
-        case 'ADD_TO_INPUT_MAP':
-                console.log('please look'+action.keyID);
-                return Object.assign({}, state.inputMap.concat({[action.key]: action.value}));
-                    case 'ADD_TO_ACTIVE_MAP':
-                        return {...state, [action.keyID]: action.value};
-                    case 'CHANGE_SELECTED':
-                        console.log(state.activeMap);
-                        return {...state, [action.keyID]: true};
+        case 'UPDATE_ACTIVE_KEY':
+            console.log("please please"+action.type)
+            return {
+                    ...state, activeKey: action.activeKey
+                };
         default:
             return state;
     }
@@ -69,5 +68,15 @@ case 'ADD_TO_INPUT_MAP':
             return {...state, activeMap: {...state.activeMap, [action.keyID]: true}};
         default:
             return state;
+
+
+            case 'ADD_TO_INPUT_MAP':
+                console.log('please look'+action.keyID);
+                return Object.assign({}, state.inputMap.concat({[action.key]: action.value}));
+                    case 'ADD_TO_ACTIVE_MAP':
+                        return {...state, [action.keyID]: action.value};
+                    case 'CHANGE_SELECTED':
+                        console.log(state.activeMap);
+                        return {...state, [action.keyID]: true};
 
 */

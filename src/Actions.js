@@ -33,6 +33,10 @@ const _changeSelected = (keyID) => ({
     type: 'CHANGE_SELECTED',
     keyID
 });
+const _updateActiveKey = (activeKey) => ({
+    type: 'UPDATE_ACTIVE_KEY',
+    activeKey
+});
 //gets all topics for now for teaching
 export const getTopics = () => {
     return  (dispatch)=>{
@@ -84,5 +88,10 @@ export const addToActiveMap = (keyID, value) => {
 export const changeSelected = (keyID) => {
     return (dispatch) => {
         return dispatch(_changeSelected(keyID));
+    };
+};
+export const updateActiveKey = (keyID) => {
+    return (dispatch) => {
+        return dispatch(_updateActiveKey(keyID));
     };
 };

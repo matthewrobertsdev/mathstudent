@@ -1,17 +1,18 @@
 import React from 'react';
 import './app.css';
 import MathQuill, { addStyles as addMathquillStyles } from 'react-mathquill';
-import { addToInputMap, addToActiveMap, changeSelected} from '../Actions';
+import { addToInputMap, addToActiveMap, changeSelected, updateActiveKey} from '../Actions';
 import { connect } from 'react-redux';
 import isMobile from '../Model/utilities/IsMobile';
 addMathquillStyles();
 const mapStateToProps = (state) => {
     console.log(state)
-    return { inputMap: state.inputMap, activeMap: state.activeMap, teaching: state.teaching } };
+    return { inputMap: state.inputMap, activeMap: state.activeMap, teaching: state.teaching, activeKey: state.activeKey} };
 const mapDispatchToProps = (dispatch) => {
     return {    addToInputMap: (keyID, value) => { dispatch(addToInputMap(keyID, value)); },
                 addToActiveMap: (keyID, value) => { dispatch(addToActiveMap(keyID, value)); },
-                changeSelected: (keyID) => { dispatch(changeSelected(keyID)); } } 
+                changeSelected: (keyID) => { dispatch(changeSelected(keyID)); },
+                updateActiveKey: (keyID) => { dispatch(updateActiveKey(keyID)); } } 
     };
 class UnconnectedFractionInput extends React.Component{
     constructor(props) {
@@ -27,6 +28,7 @@ class UnconnectedFractionInput extends React.Component{
         addToInputMap("abcdefg", this.state.mobileValue); addToActiveMap(this.props.keyID, this.state.mobileState);
         console.log("abcdefg"+JSON.stringify(this.props));
         console.log(this.props.keyID);
+        updateActiveKey(this.props.keyID);
       }
     onFoucsChange(){
         //document.activeElement.blur();
@@ -40,8 +42,8 @@ class UnconnectedFractionInput extends React.Component{
             return (
                 // className={this.state.active ? "SelectedMathText creator-text-size" : "MathText creator-text-size"}
                     <span onKeyDown={(e) => this.onKeyPressed(e)}>
-                    <button  className={this.props.activeMap[this.props.keyID] ? "SelectedMathText creator-text-size" : "MathText creator-text-size"} pattern='^(-?\\d\\/-?\\d)$|^(-?\\d+)$' 
-                    onClick={() =>{changeSelected(this.props.keyID); console.log("abcd"+this.props.activeMap)}}/>
+                    <button  className={this.props.keyID===this.props.activeKey ? "SelectedMathText creator-text-size" : "MathText creator-text-size"} pattern='^(-?\\d\\/-?\\d)$|^(-?\\d+)$' 
+                    onClick={() =>{updateActiveKey(this.props.keyID); console.log("please"+JSON.stringify(this.props.activeKey))}}/>
                     </span>
                     )
         } else {
