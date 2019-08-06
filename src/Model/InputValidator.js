@@ -7,12 +7,8 @@ static textFractionOnly=new RegExp('^(-?\\d\\/-?\\d)$');
 static integerOnly=new RegExp('^(-?\\d+)$');
 static hasInteger=new RegExp('-?\\d+', 'g');
   static areFractions(strArray) {
-    if (isMobile()){
-      return InputValidator.areTextFractions(strArray);
-    } else {
-      return InputValidator.areLatexFractions(strArray);
-    }
-  }
+    if (isMobile()){ return InputValidator.areTextFractions(strArray);
+    } else { return InputValidator.areLatexFractions(strArray); } }
   static areLatexFractions(strArray) {
     for (var i=1; i<strArray.length; i++) {
       if (!InputValidator.latexFraction.test(strArray[i])){
@@ -27,6 +23,7 @@ static hasInteger=new RegExp('-?\\d+', 'g');
             matches.push(match);
           }
       } while (match);
+      console.log(matches[1][0]);
       if (matches[1][0]==="0"){
         return false;
       }

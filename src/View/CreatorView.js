@@ -65,10 +65,7 @@ class UnconnectedCreatorView extends React.Component{
       textHandler(i, value){
         let tempCallingStrings=this.state.callingStrings
         tempCallingStrings[i]=value;
-        this.setState(previousState => ({
-          ...previousState,
-          callingStrings: tempCallingStrings
-        }))
+        this.setState(previousState => ({ ...previousState, callingStrings: tempCallingStrings }))
       }
   handleClick(){
     const { createTeaching } = this.props;

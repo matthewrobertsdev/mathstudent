@@ -6,5 +6,4 @@ class FractionCallObject{
         this.fractionArray=fractionArray;
     }
 }
-
 export default FractionCallObject;

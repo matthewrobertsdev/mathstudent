@@ -24,12 +24,14 @@ class UnconnectedNumberInput extends React.Component{
     }
     componentWillMount() { const {addInputPair} = this.props; addInputPair(this.props.keyID, ''); }
     render() {
-        if( isMobile() ) { return (<span onKeyDown={(e) => this.onKeyPressed(e)}>
+        if( isMobile() ) {
+                    return (<span onKeyDown={(e) => this.onKeyPressed(e)}>
                     <button  className={this.props.keyID===this.props.activeKey 
                     ? "SelectedMathText creator-text-size" : "MathText creator-text-size"} 
                     pattern='^(-?\\d\\/-?\\d)$|^(-?\\d+)$' onClick={() =>this.forClick()}>
                     {this.getMobileValue()}</button>
-                    </span>) } else { 
+                    </span>) }
+        else { 
                         return (
                     <span onKeyDown={(e) => this.onKeyPressed(e)}>
                     <MathQuill className="mathquill-field" latex={this.state.latex} onChange={mathField => {

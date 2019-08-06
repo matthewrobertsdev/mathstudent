@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getTeaching, clearTeaching, updateURL, updateActiveValue} from '../Actions';
 import CreatorView from './CreatorView';
 import isMobile from '../Model/utilities/IsMobile';
-import Keyboard from 'react-simple-keyboard';
+import NumberKeyboard from './NumberKeyboard'
 import KeyboardSpacer from './KeyboardSpacer';
 import 'react-simple-keyboard/build/css/index.css';
 import './app.css';
@@ -57,16 +57,12 @@ class UnconnectedCreateView extends React.Component {
     });
     return creatorViews;
   }
-  onKeyPress = button => { const {updateActiveValue}=this.props; updateActiveValue(button); };
-  addKeyboardForMobile(){
-    if( isMobile() ){
-      return <div className='keyboard-container'>
-        <Keyboard className='Keyboard' layout={{ default: [ " 1 2 3 4 5", " 6 7 8 9 0", " . - / {bksp}", "{space}" ]}}
-          onKeyPress={button => this.onKeyPress(button)} display={{'{bksp}': 'delete', '{space}': 'space', }}/>
-      </div>
-   }
-  }
+  onKeyPress = key => { const {updateActiveValue}=this.props; updateActiveValue(key); };
+
+  addKeyboardForMobile(){ if( isMobile() ){ return <NumberKeyboard keyPressHandler={this.onKeyPress}/> } }
+
   createKey(index){ return this.props.teaching.objectName+"-"+index; }
+  
   activateInputHandler(input){ this.activeInput=input; }
 }
 const CreateView = connect(mapStateToProps, mapDispatchToProps)(UnconnectedCreateView)

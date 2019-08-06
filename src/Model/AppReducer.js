@@ -1,8 +1,8 @@
 const initialState = {
     loaded: false,
-    //all topics for now
+    /* all topics for now */
     topics: [],
-    //the teaching being taught
+    /* the teaching being taught */
     teaching: {},
     error: {},
     URL: '',
@@ -35,22 +35,14 @@ const appReducer=(state=initialState, action) => {
                     ...state, URLpathname: action.URLpathname
                 };
         case 'ADD_INPUT_PAIR':
-            console.log("update key and value"+action.type)
             return {
                     ...state, inputMap: {...state.inputMap, [action.key]: action.value}
                 };
         case 'UPDATE_ACTIVE_KEY':
-            console.log("update key"+action.type)
-                return {
-                    ...state, activeKey: action.key
-                };
+                return { ...state, activeKey: action.key };
         case 'UPDATE_ACTIVE_KEY_AND_VALUE':
-            console.log("update key and value"+action.type)
-            return {
-                    ...state, activeKey: action.activeKey, activeValue: action.value
-                };
+            return { ...state, activeKey: action.activeKey, activeValue: action.value };
         case 'UPDATE_ACTIVE_VALUE':
-            console.log("update just value"+action.type)
             let newValue=''
             if (action.key==='{space}'){
                 newValue=state.inputMap[state.activeKey]+=' '

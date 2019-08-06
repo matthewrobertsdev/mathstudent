@@ -9,7 +9,6 @@ document.body.style.backgroundColor = "brown";
 const store=teachingStore();
 const easyMath = (
     <Provider store={store}>
-        {console.log('started')}
         <AppRouter />
     </Provider>
 );

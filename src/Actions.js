@@ -61,7 +61,6 @@ export const getTopics = () => {
     };
 };
 export const getTeaching = (teachingName) => {
-    console.log('please look');
    return (dispatch) => {
     return import(`./Model/math/${teachingName}`).then(teachingObj => {
         dispatch(_getTeaching(teachingObj.default.teaching));
@@ -91,14 +90,12 @@ export const clearSelectedFields = () => {
     };
 };
 export const addToInputMap = (keyID, value) => {
-    console.log('please look');
     return (dispatch) => {
         return dispatch(_addToInputMap(keyID, value));
     };
 };
 export const addToActiveMap = (keyID, value) => {
     return (dispatch) => {
-        console.log('please look');
         return dispatch(_addToActiveMap(keyID, value));
     };
 };
@@ -108,32 +105,27 @@ export const changeSelected = (keyID) => {
     };
 };
 export const updateActiveKeyAndValue = (keyID, value) => {
-    console.log('is this working');
     return (dispatch) => {
         return dispatch(_updateActiveKeyAndValue(keyID, value));
     };
 };
 export const updateActiveValue = (key) => {
-    //console.log('is this working');
     return (dispatch) => {
         return dispatch(_updateActiveValue(key));
     };
 };
 export const resignActiveValue = (key) => {
-    console.log('is this working');
     return (dispatch) => {
         return dispatch(_reaignActiveValue(key));
     };
 };
 
 export const addInputPair = (key, value) => {
-    console.log('is this working');
     return (dispatch) => {
         return dispatch(_addInputPair(key, value));
     };
 };
 export const updateActiveKey = (key) => {
-    //console.log('is this working');
     return (dispatch) => {
         return dispatch(_updateActiveKey(key));
     };

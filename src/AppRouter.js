@@ -14,7 +14,6 @@ const AppRouter= () => (
                 <Route path="/" exact component={SubjectsView}/>
                 {/*displays UI for creating objects from teaching*/}
                 <Route path="/create/:teachingName" component={CreateView}/>
-
                 <Route path="/teaching/:teachingName" component={TeachingView}/>
             </Switch>
         </div>
