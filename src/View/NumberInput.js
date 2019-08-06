@@ -1,6 +1,6 @@
 import React from 'react';
 import MathQuill, { addStyles as addMathquillStyles } from 'react-mathquill';
-import { addInputPair, updateActiveKeyAndValue, updateActiveKey} from '../Actions';
+import { addInputPair, updateActiveKey} from '../Actions';
 import { connect } from 'react-redux';
 import isMobile from '../Model/utilities/IsMobile';
 import './app.css';
@@ -8,8 +8,6 @@ addMathquillStyles();
 const mapStateToProps = (state) => { return { inputMap: state.inputMap, teaching: state.teaching, activeKey: state.activeKey} };
 
 const mapDispatchToProps = (dispatch) => { return {
-
-        updateActiveKeyAndValue: (keyID, value) => { dispatch(updateActiveKeyAndValue(keyID, value))},
 
         addInputPair: (keyID, value) => { dispatch(addInputPair(keyID, value)); },
 

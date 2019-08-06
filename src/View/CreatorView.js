@@ -33,7 +33,7 @@ class UnconnectedCreatorView extends React.Component{
       }
       createView(){
         var creatorView=[];
-        var index=1;
+        var column=1;
         for (var i=0; i<this.props.methodSignature.length; i++){
           if (i<2) { /* do nothing */ }
           else if (i%2===0) {
@@ -41,9 +41,9 @@ class UnconnectedCreatorView extends React.Component{
             key={i} id={i}>{this.props.methodSignature[i]+':'}</span>);
           } else {
             creatorView.push(<span key={i} id={i}><span className='medium-right-margin'>
-            {this.createFractionInput(index)}</span><br className='hide-for-not-small'></br>
+            {this.createNumberInput(column)}</span><br className='hide-for-not-small'></br>
             </span>);
-            index++
+            column++
           }
         }
         return creatorView;
@@ -56,9 +56,9 @@ class UnconnectedCreatorView extends React.Component{
         return callingStrings;
       }
       //bring index to array
-      createFractionInput(i){
-          let fractionInput=<NumberInput keyID={this.props.keyID+"-"+i} 
-          index={i} textHandler={(i, value) => this.textHandler(i, value)} activateInputHandler={this.props.activateInputHandler}>
+      createNumberInput(column){
+          let fractionInput=<NumberInput gridID={this.props.row+"-"+column} 
+          index={column} textHandler={(column, value) => this.textHandler(column, value)} activateInputHandler={this.props.activateInputHandler}>
           </NumberInput>;
         return fractionInput;
       }

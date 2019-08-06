@@ -10,7 +10,10 @@ const initialState = {
     activeMap: {},
     activeKey: '',
     activeValue: 'abcd',
-    mobileValue: ''
+    mobileValue: '',
+    inputArray: [],
+    activeRow: -1,
+    activeColumn: -1
   };
 const appReducer=(state=initialState, action) => {
     switch (action.type) {
@@ -31,13 +34,9 @@ const appReducer=(state=initialState, action) => {
                     ...state, teaching: action.teaching
                   };
         case 'UPDATE_URL':
-            return {
-                    ...state, URLpathname: action.URLpathname
-                };
+            return { ...state, URLpathname: action.URLpathname };
         case 'ADD_INPUT_PAIR':
-            return {
-                    ...state, inputMap: {...state.inputMap, [action.key]: action.value}
-                };
+            return { ...state, inputMap: {...state.inputMap, [action.key]: action.value} };
         case 'UPDATE_ACTIVE_KEY':
                 return { ...state, activeKey: action.key };
         case 'UPDATE_ACTIVE_KEY_AND_VALUE':
@@ -56,6 +55,8 @@ const appReducer=(state=initialState, action) => {
             return {
                     ...state, inputMap: {...state.inputMap, [state.activeKey]: newValue}
                 };
+        case 'UPDATE_ACTIVE_INDICES':
+            return { ...state, activeRow: action.row, activeColumn: action.column };
         default:
             return state;
     }

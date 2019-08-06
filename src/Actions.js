@@ -54,6 +54,11 @@ const _updateActiveKey = (key) => ({
     type: 'UPDATE_ACTIVE_KEY',
     key
 });
+const _updateIndices = (row, column) => ({
+    type: 'UPDATE_ACTIVE_INDICES',
+    row,
+    column
+});
 //gets all topics for now for teaching
 export const getTopics = () => {
     return  (dispatch)=>{
@@ -119,7 +124,6 @@ export const resignActiveValue = (key) => {
         return dispatch(_reaignActiveValue(key));
     };
 };
-
 export const addInputPair = (key, value) => {
     return (dispatch) => {
         return dispatch(_addInputPair(key, value));
@@ -128,5 +132,10 @@ export const addInputPair = (key, value) => {
 export const updateActiveKey = (key) => {
     return (dispatch) => {
         return dispatch(_updateActiveKey(key));
+    };
+};
+export const updateIndices = (row, column) => {
+    return (dispatch) => {
+        return dispatch(_updateIndices(row, column));
     };
 };

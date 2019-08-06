@@ -46,11 +46,11 @@ class UnconnectedCreateView extends React.Component {
   }
   createCreatorViews() {
     if (this.props.teaching.creationMethodSignatures === undefined) { return; }
-    const creatorViews = this.props.teaching.creationMethodSignatures.map((arg, index) => {
+    const creatorViews = this.props.teaching.creationMethodSignatures.map((arg, i) => {
       return (
-        <div key={index}>
+        <div key={i}>
           <CreatorView className='CreatorView' methodSignature={arg} activateInputHandler={this.activateInputHandler} 
-          keyID={this.createKey(index)}></CreatorView>
+          row={this.createKey(i)}></CreatorView>
           <br></br>
         </div>
       );
@@ -62,7 +62,7 @@ class UnconnectedCreateView extends React.Component {
   addKeyboardForMobile(){ if( isMobile() ){ return <NumberKeyboard keyPressHandler={this.onKeyPress}/> } }
 
   createKey(index){ return this.props.teaching.objectName+"-"+index; }
-  
+
   activateInputHandler(input){ this.activeInput=input; }
 }
 const CreateView = connect(mapStateToProps, mapDispatchToProps)(UnconnectedCreateView)
