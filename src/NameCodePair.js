@@ -4,5 +4,4 @@ class NameCodePair {
       this.codeName = codeName;
     }
   }
-  
-  export default NameCodePair;
+export default NameCodePair;

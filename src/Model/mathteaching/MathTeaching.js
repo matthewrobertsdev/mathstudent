@@ -1,6 +1,4 @@
-
 class MathTeaching{
-
     constructor(){
         this.teachingObjName="";
         this.displayNameSingular="";
@@ -11,7 +9,5 @@ class MathTeaching{
         this.propertyTeachings=[];
         this.instanceMethodSignatures=[];
     }
-
 }
-
 export default MathTeaching;

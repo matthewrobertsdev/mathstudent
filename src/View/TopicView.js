@@ -1,25 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 //for displaying a link to a teaching, that displays its name and loads that teaching when clicked
 class TopicView extends React.Component{
-
     constructor(props) {
         super(props);
         this.state=this.props.topic
       }
-//onClick={() => this.props.getTeaching(this.props.topic.teachingName)}>
       render() {
         return(
-  
-            //will take user to teaching with these names.  Will get teaching from home first.
+            //will take user to teaching with these names.  Will get teaching from model first.
           <div>
-              <Link to={`/create/${this.props.topic.codeName}`}>{this.props.topic.displayName}</Link>
+              <Link className="Link" to={`/create/${this.props.topic.codeName}`}>{this.props.topic.displayName}</Link>
           </div>
-  
         );
       }
-
 }
-
 export default TopicView;

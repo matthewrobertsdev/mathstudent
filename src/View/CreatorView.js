@@ -1,52 +1,90 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import FractionInput from './FractionInput';
+import {createTeaching} from '../Actions'
+import InputValidator from '../Model/InputValidator';
+import { withRouter } from "react-router-dom";
 import './app.css';
-
+//gets the teaching for this method
 const mapStateToProps = (state) => {
   return {
-    teaching: state.teaching
+    teaching: state.teaching, topics: state.topics
   }
 };
-
-//for displaying a link to a teaching, that displays its name and loads that teaching when clicked
+//so that the creator view can get the teaching
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createTeaching: (methodInfo) => {
+      dispatch(createTeaching(methodInfo));
+    }
+  }
+};
+//for creating a teaching, but not connected yet
 class UnconnectedCreatorView extends React.Component{
-
     constructor(props) {
         super(props);
-        this.state=this.props.methodSignature;
+        //methods strings to create view, calling strings to call method
+        this.state={methodSignature: this.props.methodSignature,
+          callingStrings: [], key: undefined};
+        this.state.callingStrings=this.createCallingStrings();
+        this.state.callingStrings[0]=this.props.methodSignature[1];
+        this.textHandler = this.textHandler.bind(this);
       }
-
-
       render() {
         return(
-  
             //will take user to teaching with these names.  Will get teaching from home first.
           <div className='CreatorView'>
               <h3>{this.props.methodSignature[0]}</h3>
-              {this.createView()}<button>Create a {this.props.teaching.displayNameSingular}</button>
+              {this.createView()}<button className="actionButton" onClick={() => this.handleClick()}>
+                Create a {this.props.teaching.displayNameSingular}</button>
+                {console.log('12345'+this.props.topics[0])}
           </div>
-  
         );
       }
-
       createView(){
         var creatorView=[];
+        var index=1;
         for (var i=0; i<this.props.methodSignature.length; i++){
           if (i<2){
           }
           else if (i%2===0){
-            creatorView.push(<span className='small-right-margin'>{this.props.methodSignature[i]+':'}</span>);
+            creatorView.push(<span className='small-right-margin creator-text-size' key={i} id={i}>{this.props.methodSignature[i]+':'}</span>);
           }else{
-            creatorView.push(<span className='medium-right-margin'><FractionInput></FractionInput></span>);
-            creatorView.push(<br className='hide-for-not-small'></br>);
+            creatorView.push(<span key={i} id={i}><span className='medium-right-margin'>{this.createFractionInput(index)}</span><br className='hide-for-not-small'></br></span>);
+            index++
           }
         }
         return creatorView;
       }
-
+      createCallingStrings(){
+        var callingStrings=[];
+        for (var i=0; i<this.props.methodSignature.length/2; i++){
+          callingStrings.push('');
+        };
+        return callingStrings;
+      }
+      //bring index to array
+      createFractionInput(i){
+          let fractionInput=<FractionInput keyID={this.props.keyID+"-"+i} 
+          index={i} textHandler={(i, value) => this.textHandler(i, value)} activateInputHandler={this.props.activateInputHandler}>
+          </FractionInput>;
+        return fractionInput;
+      }
+      textHandler(i, value){
+        let tempCallingStrings=this.state.callingStrings
+        tempCallingStrings[i]=value;
+        this.setState(previousState => ({
+          ...previousState,
+          callingStrings: tempCallingStrings
+        }))
+      }
+  handleClick(){
+    const { createTeaching } = this.props;
+      if(InputValidator.handleAttemptedFraction(this.state.callingStrings)){
+        createTeaching(this.state.callingStrings);
+        this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
+      }
+    }
 }
-
-const CreatorView=connect(mapStateToProps, null)(UnconnectedCreatorView)
-
+const CreatorView=connect(mapStateToProps, mapDispatchToProps)((withRouter)(UnconnectedCreatorView));
 export default CreatorView;

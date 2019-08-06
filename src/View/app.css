@@ -1,34 +1,133 @@
 .CreatorView{
     text-align: center;
 }
-
 .SubjectView{
     margin-left: 10%;
-
+    background-color: brown;
 }
-
 .small-right-margin{
     margin-right: 10px;
 }
-
 .medium-right-margin{
     margin-right: 20px;
 }
-
-@media (min-width: 100px){
+@media (min-width: 500px){
     .hide-for-not-small{
         display: none;
     }
 }
-
+@media (max-width: 500px){
+    .creator-text-size{
+        font-size: 20px;
+    }
+}
 .float-left{
     float: left;
 }
-
 .float-right{
     float: right;
 }
+.center-text{
+    text-align: center;
+}
 
-.fraction{
-    
+.Link{
+    color: gold;
+    background-color: rgb(110, 60, 14);
+    padding: 3px 14px;
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.Link:hover{
+    background-color: rgb(158, 89, 25);
+}
+
+.CreatorView{
+    color: gold;
+}
+
+.CreateView{
+    color: gold;
+}
+
+.main-colors{
+    color: gold;
+    background-color: rgb(110, 60, 14);
+}
+
+.NavLink{
+    color: gold;
+    background-color: rgb(110, 60, 14);
+    padding: 3px 14px;
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.NavLink:hover{
+    background-color: rgb(158, 89, 25);
+}
+
+.mathquill-field{
+    background-color: rgb(228, 171, 85);
+    border-color: rgb(61, 32, 6);
+    color: rgb(61, 32, 6);
+    border-radius: 3.5px;
+}
+
+.mathquill-field:focus{
+    outline: none !important;
+    border-color: gold;
+    box-shadow: 0 0 10px gold;
+}
+.MathText{
+    padding: 3px 14px;
+    background-color: rgb(228, 171, 85);
+    color: rgb(61, 32, 6);
+    border:1px solid rgb(61, 32, 6);
+    border-radius: 3.5px;
+    width: 200px;
+    height: 30px;
+}
+
+.SelectedMathText{
+    padding: 3px 14px;
+    background-color: rgb(228, 171, 85);
+    color: rgb(61, 32, 6);
+    border-radius: 3.5px;
+    width: 200px;
+    height: 30px;
+    border:1px solid gold;
+    box-shadow: 0 0 10px gold;
+}
+
+.actionButton{
+    /*
+    background-color: rgb(32, 66, 168);
+    color: rgb(201, 188, 172);
+    */
+    background-color: rgb(139, 219, 199);
+    color: rgb(61, 32, 6);
+    border-radius: 7px;
+}
+
+.Heading{
+    color: rgb(61, 32, 6);
+}
+
+.MathText:focus {
+    border:1px solid gold;
+    box-shadow: 0 0 10px gold;
+}
+
+.keyboard-container{
+    position: fixed; 
+    width: 100%; 
+    height: 150; 
+    background-color: rgb(61, 32, 6);
+    bottom: 0;
 }
