@@ -51,7 +51,16 @@ const appReducer=(state=initialState, action) => {
                 };
         case 'UPDATE_ACTIVE_VALUE':
             console.log("update just value"+action.type)
-            let newValue=state.inputMap[state.activeKey]+=action.key
+            let newValue=''
+            if (action.key==='{space}'){
+                newValue=state.inputMap[state.activeKey]+=' '
+            } else if (action.key==='{bksp}'){
+                if (state.inputMap[state.activeKey].length>=1){   	
+                    newValue=state.inputMap[state.activeKey].slice(0, -1);
+                }
+            } else {
+                newValue=state.inputMap[state.activeKey]+=action.key
+            }
             return {
                     ...state, inputMap: {...state.inputMap, [state.activeKey]: newValue}
                 };

@@ -65,6 +65,9 @@ class UnconnectedCreateView extends React.Component {
         <br></br>
         <br></br>
         <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
       </div>
     );
   }
@@ -101,11 +104,16 @@ class UnconnectedCreateView extends React.Component {
             default: [
               " 1 2 3 4 5",
               " 6 7 8 9 0",
-              " . - / {bksp}"
+              " . - / {bksp}",
+              "{space}"
             ]}}
-            
             onChange={input => this.onChange(input)}
-          onKeyPress={button => this.onKeyPress(button)}/>
+          onKeyPress={button => this.onKeyPress(button)}
+          display={{
+            '{bksp}': 'delete',
+            '{space}': 'space',
+          }}
+          />
       </div>
    }
   }
