@@ -1,29 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import FractionInput from './FractionInput';
+import NumberInput from './NumberInput';
 import {createTeaching} from '../Actions'
 import InputValidator from '../Model/InputValidator';
 import { withRouter } from "react-router-dom";
 import './app.css';
-//gets the teaching for this method
-const mapStateToProps = (state) => {
-  return {
-    teaching: state.teaching, topics: state.topics
-  }
-};
-//so that the creator view can get the teaching
-const mapDispatchToProps = (dispatch) => {
-  return {
-    createTeaching: (methodInfo) => {
-      dispatch(createTeaching(methodInfo));
-    }
-  }
-};
-//for creating a teaching, but not connected yet
+/* gets the teaching for this method */
+const mapStateToProps = (state) => { return { teaching: state.teaching, topics: state.topics } };
+/* so that the creator view can get the teaching */
+const mapDispatchToProps = (dispatch) => { return { createTeaching: (methodInfo) => { 
+  dispatch(createTeaching(methodInfo)); } } };
+/* for creating a teaching, but not connected yet */
 class UnconnectedCreatorView extends React.Component{
     constructor(props) {
         super(props);
-        //methods strings to create view, calling strings to call method
+        /* methods strings to create view, calling strings to call method */
         this.state={methodSignature: this.props.methodSignature,
           callingStrings: [], key: undefined};
         this.state.callingStrings=this.createCallingStrings();
@@ -32,12 +23,11 @@ class UnconnectedCreatorView extends React.Component{
       }
       render() {
         return(
-            //will take user to teaching with these names.  Will get teaching from home first.
+          /* will take user to teaching with these names.  Will get teaching from home first. */
           <div className='CreatorView'>
               <h3>{this.props.methodSignature[0]}</h3>
               {this.createView()}<button className="actionButton" onClick={() => this.handleClick()}>
                 Create a {this.props.teaching.displayNameSingular}</button>
-                {console.log('12345'+this.props.topics[0])}
           </div>
         );
       }
@@ -45,12 +35,14 @@ class UnconnectedCreatorView extends React.Component{
         var creatorView=[];
         var index=1;
         for (var i=0; i<this.props.methodSignature.length; i++){
-          if (i<2){
-          }
-          else if (i%2===0){
-            creatorView.push(<span className='small-right-margin creator-text-size' key={i} id={i}>{this.props.methodSignature[i]+':'}</span>);
-          }else{
-            creatorView.push(<span key={i} id={i}><span className='medium-right-margin'>{this.createFractionInput(index)}</span><br className='hide-for-not-small'></br></span>);
+          if (i<2) { /* do nothing */ }
+          else if (i%2===0) {
+            creatorView.push(<span className='small-right-margin creator-text-size' 
+            key={i} id={i}>{this.props.methodSignature[i]+':'}</span>);
+          } else {
+            creatorView.push(<span key={i} id={i}><span className='medium-right-margin'>
+            {this.createFractionInput(index)}</span><br className='hide-for-not-small'></br>
+            </span>);
             index++
           }
         }
@@ -65,9 +57,9 @@ class UnconnectedCreatorView extends React.Component{
       }
       //bring index to array
       createFractionInput(i){
-          let fractionInput=<FractionInput keyID={this.props.keyID+"-"+i} 
+          let fractionInput=<NumberInput keyID={this.props.keyID+"-"+i} 
           index={i} textHandler={(i, value) => this.textHandler(i, value)} activateInputHandler={this.props.activateInputHandler}>
-          </FractionInput>;
+          </NumberInput>;
         return fractionInput;
       }
       textHandler(i, value){

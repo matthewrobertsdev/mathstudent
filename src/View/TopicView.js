@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-//for displaying a link to a teaching, that displays its name and loads that teaching when clicked
+/* for displaying a link to a teaching, that displays its name and loads that teaching when clicked */
 class TopicView extends React.Component{
     constructor(props) {
         super(props);
@@ -8,10 +8,8 @@ class TopicView extends React.Component{
       }
       render() {
         return(
-            //will take user to teaching with these names.  Will get teaching from model first.
-          <div>
-              <Link className="Link" to={`/create/${this.props.topic.codeName}`}>{this.props.topic.displayName}</Link>
-          </div>
+          /* will take user to teaching with these names.  Will get teaching from model first. */
+          <div> <Link className="Link" to={`/create/${this.props.topic.codeName}`}>{this.props.topic.displayName}</Link> </div>
         );
       }
 }
