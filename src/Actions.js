@@ -41,6 +41,19 @@ const _updateActiveValue = (key) => ({
     type: 'UPDATE_ACTIVE_VALUE',
     key
 });
+const _reaignActiveValue = (value) => ({
+    type: 'REASIGN_ACTIVE_VALUE',
+    value
+});
+const _addInputPair = (key, value) => ({
+    type: 'ADD_INPUT_PAIR',
+    key,
+    value
+});
+const _updateActiveKey = (key) => ({
+    type: 'UPDATE_ACTIVE_KEY',
+    key
+});
 //gets all topics for now for teaching
 export const getTopics = () => {
     return  (dispatch)=>{
@@ -101,8 +114,27 @@ export const updateActiveKeyAndValue = (keyID, value) => {
     };
 };
 export const updateActiveValue = (key) => {
-    console.log('is this working');
+    //console.log('is this working');
     return (dispatch) => {
         return dispatch(_updateActiveValue(key));
+    };
+};
+export const resignActiveValue = (key) => {
+    console.log('is this working');
+    return (dispatch) => {
+        return dispatch(_reaignActiveValue(key));
+    };
+};
+
+export const addInputPair = (key, value) => {
+    console.log('is this working');
+    return (dispatch) => {
+        return dispatch(_addInputPair(key, value));
+    };
+};
+export const updateActiveKey = (key) => {
+    //console.log('is this working');
+    return (dispatch) => {
+        return dispatch(_updateActiveKey(key));
     };
 };

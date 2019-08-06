@@ -6,10 +6,11 @@ const initialState = {
     teaching: {},
     error: {},
     URL: '',
-    inputMap: [],
+    inputMap: {},
     activeMap: {},
     activeKey: '',
-    activeValue: ''
+    activeValue: 'abcd',
+    mobileValue: ''
   };
 const appReducer=(state=initialState, action) => {
     switch (action.type) {
@@ -19,7 +20,6 @@ const appReducer=(state=initialState, action) => {
                 ...state, topics: action.topics
               };
         case 'GET_TEACHING':
-                console.log("please please"+action.type)
             if (action.teaching==null){
                 return initialState
             }
@@ -34,17 +34,26 @@ const appReducer=(state=initialState, action) => {
             return {
                     ...state, URLpathname: action.URLpathname
                 };
+        case 'ADD_INPUT_PAIR':
+            console.log("update key and value"+action.type)
+            return {
+                    ...state, inputMap: {...state.inputMap, [action.key]: action.value}
+                };
+        case 'UPDATE_ACTIVE_KEY':
+            console.log("update key"+action.type)
+                return {
+                    ...state, activeKey: action.key
+                };
         case 'UPDATE_ACTIVE_KEY_AND_VALUE':
-            console.log("please please"+action.type)
+            console.log("update key and value"+action.type)
             return {
                     ...state, activeKey: action.activeKey, activeValue: action.value
                 };
         case 'UPDATE_ACTIVE_VALUE':
-            console.log("please please"+action.type)
-            let oldValue=state.activeValue;
-            console.log("hey"+oldValue)
+            console.log("update just value"+action.type)
+            let newValue=state.inputMap[state.activeKey]+=action.key
             return {
-                    ...state, activeValue: oldValue+=action.key
+                    ...state, inputMap: {...state.inputMap, [state.activeKey]: newValue}
                 };
         default:
             return state;

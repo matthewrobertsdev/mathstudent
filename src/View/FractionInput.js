@@ -1,29 +1,32 @@
 import React from 'react';
 import './app.css';
 import MathQuill, { addStyles as addMathquillStyles } from 'react-mathquill';
-import { addToInputMap, addToActiveMap, changeSelected, updateActiveKeyAndValue} from '../Actions';
+import { addInputPair, updateActiveKeyAndValue, updateActiveKey} from '../Actions';
 import { connect } from 'react-redux';
 import isMobile from '../Model/utilities/IsMobile';
 addMathquillStyles();
 const mapStateToProps = (state) => {
-    console.log(state)
-    return { inputMap: state.inputMap, activeMap: state.activeMap, teaching: state.teaching, activeKey: state.activeKey, activeValue: state.activeValue} };
+    return { inputMap: state.inputMap, activeMap: state.activeMap, teaching: state.teaching, activeKey: state.activeKey, activeValue: state.activeValue, mobileValue: state.mobileValue} };
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateActiveKeyAndValue: (keyID, value) => { dispatch(updateActiveKeyAndValue(keyID, value)); } }
+        updateActiveKeyAndValue: (keyID, value) => { dispatch(updateActiveKeyAndValue(keyID, value))},
+        addInputPair: (keyID, value) => { dispatch(addInputPair(keyID, value)); },
+        updateActiveKey: (key) => {dispatch(updateActiveKey(key)); } }
     };
 class UnconnectedFractionInput extends React.Component{
     constructor(props) {
         super(props);
         if( isMobile()) {
-            this.state = { mobileValue: '', mobileState: false, index: this.props.index}
+            this.state = { mobileValue: 'abcd', mobileState: false, index: this.props.index}
         } else {
             this.state = { latex: '', text: '', index: this.props.index, classID: this.props.classID }
         }
         this.mathQuillEl = null
     }
     componentWillMount() {
-      }
+        const {addInputPair} = this.props;
+        addInputPair(this.props.keyID, '');
+    }
     render() {
         if( isMobile() ) {
             return (
@@ -50,29 +53,31 @@ class UnconnectedFractionInput extends React.Component{
         }
     }
     forClick(){
-        const { updateActiveKeyAndValue} = this.props;
-        if (this.mobileValue){
-            updateActiveKeyAndValue(this.props.keyID, this.mobileValue); console.log("please hello again")
-        }
-        else{
-            updateActiveKeyAndValue(this.props.keyID, 'abcd'); console.log("please hello again")
-        }
+        const { updateActiveKey } = this.props;
+        updateActiveKey(this.props.keyID);
+        
+        //addInputPair(this.props.keyID, '');
+        //updateActiveKeyAndValue(this.props.keyID, this.props.mobileValue);
+        //console.log("for click "+JSON.stringify(this.props.inputMap));
     }
-    getMobileValue(){
-        if (this.props.keyID===this.props.activeKey){
-            if (this.mobileValue===''){
-                this.mobileValue=this.props.activeValue
-            }
-            else {
-                this.activeValue=''
-                this.mobileValue=''
-            }
-        }
-        return this.props.mobileValue;
-    }
+    
     createSubsittuteTextArea(){
         return (<span tabindex={0}> </span>);
     }
+
+    getMobileValue(){
+        return this.props.inputMap[this.props.keyID];
+    }
+    /*
+    getMobileValue(){
+        if (this.props.keyID===this.props.activeKey){
+            this.mobileValue=this.props.activeValue;
+            return this.mobileValue
+        } else {
+            return this.mobileValue
+        }
+    }
+    */
 
     
     onKeyPressed(e) {
