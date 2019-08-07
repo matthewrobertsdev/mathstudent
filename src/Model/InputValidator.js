@@ -23,7 +23,6 @@ static hasInteger=new RegExp('-?\\d+', 'g');
             matches.push(match);
           }
       } while (match);
-      console.log(matches[1][0]);
       if (matches[1][0]==="0"){
         return false;
       }
@@ -52,14 +51,12 @@ static hasInteger=new RegExp('-?\\d+', 'g');
   }
   return true;
 }
- static displayNotFraction() {
-    window.alert("Sorry, those were not all fractions or integers in simplest form.");
- }
+
  static handleAttemptedFraction(str) {
    if (InputValidator.areFractions(str)) {
      return true;
    } else {
-    InputValidator.displayNotFraction();
+    return false;
    }
  }
 }
