@@ -20,11 +20,11 @@ class UnconnectedNumberInput extends React.Component{
         } else { this.state = { latex: '', text: '', index: this.props.index, classID: this.props.classID }
         } this.mathQuillEl = null
     }
-    componentWillMount() { const {addInputPair} = this.props; addInputPair(this.props.keyID, ''); }
+    componentWillMount() { const {addInputPair} = this.props; addInputPair(this.props.gridID, ''); }
     render() {
         if( isMobile() ) {
                     return (<span onKeyDown={(e) => this.onKeyPressed(e)}>
-                    <button  className={this.props.keyID===this.props.activeKey 
+                    <button  className={this.props.gridID===this.props.activeKey 
                     ? "SelectedMathText creator-text-size" : "MathText creator-text-size"} 
                     pattern='^(-?\\d\\/-?\\d)$|^(-?\\d+)$' onClick={() =>this.forClick()}>
                     {this.getMobileValue()}</button>
@@ -40,8 +40,8 @@ class UnconnectedNumberInput extends React.Component{
                     }} mathquillDidMount={el => { this.mathQuillEl = el; }}/> </span> )
         }
     }
-    forClick() { const { updateActiveKey } = this.props; updateActiveKey(this.props.keyID); }
-    getMobileValue() { return this.props.inputMap[this.props.keyID];}
+    forClick() { const { updateActiveKey } = this.props; updateActiveKey(this.props.gridID); }
+    getMobileValue() { return this.props.inputMap[this.props.gridID];}
     onKeyPressed(e) {
         if (e.metaKey && (e.key==="h"||e.key==="q")){ return; }
         switch (e.key) {
