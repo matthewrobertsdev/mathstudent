@@ -5,8 +5,9 @@ import {createTeaching} from '../Actions'
 import InputValidator from '../Model/InputValidator';
 import { withRouter } from "react-router-dom";
 import './app.css';
+import isMobile from '../Model/utilities/IsMobile';
 /* gets the teaching for this method */
-const mapStateToProps = (state) => { return { teaching: state.teaching, topics: state.topics } };
+const mapStateToProps = (state) => { return { teaching: state.teaching, topics: state.topics, inputMap: state.inputMap} };
 /* so that the creator view can get the teaching */
 const mapDispatchToProps = (dispatch) => { return { createTeaching: (methodInfo) => { 
   dispatch(createTeaching(methodInfo)); } } };
@@ -20,6 +21,7 @@ class UnconnectedCreatorView extends React.Component{
         this.state.callingStrings=this.createCallingStrings();
         this.state.callingStrings[0]=this.props.methodSignature[1];
         this.textHandler = this.textHandler.bind(this);
+        this.state.gridIDs=[]
       }
       render() {
         return(
@@ -57,18 +59,32 @@ class UnconnectedCreatorView extends React.Component{
       }
       //bring index to array
       createNumberInput(column){
-          let fractionInput=<NumberInput gridID={this.props.row+"-"+column} 
-          index={column} textHandler={(column, value) => this.textHandler(column, value)} activateInputHandler={this.props.activateInputHandler}>
+          this.state.gridIDs.push(this.createGridID(column));
+          let fractionInput=<NumberInput gridID={this.createGridID(column)} index={column} 
+          textHandler={(column, value) => this.textHandler(column, value)} activateInputHandler={this.props.activateInputHandler}>
           </NumberInput>;
         return fractionInput;
+      }
+      createGridID(column){
+        return this.props.row+"-"+column
       }
       textHandler(i, value){
         let tempCallingStrings=this.state.callingStrings
         tempCallingStrings[i]=value;
         this.setState(previousState => ({ ...previousState, callingStrings: tempCallingStrings }))
       }
+      getMobileCallingStrings(){
+          this.state.callingStrings=[];
+          console.log(this.props.inputMap)
+          for (var i=2; i<this.props.methodSignature.length/2; i++){
+            this.state.callingStrings.push(this.props.inputMap[this.state.gridIDs[i]]);
+          };
+      }
   handleClick(){
     const { createTeaching } = this.props;
+    if (isMobile){
+      this.getMobileCallingStrings();
+    }
       if(InputValidator.handleAttemptedFraction(this.state.callingStrings)){
         createTeaching(this.state.callingStrings);
         this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
