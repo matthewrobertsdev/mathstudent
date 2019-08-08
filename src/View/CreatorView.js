@@ -37,7 +37,7 @@ class UnconnectedCreatorView extends React.Component{
                 Create a {this.props.teaching.displayNameSingular}</button>
                 <ReactModal className="notNumberModal" isOpen={this.state.showModal} >
           <br></br>
-          Sorry, those were not all fractions or integers in simplest form.
+          Sorry, those were not all numbers or some were left blank.
           <br></br>
           <br></br>
           <button className='closeButton' onClick={this.handleCloseModal}>Close</button>
@@ -109,7 +109,6 @@ class UnconnectedCreatorView extends React.Component{
         this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
       } else {
         this.handleOpenModal()
-        //window.alert("Sorry, those were not all fractions or integers in simplest form.");
       }
     }
     handleOpenModal () { this.setState({ showModal: true }); }

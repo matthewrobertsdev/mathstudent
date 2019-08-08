@@ -34,6 +34,8 @@ class UnconnectedCreateView extends React.Component {
       <div>
         <br></br>
         <div className='center-text'>
+        <h1 className="CreateView">About {this.props.teaching.displayNamePlural}</h1>
+        <h3 className="Heading">{this.props.teaching.about}</h3>
         <h1 className="CreateView">Create {this.props.teaching.displayNamePlural}</h1>
         <h3 className="Heading">Enter numbers as integers or fractions.  If you want a fraction, type '/' to separate the denominator from the numerator.</h3>
         </div>
