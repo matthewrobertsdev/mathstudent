@@ -73,7 +73,6 @@ class UnconnectedCreatorView extends React.Component{
       //bring index to array
       createNumberInput(column){
           this.state.gridIDs.push(this.createGridID(column));
-          console.log(column)
           let fractionInput=<NumberInput gridID={this.createGridID(column)} index={column} 
           textHandler={(column, value) => this.textHandler(column, value)} activateInputHandler={this.props.activateInputHandler}>
           </NumberInput>;
@@ -94,15 +93,11 @@ class UnconnectedCreatorView extends React.Component{
           for (var i=0; i<this.num; i++){
             callingStrings.push(this.props.inputMap[this.state.gridIDs[i]]);
           };
-          console.log(callingStrings)
           return callingStrings;
-          //this.setState(previousState => ({ ...previousState, callingStrings: callingStrings }))
       }
   handleClick(){
     const { createTeaching } = this.props;
     if (isMobile&&InputValidator.handleAttemptedFraction(this.getMobileCallingStrings())){
-      //console.log(this.state.callingStrings)
-      //console.log(this.getMobileCallingStrings())
       this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
     } else if(InputValidator.handleAttemptedFraction(this.state.callingStrings)){
         createTeaching(this.state.callingStrings);

@@ -1,14 +1,16 @@
 class MathTeaching{
     constructor(){
-        this.teachingObjName='';
-        this.displayNameSingular='';
-        this.displayNamePlural='';
+        this.objectName="";
+        this.displayNameSingular="";
+        this.singularLowerCase="";
+        this.displayNamePlural="";
+        this.pluralLowerCase="";
         this.creationTeaching='';
         this.creationSummary='';
         this.creationMethodSignatures=[];
         this.propertyTeachings=[];
         this.instanceMethodSignatures=[];
-        this.about=''
+        this.about=[]
     }
 }
 export default MathTeaching;

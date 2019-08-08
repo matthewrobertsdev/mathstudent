@@ -5,6 +5,7 @@ import CreatorView from './CreatorView';
 import isMobile from '../Model/utilities/IsMobile';
 import NumberKeyboard from './NumberKeyboard'
 import KeyboardSpacer from './KeyboardSpacer';
+import TeachingLink from './TeachingLink'
 import 'react-simple-keyboard/build/css/index.css';
 import './app.css';
 const mapStateToProps = (state) => {
@@ -24,6 +25,7 @@ class UnconnectedCreateView extends React.Component {
     const { getTeaching, updateURL } = this.props;
     getTeaching(params.teachingName);
     updateURL();
+    this.render();
   }
   componentWillUnmount() {
     const { clearTeaching } = this.props;
@@ -35,7 +37,7 @@ class UnconnectedCreateView extends React.Component {
         <br></br>
         <div className='center-text'>
         <h1 className="CreateView">About {this.props.teaching.displayNamePlural}</h1>
-        <h3 className="Heading">{this.props.teaching.about}</h3>
+        {this.createAboutSection()}
         <h1 className="CreateView">Create {this.props.teaching.displayNamePlural}</h1>
         <h3 className="Heading">Enter numbers as integers or fractions.  If you want a fraction, type '/' to separate the denominator from the numerator.</h3>
         </div>
@@ -45,6 +47,20 @@ class UnconnectedCreateView extends React.Component {
         <KeyboardSpacer/>
       </div>
     );
+  }
+  createAboutSection(){
+    if(this.props.teaching.about){
+    var aboutSection=[]
+    for (var i=0; i<this.props.teaching.about.length; i++){
+      if (i%2===0) {
+        aboutSection.push(<span key={i} className="Heading">{this.props.teaching.about[i]}</span>)
+      } else {
+        aboutSection.push(<TeachingLink key={i} displayName={this.props.teaching.about[i].displayName} 
+          codeName={this.props.teaching.about[i].codeName}></TeachingLink>)
+      }
+    }
+    return aboutSection
+  }
   }
   createCreatorViews() {
     if (this.props.teaching.creationMethodSignatures === undefined) { return; }
