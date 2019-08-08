@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import NumberInput from './NumberInput';
-import {createTeaching} from '../Actions'
+import {createTeaching} from '../Actions';
 import InputValidator from '../Model/InputValidator';
 import { withRouter } from "react-router-dom";
 import './app.css';
 import isMobile from '../Model/utilities/IsMobile';
+import ReactModal from 'react-modal';
 /* gets the teaching for this method */
 const mapStateToProps = (state) => { return { teaching: state.teaching, topics: state.topics, inputMap: state.inputMap} };
 /* so that the creator view can get the teaching */
@@ -21,8 +22,11 @@ class UnconnectedCreatorView extends React.Component{
         this.state.callingStrings=this.createCallingStrings();
         this.state.callingStrings[0]=this.props.methodSignature[1];
         this.textHandler = this.textHandler.bind(this);
-        this.state.gridIDs=[]
+        this.state.gridIDs=[];
         this.num=0;
+        this.state.showModal=false;
+        this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
       }
       render() {
         return(
@@ -31,6 +35,13 @@ class UnconnectedCreatorView extends React.Component{
               <h3>{this.props.methodSignature[0]}</h3>
               {this.createView()}<button className="actionButton" onClick={() => this.handleClick()}>
                 Create a {this.props.teaching.displayNameSingular}</button>
+                <ReactModal className="notNumberModal" isOpen={this.state.showModal} >
+          <br></br>
+          Sorry, those were not all fractions or integers in simplest form.
+          <br></br>
+          <br></br>
+          <button className='closeButton' onClick={this.handleCloseModal}>Close</button>
+        </ReactModal>
           </div>
         );
       }
@@ -79,6 +90,7 @@ class UnconnectedCreatorView extends React.Component{
       }
       getMobileCallingStrings(){
           var callingStrings=[];
+          callingStrings.push(this.props.methodSignature[0]);
           for (var i=0; i<this.num; i++){
             callingStrings.push(this.props.inputMap[this.state.gridIDs[i]]);
           };
@@ -96,9 +108,12 @@ class UnconnectedCreatorView extends React.Component{
         createTeaching(this.state.callingStrings);
         this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
       } else {
-        window.alert("Sorry, those were not all fractions or integers in simplest form.");
+        this.handleOpenModal()
+        //window.alert("Sorry, those were not all fractions or integers in simplest form.");
       }
     }
+    handleOpenModal () { this.setState({ showModal: true }); }
+    handleCloseModal () { this.setState({ showModal: false }); }
 }
 const CreatorView=connect(mapStateToProps, mapDispatchToProps)((withRouter)(UnconnectedCreatorView));
 export default CreatorView;

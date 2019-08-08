@@ -117,3 +117,28 @@
     background-color: rgb(61, 32, 6);
     bottom: 0;
 }
+.notNumberModal{
+    position: absolute;
+    width: 200px;
+    height: 150px;
+    background-color: royalblue;
+    color: rgb(61, 32, 6);
+    text-align: center;
+    left: 50%;
+    margin-left: -100px;
+    top: 30%;
+    margin-top: -75px;
+    border-radius: 14px;
+}
+.notNumberOverlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.closeButton{
+    background-color: rgb(61, 32, 6);
+    color: gold;
+    border-radius: 7px;
+}

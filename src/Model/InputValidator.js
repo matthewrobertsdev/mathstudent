@@ -1,10 +1,10 @@
 import isMobile from './utilities/IsMobile';
 class InputValidator {
-static latexFraction=new RegExp('^(-?\\\\frac{-?\\d}{-?\\d})$|^(-?\\d+)$');
-static latexFractionOnly=new RegExp('^(-?\\\\frac{-?\\d}{-?\\d})$');
-static textFraction=new RegExp('^(-?\\d\\/-?\\d)$|^(-?\\d+)$');
-static textFractionOnly=new RegExp('^(-?\\d\\/-?\\d)$');
-static integerOnly=new RegExp('^(-?\\d+)$');
+static latexFraction=new RegExp('^-?\\\\frac{-?\\d+}{-?\\d+}$|^-?\\d+$');
+static latexFractionOnly=new RegExp('^-?\\\\frac{-?\\d+}{-?\\d+}$');
+static textFraction=new RegExp('^-?\\d+\\/-?\\d+$|^-?\\d+$');
+static textFractionOnly=new RegExp('^-?\\d+\\/-?\\d+$');
+static integerOnly=new RegExp('^-?\\d+$');
 static hasInteger=new RegExp('-?\\d+', 'g');
   static areFractions(strArray) {
     if (isMobile()){ return InputValidator.areTextFractions(strArray);
@@ -32,6 +32,7 @@ static hasInteger=new RegExp('-?\\d+', 'g');
  }
  static areTextFractions(strArray) {
   for (var i=1; i<strArray.length; i++) {
+    console.log(strArray[i]);
     if (!InputValidator.textFraction.test(strArray[i])){
       return false;
     }
@@ -42,6 +43,7 @@ static hasInteger=new RegExp('-?\\d+', 'g');
         match = InputValidator.hasInteger.exec(strArray[i]);
         if (match) {
           matches.push(match);
+          console.log(match);
         }
     } while (match);
     if (matches[1][0]==="0"){
