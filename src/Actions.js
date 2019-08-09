@@ -24,15 +24,6 @@ const _addToInputMap = (keyID, value) => ({
     key: keyID,
     v: value
 });
-const _addToActiveMap = (keyID, value) => ({
-    type: 'ADD_TO_ACTIVE_MAP',
-    keyID,
-    value
-});
-const _changeSelected = (keyID) => ({
-    type: 'CHANGE_SELECTED',
-    keyID
-});
 const _updateActiveKeyAndValue = (activeKey) => ({
     type: 'UPDATE_ACTIVE_KEY_AND_VALUE',
     activeKey
@@ -40,10 +31,6 @@ const _updateActiveKeyAndValue = (activeKey) => ({
 const _updateActiveValue = (key) => ({
     type: 'UPDATE_ACTIVE_VALUE',
     key
-});
-const _reaignActiveValue = (value) => ({
-    type: 'REASIGN_ACTIVE_VALUE',
-    value
 });
 const _addInputPair = (key, value) => ({
     type: 'ADD_INPUT_PAIR',
@@ -54,10 +41,9 @@ const _updateActiveKey = (key) => ({
     type: 'UPDATE_ACTIVE_KEY',
     key
 });
-const _updateIndices = (row, column) => ({
-    type: 'UPDATE_ACTIVE_INDICES',
-    row,
-    column
+const _updateCallingStrings= (callingStrings) => ({
+    type: 'UPDATE_CALLING_STRINGS',
+    callingStrings
 });
 //gets all topics for now for teaching
 export const getTopics = () => {
@@ -89,26 +75,18 @@ export const updateURL = () => {
         return dispatch(_updateURL(window.location.pathname));
     };
 };
-export const clearSelectedFields = () => {
-    return (dispatch) => {
-        return dispatch(_updateURL(window.location.pathname));
-    };
-};
 export const addToInputMap = (keyID, value) => {
     return (dispatch) => {
         return dispatch(_addToInputMap(keyID, value));
     };
 };
+/*
 export const addToActiveMap = (keyID, value) => {
     return (dispatch) => {
         return dispatch(_addToActiveMap(keyID, value));
     };
 };
-export const changeSelected = (keyID) => {
-    return (dispatch) => {
-        return dispatch(_changeSelected(keyID));
-    };
-};
+*/
 export const updateActiveKeyAndValue = (keyID, value) => {
     return (dispatch) => {
         return dispatch(_updateActiveKeyAndValue(keyID, value));
@@ -117,11 +95,6 @@ export const updateActiveKeyAndValue = (keyID, value) => {
 export const updateActiveValue = (key) => {
     return (dispatch) => {
         return dispatch(_updateActiveValue(key));
-    };
-};
-export const resignActiveValue = (key) => {
-    return (dispatch) => {
-        return dispatch(_reaignActiveValue(key));
     };
 };
 export const addInputPair = (key, value) => {
@@ -134,8 +107,8 @@ export const updateActiveKey = (key) => {
         return dispatch(_updateActiveKey(key));
     };
 };
-export const updateIndices = (row, column) => {
+export const updateCallingStrings = (callingStrings) => {
     return (dispatch) => {
-        return dispatch(_updateIndices(row, column));
+        return dispatch(_updateCallingStrings(callingStrings));
     };
-};
+}

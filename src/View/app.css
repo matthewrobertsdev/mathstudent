@@ -60,6 +60,7 @@
     text-decoration: none;
     display: inline-block;
     border-radius: 10px;
+    margin: 10px 10px;
 }
 .NavLink:hover{
     background-color: rgb(158, 89, 25);
@@ -157,4 +158,11 @@
     background-color: rgb(61, 32, 6);
     color: gold;
     border-radius: 7px;
+}
+.navBar{
+  margin: 0;
+  padding: 0;
+  width: 25%;
+  width: 100%; /* Full height */
+  overflow: auto;
 }

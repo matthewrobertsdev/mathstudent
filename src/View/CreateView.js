@@ -19,27 +19,24 @@ const mapDispatchToProps = (dispatch) => {
 };
 /* This view is for the UI for creating a MathTeachingObject */
 class UnconnectedCreateView extends React.Component {
-  constructor(props) { super(props); this.state={ activeText: null }; } activeInput='';
+  constructor(props) { super(props); this.state={ activeText: null}; } activeInput='';
   componentWillMount() { 
+    const { clearTeaching } = this.props;
+    clearTeaching();
     const { match: { params } } = this.props;
     const { getTeaching, updateURL } = this.props;
     getTeaching(params.teachingName);
     updateURL();
     this.render();
   }
-  componentWillUnmount() {
-    const { clearTeaching } = this.props;
-    clearTeaching();
-  }
   render() {
     return (
       <div>
-        <br></br>
         <div className='center-text'>
         <h1 className="CreateView">About {this.props.teaching.displayNamePlural}</h1>
         {this.createAboutSection()}
         <h1 className="CreateView">Create {this.props.teaching.displayNamePlural}</h1>
-        <h3 className="Heading">Enter numbers as integers or fractions.  If you want a fraction, type '/' to separate the denominator from the numerator.</h3>
+        {this.createInputHeading()}
         </div>
         <br></br>
         {this.createCreatorViews()}
@@ -48,6 +45,17 @@ class UnconnectedCreateView extends React.Component {
       </div>
     );
   }
+  createInputHeading(){
+    var heading=<span></span>;
+    if(this.props.teaching&&this.props.teaching.anyNumbers){
+    heading=<h3 className="Heading">Enter numbers as integers or fractions.  If you want a fraction, type '/' to separate the denominator from the numerator.</h3>;
+    }
+    else if (this.props.teaching&&this.props.teaching.onlyFractions){
+      heading=<h3 className="Heading">To type a fraction, type '/' to separate the denominator from the numerator.</h3>;
+    }
+    return heading;
+  }
+
   createAboutSection(){
     if(this.props.teaching.about){
     var aboutSection=[]

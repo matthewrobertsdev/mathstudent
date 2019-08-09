@@ -9,15 +9,25 @@ const initialState = {
     inputMap: {},
     activeMap: {},
     activeKey: '',
-    activeValue: 'abcd',
-    mobileValue: '',
     inputArray: [],
-    activeRow: -1,
-    activeColumn: -1
   };
 const appReducer=(state=initialState, action) => {
     switch (action.type) {
-        //action for getting topics for user choice
+        case 'UPDATE_ACTIVE_VALUE':
+            let newValue=''
+            if (action.key==='{space}'){
+                newValue=state.inputMap[state.activeKey]+=' '
+            } else if (action.key==='{bksp}'){
+                if (state.inputMap[state.activeKey].length>=1){   	
+                    newValue=state.inputMap[state.activeKey].slice(0, -1);
+                }
+            } else {
+                newValue=state.inputMap[state.activeKey]+=action.key
+            }
+            return {
+                    ...state, inputMap: {...state.inputMap, [state.activeKey]: newValue}
+                };
+        /* action for getting topics for user choice */
         case 'GET_TOPICS':
             return {
                 ...state, topics: action.topics
@@ -41,61 +51,10 @@ const appReducer=(state=initialState, action) => {
                 return { ...state, activeKey: action.key };
         case 'UPDATE_ACTIVE_KEY_AND_VALUE':
             return { ...state, activeKey: action.activeKey, activeValue: action.value };
-        case 'UPDATE_ACTIVE_VALUE':
-            let newValue=''
-            if (action.key==='{space}'){
-                newValue=state.inputMap[state.activeKey]+=' '
-            } else if (action.key==='{bksp}'){
-                if (state.inputMap[state.activeKey].length>=1){   	
-                    newValue=state.inputMap[state.activeKey].slice(0, -1);
-                }
-            } else {
-                newValue=state.inputMap[state.activeKey]+=action.key
-            }
-            return {
-                    ...state, inputMap: {...state.inputMap, [state.activeKey]: newValue}
-                };
-        case 'UPDATE_ACTIVE_INDICES':
-            return { ...state, activeRow: action.row, activeColumn: action.column };
+        case 'UPDATE_CALLING_STRINGS':
+            return { ...state, callingStrings: action.callingStrings };
         default:
             return state;
     }
 };
 export default appReducer;
-
-/*
-
-case 'ADD_TO_INPUT_MAP':
-            return Object.assign({}, state, {inputMap: [...state.inputMap, {[action.keyID]: action.value}]});
-        case 'ADD_TO_ACTIVE_MAP':
-            console.log(state.activeMap);
-            return Object.assign({}, state, {activeMap: [...state.activeMap, {[action.keyID]: action.value}]});
-        case 'CHANGE_SELECTED':
-            console.log(state.activeMap);
-            return Object.assign({}, state, {activeMap: [...state.activeMap, {[action.keyID]: true}]});
-
-
-
-
-case 'ADD_TO_INPUT_MAP':
-            return {...state, inputMap: {...state.inputMap, [action.keyID]: action.value}};
-        case 'ADD_TO_ACTIVE_MAP':
-            console.log(state.activeMap);
-            return {...state, activeMap: {...state.activeMap, [action.keyID]: action.value}};
-        case 'CHANGE_SELECTED':
-            console.log(state.activeMap);
-            return {...state, activeMap: {...state.activeMap, [action.keyID]: true}};
-        default:
-            return state;
-
-
-            case 'ADD_TO_INPUT_MAP':
-                console.log('please look'+action.keyID);
-                return Object.assign({}, state.inputMap.concat({[action.key]: action.value}));
-                    case 'ADD_TO_ACTIVE_MAP':
-                        return {...state, [action.keyID]: action.value};
-                    case 'CHANGE_SELECTED':
-                        console.log(state.activeMap);
-                        return {...state, [action.keyID]: true};
-
-*/

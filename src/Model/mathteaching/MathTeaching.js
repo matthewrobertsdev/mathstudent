@@ -7,10 +7,13 @@ class MathTeaching{
         this.pluralLowerCase="";
         this.creationTeaching='';
         this.creationSummary='';
+        this.callingStrings='';
         this.creationMethodSignatures=[];
         this.propertyTeachings=[];
         this.instanceMethodSignatures=[];
-        this.about=[]
+        this.about=[];
+        this.anyNumbers=false;
+        this.onlyFractions=false;
     }
 }
 export default MathTeaching;

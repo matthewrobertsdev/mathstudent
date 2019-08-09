@@ -18,8 +18,7 @@ class ProcessInput{
               }
           } while (match);
             fractions.push(new Fraction().fromNumeratorAndDenominator(parseInt(matches[0][0]),parseInt(matches[1][0])));
-          }
-          else{
+          } else{
             fractions.push(new Fraction().fromNumerator(parseInt(strArray[i])));
           }
         }

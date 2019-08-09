@@ -17,16 +17,13 @@ class UnconnectedCreatorView extends React.Component{
     constructor(props) {
         super(props);
         /* methods strings to create view, calling strings to call method */
-        this.state={methodSignature: this.props.methodSignature,
-          callingStrings: [], key: undefined};
-        this.state.callingStrings=this.createCallingStrings();
-        this.state.callingStrings[0]=this.props.methodSignature[1];
+        this.state={methodSignature: this.props.methodSignature, key: undefined, callingStrings: 
+          this.createCallingStrings(), gridIDs: [], showModal: false}
+          this.state.callingStrings[0]=this.props.methodSignature[1];
         this.textHandler = this.textHandler.bind(this);
-        this.state.gridIDs=[];
-        this.num=0;
-        this.state.showModal=false;
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.num=0;
       }
       render() {
         return(
@@ -70,7 +67,7 @@ class UnconnectedCreatorView extends React.Component{
         };
         return callingStrings;
       }
-      //bring index to array
+      /* bring index to array */
       createNumberInput(column){
           this.state.gridIDs.push(this.createGridID(column));
           let fractionInput=<NumberInput gridID={this.createGridID(column)} index={column} 
@@ -93,21 +90,22 @@ class UnconnectedCreatorView extends React.Component{
           for (var i=0; i<this.num; i++){
             callingStrings.push(this.props.inputMap[this.state.gridIDs[i]]);
           };
+          this.setState(previousState => ({ ...previousState, callingStrings: callingStrings }))
           return callingStrings;
       }
   handleClick(){
     const { createTeaching } = this.props;
     if (isMobile&&InputValidator.handleAttemptedFraction(this.getMobileCallingStrings())){
-      this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
+      this.props.history.push(`/creation/${this.props.teaching.objectName}`);
     } else if(InputValidator.handleAttemptedFraction(this.state.callingStrings)){
         createTeaching(this.state.callingStrings);
-        this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
-      } else {
+        this.props.history.push(`/creation/${this.props.teaching.objectName}`);
+    } else {
         this.handleOpenModal()
-      }
     }
-    handleOpenModal () { this.setState({ showModal: true }); }
-    handleCloseModal () { this.setState({ showModal: false }); }
+  }
+  handleOpenModal () { this.setState({ showModal: true }); }
+  handleCloseModal () { this.setState({ showModal: false }); }
 }
 const CreatorView=connect(mapStateToProps, mapDispatchToProps)((withRouter)(UnconnectedCreatorView));
 export default CreatorView;
