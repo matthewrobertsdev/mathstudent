@@ -31,19 +31,28 @@ class UnconnectedCreateView extends React.Component {
   }
   render() {
     return (
-      <div>
-        <div className='center-text'>
+      <div className='fullWidth'>
+        <div className='center-text textMargins'>
+        {this.createLeaderBoardAD()}
         <h1 className="CreateView">About {this.props.teaching.displayNamePlural}</h1>
         {this.createAboutSection()}
+        <br></br>
+        <br></br>
+        {this.createLeaderBoardAD()}
         <h1 className="CreateView">Create {this.props.teaching.displayNamePlural}</h1>
         {this.createInputHeading()}
         </div>
         <br></br>
+        <div className='fullWidth center-text'>
         {this.createCreatorViews()}
+        </div>
         {this.addKeyboardForMobile()}
         <KeyboardSpacer/>
       </div>
     );
+  }
+  createLeaderBoardAD(){
+    return <div className='leaderBoardAd center-text'><br></br>Ad Here When Online<br></br>Ads help Learn Math make money.</div>
   }
   createInputHeading(){
     var heading=<span></span>;
@@ -74,14 +83,24 @@ class UnconnectedCreateView extends React.Component {
     if (this.props.teaching.creationMethodSignatures === undefined) { return; }
     const creatorViews = this.props.teaching.creationMethodSignatures.map((arg, i) => {
       return (
-        <div key={i}>
-          <CreatorView className='CreatorView' methodSignature={arg} activateInputHandler={this.activateInputHandler} 
+        <div key={i} className='fullWidth'>
+          <CreatorView className='CreatorView fullWidth' methodSignature={arg} activateInputHandler={this.activateInputHandler} 
           row={this.createKey(i)}></CreatorView>
-          <br></br>
+          {this.createLeaderBoardAdEverySecond(i)}
         </div>
       );
     });
     return creatorViews;
+  }
+createMediumRectangleEveryFirst(i){
+  if (i-2%2===0){
+    
+  }
+}
+  createLeaderBoardAdEverySecond(i){
+      if (i-1%2===0){
+        return <div className='fullWidth'><br></br><br></br><br></br>{this.createLeaderBoardAD()}</div>
+      }
   }
   onKeyPress = key => { const {updateActiveValue}=this.props; updateActiveValue(key); };
 

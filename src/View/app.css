@@ -30,6 +30,10 @@
 .center-text{
     text-align: center;
 }
+.textMargins{
+    margin-left: 3%;
+    margin-right: 3%;
+}
 .Link{
     color: gold;
     background-color: rgb(110, 60, 14);
@@ -162,7 +166,23 @@
 .navBar{
   margin: 0;
   padding: 0;
-  width: 25%;
-  width: 100%; /* Full height */
+  width: 100%;
   overflow: auto;
 }
+.leaderBoardAd{
+    color: gold;
+    width: 728px;
+    height: 90px;
+    background-color: rgb(110, 60, 14);
+    display: inline-block;
+
+  }
+  .mediumRectangle{
+    color: rgb(110, 60, 14);
+    width: 300;
+    height: 250;
+    background-color: gold;
+  }
+  .fullWidth{
+      width: 100%;
+  }

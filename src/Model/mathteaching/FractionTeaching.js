@@ -1,5 +1,4 @@
 import MathTeaching from './MathTeaching';
-import NameCodePair from '../../NameCodePair';
 class FractionTeaching extends MathTeaching{
     constructor(){
         super();
@@ -9,7 +8,7 @@ class FractionTeaching extends MathTeaching{
         this.displayNamePlural="Fractions";
         this.pluralLowerCase="fractions";
         this.callingStrings=[];
-        this.about=[]
+        this.about=[];
         this.about.push("A fraction is a way of expressing a number as being a part of another number.  It can be a part "+
         "of that number or a part of a multiple of that number.  Fractions use only numbers that have nothing after the "+
         "decimal point to do this.  In order to communicate one number as a part of another number, fractions use a numerator "+
