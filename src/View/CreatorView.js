@@ -53,7 +53,7 @@ class UnconnectedCreatorView extends React.Component{
             key={i} id={i}>{this.props.methodSignature[i]+':'}</span>);
           } else {
             creatorView.push(<span key={i} id={i}><span className='medium-right-margin'>
-            {this.createNumberInput(column)}</span><br className='hide-for-not-small'></br>
+            {this.createNumberInput(column)}</span><br className='hide-for-big'></br>
             </span>);
             column++
           }

@@ -33,12 +33,12 @@ class UnconnectedCreateView extends React.Component {
     return (
       <div className='fullWidth'>
         <div className='center-text textMargins'>
-        {this.createLeaderBoardAD()}
+        {this.createAD()}
         <h1 className="CreateView">About {this.props.teaching.displayNamePlural}</h1>
         {this.createAboutSection()}
         <br></br>
         <br></br>
-        {this.createLeaderBoardAD()}
+        {this.createAD()}
         <h1 className="CreateView">Create {this.props.teaching.displayNamePlural}</h1>
         {this.createInputHeading()}
         </div>
@@ -51,8 +51,12 @@ class UnconnectedCreateView extends React.Component {
       </div>
     );
   }
-  createLeaderBoardAD(){
-    return <div className='leaderBoardAd center-text'><br></br>Ad Here When Online<br></br>Ads help Learn Math make money.</div>
+  createAD(){
+    return <div>
+      <br></br>
+      <div className='hide-for-small leaderBoardAd center-text'>There is an ad here when you are online.<br></br><br></br>Ads help Learn Math make money.</div>
+      <div className='hide-for-big mobileBanner center-text'>There is an ad here when you are online.<br></br><br></br>Ads help Learn Math make money.</div>
+    </div>
   }
   createInputHeading(){
     var heading=<span></span>;
@@ -69,16 +73,22 @@ class UnconnectedCreateView extends React.Component {
     if(this.props.teaching.about){
     var aboutSection=[]
     for (var i=0; i<this.props.teaching.about.length; i++){
-      if (i%2===0) {
+      console.log("abcd");
+      if ( typeof this.props.teaching.about[i]==='string'){
+        if (this.props.teaching.about[i]==='\n\n'){
+          aboutSection.push(<div className='newLineDiv'></div>)
+        }
+        else{
         aboutSection.push(<span key={i} className="Heading">{this.props.teaching.about[i]}</span>)
+        }
       } else {
         aboutSection.push(<TeachingLink key={i} displayName={this.props.teaching.about[i].displayName} 
           codeName={this.props.teaching.about[i].codeName}></TeachingLink>)
-      }
-    }
-    return aboutSection
+        }
   }
+  return aboutSection
   }
+}
   createCreatorViews() {
     if (this.props.teaching.creationMethodSignatures === undefined) { return; }
     const creatorViews = this.props.teaching.creationMethodSignatures.map((arg, i) => {
@@ -86,7 +96,7 @@ class UnconnectedCreateView extends React.Component {
         <div key={i} className='fullWidth'>
           <CreatorView className='CreatorView fullWidth' methodSignature={arg} activateInputHandler={this.activateInputHandler} 
           row={this.createKey(i)}></CreatorView>
-          {this.createLeaderBoardAdEverySecond(i)}
+          {this.createAdEverySecond(i)}
         </div>
       );
     });
@@ -97,9 +107,9 @@ createMediumRectangleEveryFirst(i){
     
   }
 }
-  createLeaderBoardAdEverySecond(i){
+  createAdEverySecond(i){
       if (i-1%2===0){
-        return <div className='fullWidth'><br></br><br></br><br></br>{this.createLeaderBoardAD()}</div>
+        return <div className='fullWidth'>{this.createAD()}</div>
       }
   }
   onKeyPress = key => { const {updateActiveValue}=this.props; updateActiveValue(key); };

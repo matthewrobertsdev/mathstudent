@@ -11,9 +11,18 @@
 .medium-right-margin{
     margin-right: 20px;
 }
-@media (min-width: 500px){
-    .hide-for-not-small{
-        display: none;
+.display{
+    display: inline-block;
+}
+@media (min-width: 700px){
+    .hide-for-big{
+        display: none !important;
+    }
+}
+
+@media (max-width: 700px){
+    .hide-for-small{
+        display: none !important;
     }
 }
 @media (max-width: 500px){
@@ -182,7 +191,27 @@
     width: 300;
     height: 250;
     background-color: gold;
+    display: inline-block;
   }
   .fullWidth{
       width: 100%;
+  }
+  .newLineDiv{
+      margin-bottom: 20px;
+  }
+
+  .mobileBanner{
+    color: gold;
+    width: 320;
+    height: 100;
+    background-color: rgb(110, 60, 14);
+    display: inline-block;
+  }
+
+  .largeRectangle{
+    color: gold;
+    width: 336;
+    height: 280;
+    background-color: rgb(110, 60, 14);
+    display: inline-block;
   }
