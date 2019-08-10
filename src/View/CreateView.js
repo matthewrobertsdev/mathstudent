@@ -76,8 +76,7 @@ class UnconnectedCreateView extends React.Component {
       console.log("abcd");
       if ( typeof this.props.teaching.about[i]==='string'){
         if (this.props.teaching.about[i]==='\n\n'){
-          //aboutSection.push(<div className='newLineDiv'></div>)
-          aboutSection.push(<p></p>);
+          aboutSection.push(<div><br></br></div>);
         }
         else{
         aboutSection.push(<span key={i} className="Heading">{this.props.teaching.about[i]}</span>)

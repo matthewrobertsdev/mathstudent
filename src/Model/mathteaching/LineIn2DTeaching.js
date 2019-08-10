@@ -12,10 +12,10 @@ class LineIn2DTeaching extends MathTeaching{
         this.creationMethodSignatures=[];
         this.anyNumbers=true;
         const POINT_SLOPE=["Create a line with a slope and a point", "createPointSlope", "slope", "number", "x1", 
-        "numer", "y1", "numer"];
+        "number", "y1", "number"];
         this.creationMethodSignatures.push(POINT_SLOPE);
-        const POINT_POINT=["Create a line with two points", "createPointPoint", "x1", "numer", "y1", "numer", 
-        "x2", "numer", "y2", "numer"];
+        const POINT_POINT=["Create a line with two points", "createPointPoint", "x1", "number", "y1", "number", 
+        "x2", "number", "y2", "number"];
         this.creationMethodSignatures.push(POINT_POINT);
         this.about=[];
         this.about.push("To create a line, you need to have the line's slope and a ");
