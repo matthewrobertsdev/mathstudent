@@ -45,6 +45,10 @@ const _updateCallingStrings= (callingStrings) => ({
     type: 'UPDATE_CALLING_STRINGS',
     callingStrings
 });
+const _updateCreationStrings= (creationStrings) => ({
+    type: 'UPDATE_CREATION_STRINGS',
+    creationStrings
+});
 //gets all topics for now for teaching
 export const getTopics = () => {
     return  (dispatch)=>{
@@ -110,5 +114,10 @@ export const updateActiveKey = (key) => {
 export const updateCallingStrings = (callingStrings) => {
     return (dispatch) => {
         return dispatch(_updateCallingStrings(callingStrings));
+    };
+}
+export const updateCreationStrings = (creationStrings) => {
+    return (dispatch) => {
+        return dispatch(_updateCreationStrings(creationStrings));
     };
 }

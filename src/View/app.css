@@ -1,8 +1,8 @@
 .CreatorView{ text-align: center; }
 
-.SubjectView{ margin-left: 10%; background-color: brown; }
+.SubjectView{ margin-left: 10%; /* background-color: brown; */ background-color: rgb(209, 28, 28);}
 
-.small-right-margin{ margin-right: 10px; }
+.smallRightMargin{ margin-right: 10px; }
 
 .medium-right-margin{ margin-right: 20px; }
 
@@ -34,7 +34,7 @@
 
 .CreatorView{ color: gold; }
 
-.CreateView { color: gold; }
+.main-text-color { color: gold; }
 
 .main-colors { color: gold; background-color: rgb(110, 60, 14); }
 

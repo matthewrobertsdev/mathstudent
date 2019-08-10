@@ -10,6 +10,8 @@ const initialState = {
     activeMap: {},
     activeKey: '',
     inputArray: [],
+    callingStrings: [],
+    creationStrings: []
   };
 const appReducer=(state=initialState, action) => {
     switch (action.type) {
@@ -53,6 +55,8 @@ const appReducer=(state=initialState, action) => {
             return { ...state, activeKey: action.activeKey, activeValue: action.value };
         case 'UPDATE_CALLING_STRINGS':
             return { ...state, callingStrings: action.callingStrings };
+        case 'UPDATE_CREATION_STRINGS':
+            return { ...state, creationStrings: action.creationStrings };
         default:
             return state;
     }

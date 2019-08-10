@@ -5,7 +5,8 @@ import AppRouter from './AppRouter';
 import teachingStore from './Model/TeachingsStore';
 import * as homeWorker from './serviceWorker';
 import './View/app.css';
-document.body.style.backgroundColor = "brown";
+//document.body.style.backgroundColor = "brown";
+document.body.style.backgroundColor = "rgb(209, 28, 28)";
 const store=teachingStore();
 const easyMath = (
     <Provider store={store}>

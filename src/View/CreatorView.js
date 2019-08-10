@@ -1,18 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import NumberInput from './NumberInput';
-import {createTeaching, updateCallingStrings} from '../Actions';
+import {createTeaching, updateCallingStrings, updateCreationStrings} from '../Actions';
 import InputValidator from '../Model/InputValidator';
 import { withRouter } from "react-router-dom";
 import './app.css';
-import isMobile from '../Model/utilities/IsMobile';
 import ReactModal from 'react-modal';
 /* gets the teaching for this method */
 const mapStateToProps = (state) => { return { teaching: state.teaching, topics: state.topics, inputMap: state.inputMap} };
 /* so that the creator view can get the teaching */
 const mapDispatchToProps = (dispatch) =>  { return  { createTeaching: (methodInfo) => { 
   dispatch(createTeaching(methodInfo));  },  updateCallingStrings: (callingStrings) => { 
-    dispatch(updateCallingStrings(callingStrings)); } };}
+    dispatch(updateCallingStrings(callingStrings)); }, updateCreationStrings: (creationStrings) => { 
+      dispatch(updateCreationStrings(creationStrings)); }}; }
 /* for creating a teaching, but not connected yet */
 class UnconnectedCreatorView extends React.Component{
     constructor(props) {
@@ -105,12 +105,14 @@ class UnconnectedCreatorView extends React.Component{
       }
   handleClick(){
     this.getMobileCallingStrings()
-    const { createTeaching } = this.props;
+    const { createTeaching, updateCreationStrings} = this.props;
     const {updateCallingStrings}=this.props;
     if (this.props.methodSignature[3]==='integer'){
        this.setState({ type: 'integer' }); 
       if (InputValidator.areIntegers(this.state.callingStrings)){
         updateCallingStrings(this.state.callingStrings);
+        createTeaching(this.state.callingStrings);
+        updateCreationStrings(this.props.methodSignature);
         this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
       }
       else{
@@ -119,9 +121,10 @@ class UnconnectedCreatorView extends React.Component{
     }
     else if (this.props.methodSignature[3]==='number'){
        this.setState({ type: 'number' }); 
-    if (isMobile&&InputValidator.handleAttemptedFraction(this.state.callingStrings)){
-      this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
-    } else if(InputValidator.handleAttemptedFraction(this.state.callingStrings)){
+    if(InputValidator.areNumbers(this.state.callingStrings)){
+        createTeaching(this.state.callingStrings);
+        updateCallingStrings(this.state.callingStrings);
+        updateCreationStrings(this.props.methodSignature);
         createTeaching(this.state.callingStrings);
         this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
     } else {
