@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import NumberInput from './NumberInput';
-import {createTeaching} from '../Actions';
+import {createTeaching, updateCallingStrings} from '../Actions';
 import InputValidator from '../Model/InputValidator';
 import { withRouter } from "react-router-dom";
 import './app.css';
@@ -11,14 +11,15 @@ import ReactModal from 'react-modal';
 const mapStateToProps = (state) => { return { teaching: state.teaching, topics: state.topics, inputMap: state.inputMap} };
 /* so that the creator view can get the teaching */
 const mapDispatchToProps = (dispatch) => { return { createTeaching: (methodInfo) => { 
-  dispatch(createTeaching(methodInfo)); } } };
+  dispatch(createTeaching(methodInfo)); } }, { updateCallingStrings: (callingStrings) => { 
+    dispatch(updateCallingStrings(callingStrings)); } }};
 /* for creating a teaching, but not connected yet */
 class UnconnectedCreatorView extends React.Component{
     constructor(props) {
         super(props);
         /* methods strings to create view, calling strings to call method */
         this.state={methodSignature: this.props.methodSignature, key: undefined, callingStrings: 
-          this.createCallingStrings(), gridIDs: [], showModal: false}
+          this.createCallingStrings(), gridIDs: [], showModal: false, type: 'number'}
           this.state.callingStrings[0]=this.props.methodSignature[1];
         this.textHandler = this.textHandler.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -34,13 +35,22 @@ class UnconnectedCreatorView extends React.Component{
                 Create a {this.props.teaching.displayNameSingular}</button>
                 <ReactModal className="notNumberModal" isOpen={this.state.showModal} >
           <br></br>
-          Sorry, those were not all numbers or some were left blank.
+          {this.getErrorString()}
           <br></br>
           <br></br>
           <button className='closeButton' onClick={this.handleCloseModal}>Close</button>
         </ReactModal>
           </div>
         );
+      }
+      getErrorString(){
+        switch(this.state.type){
+          case 'integer': return 'Sorry, those were not all integers or some were left blank.';
+          case 'fraction': return 'Sorry, those were not all fractions or some were left blank.';
+          case 'decimal': return 'Sorry, those were not all decimals or some were left blank.';
+          case 'number': return 'Sorry, those were not all numbers or some were left blank.';
+          default: return 'Sorry, those were not all numbers or some were left blank.';
+        }
       }
       createView(){
         var creatorView=[];
@@ -94,15 +104,34 @@ class UnconnectedCreatorView extends React.Component{
           return callingStrings;
       }
   handleClick(){
+    this.getMobileCallingStrings()
     const { createTeaching } = this.props;
-    if (isMobile&&InputValidator.handleAttemptedFraction(this.getMobileCallingStrings())){
-      this.props.history.push(`/creation/${this.props.teaching.objectName}`);
+    const {updateCallingStrings}=this.props;
+    if (this.props.methodSignature[3]=='integer'){
+      { this.setState({ type: 'integer' }); }
+      if (InputValidator.areIntegers(this.state.callingStrings)){
+        updateCallingStrings(this.state.callingStrings);
+        this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
+      }
+      else{
+        this.handleOpenModal();
+      }
+    }
+    else if (this.props.methodSignature[3]=='number'){
+      { this.setState({ type: 'number' }); }
+    if (isMobile&&InputValidator.handleAttemptedFraction(this.state.callingStrings)){
+      this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
     } else if(InputValidator.handleAttemptedFraction(this.state.callingStrings)){
         createTeaching(this.state.callingStrings);
-        this.props.history.push(`/creation/${this.props.teaching.objectName}`);
+        this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
     } else {
-        this.handleOpenModal()
+        this.handleOpenModal();
     }
+  }
+  else if (this.props.methodSignature[3]=='decimal'){
+    { this.setState({ type: 'decimal' }); }
+    this.handleOpenModal()
+  }
   }
   handleOpenModal () { this.setState({ showModal: true }); }
   handleCloseModal () { this.setState({ showModal: false }); }

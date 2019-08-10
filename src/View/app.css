@@ -58,7 +58,7 @@
 
 .actionButton{ /* background-color: rgb(32, 66, 168); color: rgb(201, 188, 172); */
     /* background-color: rgb(139, 219, 199); color: rgb(61, 32, 6); */ background-color: rgb(19, 151, 59);
-    color: gold; border-radius: 7px; }
+    color: gold; border-radius: 7px; display: inline-block; }
 
 .textLink{
     color: rgb(22, 49, 131); font-size: 1.17em; margin-top: 1em; margin-bottom: 1em; margin-left: 0;

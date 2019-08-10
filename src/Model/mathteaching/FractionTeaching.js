@@ -27,9 +27,10 @@ class FractionTeaching extends MathTeaching{
         "and the fraction can be written as a number that is not a fraction and has no decimal point.");
         this.anyNumbers=true;
         this.onlyFractions=false;
-        const NUMERATOR_AND_DENOMINATOR=['Create a fraction with a numerator and a denominator', 'createFromNumAndDenom', 'numerator', 'number', 'denominator', 'number'];
-        const INTEGER=['Create a fraction from an integer', 'createFromInteger', 'integer', 'number'];
-        const DECIMAL=['Create a fraction from a decimal', 'createFromDevcimal', 'decimal', 'number'];
+        const NUMERATOR_AND_DENOMINATOR=['Create a fraction with a numerator and a denominator', 'createFromNumAndDenom', 
+        'numerator', 'integer', 'denominator', 'integer'];
+        const INTEGER=['Create a fraction from an integer', 'createFromInteger', 'integer', 'integer'];
+        const DECIMAL=['Create a fraction from a decimal', 'createFromDevcimal', 'decimal', 'decimal'];
         this.creationMethodSignatures.push(NUMERATOR_AND_DENOMINATOR, INTEGER, DECIMAL);
     }
 }

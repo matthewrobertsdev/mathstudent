@@ -1,17 +1,25 @@
 import isMobile from './utilities/IsMobile';
 class InputValidator {
-static latexFraction=new RegExp('^-?\\\\frac{-?\\d+}{-?\\d+}$|^-?\\d+$');
+static latexAnyNumber=new RegExp('^-?\\\\frac{-?\\d+}{-?\\d+}$|^-?\\d+$');
 static latexFractionOnly=new RegExp('^-?\\\\frac{-?\\d+}{-?\\d+}$');
-static textFraction=new RegExp('^-?\\d+\\/-?\\d+$|^-?\\d+$');
+static textAnyNumber=new RegExp('^-?\\d+\\/-?\\d+$|^-?\\d+$');
 static textFractionOnly=new RegExp('^-?\\d+\\/-?\\d+$');
 static integerOnly=new RegExp('^-?\\d+$');
 static hasInteger=new RegExp('-?\\d+', 'g');
-  static areFractions(strArray) {
-    if (isMobile()){ return InputValidator.areTextFractions(strArray);
-    } else { return InputValidator.areLatexFractions(strArray); } }
-  static areLatexFractions(strArray) {
+  static areIntegers(strArray){
     for (var i=1; i<strArray.length; i++) {
-      if (!InputValidator.latexFraction.test(strArray[i])){
+      if (!InputValidator.integerOnly.test(strArray[i])){
+        return false;
+      }
+    }
+    return true;
+  }
+  static areNumbers(strArray) {
+    if (isMobile()){ return InputValidator.areTextNumbers(strArray);
+    } else { return InputValidator.areLatexNumbers(strArray); } }
+  static areLatexNumbers(strArray) {
+    for (var i=1; i<strArray.length; i++) {
+      if (!InputValidator.latexAnyNumber.test(strArray[i])){
         return false;
       }
       if (InputValidator.latexFractionOnly.test(strArray[i])){
@@ -30,10 +38,10 @@ static hasInteger=new RegExp('-?\\d+', 'g');
     }
     return true;
  }
- static areTextFractions(strArray) {
+ static areTextNumbers(strArray) {
   for (var i=1; i<strArray.length; i++) {
     console.log(strArray[i]);
-    if (!InputValidator.textFraction.test(strArray[i])){
+    if (!InputValidator.textAnyNumber.test(strArray[i])){
       return false;
     }
     if (InputValidator.textFractionOnly.test(strArray[i])){
@@ -53,13 +61,5 @@ static hasInteger=new RegExp('-?\\d+', 'g');
   }
   return true;
 }
-
- static handleAttemptedFraction(str) {
-   if (InputValidator.areFractions(str)) {
-     return true;
-   } else {
-    return false;
-   }
- }
 }
 export default InputValidator;
