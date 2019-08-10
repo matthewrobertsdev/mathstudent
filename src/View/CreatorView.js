@@ -10,9 +10,9 @@ import ReactModal from 'react-modal';
 /* gets the teaching for this method */
 const mapStateToProps = (state) => { return { teaching: state.teaching, topics: state.topics, inputMap: state.inputMap} };
 /* so that the creator view can get the teaching */
-const mapDispatchToProps = (dispatch) => { return { createTeaching: (methodInfo) => { 
-  dispatch(createTeaching(methodInfo)); } }, { updateCallingStrings: (callingStrings) => { 
-    dispatch(updateCallingStrings(callingStrings)); } }};
+const mapDispatchToProps = (dispatch) =>  { return  { createTeaching: (methodInfo) => { 
+  dispatch(createTeaching(methodInfo));  },  updateCallingStrings: (callingStrings) => { 
+    dispatch(updateCallingStrings(callingStrings)); } };}
 /* for creating a teaching, but not connected yet */
 class UnconnectedCreatorView extends React.Component{
     constructor(props) {
@@ -107,8 +107,8 @@ class UnconnectedCreatorView extends React.Component{
     this.getMobileCallingStrings()
     const { createTeaching } = this.props;
     const {updateCallingStrings}=this.props;
-    if (this.props.methodSignature[3]=='integer'){
-      { this.setState({ type: 'integer' }); }
+    if (this.props.methodSignature[3]==='integer'){
+       this.setState({ type: 'integer' }); 
       if (InputValidator.areIntegers(this.state.callingStrings)){
         updateCallingStrings(this.state.callingStrings);
         this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
@@ -117,8 +117,8 @@ class UnconnectedCreatorView extends React.Component{
         this.handleOpenModal();
       }
     }
-    else if (this.props.methodSignature[3]=='number'){
-      { this.setState({ type: 'number' }); }
+    else if (this.props.methodSignature[3]==='number'){
+       this.setState({ type: 'number' }); 
     if (isMobile&&InputValidator.handleAttemptedFraction(this.state.callingStrings)){
       this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
     } else if(InputValidator.handleAttemptedFraction(this.state.callingStrings)){
@@ -128,9 +128,8 @@ class UnconnectedCreatorView extends React.Component{
         this.handleOpenModal();
     }
   }
-  else if (this.props.methodSignature[3]=='decimal'){
-    { this.setState({ type: 'decimal' }); }
-    this.handleOpenModal()
+  else if (this.props.methodSignature[3]==='decimal'){
+    this.setState({ type: 'decimal' }); this.handleOpenModal()
   }
   }
   handleOpenModal () { this.setState({ showModal: true }); }
