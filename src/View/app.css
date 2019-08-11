@@ -96,3 +96,9 @@
 
 .largeRectangle { color: gold; width: 336; height: 280; /* background-color: rgb(110, 60, 14); */
     background-color: rgb(22, 49, 131); display: inline-block; }
+
+.inline-math{
+    color: gold;
+}
+
+.heading-size{ font-size: 1.80em;}

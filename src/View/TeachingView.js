@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {getTeaching, clearTeaching} from  '../Actions';
+import {getTeaching, setTeachingObject, clearTeaching} from  '../Actions';
+import 'katex/dist/katex.min.css';
+import { InlineMath, BlockMath } from 'react-katex';
 import './app.css';
 const mapStateToProps = (state) => {
   return {
@@ -12,6 +14,9 @@ const mapDispatchToProps = (dispatch) => {
     //gets teaching from home of teaching
     getTeaching: (teachingName) => {
       dispatch(getTeaching(teachingName));
+    },
+    setTeachingObject: (name) => {
+      dispatch(setTeachingObject(name));
     },
     clearTeaching: () => {
       dispatch(clearTeaching());
@@ -25,17 +30,24 @@ class UnconnectedTeachingView extends React.Component{
       }
       componentWillMount() {
         const { match: { params } } = this.props;
-        const { getTeaching } = this.props;
+        const { getTeaching, setTeachingObject } = this.props;
         getTeaching(params.teachingName);
+        setTeachingObject(params.teachingName);
+
       }
       render() {
         return(
           <div className='fullWidth'>
           <div className='center-text textMargins'>
           <h1 className="main-text-color">{this.createTitleString()}</h1>
+          <h1 className="main-text-color">Here it is:</h1><InlineMath className='inline-math'>{this.createMath()}</InlineMath>
           </div>
         </div>
         );
+      }
+
+      createMath(){
+        return '\\Huge\\color{gold}\\frac{1}{2}'
       }
 
       createTitleString(){

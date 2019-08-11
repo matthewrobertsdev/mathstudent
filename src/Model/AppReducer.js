@@ -11,7 +11,8 @@ const initialState = {
     activeKey: '',
     inputArray: [],
     callingStrings: [],
-    creationStrings: []
+    creationStrings: [],
+    teachingObject: {}
   };
 const appReducer=(state=initialState, action) => {
     switch (action.type) {
@@ -57,6 +58,12 @@ const appReducer=(state=initialState, action) => {
             return { ...state, callingStrings: action.callingStrings };
         case 'UPDATE_CREATION_STRINGS':
             return { ...state, creationStrings: action.creationStrings };
+        case 'SET_TEACHING_OBJECT':
+            import(`./math/${action.objectName}`).then(teachingObj => {
+                console.log('abcd'+JSON.stringify(teachingObj));
+                return {...state, teachingObject: teachingObj};
+            }).catch(function(error) { console.log(error); });
+            return state;
         default:
             return state;
     }

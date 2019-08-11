@@ -60,7 +60,7 @@ class UnconnectedCreatorView extends React.Component{
           if (i<2) { /* do nothing */ }
           else if (i%2===0) {
             creatorView.push(<span className='small-right-margin creator-text-size' 
-            key={i} id={i}>{this.props.methodSignature[i]+':'}</span>);
+            key={i} id={i}>{this.props.methodSignature[i]+': '}</span>);
           } else {
             creatorView.push(<span key={i} id={i}><span className='medium-right-margin'>
             {this.createNumberInput(column)}</span><br className='hide-for-big'></br>
@@ -104,7 +104,7 @@ class UnconnectedCreatorView extends React.Component{
           return callingStrings;
       }
   handleClick(){
-    this.getMobileCallingStrings()
+    this.getMobileCallingStrings();
     const { createTeaching, updateCreationStrings} = this.props;
     const {updateCallingStrings}=this.props;
     if (this.props.methodSignature[3]==='integer'){
@@ -132,7 +132,7 @@ class UnconnectedCreatorView extends React.Component{
     }
   }
   else if (this.props.methodSignature[3]==='decimal'){
-    this.setState({ type: 'decimal' }); this.handleOpenModal()
+    this.setState({ type: 'decimal' }); this.handleOpenModal();
   }
   }
   handleOpenModal () { this.setState({ showModal: true }); }
