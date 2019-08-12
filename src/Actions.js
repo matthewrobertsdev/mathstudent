@@ -1,4 +1,5 @@
 import curriculum from  './Model/Curriculum';
+
 const _getTopics = (topics) => ({ type: 'GET_TOPICS', topics });
 
 const _getTeaching = (teaching) => ({ type: 'GET_TEACHING', teaching });

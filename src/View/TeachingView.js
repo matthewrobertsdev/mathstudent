@@ -4,25 +4,16 @@ import {getTeaching, setTeachingObject, clearTeaching} from  '../Actions';
 import 'katex/dist/katex.min.css';
 import { InlineMath } from 'react-katex';
 import './app.css';
+
 const mapStateToProps = (state) => {
-  return {
-    teaching: state.teaching, callingStrings: state.callingStrings, creationStrings: state.creationStrings
-  }
-};
+  return { teaching: state.teaching, callingStrings: state.callingStrings, creationStrings: state.creationStrings } };
+
 const mapDispatchToProps = (dispatch) => {
-  return {
-    //gets teaching from home of teaching
-    getTeaching: (teachingName) => {
-      dispatch(getTeaching(teachingName));
-    },
-    setTeachingObject: (name) => {
-      dispatch(setTeachingObject(name));
-    },
-    clearTeaching: () => {
-      dispatch(clearTeaching());
-    }
-  }
-};
+  return { /* gets teaching from home of teaching */
+    getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
+    setTeachingObject: (name) => { dispatch(setTeachingObject(name)); },
+    clearTeaching: () => { dispatch(clearTeaching()); } } };
+
 class UnconnectedTeachingView extends React.Component{
     constructor(props) {
         super(props);
