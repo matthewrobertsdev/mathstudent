@@ -27,7 +27,7 @@ class UnconnectedCreateView extends React.Component {
     const { getTeaching, updateURL } = this.props;
     getTeaching(params.teachingName);
     updateURL();
-    this.render();
+    document.title="Create a "+params.teachingName;
   }
   render() {
     return (
@@ -73,7 +73,6 @@ class UnconnectedCreateView extends React.Component {
     if(this.props.teaching.about){
     var aboutSection=[]
     for (var i=0; i<this.props.teaching.about.length; i++){
-      console.log("abcd");
       if ( typeof this.props.teaching.about[i]==='string'){
         if (this.props.teaching.about[i]==='\n\n'){
           aboutSection.push(<div><br></br></div>);

@@ -15,16 +15,13 @@ const mapDispatchToProps = (dispatch) => {
     clearTeaching: () => { dispatch(clearTeaching()); } } };
 
 class UnconnectedTeachingView extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state={};
-      }
+    constructor(props) { super(props); this.state={}; }
       componentWillMount() {
         const { match: { params } } = this.props;
         const { getTeaching, setTeachingObject } = this.props;
         getTeaching(params.teachingName);
         setTeachingObject(params.teachingName);
-
+        document.title="A "+params.teachingName;
       }
       render() {
         return(
