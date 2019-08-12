@@ -5,7 +5,7 @@ import CreatorView from './CreatorView';
 import isMobile from '../Model/utilities/IsMobile';
 import NumberKeyboard from './NumberKeyboard'
 import KeyboardSpacer from './KeyboardSpacer';
-import TeachingLink from './TeachingLink'
+import AboutSection from './AboutSection'
 import 'react-simple-keyboard/build/css/index.css';
 import './app.css';
 const mapStateToProps = (state) => {
@@ -35,7 +35,7 @@ class UnconnectedCreateView extends React.Component {
         <div className='center-text textMargins'>
         {this.createAD()}
         <h1 className="main-text-color">About {this.props.teaching.displayNamePlural}</h1>
-        {this.createAboutSection()}
+        <AboutSection/>
         <br></br>
         <br></br>
         {this.createAD()}
@@ -68,26 +68,6 @@ class UnconnectedCreateView extends React.Component {
     }
     return heading;
   }
-
-  createAboutSection(){
-    if(this.props.teaching.about){
-    var aboutSection=[]
-    for (var i=0; i<this.props.teaching.about.length; i++){
-      if ( typeof this.props.teaching.about[i]==='string'){
-        if (this.props.teaching.about[i]==='\n\n'){
-          aboutSection.push(<div><br></br></div>);
-        }
-        else{
-        aboutSection.push(<span key={i} className="Heading">{this.props.teaching.about[i]}</span>)
-        }
-      } else {
-        aboutSection.push(<TeachingLink key={i} displayName={this.props.teaching.about[i].displayName} 
-          codeName={this.props.teaching.about[i].codeName}></TeachingLink>)
-        }
-  }
-  return aboutSection
-  }
-}
   createCreatorViews() {
     if (this.props.teaching.creationMethodSignatures === undefined) { return; }
     const creatorViews = this.props.teaching.creationMethodSignatures.map((arg, i) => {

@@ -37,7 +37,7 @@ class UnconnectedNumberInput extends React.Component{
                         const text = mathField.text();
                         this.setState({latex: latex, text: text, index: this.state.index});
                         this.props.textHandler(this.state.index, this.state.latex);
-                    }} mathquillDidMount={el => { this.mathQuillEl = el; }}/> </span> )
+                    }} mathquillDidMount={el => { this.mathQuillEl = el; }}/> </span> );
         }
     }
     forClick() { const { updateActiveKey } = this.props; updateActiveKey(this.props.gridID); }
