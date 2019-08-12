@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {getTeaching, setTeachingObject, clearTeaching} from  '../Actions';
 import 'katex/dist/katex.min.css';
-import { InlineMath, BlockMath } from 'react-katex';
+import { InlineMath } from 'react-katex';
 import './app.css';
 const mapStateToProps = (state) => {
   return {
