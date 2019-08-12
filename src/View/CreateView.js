@@ -8,9 +8,7 @@ import KeyboardSpacer from './KeyboardSpacer';
 import AboutSection from './AboutSection'
 import 'react-simple-keyboard/build/css/index.css';
 import './app.css';
-const mapStateToProps = (state) => {
-  return { teaching: state.teaching}
-};
+const mapStateToProps = (state) => { return { teaching: state.teaching} };
 const mapDispatchToProps = (dispatch) => {
   return { /* gets teaching */ getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
     clearTeaching: () => { dispatch(clearTeaching()); },

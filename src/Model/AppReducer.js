@@ -14,7 +14,8 @@ const appReducer=(state=initialState, action) => {
         case 'GET_TOPICS': return { ...state, topics: action.topics };
 
         case 'GET_TEACHING': import(`./math/${action.teachingName}`).then(teachingObj => {
-                    return { ...state, teaching: teachingObj.default.teaching} }).catch(function(error) { console.log(error); });
+                    return { ...state, teaching: teachingObj.default.teaching} }).catch(function(error) { console.log(error); 
+                        return state;});
 
         case 'CLEAR_TEACHING': return { ...state, teaching: action.teaching };
 
