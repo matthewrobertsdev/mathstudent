@@ -1,6 +1,6 @@
 const initialState = { loaded: false, /* all topics for now */ topics: [], /* the teaching being taught */ teaching: {},
     error: {}, URL: '', inputMap: {}, activeMap: {}, activeKey: '', inputArray: [], callingStrings: [],
-    creationStrings: [], teachingObject: {} };
+    creationStrings: [], teachingObject: {}, teachingObjectName: ''};
     
 const appReducer=(state=initialState, action) => {
         switch (action.type) {
@@ -13,10 +13,11 @@ const appReducer=(state=initialState, action) => {
         /* action for getting topics for user choice */
         case 'GET_TOPICS': return { ...state, topics: action.topics };
 
-        case 'GET_TEACHING': import(`./math/${action.teachingName}`).then(teachingObj => {
-                    return { ...state, teaching: teachingObj.default.teaching} }).catch(function(error) { console.log(error); 
-                        return state;});
-
+        case 'GET_TEACHING': return { ...state, teaching: action.teachingObject };
+        //import(`./math/${action.teachingName}`).then(teachingObj => {
+            //console.log(teachingObj);
+                    //return { ...state, teaching: teachingObj.default.teaching} }).catch(function(error) { console.log(error); 
+                        //return state;}); return state;
         case 'CLEAR_TEACHING': return { ...state, teaching: action.teaching };
 
         case 'UPDATE_URL': return { ...state, URLpathname: action.URLpathname };
@@ -33,9 +34,10 @@ const appReducer=(state=initialState, action) => {
 
         case 'SET_TEACHING_OBJECT': import(`./math/${action.objectName}`).then(teachingObj => {
                 console.log('abcd'+JSON.stringify(teachingObj));
-                return {...state, teachingObject: teachingObj}; }).catch(function(error) { console.log(error); });
-            return state;
+                return {...state, teachingObject: teachingObj}; }).catch(function(error) { console.log(error);
+                     return state;}); return state;
+        case 'SET_TEACHING_OBJECT_NAME':  return {...state, teachingObjectName: action.teachingObjectName};
         default: return state;
-    }
+        }
 };
 export default appReducer;

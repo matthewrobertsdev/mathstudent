@@ -11,7 +11,7 @@ const mapDispatchToProps = (dispatch) => {
     updateURL: () => { dispatch(updateURL()); } } };
 class UnconnectedSubjectView extends React.Component{
       /* get topics when the component will mount */
-      componentWillMount() { const { getTopics, updateURL} = this.props; getTopics(); updateURL(); }
+      componentWillMount() { const { getTopics, /*updateURL*/} = this.props; getTopics(); /*updateURL();*/ }
       render() {
         return (
           <div className='SubjectView'>

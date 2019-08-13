@@ -2,7 +2,7 @@ import curriculum from  './Model/Curriculum';
 
 const _getTopics = (topics) => ({ type: 'GET_TOPICS', topics });
 
-const _getTeaching = (teaching) => ({ type: 'GET_TEACHING', teaching });
+const _getTeaching = (teachingObject) => ({ type: 'GET_TEACHING', teachingObject });
 
 const _createTeaching = (teaching) => ({ type: 'CREATE_TEACHING', teaching });
 
@@ -26,6 +26,8 @@ const _updateCreationStrings= (creationStrings) => ({ type: 'UPDATE_CREATION_STR
 
 const _setTeachingObject=(objectName)=>({ type: 'SET_TEACHING_OBJECT', objectName });
 
+const _setTeachingObjectName=(objectName)=>({ type: 'SET_TEACHING_OBJECT_NAME', objectName });
+
 /* gets all topics for now for teaching */
 export const getTopics = () => { return  (dispatch)=>{ dispatch(_getTopics(curriculum)); }; };
 
@@ -34,6 +36,8 @@ export const getTeaching = (teachingName) => {
     return import(`./Model/math/${teachingName}`).then(teachingObj => {
         dispatch(_getTeaching(teachingObj.default.teaching));
     }).catch(function(error) { console.log(error); }); };
+    //ispatch(_getTeaching(teachingName));
+   //}
 };
 export const createTeaching = (methodInfo) => { return (dispatch) => { return dispatch(_createTeaching(methodInfo)); }; };
 
@@ -59,3 +63,5 @@ export const updateCreationStrings = (creationStrings) => { return (dispatch) =>
     return dispatch(_updateCreationStrings(creationStrings)); }; }
 
 export const setTeachingObject = (objectName) => { return (dispatch) => { return dispatch(_setTeachingObject(objectName)); }; }
+
+export const setTeachingObjectName = (objectName) => { return (dispatch) => { return dispatch(_setTeachingObjectName(objectName)); }; }

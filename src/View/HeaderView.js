@@ -16,13 +16,13 @@ class UnconnectHeaderView extends React.Component{
         if (this.props.URLpathname==='/'){ headerView.push(this.createDownloadPageLink()); }
 
         return headerView; }
-        createBackButton(){ return (<span className='NavLink float-left' onClick={()=>this.goBack()}>Back</span>)};
+        createBackButton(){ return (<span className='NavLink float-left' key={0} onClick={()=>this.goBack()}>Back</span>)};
 
-        createForwardButton(){ return (<span className='NavLink float-left' onClick={()=>this.goForward()}>Forward</span>)};
+        createForwardButton(){ return (<span className='NavLink float-left' key={1} onClick={()=>this.goForward()}>Forward</span>)};
 
-      createCurriculumLink(){ return (<NavLink className='NavLink float-left' to='/' key={1}>Curriculum</NavLink>); }
+      createCurriculumLink(){ return (<NavLink className='NavLink float-left' to='/' key={3}>Curriculum</NavLink>); }
         
-      createDownloadPageLink(){ return (<NavLink className='NavLink float-right' to='/' key={2}>Download</NavLink>); }
+      createDownloadPageLink(){ return (<NavLink className='NavLink float-right' to='/' key={4}>Download</NavLink>); }
 
       goBack(){
         this.props.history.goBack();

@@ -103,6 +103,13 @@ class UnconnectedCreatorView extends React.Component{
           this.setState(previousState => ({ ...previousState, callingStrings: callingStrings }))
           return callingStrings;
       }
+      makeObjectURLComponent(){
+        var urlComponent=`/`
+        for (var i=0; i<this.state.callingStrings.length; i++) {
+          urlComponent+=`$${this.state.callingStrings[i]}`;
+        }
+        return urlComponent
+      }
   handleClick(){
     this.getMobileCallingStrings();
     const { createTeaching, updateCreationStrings} = this.props;
@@ -113,7 +120,9 @@ class UnconnectedCreatorView extends React.Component{
         updateCallingStrings(this.state.callingStrings);
         createTeaching(this.state.callingStrings);
         updateCreationStrings(this.props.methodSignature);
-        this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
+        //const historyState={teachingObjectName: this.state.teachingObjectName, callingStrings: this.state.callingStrings}
+        //this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
+        this.props.history.push(`/teaching/${this.props.teaching.objectName}`+this.makeObjectURLComponent());
       }
       else{
         this.handleOpenModal();

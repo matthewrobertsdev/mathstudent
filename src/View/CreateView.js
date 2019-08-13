@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getTeaching, clearTeaching, updateURL, updateActiveValue} from '../Actions';
+import { getTeaching, clearTeaching, updateURL, updateActiveValue, setTeachingObjectName} from '../Actions';
 import CreatorView from './CreatorView';
 import isMobile from '../Model/utilities/IsMobile';
 import NumberKeyboard from './NumberKeyboard'
@@ -13,19 +13,23 @@ const mapDispatchToProps = (dispatch) => {
   return { /* gets teaching */ getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
     clearTeaching: () => { dispatch(clearTeaching()); },
     updateURL: () => { dispatch(updateURL()); },
-    updateActiveValue: (key) => { dispatch(updateActiveValue(key)); } }
+    updateActiveValue: (key) => { dispatch(updateActiveValue(key)); } ,
+    setTeachingObjectName: (teachingName) => { dispatch(setTeachingObjectName(teachingName)); } };
 };
 /* This view is for the UI for creating a MathTeachingObject */
 class UnconnectedCreateView extends React.Component {
-  constructor(props) { super(props); this.state={ activeText: null}; } activeInput='';
-  componentWillMount() { 
-    const { clearTeaching } = this.props;
-    clearTeaching();
-    const { match: { params } } = this.props;
-    const { getTeaching, updateURL } = this.props;
+  constructor(props) { super(props); this.state={ activeText: null};
+  const { match: { params } } = this.props;
+    const { clearTeaching, setTeachingObjectName, getTeaching} = this.props;
+    clearTeaching(); setTeachingObjectName(params.teachingName);
+    console.log(params.teachingName);
     getTeaching(params.teachingName);
     updateURL();
     document.title="Create a "+params.teachingName;
+}
+activeInput='';
+  componentWillMount() { 
+    
   }
   render() {
     return (

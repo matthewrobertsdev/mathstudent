@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom'
 import {getTeaching, setTeachingObject, clearTeaching} from  '../Actions';
 import 'katex/dist/katex.min.css';
 import { InlineMath } from 'react-katex';
 import './app.css';
 
 const mapStateToProps = (state) => {
-  return { teaching: state.teaching, callingStrings: state.callingStrings, creationStrings: state.creationStrings } };
+  return { teaching: state.teaching, creationStrings: state.creationStrings, callingStrings: state.callingStrings } };
 
 const mapDispatchToProps = (dispatch) => {
   return { /* gets teaching from home of teaching */
@@ -15,14 +16,17 @@ const mapDispatchToProps = (dispatch) => {
     clearTeaching: () => { dispatch(clearTeaching()); } } };
 
 class UnconnectedTeachingView extends React.Component{
-    constructor(props) { super(props); this.state={id: this.props.location.pathname}}
+    constructor(props) { super(props); this.state={id: this.props.location.pathname, 
+      callingStrings: this.props.location}}
       componentWillMount() {
         const { match: { params } } = this.props;
         const { getTeaching, setTeachingObject } = this.props;
-        console.log("abcd"+this.state.id);
+        console.log("efgh"+this.props.location.pathname);
         //getTeaching(params.teachingName);
         //setTeachingObject(params.teachingName);
-        //document.title="A "+params.teachingName;
+        const pathArray=this.props.location.pathname.split('$');
+        const teachingName=pathArray[0].split('/')[pathArray.length-1];
+        document.title="A "+teachingName
       }
       render() {
         return(
@@ -44,16 +48,16 @@ class UnconnectedTeachingView extends React.Component{
           titleString+="We've created a "+this.props.teaching.singularLowerCase+" with ";
           var c=2;
           var m=1;
-          while (m<this.props.callingStrings.length) {
-            titleString+=this.props.creationStrings[c]+'='+this.props.callingStrings[m]
+          while (m<this.state.callingStrings.length) {
+            titleString+=this.props.creationStrings[c]+'='+this.state.callingStrings[m]
             c+=2;
             m++;
-            if (m<this.props.callingStrings.length){
+            if (m<this.state.callingStrings.length){
               titleString+=', '
             }
           }
           return titleString;
       }
 }
-const TeachingView=connect(mapStateToProps, mapDispatchToProps)(UnconnectedTeachingView);
+const TeachingView=connect(mapStateToProps, mapDispatchToProps)(withRouter((UnconnectedTeachingView)));
 export default TeachingView;
