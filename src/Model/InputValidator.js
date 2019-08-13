@@ -9,9 +9,11 @@ static hasInteger=new RegExp('-?\\d+', 'g');
   static areIntegers(strArray){
     for (var i=1; i<strArray.length; i++) {
       if (!InputValidator.integerOnly.test(strArray[i])){
+        InputValidator.hasInteger.lastIndex=0;
         return false;
       }
     }
+    InputValidator.hasInteger.lastIndex=0;
     return true;
   }
   static areNumbers(strArray) {
@@ -20,6 +22,7 @@ static hasInteger=new RegExp('-?\\d+', 'g');
   static areLatexNumbers(strArray) {
     for (var i=1; i<strArray.length; i++) {
       if (!InputValidator.latexAnyNumber.test(strArray[i])){
+        InputValidator.hasInteger.lastIndex=0;
         return false;
       }
       if (InputValidator.latexFractionOnly.test(strArray[i])){
@@ -32,16 +35,19 @@ static hasInteger=new RegExp('-?\\d+', 'g');
           }
       } while (match);
       if (matches[1][0]==="0"){
+        InputValidator.hasInteger.lastIndex=0;
         return false;
       }
       }
     }
+    InputValidator.hasInteger.lastIndex=0;
     return true;
  }
  static areTextNumbers(strArray) {
   for (var i=1; i<strArray.length; i++) {
     console.log(strArray[i]);
     if (!InputValidator.textAnyNumber.test(strArray[i])){
+      InputValidator.hasInteger.lastIndex=0;
       return false;
     }
     if (InputValidator.textFractionOnly.test(strArray[i])){
@@ -55,10 +61,12 @@ static hasInteger=new RegExp('-?\\d+', 'g');
         }
     } while (match);
     if (matches[1][0]==="0"){
+      InputValidator.hasInteger.lastIndex=0;
       return false;
     }
     }
   }
+  InputValidator.hasInteger.lastIndex=0;
   return true;
 }
 }

@@ -79,7 +79,10 @@ class UnconnectedCreatorView extends React.Component{
       }
       /* bring index to array */
       createNumberInput(column){
+        console.log('adding strings')
+        if(!this.state.gridIDs.includes(this.createGridID(column))){
           this.state.gridIDs.push(this.createGridID(column));
+      }
           let fractionInput=<NumberInput gridID={this.createGridID(column)} index={column} 
           textHandler={(column, value) => this.textHandler(column, value)} activateInputHandler={this.props.activateInputHandler}>
           </NumberInput>;
@@ -97,7 +100,7 @@ class UnconnectedCreatorView extends React.Component{
       getMobileCallingStrings(){
           var callingStrings=[];
           callingStrings.push(this.props.methodSignature[0]);
-          for (var i=0; i<this.num; i++){
+          for (var i=0; i<this.props.methodSignature/2-1; i++){
             callingStrings.push(this.props.inputMap[this.state.gridIDs[i]]);
           };
           this.setState(previousState => ({ ...previousState, callingStrings: callingStrings }))
@@ -109,6 +112,9 @@ class UnconnectedCreatorView extends React.Component{
           urlComponent+=`$${this.state.callingStrings[i]}`;
         }
         return urlComponent
+      }
+      reset(){
+        
       }
   handleClick(){
     this.getMobileCallingStrings();
