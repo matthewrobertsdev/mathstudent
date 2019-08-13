@@ -13,10 +13,11 @@ const AppRouter= () => (
                 {/*displays all topics from home*/}
                 <Route path="/" exact component={SubjectsView}/>
                 {/*displays UI for creating objects from teaching*/}
-                <Route path="/create/:teachingName" component={CreateView}/>
-                <Route path="/teaching/:teachingName" component={TeachingView}/>
+                <Route path="/teaching/:teachingName" component={CreateView}/>
             </Switch>
         </div>
     </BrowserRouter>
 );
 export default AppRouter;
+
+/* <Route path="/teaching/:teachingName" component={TeachingView}/> */

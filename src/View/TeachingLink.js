@@ -11,7 +11,7 @@ class TeachingLink extends React.Component{
       render() {
         return(
           /* will take user to teaching with these names.  Will get teaching from model first. */
-          <Link className={"textLink"} to={`/create/${this.props.codeName}`}>{this.props.displayName}</Link>
+          <Link className={"textLink"} to={`/teaching/${this.props.codeName}`}>{this.props.displayName}</Link>
         );
       }
 }

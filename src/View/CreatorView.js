@@ -122,7 +122,7 @@ class UnconnectedCreatorView extends React.Component{
         updateCreationStrings(this.props.methodSignature);
         //const historyState={teachingObjectName: this.state.teachingObjectName, callingStrings: this.state.callingStrings}
         //this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
-        this.props.history.push(`/teaching/${this.props.teaching.objectName}`+this.makeObjectURLComponent());
+        //this.props.history.push(`/teaching/${this.props.teaching.objectName}`+this.makeObjectURLComponent());
       }
       else{
         this.handleOpenModal();

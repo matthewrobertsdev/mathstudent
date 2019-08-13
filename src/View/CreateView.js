@@ -95,11 +95,11 @@ createMediumRectangleEveryFirst(i){
   }
   onKeyPress = key => { const {updateActiveValue}=this.props; updateActiveValue(key); };
 
-  addKeyboardForMobile(){ if( isMobile() ){ return <NumberKeyboard keyPressHandler={this.onKeyPress}/> } }
+  addKeyboardForMobile() { if( isMobile() ) { return <NumberKeyboard keyPressHandler={this.onKeyPress}/> } }
 
-  createKey(index){ return this.props.teaching.objectName+"-"+index; }
+  createKey(index) { return this.props.teaching.objectName+"-"+index; }
 
-  activateInputHandler(input){ this.activeInput=input; }
+  activateInputHandler(input) { this.activeInput=input; }
 }
 const CreateView = connect(mapStateToProps, mapDispatchToProps)(UnconnectedCreateView)
 export default CreateView;
