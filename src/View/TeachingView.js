@@ -25,8 +25,10 @@ class UnconnectedTeachingView extends React.Component{
         //getTeaching(params.teachingName);
         //setTeachingObject(params.teachingName);
         const pathArray=this.props.location.pathname.split('$');
-        const teachingName=pathArray[0].split('/')[pathArray.length-1];
-        document.title="A "+teachingName
+        console.log(pathArray);
+        const pathStartArray=pathArray[0].split('/')
+        console.log(pathStartArray[pathStartArray.length-2]);
+        document.title="A "+pathStartArray[pathStartArray.length-2]
       }
       render() {
         return(
