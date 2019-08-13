@@ -80,9 +80,7 @@ class UnconnectedCreatorView extends React.Component{
       /* bring index to array */
       createNumberInput(column){
         console.log('adding strings')
-        if(!this.state.gridIDs.includes(this.createGridID(column))){
           this.state.gridIDs.push(this.createGridID(column));
-      }
           let fractionInput=<NumberInput gridID={this.createGridID(column)} index={column} 
           textHandler={(column, value) => this.textHandler(column, value)} activateInputHandler={this.props.activateInputHandler}>
           </NumberInput>;
