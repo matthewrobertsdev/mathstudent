@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import NumberInput from './NumberInput';
-import {createTeaching, updateCallingStrings, updateCreationStrings} from '../Actions';
+import {createTeaching, updateCallingStrings, updateCreationStrings, setDisplayTeaching} from '../Actions';
 import InputValidator from '../Model/InputValidator';
 import { withRouter } from "react-router-dom";
 import './app.css';
@@ -12,7 +12,8 @@ const mapStateToProps = (state) => { return { teaching: state.teaching, topics: 
 const mapDispatchToProps = (dispatch) =>  { return  { createTeaching: (methodInfo) => { 
   dispatch(createTeaching(methodInfo));  },  updateCallingStrings: (callingStrings) => { 
     dispatch(updateCallingStrings(callingStrings)); }, updateCreationStrings: (creationStrings) => { 
-      dispatch(updateCreationStrings(creationStrings)); }}; }
+      dispatch(updateCreationStrings(creationStrings)); }, setDisplayTeaching: (boolean) => { 
+        dispatch(setDisplayTeaching(boolean)); } }; }
 /* for creating a teaching, but not connected yet */
 class UnconnectedCreatorView extends React.Component{
     constructor(props) {
@@ -116,7 +117,7 @@ class UnconnectedCreatorView extends React.Component{
   handleClick(){
     this.getMobileCallingStrings();
     const { createTeaching, updateCreationStrings} = this.props;
-    const {updateCallingStrings}=this.props;
+    const {updateCallingStrings, setDisplayTeaching}=this.props;
     if (this.props.methodSignature[3]==='integer'){
        this.setState({ type: 'integer' }); 
       if (InputValidator.areIntegers(this.state.callingStrings)){
@@ -127,6 +128,8 @@ class UnconnectedCreatorView extends React.Component{
         //this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
         //this.props.history.push(`/teaching/${this.props.teaching.objectName}`+this.makeObjectURLComponent());
         //this.props.history.push(`/teaching/${this.props.teaching.objectName}`+this.makeObjectURLComponent());
+        console.log('should display teaching');
+        setDisplayTeaching(true);
       }
       else{
         this.handleOpenModal();

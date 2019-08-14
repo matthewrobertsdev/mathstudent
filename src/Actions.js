@@ -28,6 +28,8 @@ const _setTeachingObject=(objectName)=>({ type: 'SET_TEACHING_OBJECT', objectNam
 
 const _setTeachingObjectName=(objectName)=>({ type: 'SET_TEACHING_OBJECT_NAME', objectName });
 
+const _setDisplayTeaching=(isDisplayed)=>({ type: 'SET_DISPLAY_TEACHING', isDisplayed });
+
 /* gets all topics for now for teaching */
 export const getTopics = () => { return  (dispatch)=>{ dispatch(_getTopics(curriculum)); }; };
 
@@ -62,6 +64,11 @@ export const updateCallingStrings = (callingStrings) => { return (dispatch) => {
 export const updateCreationStrings = (creationStrings) => { return (dispatch) => { 
     return dispatch(_updateCreationStrings(creationStrings)); }; }
 
-export const setTeachingObject = (objectName) => { return (dispatch) => { return dispatch(_setTeachingObject(objectName)); }; }
+export const setTeachingObject = (objectName) => { 
+    return (dispatch) => { return dispatch(_setTeachingObject(objectName)); }; }
 
-export const setTeachingObjectName = (objectName) => { return (dispatch) => { return dispatch(_setTeachingObjectName(objectName)); }; }
+export const setTeachingObjectName = (objectName) => 
+{ return (dispatch) => { return dispatch(_setTeachingObjectName(objectName)); }; }
+
+export const setDisplayTeaching = (boolean) => 
+{ return (dispatch) => { return dispatch(_setDisplayTeaching(boolean)); }; }

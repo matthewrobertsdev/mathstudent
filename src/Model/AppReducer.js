@@ -1,6 +1,6 @@
 const initialState = { loaded: false, /* all topics for now */ topics: [], /* the teaching being taught */ teaching: {},
     error: {}, URL: '', inputMap: {}, activeMap: {}, activeKey: '', inputArray: [], callingStrings: [],
-    creationStrings: [], teachingObject: {}, teachingObjectName: ''};
+    creationStrings: [], teachingObject: {}, teachingObjectName: '', displayTeaching: false};
     
 const appReducer=(state=initialState, action) => {
         switch (action.type) {
@@ -11,6 +11,8 @@ const appReducer=(state=initialState, action) => {
             } else { newValue=state.inputMap[state.activeKey]+=action.key }
              return { ...state, inputMap: {...state.inputMap, [state.activeKey]: newValue} };
         /* action for getting topics for user choice */
+        case 'SET_DISPLAY_TEACHING': return { ...state, displayTeaching: action.isDisplayed };
+
         case 'GET_TOPICS': return { ...state, topics: action.topics };
 
         case 'GET_TEACHING': return { ...state, teaching: action.teachingObject };
