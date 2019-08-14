@@ -12,12 +12,14 @@ const AppRouter= () => (
             <Switch>
                 {/*displays all topics from home*/}
                 <Route path="/" exact component={SubjectsView}/>
-                {/*displays UI for creating objects from teaching*/}
                 <Route path="/teaching/:teachingName" component={CreateView}/>
+                {/*displays UI for creating objects from teaching*/}
+
             </Switch>
         </div>
     </BrowserRouter>
 );
 export default AppRouter;
 
-/* <Route path="/teaching/:teachingName" component={TeachingView}/> */
+/* <Route path="/teaching/:teachingName" component={TeachingView}/>
+<Route path="/create/:teachingName" component={CreateView}/> */

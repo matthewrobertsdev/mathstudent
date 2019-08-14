@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 /* This view is for the UI for creating a MathTeachingObject */
 class UnconnectedCreateView extends React.Component {
-  constructor(props) { super(props); this.state={ activeText: null};
+  constructor(props) { super(props); this.state={ activeText: null, displayObject: false};
   const { match: { params } } = this.props;
     const { clearTeaching, setTeachingObjectName, getTeaching} = this.props;
     clearTeaching(); setTeachingObjectName(params.teachingName);
@@ -72,10 +72,10 @@ activeInput='';
   }
   createCreatorViews() {
     if (this.props.teaching.creationMethodSignatures === undefined) { return; }
-    const creatorViews = this.props.teaching.creationMethodSignatures.map((arg, i) => {
+    const creatorViews = this.props.teaching.creationMethodSignatures.map((methodSignature, i) => {
       return (
         <div key={i} className='fullWidth'>
-          <CreatorView className='CreatorView fullWidth' methodSignature={arg} activateInputHandler={this.activateInputHandler} 
+          <CreatorView className='CreatorView fullWidth' methodSignature={methodSignature} 
           row={this.createKey(i)}></CreatorView>
           {this.createAdEverySecond(i)}
         </div>
@@ -99,7 +99,6 @@ createMediumRectangleEveryFirst(i){
 
   createKey(index) { return this.props.teaching.objectName+"-"+index; }
 
-  activateInputHandler(input) { this.activeInput=input; }
 }
 const CreateView = connect(mapStateToProps, mapDispatchToProps)(UnconnectedCreateView)
 export default CreateView;

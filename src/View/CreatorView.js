@@ -30,16 +30,16 @@ class UnconnectedCreatorView extends React.Component{
         return(
           /* will take user to teaching with these names.  Will get teaching from home first. */
           <div className='CreatorView'>
-              <h3>{this.props.methodSignature[0]}</h3>
-              {this.createView()}<button className="actionButton" onClick={() => this.handleClick()}>
+                <h3>{this.props.methodSignature[0]}</h3>
+                {this.createView()}<button className="actionButton" onClick={() => this.handleClick()}>
                 Create a {this.props.teaching.displayNameSingular}</button>
                 <ReactModal className="notNumberModal" isOpen={this.state.showModal} >
-          <br></br>
-          {this.getErrorString()}
-          <br></br>
-          <br></br>
-          <button className='closeButton' onClick={this.handleCloseModal}>Close</button>
-        </ReactModal>
+                <br></br>
+                {this.getErrorString()}
+                <br></br>
+                <br></br>
+                <button className='closeButton' onClick={this.handleCloseModal}>Close</button>
+                </ReactModal>
           </div>
         );
       }
@@ -79,7 +79,6 @@ class UnconnectedCreatorView extends React.Component{
       }
       /* bring index to array */
       createNumberInput(column){
-        console.log('adding strings')
           this.state.gridIDs.push(this.createGridID(column));
           let fractionInput=<NumberInput gridID={this.createGridID(column)} index={column} 
           textHandler={(column, value) => this.textHandler(column, value)} activateInputHandler={this.props.activateInputHandler}>
@@ -126,6 +125,7 @@ class UnconnectedCreatorView extends React.Component{
         updateCreationStrings(this.props.methodSignature);
         //const historyState={teachingObjectName: this.state.teachingObjectName, callingStrings: this.state.callingStrings}
         //this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
+        //this.props.history.push(`/teaching/${this.props.teaching.objectName}`+this.makeObjectURLComponent());
         //this.props.history.push(`/teaching/${this.props.teaching.objectName}`+this.makeObjectURLComponent());
       }
       else{
