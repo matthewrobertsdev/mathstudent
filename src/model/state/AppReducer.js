@@ -27,11 +27,11 @@ const appReducer=(state=initialState, action) => {
 
         case 'UPDATE_ACTIVE_KEY_AND_VALUE': return { ...state, activeKey: action.activeKey, activeValue: action.value };
 
-        case 'UPDATE_CALLING_STRINGS': return { ...state, callingStrings: action.callingStrings };
+        case 'UPDATE_CALLING_STRINGS': console.log('updated calling strings'); return { ...state, callingStrings: action.callingStrings };
 
         case 'UPDATE_CREATION_STRINGS': return { ...state, creationStrings: action.creationStrings };
 
-        case 'SET_TEACHING_OBJECT': import(`./math/${action.objectName}`).then(teachingObj => {
+        case 'SET_TEACHING_OBJECT': import(`../math${action.objectName}`).then(teachingObj => {
                 console.log('abcd'+JSON.stringify(teachingObj));
                 return {...state, teachingObject: teachingObj}; }).catch(function(error) { console.log(error);
                      return state;}); return state;

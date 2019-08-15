@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import AppRouter from './AppRouter';
-import teachingStore from './Model/TeachingsStore';
+import AppRouter from './manager/AppRouter';
+import teachingStore from './model/state/TeachingsStore';
 import * as homeWorker from './serviceWorker';
-import './View/app.css';
+import './view/views-general/app.css';
 //document.body.style.backgroundColor = "brown";
 document.body.style.backgroundColor = "rgb(209, 28, 28)";
 const store=teachingStore();

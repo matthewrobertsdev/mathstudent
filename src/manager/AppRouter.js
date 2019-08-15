@@ -1,9 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import SubjectsView from './View/SubjectsView';
-import CreateView from './View/CreateView';
-import TeachingView from './View/TeachingView';
-import HeaderView from './View/HeaderView';
+import SubjectsView from '../view/curriculum-views/SubjectsView';
+import CreateView from '../view/teaching-views/CreateView';
+import HeaderView from '../view/views-general/HeaderView';
 const AppRouter= () => (
     <BrowserRouter>
         <div>

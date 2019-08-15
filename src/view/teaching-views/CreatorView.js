@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import NumberInput from './NumberInput';
-import {createTeaching, updateCallingStrings, updateCreationStrings, setDisplayTeaching} from '../Actions';
-import InputValidator from '../Model/InputValidator';
+import {createTeaching, updateCallingStrings, updateCreationStrings, setDisplayTeaching} from '../../manager/Actions';
+import InputValidator from '../../model/utilities/InputValidator';
 import { withRouter } from "react-router-dom";
-import './app.css';
+import '../views-general/app.css';
 import ReactModal from 'react-modal';
 /* gets the teaching for this method */
-const mapStateToProps = (state) => { return { teaching: state.teaching, topics: state.topics, inputMap: state.inputMap} };
+const mapStateToProps = (state) => { return { teaching: state.teaching, topics: state.topics, inputMap: state.inputMap, 
+  callingStrings: state.callingStrings} };
 /* so that the creator view can get the teaching */
 const mapDispatchToProps = (dispatch) =>  { return  { createTeaching: (methodInfo) => { 
   dispatch(createTeaching(methodInfo));  },  updateCallingStrings: (callingStrings) => { 
@@ -54,6 +55,7 @@ class UnconnectedCreatorView extends React.Component{
         }
       }
       createView(){
+        //this.createCallingStrings();
         var creatorView=[];
         var column=1;
         this.num=0;
@@ -93,7 +95,9 @@ class UnconnectedCreatorView extends React.Component{
       textHandler(i, value){
         let tempCallingStrings=this.state.callingStrings
         tempCallingStrings[i]=value;
-        this.setState(previousState => ({ ...previousState, callingStrings: tempCallingStrings }))
+        const {updateCallingStrings}=this.props;
+        updateCallingStrings(tempCallingStrings);
+        //this.setState(previousState => ({ ...previousState, callingStrings: tempCallingStrings }))
       }
       getMobileCallingStrings(){
           var callingStrings=[];
@@ -101,7 +105,7 @@ class UnconnectedCreatorView extends React.Component{
           for (var i=0; i<this.props.methodSignature/2-1; i++){
             callingStrings.push(this.props.inputMap[this.state.gridIDs[i]]);
           };
-          this.setState(previousState => ({ ...previousState, callingStrings: callingStrings }))
+          //this.setState(previousState => ({ ...previousState, callingStrings: callingStrings }))
           return callingStrings;
       }
       makeObjectURLComponent(){
@@ -125,6 +129,7 @@ class UnconnectedCreatorView extends React.Component{
         updateCallingStrings(this.state.callingStrings);
         createTeaching(this.state.callingStrings);
         updateCreationStrings(this.props.methodSignature);
+        console.log('first numerical calling string'+this.state.callingStrings[1]);
         //const historyState={teachingObjectName: this.state.teachingObjectName, callingStrings: this.state.callingStrings}
         //this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
         //this.props.history.push(`/teaching/${this.props.teaching.objectName}`+this.makeObjectURLComponent());

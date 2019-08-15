@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom'
-import {getTeaching, setTeachingObject, clearTeaching} from  '../Actions';
+import {getTeaching, setTeachingObject, clearTeaching} from  '../../manager/Actions';
 import 'katex/dist/katex.min.css';
 import { InlineMath } from 'react-katex';
-import './app.css';
+import '../views-general/app.css';
 
 const mapStateToProps = (state) => {
   return { teaching: state.teaching, creationStrings: state.creationStrings, callingStrings: state.callingStrings } };
@@ -19,11 +19,7 @@ class UnconnectedTeachingView extends React.Component{
     constructor(props) { super(props); this.state={id: this.props.location.pathname, 
       callingStrings: this.props.location}}
       componentWillMount() {
-        const { match: { params } } = this.props;
-        const { getTeaching, setTeachingObject } = this.props;
         console.log("efgh"+this.props.location.pathname);
-        //getTeaching(params.teachingName);
-        //setTeachingObject(params.teachingName);
         /*
         const pathArray=this.props.location.pathname.split('$');
         console.log(pathArray);
@@ -44,10 +40,12 @@ class UnconnectedTeachingView extends React.Component{
       }
 
       createMath(){
-        return `\\Huge\\color{gold}\\frac{${this.props.callingStrings[1]}}{${this.props.callingStrings[2]}}`
+        return `\\Huge\\color{gold}\\frac{${this.props.callingStrings[1]}}{${this.props.callingStrings[2]}}`;
       }
 
       createTitleString(){
+        console.log('first: '+this.props.callingStrings[1]);
+        console.log('second: '+this.props.callingStrings[2]);
           var titleString='';
           titleString+="We've created a "+this.props.teaching.singularLowerCase+" with ";
           var c=2;

@@ -1,9 +1,9 @@
 import React from 'react';
 import MathQuill, { addStyles as addMathquillStyles } from 'react-mathquill';
-import { addInputPair, updateActiveKey} from '../Actions';
+import { addInputPair, updateActiveKey} from '../../manager/Actions';
 import { connect } from 'react-redux';
-import isMobile from '../Model/utilities/IsMobile';
-import './app.css';
+import isMobile from '../../model/utilities/IsMobile';
+import '../views-general/app.css';
 addMathquillStyles();
 const mapStateToProps = (state) => { return { inputMap: state.inputMap, teaching: state.teaching, activeKey: state.activeKey} };
 

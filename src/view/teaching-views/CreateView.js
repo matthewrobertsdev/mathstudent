@@ -1,15 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getTeaching, clearTeaching, updateURL, updateActiveValue, setTeachingObjectName, setDisplayTeaching} from '../Actions';
+import { getTeaching, clearTeaching, updateURL, updateActiveValue, setTeachingObjectName, setDisplayTeaching} from '../../manager/Actions';
 import CreatorView from './CreatorView';
-import isMobile from '../Model/utilities/IsMobile';
-import NumberKeyboard from './NumberKeyboard'
-import KeyboardSpacer from './KeyboardSpacer';
+import isMobile from '../../model/utilities/IsMobile';
+import NumberKeyboard from '../keyboard-views/NumberKeyboard';
+import KeyboardSpacer from '../keyboard-views/KeyboardSpacer';
 import AboutSection from './AboutSection'
 import TeachingView from './TeachingView'
 import 'react-simple-keyboard/build/css/index.css';
-import './app.css';
-const mapStateToProps = (state) => { return { teaching: state.teaching, displayTeaching: state.displayTeaching} };
+import '../views-general/app.css';
+const mapStateToProps = (state) => { return { teaching: state.teaching, displayTeaching: state.displayTeaching, 
+  callingStrings: state.callingStrings} };
 const mapDispatchToProps = (dispatch) => {
   return { /* gets teaching */ getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
     clearTeaching: () => { dispatch(clearTeaching()); },
@@ -67,7 +68,7 @@ activeInput='';
       if (this.props.displayTeaching){
         return (
         <div>
-        {<TeachingView/>}
+        {<TeachingView callingStrings={this.state.callingStrings}/>}
         <br></br>
         <br></br>
         </div>

@@ -1,5 +1,5 @@
 import MathTeaching from './MathTeaching';
-import NameCodePair from '../../NameCodePair';
+import NameCodePair from '../utilities/NameCodePair';
 class LineIn2DTeaching extends MathTeaching{
     constructor(){
         super();

@@ -1,4 +1,4 @@
-import isMobile from './utilities/IsMobile';
+import isMobile from './IsMobile';
 class InputValidator {
 static latexAnyNumber=new RegExp('^-?\\\\frac{-?\\d+}{-?\\d+}$|^-?\\d+$');
 static latexFractionOnly=new RegExp('^-?\\\\frac{-?\\d+}{-?\\d+}$');

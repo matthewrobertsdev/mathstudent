@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {getTopics, updateURL} from '../Actions';
+import {getTopics, updateURL} from '../../manager/Actions';
 import TopicView from './TopicView';
-import './app.css';
+import '../views-general/app.css';
 /* pass in array of topics in an object */
 const mapStateToProps = (state) => { return { topics: state.topics } };
 const mapDispatchToProps = (dispatch) => {

@@ -1,4 +1,4 @@
-import curriculum from  './Model/Curriculum';
+import curriculum from  '../model/Curriculum';
 
 const _getTopics = (topics) => ({ type: 'GET_TOPICS', topics });
 
@@ -35,7 +35,7 @@ export const getTopics = () => { return  (dispatch)=>{ dispatch(_getTopics(curri
 
 export const getTeaching = (teachingName) => {
    return (dispatch) => {
-    return import(`./Model/math/${teachingName}`).then(teachingObj => {
+    return import(`../model/math/${teachingName}`).then(teachingObj => {
         dispatch(_getTeaching(teachingObj.default.teaching));
     }).catch(function(error) { console.log(error); }); };
 };

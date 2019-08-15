@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './app.css'
+import '../views-general/app.css';
 /* for displaying a link to a teaching, that displays its name and loads that teaching when clicked */
 class TeachingLink extends React.Component{
     constructor(props) {
