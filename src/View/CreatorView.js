@@ -118,6 +118,7 @@ class UnconnectedCreatorView extends React.Component{
     this.getMobileCallingStrings();
     const { createTeaching, updateCreationStrings} = this.props;
     const {updateCallingStrings, setDisplayTeaching}=this.props;
+    console.log('calling strings'+this.state.callingStrings);
     if (this.props.methodSignature[3]==='integer'){
        this.setState({ type: 'integer' }); 
       if (InputValidator.areIntegers(this.state.callingStrings)){
@@ -128,7 +129,7 @@ class UnconnectedCreatorView extends React.Component{
         //this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
         //this.props.history.push(`/teaching/${this.props.teaching.objectName}`+this.makeObjectURLComponent());
         //this.props.history.push(`/teaching/${this.props.teaching.objectName}`+this.makeObjectURLComponent());
-        console.log('should display teaching');
+        console.log('should display teaching'+this.state.callingStrings);
         setDisplayTeaching(true);
       }
       else{

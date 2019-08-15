@@ -38,8 +38,6 @@ export const getTeaching = (teachingName) => {
     return import(`./Model/math/${teachingName}`).then(teachingObj => {
         dispatch(_getTeaching(teachingObj.default.teaching));
     }).catch(function(error) { console.log(error); }); };
-    //ispatch(_getTeaching(teachingName));
-   //}
 };
 export const createTeaching = (methodInfo) => { return (dispatch) => { return dispatch(_createTeaching(methodInfo)); }; };
 

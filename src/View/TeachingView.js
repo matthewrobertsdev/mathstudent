@@ -44,7 +44,7 @@ class UnconnectedTeachingView extends React.Component{
       }
 
       createMath(){
-        return '\\Huge\\color{gold}\\frac{1}{2}'
+        return `\\Huge\\color{gold}\\frac{${this.props.callingStrings[1]}}{${this.props.callingStrings[2]}}`
       }
 
       createTitleString(){
@@ -52,11 +52,12 @@ class UnconnectedTeachingView extends React.Component{
           titleString+="We've created a "+this.props.teaching.singularLowerCase+" with ";
           var c=2;
           var m=1;
-          while (m<this.state.callingStrings.length) {
-            titleString+=this.props.creationStrings[c]+'='+this.state.callingStrings[m]
+          console.log('1234'+this.props.callingStrings.length);
+          while (m<this.props.callingStrings.length) {
+            titleString+=this.props.creationStrings[c]+'='+this.props.callingStrings[m]
             c+=2;
             m++;
-            if (m<this.state.callingStrings.length){
+            if (m<this.props.callingStrings.length){
               titleString+=', '
             }
           }

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class TopicView extends React.Component{
     constructor(props) { super(props); this.state=this.props.topic;}
       render() { return(
-          /* will take user to teaching with these names.  Will get teaching from model. */
+          /* will take user to teaching with this name.  Will get teaching from model. */
           <div> <Link className="Link" to={`/teaching/${this.props.topic.codeName}`}>{this.props.topic.displayName}</Link> </div>
         ); }
 }
