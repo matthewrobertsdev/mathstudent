@@ -31,6 +31,9 @@ class UnconnectedCreateView extends React.Component {
 }
 activeInput='';
   componentWillMount() { 
+    this.teachingViewRef=React.createRef();
+    //this.teachingViewRef = React.createRef();
+    //this.scrollToTeaching = () => this.scrollToRef(this.teachingViewRef);
   }
   componentWillUnmount() { 
     const {setDisplayTeaching}=this.props;
@@ -41,17 +44,21 @@ activeInput='';
       <div className='fullWidth'>
         <div className='center-text textMargins'>
         {this.createAD()}
+        {/* About section */}
         <h1 className="main-text-color">About {this.props.teaching.displayNamePlural}</h1>
         {this.createAboutSection()}
         {this.createAD()}
+        {/* Display TeachingView if an object has been created */}
         {this.displayChosenObject()}
-        <h1 className="main-text-color">Create {this.props.teaching.displayNamePlural}</h1>
         {this.createInputHeading()}
         </div>
         <br></br>
         <div className='fullWidth center-text'>
+          {/* Display CreatorViews to create objects */}
+        <h1 className="main-text-color">Create {this.props.teaching.displayNamePlural}</h1>
         {this.createCreatorViews()}
         </div>
+        {/* On mobile, display keyboard */}
         {this.addKeyboardForMobile()}
       </div>
     );
@@ -66,13 +73,15 @@ activeInput='';
   displayChosenObject(){
       if (this.props.displayTeaching){
         return (
-        <div>
+        <div ref={this.teachingViewRef}>
         {<TeachingView/>}
         <br></br>
         <br></br>
         {this.createAD()}
         </div>
-      )
+      );
+      } else {
+        return (<span ref={this.teachingViewRef}></span>);
       }
   }
   createAD(){
@@ -98,26 +107,23 @@ activeInput='';
       return (
         <div key={i} className='fullWidth'>
           <CreatorView className='CreatorView fullWidth' methodSignature={methodSignature} 
-          row={this.createKey(i)}></CreatorView>
+          row={this.createKey(i)} teachingViewRef={this.teachingViewRef}></CreatorView>
           {this.createAdEverySecond(i)}
         </div>
       );
     });
     return creatorViews;
   }
-createMediumRectangleEveryFirst(i){
-  if (i-2%2===0){
-    
-  }
-}
   createAdEverySecond(i){
       if (i-1%2===0){
         return <div className='fullWidth'>{this.createAD()}</div>
       }
   }
+
   onKeyPress = key => { const {updateActiveValue}=this.props; updateActiveValue(key); };
 
-  addKeyboardForMobile() { if( isMobile() ) { return <div><NumberKeyboard keyPressHandler={this.onKeyPress}/><KeyboardSpacer/></div> } }
+  addKeyboardForMobile() { if( isMobile() ) { return <div><NumberKeyboard keyPressHandler={this.onKeyPress}/><KeyboardSpacer/></div> } 
+  else {return <div><br></br><br></br><br></br><br></br></div>}}
 
   createKey(index) { return this.props.teaching.objectName+"-"+index; }
 

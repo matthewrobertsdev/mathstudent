@@ -137,8 +137,11 @@ class UnconnectedCreatorView extends React.Component{
         //this.props.history.push(`/teaching/${this.props.teaching.objectName}`+this.makeObjectURLComponent());
         console.log('should display teaching'+this.state.callingStrings);
         setDisplayTeaching(true);
-      }
-      else{
+        console.log(this.props.teachingViewRef);
+        if (this.props.teachingViewRef){
+        this.props.teachingViewRef.current.scrollIntoView();
+        }
+      } else {
         this.handleOpenModal();
       }
     }
