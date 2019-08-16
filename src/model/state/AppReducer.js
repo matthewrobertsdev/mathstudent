@@ -25,9 +25,9 @@ const appReducer=(state=initialState, action) => {
 
         case 'UPDATE_ACTIVE_KEY': return { ...state, activeKey: action.key };
 
-        case 'UPDATE_CALLING_STRINGS': console.log('updated calling strings'); return { ...state, callingStrings: action.callingStrings };
+        case 'UPDATE_CALLING_STRINGS': console.log('updated calling strings'); return { ...state, callingStrings: action.callingStrings.slice() };
 
-        case 'UPDATE_TEXT_STRINGS': console.log('updated text strings'); return { ...state, textStrings: action.textStrings };
+        //case 'UPDATE_TEXT_STRINGS': console.log('updated text strings'); return { ...state, textStrings: action.textStrings };
 
         case 'UPDATE_CREATION_STRINGS': return { ...state, creationStrings: action.creationStrings };
 

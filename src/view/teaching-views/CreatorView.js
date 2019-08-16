@@ -126,11 +126,12 @@ class UnconnectedCreatorView extends React.Component{
     const { createTeaching, updateCreationStrings} = this.props;
     const {updateCallingStrings, setDisplayTeaching}=this.props;
     console.log('calling strings'+this.props.callingStrings);
-    updateCallingStrings(this.getCallingStrings());
+    const callingString=this.getCallingStrings();
     console.log('calling strings'+this.props.callingStrings);
     if (this.props.methodSignature[3]==='integer'){
        this.setState({ type: 'integer' }); 
-      if (InputValidator.areIntegers(this.props.callingStrings)){
+      if (InputValidator.areIntegers(callingString)){
+        updateCallingStrings(callingString);
         updateCreationStrings(this.props.methodSignature);
         console.log('first numerical calling string'+this.props.callingStrings);
         //const historyState={teachingObjectName: this.state.teachingObjectName, callingStrings: this.state.callingStrings}
@@ -139,10 +140,7 @@ class UnconnectedCreatorView extends React.Component{
         //this.props.history.push(`/teaching/${this.props.teaching.objectName}`+this.makeObjectURLComponent());
         console.log('should display teaching'+this.state.callingStrings);
         setDisplayTeaching(true);
-        console.log(this.props.teachingViewRef);
-        if (this.props.teachingViewRef){
         this.props.teachingViewRef.current.scrollIntoView();
-        }
       } else {
         this.handleOpenModal();
       }
