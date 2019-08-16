@@ -12,7 +12,7 @@ const _updateURL = (URLpathname) => ({ type: 'UPDATE_URL', URLpathname });
 
 const _addToInputMap = (keyID, value) => ({ type: 'ADD_TO_INPUT_MAP', key: keyID, v: value });
 
-const _updateActiveKeyAndValue = (key, value) => ({ type: 'UPDATE_ACTIVE_KEY_AND_VALUE', key, value });
+const _updateKeyAndValue = (key, value) => ({ type: 'UPDATE_KEY_AND_VALUE', key, value });
 
 const _updateActiveValue = (key) => ({ type: 'UPDATE_ACTIVE_VALUE', key });
 
@@ -49,8 +49,8 @@ export const updateURL = () => { return (dispatch) => { return dispatch(_updateU
 
 export const addToInputMap = (keyID, value) => { return (dispatch) => { return dispatch(_addToInputMap(keyID, value)); }; };
 
-export const updateActiveKeyAndValue = (key, value) => { return (dispatch) => {
-    return dispatch(_updateActiveKeyAndValue(key, value)); }; };
+export const updateKeyAndValue = (key, value) => { return (dispatch) => {
+    return dispatch(_updateKeyAndValue(key, value)); }; };
 
 export const updateActiveValue = (key) => { return (dispatch) => { return dispatch(_updateActiveValue(key)); }; };
 

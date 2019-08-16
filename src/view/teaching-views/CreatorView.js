@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import NumberInput from './NumberInput';
-import {createTeaching, updateCallingStrings, updateCreationStrings, updateTextStrings, setDisplayTeaching, updateActiveKeyAndValue} from '../../manager/Actions';
+import {createTeaching, updateCallingStrings, updateCreationStrings, setDisplayTeaching, updateKeyAndValue} from '../../manager/Actions';
 import InputValidator from '../../model/utilities/InputValidator';
 import { withRouter } from "react-router-dom";
 import '../views-general/app.css';
@@ -14,22 +14,19 @@ const mapDispatchToProps = (dispatch) =>  { return  { createTeaching: (methodInf
   dispatch(createTeaching(methodInfo));  },  updateCallingStrings: (callingStrings) => { 
     dispatch(updateCallingStrings(callingStrings)); }, updateCreationStrings: (creationStrings) => { 
       dispatch(updateCreationStrings(creationStrings)); }, setDisplayTeaching: (boolean) => { 
-        dispatch(setDisplayTeaching(boolean)); }, updateTextStrings: (textStrings) => { 
-          dispatch(updateTextStrings(textStrings)); }, updateActiveKeyAndValue: (key, value) => { 
-            dispatch(updateActiveKeyAndValue(key, value)); }}; }
+        dispatch(setDisplayTeaching(boolean)); }, updateKeyAndValue: (key, value) => { 
+            dispatch(updateKeyAndValue(key, value)); }}; }
 /* for creating a teaching, but not connected yet */
 class UnconnectedCreatorView extends React.Component{
     constructor(props) {
         super(props);
         /* methods strings to create view, calling strings to call method */
-        this.state={methodSignature: this.props.methodSignature, key: undefined, textStrings: 
-          this.createCallingStrings(), callingStrings: this.createCallingStrings(), 
+        this.state={methodSignature: this.props.methodSignature, key: undefined, callingStrings: this.createCallingStrings(), 
           gridIDs: [], showModal: false, type: 'number'}
           this.state.callingStrings[0]=this.props.methodSignature[1];
-        this.textHandler = this.textHandler.bind(this);
-        this.handleOpenModal = this.handleOpenModal.bind(this);
-        this.handleCloseModal = this.handleCloseModal.bind(this);
-        this.num=0;
+          this.textHandler = this.textHandler.bind(this);
+          this.handleOpenModal = this.handleOpenModal.bind(this);
+          this.handleCloseModal = this.handleCloseModal.bind(this);
       }
       render() {
         return(
@@ -96,21 +93,7 @@ class UnconnectedCreatorView extends React.Component{
         return this.props.row+"-"+column
       }
       textHandler(key, value){
-        console.log("updating active key and value "+key+" "+value);
-        { const { updateActiveKeyAndValue } = this.props; updateActiveKeyAndValue(key, value); }
-        //this.setState(previousState => ({ ...previousState, callingStrings: tempCallingStrings }))
-      }
-      getCallingStrings(){
-          var callingStrings=[];
-          callingStrings.push(this.props.methodSignature[0]);
-          console.log("grid id "+this.props.methodSignature)
-          for (var i=0; i<this.props.methodSignature.length/2-1; i++){
-            console.log("grid id "+this.state.gridIDs[i])
-            callingStrings.push(this.props.inputMap[this.state.gridIDs[i]]);
-            console.log("grid id "+this.props.inputMap[this.state.gridIDs[i]])
-          };
-          //this.setState(previousState => ({ ...previousState, callingStrings: callingStrings }))
-          return callingStrings;
+        { const { updateKeyAndValue } = this.props; updateKeyAndValue(key, value); }
       }
       makeObjectURLComponent(){
         var urlComponent=`/`
@@ -119,50 +102,58 @@ class UnconnectedCreatorView extends React.Component{
         }
         return urlComponent
       }
-      reset(){
-        
-      }
+      getCallingStrings(){
+        var callingStrings=[];
+        callingStrings.push(this.props.methodSignature[0]);
+        for (var i=0; i<this.props.methodSignature.length/2-1; i++){
+          callingStrings.push(this.props.inputMap[this.state.gridIDs[i]]);
+        };
+        return callingStrings;
+    } 
   handleClick(){
-    const { createTeaching, updateCreationStrings} = this.props;
-    const {updateCallingStrings, setDisplayTeaching}=this.props;
-    console.log('calling strings'+this.props.callingStrings);
-    const callingString=this.getCallingStrings();
-    console.log('calling strings'+this.props.callingStrings);
+    const callingStrings=this.getCallingStrings();
     if (this.props.methodSignature[3]==='integer'){
        this.setState({ type: 'integer' }); 
-      if (InputValidator.areIntegers(callingString)){
-        updateCallingStrings(callingString);
-        updateCreationStrings(this.props.methodSignature);
-        console.log('first numerical calling string'+this.props.callingStrings);
-        //const historyState={teachingObjectName: this.state.teachingObjectName, callingStrings: this.state.callingStrings}
-        //this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
-        //this.props.history.push(`/teaching/${this.props.teaching.objectName}`+this.makeObjectURLComponent());
-        //this.props.history.push(`/teaching/${this.props.teaching.objectName}`+this.makeObjectURLComponent());
-        console.log('should display teaching'+this.state.callingStrings);
-        setDisplayTeaching(true);
-        this.props.teachingViewRef.current.scrollIntoView();
+      if (InputValidator.areIntegers(callingStrings)){
+        this.updateForTeaching(callingStrings);
       } else {
         this.handleOpenModal();
       }
     }
     else if (this.props.methodSignature[3]==='number'){
        this.setState({ type: 'number' }); 
-    if(InputValidator.areNumbers(this.state.callingStrings)){
-        createTeaching(this.state.callingStrings);
-        updateCallingStrings(this.state.callingStrings);
-        updateCreationStrings(this.props.methodSignature);
-        createTeaching(this.state.callingStrings);
-        this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
+    if(InputValidator.areNumbers(callingStrings)){
+      this.updateForTeaching(callingStrings);
     } else {
         this.handleOpenModal();
     }
   }
   else if (this.props.methodSignature[3]==='decimal'){
     this.setState({ type: 'decimal' }); this.handleOpenModal();
+    if(InputValidator.areNumbers(callingStrings)){
+      this.updateForTeaching(callingStrings);
+    } else {
+        this.handleOpenModal();
+    }
   }
+  }
+  updateForTeaching(callingStrings){
+    const {updateCallingStrings, updateCreationStrings, setDisplayTeaching}=this.props;
+    updateCallingStrings(callingStrings);
+    updateCreationStrings(this.props.methodSignature);
+    setDisplayTeaching(true);
+    this.props.teachingViewRef.current.scrollIntoView();
   }
   handleOpenModal () { this.setState({ showModal: true }); }
   handleCloseModal () { this.setState({ showModal: false }); }
 }
 const CreatorView=connect(mapStateToProps, mapDispatchToProps)((withRouter)(UnconnectedCreatorView));
 export default CreatorView;
+
+        /* const historyState={teachingObjectName: this.state.teachingObjectName, 
+          callingStrings: this.state.callingStrings}
+        //this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
+        //this.props.history.push(`/teaching/${this.props.teaching.objectName}`+
+        this.makeObjectURLComponent());
+        //this.props.history.push(`/teaching/${this.props.teaching.objectName}`+
+        this.makeObjectURLComponent()); */

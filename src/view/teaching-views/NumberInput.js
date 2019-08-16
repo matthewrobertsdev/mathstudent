@@ -1,6 +1,6 @@
 import React from 'react';
 import MathQuill, { addStyles as addMathquillStyles } from 'react-mathquill';
-import { addInputPair, updateActiveKey} from '../../manager/Actions';
+import { updateKeyAndValue, updateActiveKey} from '../../manager/Actions';
 import { connect } from 'react-redux';
 import isMobile from '../../model/utilities/IsMobile';
 import '../views-general/app.css';
@@ -9,7 +9,7 @@ const mapStateToProps = (state) => { return { inputMap: state.inputMap, teaching
 
 const mapDispatchToProps = (dispatch) => { return {
 
-        addInputPair: (keyID, value) => { dispatch(addInputPair(keyID, value)); },
+        updateKeyAndValue: (key, value) => { dispatch(updateKeyAndValue(key, value)); },
 
         updateActiveKey: (key) => {dispatch(updateActiveKey(key)); } } };
         
@@ -20,7 +20,7 @@ class UnconnectedNumberInput extends React.Component{
         } else { this.state = { latex: '', text: '', index: this.props.index, classID: this.props.classID }
         } this.mathQuillEl = null
     }
-    componentWillMount() { const {addInputPair} = this.props; addInputPair(this.props.gridID, ''); }
+    componentWillMount() { const {updateKeyAndValue} = this.props; updateKeyAndValue(this.props.gridID, ''); }
     render() {
         if( isMobile() ) {
                     return (<span onKeyDown={(e) => this.onKeyPressed(e)}>
@@ -30,7 +30,7 @@ class UnconnectedNumberInput extends React.Component{
                     {this.getMobileValue()}</button>
                     </span>) }
         else { 
-                        return (
+                    return (
                     <span onKeyDown={(e) => this.onKeyPressed(e)}>
                     <MathQuill className="mathquill-field" latex={this.state.latex} onChange={mathField => {
                         const latex = mathField.latex();
