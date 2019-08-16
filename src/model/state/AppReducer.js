@@ -21,15 +21,13 @@ const appReducer=(state=initialState, action) => {
 
         case 'UPDATE_URL': return { ...state, URLpathname: action.URLpathname };
 
-        case 'ADD_INPUT_PAIR': return { ...state, inputMap: {...state.inputMap, [action.key]: action.value} };
+        case 'UPDATE_ACTIVE_KEY_AND_VALUE': return { ...state, inputMap: {...state.inputMap, [action.key]: action.value} };
 
         case 'UPDATE_ACTIVE_KEY': return { ...state, activeKey: action.key };
 
-        case 'UPDATE_ACTIVE_KEY_AND_VALUE': return { ...state, activeKey: action.activeKey, activeValue: action.value };
+        case 'UPDATE_CALLING_STRINGS': console.log('updated calling strings'); return { ...state, callingStrings: action.callingStrings };
 
-        case 'UPDATE_CALLING_STRINGS': console.log('updated text strings'); return { ...state, callingStrings: state.textStrings.slice() };
-
-        case 'UPDATE_TEXT_STRINGS': console.log('updated calling strings'); return { ...state, textStrings: action.textStrings };
+        case 'UPDATE_TEXT_STRINGS': console.log('updated text strings'); return { ...state, textStrings: action.textStrings };
 
         case 'UPDATE_CREATION_STRINGS': return { ...state, creationStrings: action.creationStrings };
 
@@ -38,6 +36,7 @@ const appReducer=(state=initialState, action) => {
                 return {...state, teachingObject: teachingObj}; }).catch(function(error) { console.log(error);
                      return state;}); return state;
         case 'SET_TEACHING_OBJECT_NAME':  return {...state, teachingObjectName: action.teachingObjectName};
+        //case 'CREATE_CALLING_ARRAY':  return {...state, }
         default: return state;
         }
 };

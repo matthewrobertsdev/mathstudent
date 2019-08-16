@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import NumberInput from './NumberInput';
-import {createTeaching, updateCallingStrings, updateCreationStrings, updateTextStrings, setDisplayTeaching} from '../../manager/Actions';
+import {createTeaching, updateCallingStrings, updateCreationStrings, updateTextStrings, setDisplayTeaching, updateActiveKeyAndValue} from '../../manager/Actions';
 import InputValidator from '../../model/utilities/InputValidator';
 import { withRouter } from "react-router-dom";
 import '../views-general/app.css';
@@ -15,7 +15,8 @@ const mapDispatchToProps = (dispatch) =>  { return  { createTeaching: (methodInf
     dispatch(updateCallingStrings(callingStrings)); }, updateCreationStrings: (creationStrings) => { 
       dispatch(updateCreationStrings(creationStrings)); }, setDisplayTeaching: (boolean) => { 
         dispatch(setDisplayTeaching(boolean)); }, updateTextStrings: (textStrings) => { 
-          dispatch(updateTextStrings(textStrings)); }}; }
+          dispatch(updateTextStrings(textStrings)); }, updateActiveKeyAndValue: (key, value) => { 
+            dispatch(updateActiveKeyAndValue(key, value)); }}; }
 /* for creating a teaching, but not connected yet */
 class UnconnectedCreatorView extends React.Component{
     constructor(props) {
@@ -86,7 +87,7 @@ class UnconnectedCreatorView extends React.Component{
       createNumberInput(column){
           this.state.gridIDs.push(this.createGridID(column));
           let fractionInput=<NumberInput gridID={this.createGridID(column)} index={column} 
-          textHandler={(column, value) => this.textHandler(column, value)} activateInputHandler={this.props.activateInputHandler}>
+          textHandler={(key, value) => this.textHandler(key, value)} activateInputHandler={this.props.activateInputHandler}>
           </NumberInput>;
           this.num++;
         return fractionInput;
@@ -94,18 +95,19 @@ class UnconnectedCreatorView extends React.Component{
       createGridID(column){
         return this.props.row+"-"+column
       }
-      textHandler(i, value){
-        let tempTextStrings=this.state.textStrings;
-        tempTextStrings[i]=value;
-        const {updateTextStrings}=this.props;
-        updateTextStrings(tempTextStrings);
+      textHandler(key, value){
+        console.log("updating active key and value "+key+" "+value);
+        { const { updateActiveKeyAndValue } = this.props; updateActiveKeyAndValue(key, value); }
         //this.setState(previousState => ({ ...previousState, callingStrings: tempCallingStrings }))
       }
-      getMobileCallingStrings(){
+      getCallingStrings(){
           var callingStrings=[];
           callingStrings.push(this.props.methodSignature[0]);
-          for (var i=0; i<this.props.methodSignature/2-1; i++){
+          console.log("grid id "+this.props.methodSignature)
+          for (var i=0; i<this.props.methodSignature.length/2-1; i++){
+            console.log("grid id "+this.state.gridIDs[i])
             callingStrings.push(this.props.inputMap[this.state.gridIDs[i]]);
+            console.log("grid id "+this.props.inputMap[this.state.gridIDs[i]])
           };
           //this.setState(previousState => ({ ...previousState, callingStrings: callingStrings }))
           return callingStrings;
@@ -121,14 +123,14 @@ class UnconnectedCreatorView extends React.Component{
         
       }
   handleClick(){
-    this.getMobileCallingStrings();
     const { createTeaching, updateCreationStrings} = this.props;
     const {updateCallingStrings, setDisplayTeaching}=this.props;
-    console.log('calling strings'+this.state.callingStrings);
-    updateCallingStrings();
+    console.log('calling strings'+this.props.callingStrings);
+    updateCallingStrings(this.getCallingStrings());
+    console.log('calling strings'+this.props.callingStrings);
     if (this.props.methodSignature[3]==='integer'){
        this.setState({ type: 'integer' }); 
-      if (InputValidator.areIntegers(this.props.textStrings)){
+      if (InputValidator.areIntegers(this.props.callingStrings)){
         updateCreationStrings(this.props.methodSignature);
         console.log('first numerical calling string'+this.props.callingStrings);
         //const historyState={teachingObjectName: this.state.teachingObjectName, callingStrings: this.state.callingStrings}

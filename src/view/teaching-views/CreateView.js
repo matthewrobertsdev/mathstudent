@@ -101,6 +101,7 @@ activeInput='';
     }
     return heading;
   }
+  
   createCreatorViews() {
     if (this.props.teaching.creationMethodSignatures === undefined) { return; }
     const creatorViews = this.props.teaching.creationMethodSignatures.map((methodSignature, i) => {
