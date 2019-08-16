@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => {
     setDisplayTeaching: (teachingName) => { dispatch(setDisplayTeaching(teachingName)); } }; };
 /* This view is for the UI for creating a MathTeachingObject */
 class UnconnectedCreateView extends React.Component {
-  constructor(props) { super(props); this.state={ activeText: null};
+  constructor(props) { super(props); this.state={ activeText: null, displayKeyboard: false};
   const { match: { params } } = this.props;
     const { clearTeaching, setTeachingObjectName, getTeaching} = this.props;
     clearTeaching(); setTeachingObjectName(params.teachingName);
@@ -123,7 +123,8 @@ activeInput='';
 
   onKeyPress = key => { const {updateActiveValue}=this.props; updateActiveValue(key); };
 
-  addKeyboardForMobile() { if( isMobile() ) { return <div><NumberKeyboard keyPressHandler={this.onKeyPress}/><KeyboardSpacer/></div> } 
+  addKeyboardForMobile() { if( isMobile() ) { return <div><NumberKeyboard className={this.state.displayKeyboard ? 
+    'display-keyboard' : 'hide-keyboard'} keyPressHandler={this.onKeyPress}/><KeyboardSpacer/></div> } 
   else {return <div><br></br><br></br><br></br><br></br></div>}}
 
   createKey(index) { return this.props.teaching.objectName+"-"+index; }

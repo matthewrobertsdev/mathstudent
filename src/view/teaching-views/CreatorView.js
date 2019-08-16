@@ -22,7 +22,7 @@ class UnconnectedCreatorView extends React.Component{
         super(props);
         /* methods strings to create view, calling strings to call method */
         this.state={methodSignature: this.props.methodSignature, key: undefined, callingStrings: this.createCallingStrings(), 
-          gridIDs: [], showModal: false, type: 'number'}
+          gridIDs: [], showModal: false, type: 'number', showKeyboard: false}
           this.state.callingStrings[0]=this.props.methodSignature[1];
           this.textHandler = this.textHandler.bind(this);
           this.handleOpenModal = this.handleOpenModal.bind(this);

@@ -70,8 +70,8 @@
 
 .MathText:focus { border:1px solid gold; box-shadow: 0 0 10px gold; }
 
-.keyboard-container { position: fixed; width: 100%; height: 150; background-color: rgb(61, 32, 6);
-    bottom: 0; }
+.keyboard { position: fixed; width: 100%; height: 150; background-color: rgb(61, 32, 6);
+    bottom: 0; transform: translateY(-150px); transition: transform 400ms ease-in;}
 
 .notNumberModal{ position: absolute; width: 200px; height: 150px; background-color: royalblue; color: rgb(61, 32, 6);
     text-align: center; left: 50%; margin-left: -100px; top: 30%; margin-top: -75px; border-radius: 14px; }
@@ -97,8 +97,13 @@
 .largeRectangle { color: gold; width: 336; height: 280; /* background-color: rgb(110, 60, 14); */
     background-color: rgb(22, 49, 131); display: inline-block; }
 
-.inline-math{
-    color: gold;
-}
+.inline-math { color: gold; }
 
 .heading-size{ font-size: 1.80em;}
+
+  .display-keyboard {
+    transform: translateY(0);
+  }
+  .hide-keyboard {
+    transform: translateY(-150px);
+  }
