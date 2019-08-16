@@ -45,7 +45,6 @@ activeInput='';
         {this.createAboutSection()}
         {this.createAD()}
         {this.displayChosenObject()}
-        {this.createAD()}
         <h1 className="main-text-color">Create {this.props.teaching.displayNamePlural}</h1>
         {this.createInputHeading()}
         </div>
@@ -68,9 +67,10 @@ activeInput='';
       if (this.props.displayTeaching){
         return (
         <div>
-        {<TeachingView callingStrings={this.state.callingStrings}/>}
+        {<TeachingView/>}
         <br></br>
         <br></br>
+        {this.createAD()}
         </div>
       )
       }

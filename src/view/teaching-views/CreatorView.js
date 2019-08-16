@@ -1,27 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import NumberInput from './NumberInput';
-import {createTeaching, updateCallingStrings, updateCreationStrings, setDisplayTeaching} from '../../manager/Actions';
+import {createTeaching, updateCallingStrings, updateCreationStrings, updateTextStrings, setDisplayTeaching} from '../../manager/Actions';
 import InputValidator from '../../model/utilities/InputValidator';
 import { withRouter } from "react-router-dom";
 import '../views-general/app.css';
 import ReactModal from 'react-modal';
 /* gets the teaching for this method */
 const mapStateToProps = (state) => { return { teaching: state.teaching, topics: state.topics, inputMap: state.inputMap, 
-  callingStrings: state.callingStrings} };
+  callingStrings: state.callingStrings, textStrings: state.textStrings} };
 /* so that the creator view can get the teaching */
 const mapDispatchToProps = (dispatch) =>  { return  { createTeaching: (methodInfo) => { 
   dispatch(createTeaching(methodInfo));  },  updateCallingStrings: (callingStrings) => { 
     dispatch(updateCallingStrings(callingStrings)); }, updateCreationStrings: (creationStrings) => { 
       dispatch(updateCreationStrings(creationStrings)); }, setDisplayTeaching: (boolean) => { 
-        dispatch(setDisplayTeaching(boolean)); } }; }
+        dispatch(setDisplayTeaching(boolean)); }, updateTextStrings: (textStrings) => { 
+          dispatch(updateTextStrings(textStrings)); }}; }
 /* for creating a teaching, but not connected yet */
 class UnconnectedCreatorView extends React.Component{
     constructor(props) {
         super(props);
         /* methods strings to create view, calling strings to call method */
-        this.state={methodSignature: this.props.methodSignature, key: undefined, callingStrings: 
-          this.createCallingStrings(), gridIDs: [], showModal: false, type: 'number'}
+        this.state={methodSignature: this.props.methodSignature, key: undefined, textStrings: 
+          this.createCallingStrings(), callingStrings: this.createCallingStrings(), 
+          gridIDs: [], showModal: false, type: 'number'}
           this.state.callingStrings[0]=this.props.methodSignature[1];
         this.textHandler = this.textHandler.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -93,10 +95,10 @@ class UnconnectedCreatorView extends React.Component{
         return this.props.row+"-"+column
       }
       textHandler(i, value){
-        let tempCallingStrings=this.state.callingStrings
-        tempCallingStrings[i]=value;
-        const {updateCallingStrings}=this.props;
-        updateCallingStrings(tempCallingStrings);
+        let tempTextStrings=this.state.textStrings;
+        tempTextStrings[i]=value;
+        const {updateTextStrings}=this.props;
+        updateTextStrings(tempTextStrings);
         //this.setState(previousState => ({ ...previousState, callingStrings: tempCallingStrings }))
       }
       getMobileCallingStrings(){
@@ -123,13 +125,12 @@ class UnconnectedCreatorView extends React.Component{
     const { createTeaching, updateCreationStrings} = this.props;
     const {updateCallingStrings, setDisplayTeaching}=this.props;
     console.log('calling strings'+this.state.callingStrings);
+    updateCallingStrings();
     if (this.props.methodSignature[3]==='integer'){
        this.setState({ type: 'integer' }); 
-      if (InputValidator.areIntegers(this.state.callingStrings)){
-        updateCallingStrings(this.state.callingStrings);
-        createTeaching(this.state.callingStrings);
+      if (InputValidator.areIntegers(this.props.textStrings)){
         updateCreationStrings(this.props.methodSignature);
-        console.log('first numerical calling string'+this.state.callingStrings[1]);
+        console.log('first numerical calling string'+this.props.callingStrings);
         //const historyState={teachingObjectName: this.state.teachingObjectName, callingStrings: this.state.callingStrings}
         //this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
         //this.props.history.push(`/teaching/${this.props.teaching.objectName}`+this.makeObjectURLComponent());
