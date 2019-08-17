@@ -34,6 +34,7 @@ const _updateTextStrings=(textStrings)=>({ type: 'UPDATE_TEXT_STRINGS', textStri
 
 const _updateDisplayKeyboard = (displayKeyboard) => ({ type: 'UPDATE_DISPLAY_KEYBOARD', displayKeyboard});
 
+const _setIsMobile = (isMobile) => ({ type: 'SET_IS_MOBILE', isMobile});
 
 /* gets all topics for now for teaching */
 export const getTopics = () => { return  (dispatch)=>{ dispatch(_getTopics(curriculum)); }; };
@@ -81,3 +82,6 @@ export const updateTextStrings = (textStrings) =>
 
 export const updateDisplayKeyboard = (isDisplayed) => 
 { return (dispatch) => { return dispatch(_updateDisplayKeyboard(isDisplayed)); }; }
+
+export const setIsMobile = (isMobile) => 
+{ return (dispatch) => { return dispatch(_setIsMobile(isMobile)); }; }

@@ -32,15 +32,15 @@ class UnconnectedCreatorView extends React.Component{
         return(
           /* will take user to teaching with these names.  Will get teaching from home first. */
           <div className='CreatorView'>
-                <h3>{this.props.methodSignature[0]}</h3>
-                {this.createView()}<button className="actionButton" onClick={() => this.handleClick()}>
+                <h3 className='.heading-size'>{this.props.methodSignature[0]}</h3>
+                {this.createView()}<button className="actionButton creator-text-size" onClick={() => this.handleClick()}>
                 Create a {this.props.teaching.displayNameSingular}</button>
                 <ReactModal className="notNumberModal" isOpen={this.state.showModal} >
                 <br></br>
-                {this.getErrorString()}
+                <span classname='creator-text-size'>{this.getErrorString()}</span>
                 <br></br>
                 <br></br>
-                <button className='closeButton' onClick={this.handleCloseModal}>Close</button>
+                <button className='closeButton button-size' onClick={this.handleCloseModal}>Close</button>
                 </ReactModal>
           </div>
         );
@@ -65,7 +65,7 @@ class UnconnectedCreatorView extends React.Component{
             creatorView.push(<span className='small-right-margin creator-text-size' 
             key={i} id={i}>{this.props.methodSignature[i]+': '}</span>);
           } else {
-            creatorView.push(<span key={i} id={i}><span className='medium-right-margin'>
+            creatorView.push(<span key={i} id={i}><span className='medium-right-margin' creator-text-size>
             {this.createNumberInput(column)}</span><br className='hide-for-big'></br>
             </span>);
             column++

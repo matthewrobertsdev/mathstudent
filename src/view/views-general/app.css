@@ -16,8 +16,23 @@
     .hide-for-small{ display: none !important; }
 }
 @media (max-width: 500px){
-    .creator-text-size{ font-size: 20px; }
+    .creator-text-size{ font-size: 1.50em; }
+    .Heading{
+        color: rgb(61, 32, 6); font-size: 1.50em; margin-top: 1em; margin-bottom: 1em;
+      margin-left: 0; margin-right: 0; font-weight: bold; }
+    .heading-size {font-size: 2.00em}
 }
+
+@media (min-width: 500px){
+    .creator-text-size{ font-size: 1.00em; }
+    .Heading{
+        color: rgb(61, 32, 6); font-size: 1.17em; margin-top: 1em; margin-bottom: 1em;
+      margin-left: 0; margin-right: 0; font-weight: bold; }
+    .heading-size{ font-size: 1.80em;}
+}
+
+.button-size{ font-size: 1.00em}
+
 .float-left{ float: left; }
 
 .float-right{ float: right; }
@@ -64,9 +79,6 @@
     color: rgb(22, 49, 131); font-size: 1.17em; margin-top: 1em; margin-bottom: 1em; margin-left: 0;
     margin-right: 0; font-weight: bold; text-decoration: none;
 }
-.Heading{
-    color: rgb(61, 32, 6); font-size: 1.17em; margin-top: 1em; margin-bottom: 1em;
-  margin-left: 0; margin-right: 0; font-weight: bold; }
 
 .MathText:focus { border:1px solid gold; box-shadow: 0 0 10px gold; }
 
@@ -98,8 +110,6 @@
     background-color: rgb(22, 49, 131); display: inline-block; }
 
 .block-math { color: gold; }
-
-.heading-size{ font-size: 1.80em;}
 
 .display-keyboard { transform: translateY(0px); }
 

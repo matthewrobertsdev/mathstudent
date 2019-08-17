@@ -1,3 +1,5 @@
+import isMobile from '../utilities/IsMobile'
+
 const initialState = { loaded: false, /* all topics for now */ topics: [], /* the teaching being taught */ teaching: {},
     error: {}, URL: '', inputMap: {}, activeMap: {}, activeKey: '', inputArray: [], textStrings: [], callingStrings: [],
     creationStrings: [], teachingObject: {}, teachingObjectName: '', displayTeaching: false, displayKeyboard: false};
@@ -36,7 +38,10 @@ const appReducer=(state=initialState, action) => {
                 console.log('abcd'+JSON.stringify(teachingObj));
                 return {...state, teachingObject: teachingObj}; }).catch(function(error) { console.log(error);
                      return state;}); return state;
+
         case 'SET_TEACHING_OBJECT_NAME':  return {...state, teachingObjectName: action.teachingObjectName};
+
+        case 'SET_IS_MOBILE':  return {...state, isMobile: isMobile()};
 
         default: return state;
         }

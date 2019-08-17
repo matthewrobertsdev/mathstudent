@@ -55,7 +55,7 @@ activeInput='';
         <br></br>
         <div className='fullWidth center-text'>
           {/* Display CreatorViews to create objects */}
-        <h1 className="main-text-color">Create {this.props.teaching.displayNamePlural}</h1>
+        <h1 className="main-text-color .heading-size">Create {this.props.teaching.displayNamePlural}</h1>
         {this.createCreatorViews()}
         </div>
         {/* On mobile, display keyboard */}
