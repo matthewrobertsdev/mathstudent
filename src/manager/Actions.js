@@ -32,6 +32,9 @@ const _setDisplayTeaching=(isDisplayed)=>({ type: 'SET_DISPLAY_TEACHING', isDisp
 
 const _updateTextStrings=(textStrings)=>({ type: 'UPDATE_TEXT_STRINGS', textStrings });
 
+const _updateDisplayKeyboard = (displayKeyboard) => ({ type: 'UPDATE_DISPLAY_KEYBOARD', displayKeyboard});
+
+
 /* gets all topics for now for teaching */
 export const getTopics = () => { return  (dispatch)=>{ dispatch(_getTopics(curriculum)); }; };
 
@@ -75,3 +78,6 @@ export const setDisplayTeaching = (boolean) =>
 
 export const updateTextStrings = (textStrings) => 
 { return (dispatch) => { return dispatch(_updateTextStrings(textStrings)); }; }
+
+export const updateDisplayKeyboard = (isDisplayed) => 
+{ return (dispatch) => { return dispatch(_updateDisplayKeyboard(isDisplayed)); }; }

@@ -1,11 +1,12 @@
 const initialState = { loaded: false, /* all topics for now */ topics: [], /* the teaching being taught */ teaching: {},
     error: {}, URL: '', inputMap: {}, activeMap: {}, activeKey: '', inputArray: [], textStrings: [], callingStrings: [],
-    creationStrings: [], teachingObject: {}, teachingObjectName: '', displayTeaching: false};
+    creationStrings: [], teachingObject: {}, teachingObjectName: '', displayTeaching: false, displayKeyboard: false};
     
 const appReducer=(state=initialState, action) => {
         switch (action.type) {
         case 'UPDATE_ACTIVE_VALUE': let newValue=''
-            if (action.key==='{space}'){ newValue=state.inputMap[state.activeKey]+=' '
+            if (action.key==='{enter}'){return {...state, displayKeyboard: false}}
+            else if (action.key==='{space}'){ newValue=state.inputMap[state.activeKey]+=' '
             } else if (action.key==='{bksp}'){
                 if (state.inputMap[state.activeKey].length>=1){ newValue=state.inputMap[state.activeKey].slice(0, -1); }
             } else { newValue=state.inputMap[state.activeKey]+=action.key }
@@ -27,7 +28,7 @@ const appReducer=(state=initialState, action) => {
 
         case 'UPDATE_CALLING_STRINGS': console.log('updated calling strings'); return { ...state, callingStrings: action.callingStrings.slice() };
 
-        //case 'UPDATE_TEXT_STRINGS': console.log('updated text strings'); return { ...state, textStrings: action.textStrings };
+        case 'UPDATE_DISPLAY_KEYBOARD': console.log('update display keyboard'); return { ...state, displayKeyboard: action.displayKeyboard };
 
         case 'UPDATE_CREATION_STRINGS': return { ...state, creationStrings: action.creationStrings };
 
@@ -36,7 +37,7 @@ const appReducer=(state=initialState, action) => {
                 return {...state, teachingObject: teachingObj}; }).catch(function(error) { console.log(error);
                      return state;}); return state;
         case 'SET_TEACHING_OBJECT_NAME':  return {...state, teachingObjectName: action.teachingObjectName};
-        //case 'CREATE_CALLING_ARRAY':  return {...state, }
+
         default: return state;
         }
 };

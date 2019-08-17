@@ -1,17 +1,20 @@
 import React from 'react';
 import MathQuill, { addStyles as addMathquillStyles } from 'react-mathquill';
-import { updateKeyAndValue, updateActiveKey} from '../../manager/Actions';
+import { updateKeyAndValue, updateActiveKey, updateDisplayKeyboard} from '../../manager/Actions';
 import { connect } from 'react-redux';
 import isMobile from '../../model/utilities/IsMobile';
 import '../views-general/app.css';
 addMathquillStyles();
-const mapStateToProps = (state) => { return { inputMap: state.inputMap, teaching: state.teaching, activeKey: state.activeKey} };
+const mapStateToProps = (state) => { return { inputMap: state.inputMap, teaching: state.teaching, 
+    activeKey: state.activeKey, displayKeyboard: state.displayKeyboard} };
 
 const mapDispatchToProps = (dispatch) => { return {
 
         updateKeyAndValue: (key, value) => { dispatch(updateKeyAndValue(key, value)); },
 
-        updateActiveKey: (key) => {dispatch(updateActiveKey(key)); } } };
+        updateActiveKey: (key) => {dispatch(updateActiveKey(key)); },
+    
+        updateDisplayKeyboard: (isDisplayed) => {dispatch(updateDisplayKeyboard(isDisplayed))}} };
         
 class UnconnectedNumberInput extends React.Component{
     constructor(props) {
@@ -40,7 +43,10 @@ class UnconnectedNumberInput extends React.Component{
                     }} mathquillDidMount={el => { this.mathQuillEl = el; }}/> </span> );
         }
     }
-    forClick() { const { updateActiveKey } = this.props; updateActiveKey(this.props.gridID); }
+    forClick() { const { updateActiveKey, updateDisplayKeyboard } = this.props; 
+    updateActiveKey(this.props.gridID); updateDisplayKeyboard(true); 
+
+}
     getMobileValue() { return this.props.inputMap[this.props.gridID];}
     onKeyPressed(e) {
         if (e.metaKey && (e.key==="h"||e.key==="q")){ return; }

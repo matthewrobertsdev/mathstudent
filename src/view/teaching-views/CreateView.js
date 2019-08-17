@@ -10,7 +10,7 @@ import TeachingView from './TeachingView'
 import 'react-simple-keyboard/build/css/index.css';
 import '../views-general/app.css';
 const mapStateToProps = (state) => { return { teaching: state.teaching, displayTeaching: state.displayTeaching, 
-  callingStrings: state.callingStrings} };
+  callingStrings: state.callingStrings, displayKeyboard: state.displayKeyboard} };
 const mapDispatchToProps = (dispatch) => {
   return { /* gets teaching */ getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
     clearTeaching: () => { dispatch(clearTeaching()); },
@@ -123,9 +123,9 @@ activeInput='';
 
   onKeyPress = key => { const {updateActiveValue}=this.props; updateActiveValue(key); };
 
-  addKeyboardForMobile() { if( isMobile() ) { return <div><NumberKeyboard className={this.state.displayKeyboard ? 
+  addKeyboardForMobile() { if( isMobile() ) { return <div><NumberKeyboard className={this.props.displayKeyboard ? 
     'display-keyboard' : 'hide-keyboard'} keyPressHandler={this.onKeyPress}/><KeyboardSpacer/></div> } 
-  else {return <div><br></br><br></br><br></br><br></br></div>}}
+  else { return <div><br></br><br></br><br></br><br></br></div> }}
 
   createKey(index) { return this.props.teaching.objectName+"-"+index; }
 
