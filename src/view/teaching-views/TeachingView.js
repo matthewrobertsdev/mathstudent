@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom'
 import {getTeaching, setTeachingObject, clearTeaching} from  '../../manager/Actions';
 import 'katex/dist/katex.min.css';
-import { InlineMath } from 'react-katex';
+import {BlockMath } from 'react-katex';
 import '../views-general/app.css';
 
 const mapStateToProps = (state) => {
@@ -33,7 +33,8 @@ class UnconnectedTeachingView extends React.Component{
           <div className='fullWidth'>
           <div className='center-text textMargins'>
           <h1 className="main-text-color">{this.createTitleString()}</h1>
-          <h1 className="main-text-color">Here it is:</h1><InlineMath className='inline-math'>{this.createMath()}</InlineMath>
+          <h1 className="main-text-color">Here it is:</h1>
+          <BlockMath className='block-math'>{this.createMath()}</BlockMath>
           </div>
         </div>
         );
