@@ -71,9 +71,9 @@
 .SelectedMathText{ padding: 3px 14px; background-color: rgb(228, 171, 85); color: rgb(61, 32, 6);
     border-radius: 3.5px; width: 200px; height: 30px; border:1px solid gold; box-shadow: 0 0 10px gold; }
 
-.actionButton{ /* background-color: rgb(32, 66, 168); color: rgb(201, 188, 172); */
+.createButton{ /* background-color: rgb(32, 66, 168); color: rgb(201, 188, 172); */
     /* background-color: rgb(139, 219, 199); color: rgb(61, 32, 6); */ background-color: rgb(19, 151, 59);
-    color: gold; border-radius: 7px; display: inline-block; }
+    color: gold; border-radius: 7px; display: inline-block; margin-top: 10px; }
 
 .textLink{
     color: rgb(22, 49, 131); font-size: 1.17em; margin-top: 1em; margin-bottom: 1em; margin-left: 0;

@@ -32,8 +32,8 @@ class UnconnectedCreatorView extends React.Component{
         return(
           /* will take user to teaching with these names.  Will get teaching from home first. */
           <div className='CreatorView'>
-                <h3 className='.heading-size'>{this.props.methodSignature[0]}</h3>
-                {this.createView()}<button className="actionButton creator-text-size" onClick={() => this.handleClick()}>
+                <h3 className='heading-size'>{this.props.methodSignature[0]}</h3>
+                {this.createView()}<button className="createButton creator-text-size" onClick={() => this.handleClick()}>
                 Create a {this.props.teaching.displayNameSingular}</button>
                 <ReactModal className="notNumberModal" isOpen={this.state.showModal} >
                 <br></br>

@@ -45,13 +45,10 @@ class UnconnectedTeachingView extends React.Component{
       }
 
       createTitleString(){
-        console.log('first: '+this.props.callingStrings[1]);
-        console.log('second: '+this.props.callingStrings[2]);
           var titleString='';
           titleString+="We've created a "+this.props.teaching.singularLowerCase+" with ";
           var c=2;
           var m=1;
-          console.log('1234'+this.props.callingStrings.length);
           while (m<this.props.callingStrings.length) {
             titleString+=this.props.creationStrings[c]+'='+this.props.callingStrings[m]
             c+=2;
