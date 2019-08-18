@@ -16,7 +16,10 @@ const appReducer=(state=initialState, action) => {
         /* action for getting topics for user choice */
         case 'SET_DISPLAY_TEACHING': return { ...state, displayTeaching: action.isDisplayed };
 
-        case 'CREATE_TEACHING_OBJECT': return {...state, }
+        case 'CREATE_TEACHING_OBJECT': import(`../math/${action.teachingName}`).then(teachingObj => {
+            console.log('abc123'+action.args);
+            return {...state, teachingObject: teachingObj}; }).catch(function(error) { console.log(error);
+                 return state;}); return state;
 
         case 'GET_TOPICS': return { ...state, topics: action.topics };
 

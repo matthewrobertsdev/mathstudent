@@ -1,27 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import NumberInput from './NumberInput';
-import {createTeaching, updateCreationStrings, setDisplayTeaching, updateKeyAndValue} from '../../manager/Actions';
+import {createTeaching, createTeachingObject, updateCreationStrings, setDisplayTeaching, updateKeyAndValue} from '../../manager/Actions';
 import InputValidator from '../../model/utilities/InputValidator';
 import { withRouter } from "react-router-dom";
 import '../views-general/app.css';
 import ReactModal from 'react-modal';
 /* gets the teaching for this method */
 const mapStateToProps = (state) => { return { teaching: state.teaching, topics: state.topics, inputMap: state.inputMap, 
-  callingStrings: state.callingStrings, creationStrings: state.creationStrings} };
+  callingStrings: state.callingStrings, creationStrings: state.creationStrings,
+   teachingObjectName: state.teachingObjectName} };
 /* so that the creator view can get the teaching */
 const mapDispatchToProps = (dispatch) =>  { return  { createTeaching: (methodInfo) => { 
   dispatch(createTeaching(methodInfo));  }, updateCreationStrings: (creationStrings) => { 
       dispatch(updateCreationStrings(creationStrings)); }, setDisplayTeaching: (boolean) => { 
         dispatch(setDisplayTeaching(boolean)); }, updateKeyAndValue: (key, value) => { 
-            dispatch(updateKeyAndValue(key, value)); }}; }
+            dispatch(updateKeyAndValue(key, value)); }, createTeachingObject: (teachingobjectName, args) => { console.log('abc1234');
+              dispatch(createTeachingObject(teachingobjectName, args)); }};}
 /* for creating a teaching, but not connected yet */
 class UnconnectedCreatorView extends React.Component{
     constructor(props) {
         super(props);
         /* methods strings to create view, calling strings to call method */
-        this.state={methodSignature: this.props.methodSignature, key: undefined, creationStrings: this.createCallingStrings(), 
-          gridIDs: [], showModal: false, type: 'number', showKeyboard: false}
+        this.state={methodSignature: this.props.methodSignature, key: undefined, creationStrings: 
+          this.createCallingStrings(), gridIDs: [], showModal: false, type: 'number', 
+          showKeyboard: false}
           this.props.creationStrings[0]=this.props.methodSignature[1];
           this.textHandler = this.textHandler.bind(this);
           this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -64,7 +67,7 @@ class UnconnectedCreatorView extends React.Component{
             creatorView.push(<span className='small-right-margin creator-text-size' 
             key={i} id={i}>{this.props.methodSignature[i]+': '}</span>);
           } else {
-            creatorView.push(<span key={i} id={i}><span className='medium-right-margin' creator-text-size>
+            creatorView.push(<span key={i} id={i}><span className='medium-right-margin creator-text-size'>
             {this.createNumberInput(column)}</span><br className='hide-for-big'></br>
             </span>);
             column++
@@ -137,10 +140,12 @@ class UnconnectedCreatorView extends React.Component{
   }
   }
   updateForTeaching(callingStrings){
-    const {updateCallingStrings, updateCreationStrings, setDisplayTeaching}=this.props;
+    const {createTeachingObject, updateCreationStrings, setDisplayTeaching}=this.props;
     updateCreationStrings(callingStrings);
+    createTeachingObject(this.props.teachingObjectName, callingStrings.slice(1));
     setDisplayTeaching(true);
     this.props.teachingViewRef.current.scrollIntoView();
+    console.log(callingStrings.slice());
   }
   handleOpenModal () { this.setState({ showModal: true }); }
   handleCloseModal () { this.setState({ showModal: false }); }

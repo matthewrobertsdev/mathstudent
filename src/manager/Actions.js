@@ -36,6 +36,8 @@ const _updateDisplayKeyboard = (displayKeyboard) => ({ type: 'UPDATE_DISPLAY_KEY
 
 const _setIsMobile = (isMobile) => ({ type: 'SET_IS_MOBILE', isMobile});
 
+const _createTeachingObject = (teachingName, args) => ({ type: 'CREATE_TEACHING_OBJECT', teachingName, args});
+
 /* gets all topics for now for teaching */
 export const getTopics = () => { return  (dispatch)=>{ dispatch(_getTopics(curriculum)); }; };
 
@@ -85,3 +87,6 @@ export const updateDisplayKeyboard = (isDisplayed) =>
 
 export const setIsMobile = (isMobile) => 
 { return (dispatch) => { return dispatch(_setIsMobile(isMobile)); }; }
+
+export const createTeachingObject = (teachingName, args) => 
+{ return (dispatch) => { return dispatch(_createTeachingObject(teachingName, args)); }; }

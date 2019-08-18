@@ -8,7 +8,8 @@ import {BlockMath } from 'react-katex';
 import '../views-general/app.css';
 
 const mapStateToProps = (state) => {
-  return { teaching: state.teaching, creationStrings: state.creationStrings, callingStrings: state.callingStrings } };
+  return { teaching: state.teaching, creationStrings: state.creationStrings, 
+    callingStrings: state.callingStrings, teachingObjectName: state.teachingObjectName} };
 
 const mapDispatchToProps = (dispatch) => {
   return { /* gets teaching from home of teaching */
