@@ -1,9 +1,9 @@
 import isMobile from '../utilities/IsMobile'
-import { arrowFunctionExpression } from '@babel/types';
 
 const initialState = { loaded: false, /* all topics for now */ topics: [], /* the teaching being taught */ teaching: {},
     error: {}, URL: '', inputMap: {}, activeMap: {}, activeKey: '', inputArray: [], textStrings: [], callingStrings: [],
-    creationStrings: [], teachingObject: {}, teachingObjectName: '', displayTeaching: false, displayKeyboard: false};
+    creationStrings: [], teachingObject: {}, teachingObjectName: '', displayTeaching: false, displayKeyboard: false,
+    paramaterLabels: []};
     
 const appReducer=(state=initialState, action) => {
         switch (action.type) {
@@ -52,6 +52,8 @@ const appReducer=(state=initialState, action) => {
         case 'SET_TEACHING_OBJECT_NAME':  return {...state, teachingObjectName: action.objectName};
 
         case 'SET_IS_MOBILE':  return {...state, isMobile: isMobile()};
+
+        case 'SET_PARAMETER_LABELS': return {...state, paramaterLabels: action.paramaterLabels}
 
         default: return state;
         }

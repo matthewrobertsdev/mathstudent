@@ -2,15 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom'
 import {getTeaching, setTeachingObject, clearTeaching} from  '../../manager/Actions';
-import MathQuill, { addStyles as addMathquillStyles } from 'react-mathquill';
 import 'katex/dist/katex.min.css';
 import {BlockMath } from 'react-katex';
 import '../views-general/app.css';
 
 const mapStateToProps = (state) => {
   return { teachingObject: state.teachingObject, teaching: state.teaching, creationStrings: state.creationStrings, 
-    callingStrings: state.callingStrings, teachingObjectName: state.teachingObjectName,
-    } };
+    callingStrings: state.callingStrings, teachingObjectName: state.teachingObjectName, paramaterLabels: 
+    state.paramaterLabels } };
 
 const mapDispatchToProps = (dispatch) => {
   return { /* gets teaching from home of teaching */
@@ -22,7 +21,6 @@ class UnconnectedTeachingView extends React.Component{
     constructor(props) { super(props); this.state={id: this.props.location.pathname, 
       creationStrings: this.props.creationStrings}}
       componentWillMount() {
-        console.log("efgh"+this.props.location.pathname);
         /*
         const pathArray=this.props.location.pathname.split('$');
         console.log(pathArray);
@@ -44,27 +42,26 @@ class UnconnectedTeachingView extends React.Component{
       }
 
       createMath(){
-        console.log('abc'+JSON.stringify(this.props.teachingObject));
         if(this.props.teachingObject.default){
-          console.log('katex')
           return this.props.teachingObject.default.teaching.latex();
         }
       }
 
       createTitleString(){
+        if(this.props.teachingObject.default){
           var titleString='';
-          titleString+="We've created a "+this.props.teaching.singularLowerCase+" with ";
-          var c=2;
+          titleString+="We've created a "+this.props.teachingObject.default.teaching.singularLowerCase+" with ";
+          var c=0;
           var m=1;
-          while (m<this.props.callingStrings.length) {
-            titleString+=this.props.creationStrings[c]+'='+this.props.creationStrings[m]
-            c+=2;
-            m++;
-            if (m<this.props.creationStrings.length){
+          while (c<this.props.paramaterLabels.length) {
+            titleString+=this.props.paramaterLabels[c]+'='+this.props.creationStrings[m]
+            c++; m++;
+            if (c<this.props.paramaterLabels.length){
               titleString+=', '
             }
           }
           return titleString;
+        }
       }
 }
 const TeachingView=connect(mapStateToProps, mapDispatchToProps)(withRouter((UnconnectedTeachingView)));

@@ -38,6 +38,9 @@ const _setIsMobile = (isMobile) => ({ type: 'SET_IS_MOBILE', isMobile});
 
 const _createTeachingObject = (teachingObject) => ({ type: 'CREATE_TEACHING_OBJECT', teachingObject});
 
+const _setParamaterLabels = (paramaterLabels) => ({ type: 'SET_PARAMETER_LABELS', paramaterLabels});
+
+
 /* gets all topics for now for teaching */
 export const getTopics = () => { return  (dispatch)=>{ dispatch(_getTopics(curriculum)); }; };
 
@@ -92,9 +95,10 @@ export const createTeachingObject = (teachingName, args) =>
 { return (dispatch) => {
     return import(`../model/math/${teachingName}`).then(teachingObject => {
         const firstArg=args.shift();
-        console.log('1234'+JSON.stringify(teachingObject));
         teachingObject.default.teaching[firstArg](args);
         dispatch(_createTeachingObject(teachingObject));
          }).catch(function(error) { console.log(error);
-            dispatch(_createTeachingObject(null)) }); };
-            }
+            dispatch(_createTeachingObject(null)) }); }; }
+
+export const setParamaterLabels = (labelArray) => 
+{ return (dispatch) => { return dispatch(_setParamaterLabels(labelArray)); }; }

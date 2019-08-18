@@ -25,6 +25,10 @@ class FractionTeaching extends MathTeaching{
         this.numerator=args[0];
         this.denominator=args[1];
     }
+    createFromInteger(args){
+        this.numerator=args[0];
+        this.denominator=1;
+    }
     latex=()=>{
         return `\\Huge\\color{gold}\\frac{${this.numerator}}{${this.denominator}}`;
       }

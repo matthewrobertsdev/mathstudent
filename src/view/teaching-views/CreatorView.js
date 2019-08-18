@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import NumberInput from './NumberInput';
-import {createTeaching, createTeachingObject, updateCreationStrings, setDisplayTeaching, updateKeyAndValue} from '../../manager/Actions';
+import {createTeaching, createTeachingObject, updateCreationStrings, setDisplayTeaching, 
+  setParamaterLabels, updateKeyAndValue, clearTeaching} from '../../manager/Actions';
 import InputValidator from '../../model/utilities/InputValidator';
 import { withRouter } from "react-router-dom";
 import '../views-general/app.css';
@@ -9,14 +10,17 @@ import ReactModal from 'react-modal';
 /* gets the teaching for this method */
 const mapStateToProps = (state) => { return { teaching: state.teaching, topics: state.topics, inputMap: state.inputMap, 
   callingStrings: state.callingStrings, creationStrings: state.creationStrings,
-   teachingObjectName: state.teachingObjectName} };
+   teachingObjectName: state.teachingObjectName, argumentLabels: state.argumentLabels} };
 /* so that the creator view can get the teaching */
 const mapDispatchToProps = (dispatch) =>  { return  { createTeaching: (methodInfo) => { 
   dispatch(createTeaching(methodInfo));  }, updateCreationStrings: (creationStrings) => { 
-      dispatch(updateCreationStrings(creationStrings)); }, setDisplayTeaching: (boolean) => { 
-        dispatch(setDisplayTeaching(boolean)); }, updateKeyAndValue: (key, value) => { 
-            dispatch(updateKeyAndValue(key, value)); }, createTeachingObject: (teachingobjectName, args) => { console.log('abc1234');
-              dispatch(createTeachingObject(teachingobjectName, args)); }};}
+  dispatch(updateCreationStrings(creationStrings)); }, setDisplayTeaching: (boolean) => { 
+  dispatch(setDisplayTeaching(boolean)); }, updateKeyAndValue: (key, value) => { 
+  dispatch(updateKeyAndValue(key, value)); }, createTeachingObject: (teachingobjectName, args) => {
+  dispatch(createTeachingObject(teachingobjectName, args)); }, setParamaterLabels: (argumentLabels)=>{
+  dispatch(setParamaterLabels(argumentLabels));}, clearTeaching: () => { 
+    dispatch(clearTeaching()); }};}
+
 /* for creating a teaching, but not connected yet */
 class UnconnectedCreatorView extends React.Component{
     constructor(props) {
@@ -74,6 +78,16 @@ class UnconnectedCreatorView extends React.Component{
           }
         }
         return creatorView;
+      }
+      getParamaterLabels(){
+        var paramaterLabels=[];
+        for (var i=0; i<this.props.methodSignature.length; i++){
+          if (i<2) { /* do nothing */ }
+          else if (i%2===0) {
+            paramaterLabels.push(this.props.methodSignature[i]);
+          }
+        }
+        return paramaterLabels;
       }
       createCallingStrings(){
         var callingStrings=[];
@@ -140,12 +154,14 @@ class UnconnectedCreatorView extends React.Component{
   }
   }
   updateForTeaching(callingStrings){
-    const {createTeachingObject, updateCreationStrings, setDisplayTeaching}=this.props;
+    const {createTeachingObject, updateCreationStrings, setDisplayTeaching,
+      setParamaterLabels}=this.props;
+    const paramaterLabels=this.getParamaterLabels();
+    setParamaterLabels(paramaterLabels);
     updateCreationStrings(callingStrings);
     createTeachingObject(this.props.teachingObjectName, callingStrings.slice());
     setDisplayTeaching(true);
     this.props.teachingViewRef.current.scrollIntoView();
-    console.log(callingStrings.slice());
   }
   handleOpenModal () { this.setState({ showModal: true }); }
   handleCloseModal () { this.setState({ showModal: false }); }
