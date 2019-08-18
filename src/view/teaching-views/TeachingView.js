@@ -6,7 +6,7 @@ import MathQuill, { addStyles as addMathquillStyles } from 'react-mathquill';
 import 'katex/dist/katex.min.css';
 import {BlockMath } from 'react-katex';
 import '../views-general/app.css';
-addMathquillStyles();
+
 const mapStateToProps = (state) => {
   return { teaching: state.teaching, creationStrings: state.creationStrings, callingStrings: state.callingStrings } };
 
@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
 
 class UnconnectedTeachingView extends React.Component{
     constructor(props) { super(props); this.state={id: this.props.location.pathname, 
-      callingStrings: this.props.location, latex: this.createMath()}}
+      callingStrings: this.props.location}}
       componentWillMount() {
         console.log("efgh"+this.props.location.pathname);
         /*
@@ -28,7 +28,6 @@ class UnconnectedTeachingView extends React.Component{
         console.log(pathStartArray[pathStartArray.length-2]);
         document.title="A "+pathStartArray[pathStartArray.length-2]
         */
-       this.mathQuillEl=null
       }
       render() {
         return(
@@ -36,13 +35,7 @@ class UnconnectedTeachingView extends React.Component{
           <div className='center-text textMargins'>
           <h1 className="main-text-color">{this.createTitleString()}</h1>
           <h1 className="main-text-color">Here it is:</h1>
-          <MathQuill /*className='block-math'*/ className="mathquill-field" 
-          latex={this.state.latex} onChange={mathField => {
-            const latex = mathField.latex();
-            const text = mathField.text();
-            this.setState({latex: latex, text: text, index: this.state.index});
-          }}
-            mathquillDidMount={el => { this.mathQuillEl = el; this.mathQuillEl.latex(this.createMath())}}></MathQuill>
+          <BlockMath className='block-math'>{this.createMath()}</BlockMath>
           </div>
         </div>
         );

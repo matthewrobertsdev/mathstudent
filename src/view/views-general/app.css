@@ -109,7 +109,7 @@
 .largeRectangle { color: gold; width: 336; height: 280; /* background-color: rgb(110, 60, 14); */
     background-color: rgb(22, 49, 131); display: inline-block; }
 
-.block-math { color: gold; }
+.block-math { width: 200px; height: 200px; }
 
 .display-keyboard { transform: translateY(0px); }
 
