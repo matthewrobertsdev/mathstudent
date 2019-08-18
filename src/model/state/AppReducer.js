@@ -16,6 +16,8 @@ const appReducer=(state=initialState, action) => {
         /* action for getting topics for user choice */
         case 'SET_DISPLAY_TEACHING': return { ...state, displayTeaching: action.isDisplayed };
 
+        case 'CREATE_TEACHING_OBJECT': return {...state, }
+
         case 'GET_TOPICS': return { ...state, topics: action.topics };
 
         case 'GET_TEACHING': return { ...state, teaching: action.teachingObject };
@@ -28,11 +30,11 @@ const appReducer=(state=initialState, action) => {
 
         case 'UPDATE_ACTIVE_KEY': return { ...state, activeKey: action.key };
 
-        case 'UPDATE_CALLING_STRINGS': console.log('updated calling strings'); return { ...state, callingStrings: action.callingStrings.slice() };
+        case 'UPDATE_CALLING_STRINGS': console.log('updated calling strings'); return { ...state, callingStrings: action.callingStrings };
 
         case 'UPDATE_DISPLAY_KEYBOARD': console.log('update display keyboard'); return { ...state, displayKeyboard: action.displayKeyboard };
 
-        case 'UPDATE_CREATION_STRINGS': return { ...state, creationStrings: action.creationStrings };
+        case 'UPDATE_CREATION_STRINGS': return { ...state, creationStrings: action.creationStrings.slice() };
 
         case 'SET_TEACHING_OBJECT': import(`../math${action.objectName}`).then(teachingObj => {
                 console.log('abcd'+JSON.stringify(teachingObj));

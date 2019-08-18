@@ -8,6 +8,6 @@ class Fraction extends MathTeachingObject{
         this.numerator=numerator; this.denominator=denominator; }
     fromNumerator(numerator){
         this.numerator=numerator; this.denominator=1; }
-    toLatex(){ return '\\frac{'+this.numerator+'}{'+this.denominator+'}'; }
+    toLatex() { return `\\Huge\\color{gold}\\frac{${this.numerator}}{${this.denominator}}`;
 }
 export default Fraction;

@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
 
 class UnconnectedTeachingView extends React.Component{
     constructor(props) { super(props); this.state={id: this.props.location.pathname, 
-      callingStrings: this.props.location}}
+      creationStrings: this.props.creationStrings}}
       componentWillMount() {
         console.log("efgh"+this.props.location.pathname);
         /*
@@ -42,7 +42,7 @@ class UnconnectedTeachingView extends React.Component{
       }
 
       createMath(){
-        return `\\Huge\\color{gold}\\frac{${this.props.callingStrings[1]}}{${this.props.callingStrings[2]}}`;
+        return `\\Huge\\color{gold}\\frac{${this.props.creationStrings[1]}}{${this.props.creationStrings[2]}}`;
       }
 
       createTitleString(){
@@ -51,10 +51,10 @@ class UnconnectedTeachingView extends React.Component{
           var c=2;
           var m=1;
           while (m<this.props.callingStrings.length) {
-            titleString+=this.props.creationStrings[c]+'='+this.props.callingStrings[m]
+            titleString+=this.props.creationStrings[c]+'='+this.props.creationStrings[m]
             c+=2;
             m++;
-            if (m<this.props.callingStrings.length){
+            if (m<this.props.creationStrings.length){
               titleString+=', '
             }
           }
