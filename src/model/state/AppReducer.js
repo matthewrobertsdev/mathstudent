@@ -17,7 +17,6 @@ const appReducer=(state=initialState, action) => {
         case 'SET_DISPLAY_TEACHING': return { ...state, displayTeaching: action.isDisplayed };
 
         case 'CREATE_TEACHING_OBJECT': import(`../math/${action.teachingName}`).then(teachingObj => {
-            console.log('abc123'+action.args);
             return {...state, teachingObject: teachingObj}; }).catch(function(error) { console.log(error);
                  return state;}); return state;
 
@@ -44,7 +43,7 @@ const appReducer=(state=initialState, action) => {
                 return {...state, teachingObject: teachingObj}; }).catch(function(error) { console.log(error);
                      return state;}); return state;
 
-        case 'SET_TEACHING_OBJECT_NAME':  return {...state, teachingObjectName: action.teachingObjectName};
+        case 'SET_TEACHING_OBJECT_NAME':  return {...state, teachingObjectName: action.objectName};
 
         case 'SET_IS_MOBILE':  return {...state, isMobile: isMobile()};
 
