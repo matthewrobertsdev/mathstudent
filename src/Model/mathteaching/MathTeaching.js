@@ -12,5 +12,9 @@ class MathTeaching{
         this.onlyFractions=false;
         this.teachingArray=[];
     }
+
+    latex=()=>{
+        return '';
+    }
 }
 export default MathTeaching;

@@ -8,8 +8,9 @@ import {BlockMath } from 'react-katex';
 import '../views-general/app.css';
 
 const mapStateToProps = (state) => {
-  return { teaching: state.teaching, creationStrings: state.creationStrings, 
-    callingStrings: state.callingStrings, teachingObjectName: state.teachingObjectName} };
+  return { teachingObject: state.teachingObject, teaching: state.teaching, creationStrings: state.creationStrings, 
+    callingStrings: state.callingStrings, teachingObjectName: state.teachingObjectName,
+    } };
 
 const mapDispatchToProps = (dispatch) => {
   return { /* gets teaching from home of teaching */
@@ -43,7 +44,11 @@ class UnconnectedTeachingView extends React.Component{
       }
 
       createMath(){
-        return `\\Huge\\color{gold}\\frac{${this.props.creationStrings[1]}}{${this.props.creationStrings[2]}}`;
+        console.log('abc'+JSON.stringify(this.props.teachingObject));
+        if(this.props.teachingObject.default){
+          console.log('katex')
+          return this.props.teachingObject.default.teaching.latex();
+        }
       }
 
       createTitleString(){

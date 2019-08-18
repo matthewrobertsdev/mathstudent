@@ -18,6 +18,15 @@ class FractionTeaching extends MathTeaching{
         const DECIMAL=['Create a fraction from a decimal', 'createFromDevcimal', 'decimal', 'decimal'];
         this.creationMethodSignatures.push(NUMERATOR_AND_DENOMINATOR, INTEGER, DECIMAL);
 
+        this.numerator='';
+        this.denominator='';
     }
+    createFromNumAndDenom(args){
+        this.numerator=args[0];
+        this.denominator=args[1];
+    }
+    latex=()=>{
+        return `\\Huge\\color{gold}\\frac{${this.numerator}}{${this.denominator}}`;
+      }
 }
 export default FractionTeaching;

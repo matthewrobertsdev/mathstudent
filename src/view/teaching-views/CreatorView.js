@@ -106,7 +106,7 @@ class UnconnectedCreatorView extends React.Component{
       }
       getCallingStrings(){
         var callingStrings=[];
-        callingStrings.push(this.props.methodSignature[0]);
+        callingStrings.push(this.props.methodSignature[1]);
         for (var i=0; i<this.props.methodSignature.length/2-1; i++){
           callingStrings.push(this.props.inputMap[this.state.gridIDs[i]]);
         };
@@ -142,7 +142,7 @@ class UnconnectedCreatorView extends React.Component{
   updateForTeaching(callingStrings){
     const {createTeachingObject, updateCreationStrings, setDisplayTeaching}=this.props;
     updateCreationStrings(callingStrings);
-    createTeachingObject(this.props.teachingObjectName, callingStrings.slice(1));
+    createTeachingObject(this.props.teachingObjectName, callingStrings.slice());
     setDisplayTeaching(true);
     this.props.teachingViewRef.current.scrollIntoView();
     console.log(callingStrings.slice());

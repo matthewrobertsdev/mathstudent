@@ -36,7 +36,7 @@ const _updateDisplayKeyboard = (displayKeyboard) => ({ type: 'UPDATE_DISPLAY_KEY
 
 const _setIsMobile = (isMobile) => ({ type: 'SET_IS_MOBILE', isMobile});
 
-const _createTeachingObject = (teachingName, args) => ({ type: 'CREATE_TEACHING_OBJECT', teachingName, args});
+const _createTeachingObject = (teachingObject) => ({ type: 'CREATE_TEACHING_OBJECT', teachingObject});
 
 /* gets all topics for now for teaching */
 export const getTopics = () => { return  (dispatch)=>{ dispatch(_getTopics(curriculum)); }; };
@@ -89,4 +89,12 @@ export const setIsMobile = (isMobile) =>
 { return (dispatch) => { return dispatch(_setIsMobile(isMobile)); }; }
 
 export const createTeachingObject = (teachingName, args) => 
-{ return (dispatch) => { return dispatch(_createTeachingObject(teachingName, args)); }; }
+{ return (dispatch) => {
+    return import(`../model/math/${teachingName}`).then(teachingObject => {
+        const firstArg=args.shift();
+        console.log('1234'+JSON.stringify(teachingObject));
+        teachingObject.default.teaching[firstArg](args);
+        dispatch(_createTeachingObject(teachingObject));
+         }).catch(function(error) { console.log(error);
+            dispatch(_createTeachingObject(null)) }); };
+            }

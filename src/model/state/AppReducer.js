@@ -1,4 +1,5 @@
 import isMobile from '../utilities/IsMobile'
+import { arrowFunctionExpression } from '@babel/types';
 
 const initialState = { loaded: false, /* all topics for now */ topics: [], /* the teaching being taught */ teaching: {},
     error: {}, URL: '', inputMap: {}, activeMap: {}, activeKey: '', inputArray: [], textStrings: [], callingStrings: [],
@@ -16,9 +17,14 @@ const appReducer=(state=initialState, action) => {
         /* action for getting topics for user choice */
         case 'SET_DISPLAY_TEACHING': return { ...state, displayTeaching: action.isDisplayed };
 
-        case 'CREATE_TEACHING_OBJECT': import(`../math/${action.teachingName}`).then(teachingObj => {
-            return {...state, teachingObject: teachingObj}; }).catch(function(error) { console.log(error);
-                 return state;}); return state;
+        case 'CREATE_TEACHING_OBJECT': //import(`../math/${action.teachingName}`).then(teachingObject => {
+            //const firstArg=action.args.shift();
+            //console.log('1234'+JSON.stringify(teachingObject));
+            //teachingObject.default.teaching[firstArg](action.args);
+            const newTeachingObject={};
+            Object.assign(newTeachingObject, action.teachingObject)
+            return {...state, teachingObject: newTeachingObject}; //}).catch(function(error) { console.log(error);
+                 //return state;});
 
         case 'GET_TOPICS': return { ...state, topics: action.topics };
 
