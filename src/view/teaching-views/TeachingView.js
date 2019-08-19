@@ -39,7 +39,7 @@ class UnconnectedTeachingView extends React.Component{
           <h1 className="main-text-color">Here it is:</h1>
           <BlockMath className='block-math'>{this.createMath()}</BlockMath>
           </div>
-          {this.createMainTeaching()}
+          {this.createTeaching()}
         </div>
         );
       }
@@ -49,7 +49,7 @@ class UnconnectedTeachingView extends React.Component{
           titleString+="We've created a "+this.props.teachingObject.default.teaching.singularLowerCase+" with ";
           var c=0; var m=1;
           while (c<this.props.paramaterLabels.length) {
-            titleString+=this.props.paramaterLabels[c]+'='+this.props.creationStrings[m]
+            titleString+=this.props.paramaterLabels[c]+': '+this.props.creationStrings[m]
             c++; m++;
             if (c<this.props.paramaterLabels.length){
               titleString+=', '
@@ -63,7 +63,7 @@ class UnconnectedTeachingView extends React.Component{
           return this.props.teachingObject.default.teaching.latex();
         }
       }
-      createMainTeaching(){
+      createTeaching(){
         console.log('soon to teach');
         if(this.props.teachingObject.default){
           console.log('teaching now');
