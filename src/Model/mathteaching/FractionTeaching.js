@@ -1,6 +1,5 @@
 import MathTeaching from './MathTeaching';
 import AboutFraction from './aboutsections/AboutFraction';
-import {preparedTeaching} from  '../../manager/Actions';
 class FractionTeaching extends MathTeaching{
     constructor(){
         super();
@@ -36,9 +35,11 @@ class FractionTeaching extends MathTeaching{
         if (this.denominator==='0'&&this.numerator==='0'){
             this.main.push('You cannot tell what the value of ')
             this.main.push(`{L}\\Large`+this.basicLatex());
-            this.main.push(' because the numerator is divided by the denominator and'+
-            'this asks you to find the value that the denominator, 0, is multiplied by to get '+
-            "0 which could be any number because 0 multiplied by any number is 0.");
+            this.main.push(' because the numerator is divided by the denominator and '+
+            'this asks you to find what number times 0 gives you 0, '+
+            "which could be any number because 0 multiplied by any number is 0.  It is called ");
+            this.main.push(`{L}\\Large`+this.basicLatex());
+            this.main.push(' indterminate if other information can not be used to dtermine its value.')
         }
         else if(this.denominator==='0'){
             this.main.push(`{L}\\Large`+this.basicLatex());
