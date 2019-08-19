@@ -6,7 +6,7 @@ const _getTeaching = (teachingObject) => ({ type: 'GET_TEACHING', teachingObject
 
 const _createTeaching = (teaching) => ({ type: 'CREATE_TEACHING', teaching });
 
-const _clearTeaching = (teaching) => ({ type: 'CLEAR_TEACHING', teaching });
+const _clearTeaching = (teaching) => ({ type: 'CLEAR_TEACHING_OBJECT' });
 
 const _updateURL = (URLpathname) => ({ type: 'UPDATE_URL', URLpathname });
 
@@ -39,8 +39,6 @@ const _setIsMobile = (isMobile) => ({ type: 'SET_IS_MOBILE', isMobile});
 const _createTeachingObject = (teachingObject) => ({ type: 'CREATE_TEACHING_OBJECT', teachingObject});
 
 const _setParamaterLabels = (paramaterLabels) => ({ type: 'SET_PARAMETER_LABELS', paramaterLabels});
-
-const _preparedTeaching = () => ({ type: 'PREPARED_TEACHING'});
 
 /* gets all topics for now for teaching */
 export const getTopics = () => { return  (dispatch)=>{ dispatch(_getTopics(curriculum)); }; };
@@ -103,6 +101,3 @@ export const createTeachingObject = (teachingName, args) =>
 
 export const setParamaterLabels = (labelArray) => 
 { return (dispatch) => { return dispatch(_setParamaterLabels(labelArray)); }; }
-
-export const preparedTeaching = () => 
-{ return (dispatch) => { return dispatch(_preparedTeaching()); }; }

@@ -32,6 +32,8 @@ const appReducer=(state=initialState, action) => {
         
         case 'CLEAR_TEACHING': return { ...state, teaching: action.teaching };
 
+        case 'CLEAR_TEACHING_OBJECT': return { ...state, teachingObject: {} };
+
         case 'UPDATE_URL': return { ...state, URLpathname: action.URLpathname };
 
         case 'UPDATE_KEY_AND_VALUE': return { ...state, inputMap: {...state.inputMap, [action.key]: action.value} };
@@ -55,7 +57,6 @@ const appReducer=(state=initialState, action) => {
 
         case 'SET_PARAMETER_LABELS': return {...state, paramaterLabels: action.paramaterLabels};
 
-        case 'PREPARED_TEACHING': return {...state, teachingObject: state.teachingObject.slice()};
         default: return state;
         }
 };

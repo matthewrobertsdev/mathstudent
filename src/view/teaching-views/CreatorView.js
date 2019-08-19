@@ -19,7 +19,8 @@ const mapDispatchToProps = (dispatch) =>  { return  { createTeaching: (methodInf
   dispatch(updateKeyAndValue(key, value)); }, createTeachingObject: (teachingobjectName, args) => {
   dispatch(createTeachingObject(teachingobjectName, args)); }, setParamaterLabels: (argumentLabels)=>{
   dispatch(setParamaterLabels(argumentLabels));}, clearTeaching: () => { 
-    dispatch(clearTeaching()); }};}
+    dispatch(clearTeaching());}, clearTeaching: ()=>{
+      dispatch(clearTeaching());}};}
 
 /* for creating a teaching, but not connected yet */
 class UnconnectedCreatorView extends React.Component{
@@ -155,10 +156,11 @@ class UnconnectedCreatorView extends React.Component{
   }
   updateForTeaching(callingStrings){
     const {createTeachingObject, updateCreationStrings, setDisplayTeaching,
-      setParamaterLabels}=this.props;
+      setParamaterLabels, clearTeaching}=this.props;
     const paramaterLabels=this.getParamaterLabels();
     setParamaterLabels(paramaterLabels);
     updateCreationStrings(callingStrings);
+    clearTeaching()
     createTeachingObject(this.props.teachingObjectName, callingStrings.slice());
     setDisplayTeaching(true);
     this.props.teachingViewRef.current.scrollIntoView();
