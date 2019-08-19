@@ -45,8 +45,9 @@ export const getTopics = () => { return  (dispatch)=>{ dispatch(_getTopics(curri
 
 export const getTeaching = (teachingName) => {
    return (dispatch) => {
-    return import(`../model/math/${teachingName}`).then(teachingObj => {
-        dispatch(_getTeaching(teachingObj.default.teaching));
+    return import(`../model/mathteaching/${teachingName}`).then(teaching => {
+        console.log(teaching.default)
+        dispatch(_getTeaching(teaching.default));
     }).catch(function(error) { console.log(error); }); };
 };
 export const createTeaching = (methodInfo) => { return (dispatch) => { return dispatch(_createTeaching(methodInfo)); }; };

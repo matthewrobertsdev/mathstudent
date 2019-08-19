@@ -41,10 +41,19 @@ activeInput='';
   render() {
     return (
       <div className='fullWidth'>
+        {this.createView()}
+      </div>
+    );
+  }
+
+  createView(){
+    if (this.props.teaching){
+      return (
+      <div>
         <div className='center-text textMargins'>
         {this.createAD()}
         {/* About section */}
-        <h1 className="main-text-color">About {this.props.teaching.displayNamePlural}</h1>
+        <h1 className="main-text-color">{/*console.log(this.props.teaching.default)*/}About {this.props.teaching.displayNamePlural}</h1>
         {this.createAboutSection()}
         {this.createAD()}
         {/* Display TeachingView if an object has been created */}
@@ -60,8 +69,11 @@ activeInput='';
         {/* On mobile, display keyboard */}
         {this.addKeyboardForMobile()}
       </div>
-    );
+      );
+    }
   }
+
+
   createAboutSection(){
       return (<div>
         <AboutSection/>

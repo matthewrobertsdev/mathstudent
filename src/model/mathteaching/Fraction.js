@@ -55,7 +55,7 @@ class FractionTeaching extends MathTeaching{
       }
 }
 
-export default FractionTeaching;
+export default new FractionTeaching();
 
 /*
 if (this.denominator==='0'&&this.numerator==='0'){

@@ -21,4 +21,4 @@ class LineIn2DTeaching extends MathTeaching{
 
     }
 }
-export default LineIn2DTeaching;
+export default new LineIn2DTeaching();
