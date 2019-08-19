@@ -30,21 +30,24 @@ class FractionTeaching extends MathTeaching{
       basicLatex(){
         return `\\frac{${this.numerator}}{${this.denominator}}`
       }
+      inlineLatex(){
+          return `{L}\\Large`+this.basicLatex();
+      }
     teach(){
         this.main=[];
         if (this.denominator==='0'&&this.numerator==='0'){
             this.main.push('You cannot tell what the value of ')
-            this.main.push(`{L}\\Large`+this.basicLatex());
+            this.main.push(this.inlineLatex());
             this.main.push(' because the numerator is divided by the denominator and '+
             'this asks you to find what number times 0 gives you 0, '+
             "which could be any number because 0 multiplied by any number is 0.  It is called ");
-            this.main.push(`{L}\\Large`+this.basicLatex());
+            this.main.push(this.inlineLatex());
             this.main.push(' indterminate if other information can not be used to dtermine its value.')
         }
         else if(this.denominator==='0'){
-            this.main.push(`{L}\\Large`+this.basicLatex());
+            this.main.push(this.inlineLatex());
             this.main.push(' is not a number becuase ')
-            this.main.push(`{L}\\Large`+this.basicLatex());
+            this.main.push(this.inlineLatex());
             this.main.push('is asking you what number times 0 gives you '+this.numerator+' and no number can be multiplied by 0 to get'+
             ' any number other than 0.');
         }
