@@ -9,8 +9,8 @@ import '../views-general/app.css';
 
 
 const mapStateToProps = (state) => {
-  return { teachingObject: state.teachingObject, teaching: state.teaching, creationStrings: state.creationStrings, 
-    callingStrings: state.callingStrings, teachingObjectName: state.teachingObjectName, paramaterLabels: 
+  return { teaching: state.teaching, creationStrings: state.creationStrings, 
+    callingStrings: state.callingStrings, paramaterLabels: 
     state.paramaterLabels } };
 
 const mapDispatchToProps = (dispatch) => {
@@ -44,9 +44,9 @@ class UnconnectedTeachingView extends React.Component{
         );
       }
       createTitleString(){
-        if(this.props.teachingObject.default){
+        if(this.props.teaching){
           var titleString='';
-          titleString+="We've created a "+this.props.teachingObject.default.teaching.singularLowerCase+" with ";
+          titleString+="We've created a "+this.props.teaching.singularLowerCase+" with ";
           var c=0; var m=1;
           while (c<this.props.paramaterLabels.length) {
             titleString+=this.props.paramaterLabels[c]+': '+this.props.creationStrings[m]
@@ -59,30 +59,30 @@ class UnconnectedTeachingView extends React.Component{
         }
       }
       createMath(){
-        if(this.props.teachingObject.default){
-          return this.props.teachingObject.default.teaching.latex();
+        if(this.props.teaching){
+          return this.props.teaching.latex();
         }
       }
       createTeaching(){
         console.log('soon to teach');
-        if(this.props.teachingObject.default){
+        if(this.props.teaching){
           console.log('teaching now');
           var mainTeaching=[];
-          for (var i=0; i<this.props.teachingObject.default.teaching.main.length; i++){
-            if ( typeof this.props.teachingObject.default.teaching.main[i]==='string'){
-              if (this.props.teachingObject.default.teaching.main[i]==='\n\n'){
+          for (var i=0; i<this.props.teaching.main.length; i++){
+            if ( typeof this.props.teaching.main[i]==='string'){
+              if (this.props.teaching.main[i]==='\n\n'){
                 mainTeaching.push(<div key={i} ><br></br></div>);
-              } else if (this.props.teachingObject.default.teaching.main[i].startsWith('{H}')){
-                mainTeaching.push(<h1 className="main-text-color">{this.props.teachingObject.default.teaching.main[i].slice(3)}</h1>);
-              } else if (this.props.teachingObject.default.teaching.main[i].startsWith('{L}')) {
-                mainTeaching.push(<InlineMath className='inline-math'>{this.props.teachingObject.default.teaching.main[i].slice(3)}</InlineMath>);
+              } else if (this.props.teaching.main[i].startsWith('{H}')){
+                mainTeaching.push(<h1 className="main-text-color">{this.props.teaching.main[i].slice(3)}</h1>);
+              } else if (this.props.teaching.main[i].startsWith('{L}')) {
+                mainTeaching.push(<InlineMath className='inline-math'>{this.props.teaching.main[i].slice(3)}</InlineMath>);
               }
               else{
-                mainTeaching.push(<span key={i} className="Heading">{this.props.teachingObject.default.teaching.main[i]}</span>);
+                mainTeaching.push(<span key={i} className="Heading">{this.props.teaching.main[i]}</span>);
               }
             } else {
-              mainTeaching.push(<TeachingLink key={i} displayName={this.props.teachingObject.default.teaching.main[i].displayName}
-                        codeName={this.props.teachingObject.default.teaching.main[i].codeName}></TeachingLink>);
+              mainTeaching.push(<TeachingLink key={i} displayName={this.props.teaching.main[i].displayName}
+                        codeName={this.props.teaching.main[i].codeName}></TeachingLink>);
             }
           }
           return mainTeaching;
