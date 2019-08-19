@@ -114,3 +114,5 @@
 .display-keyboard { transform: translateY(0px); }
 
 .hide-keyboard { transform: translateY(250px);}
+
+.mobile-input-size {font-size: 1.00em}

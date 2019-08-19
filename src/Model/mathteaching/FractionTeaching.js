@@ -40,9 +40,9 @@ class FractionTeaching extends MathTeaching{
             this.main.push(this.inlineLatex());
             this.main.push(' because the numerator is divided by the denominator and '+
             'this asks you to find what number times 0 gives you 0, '+
-            "which could be any number because 0 multiplied by any number is 0.  It is called ");
+            "which could be any number because 0 multiplied by any number is 0.  ");
             this.main.push(this.inlineLatex());
-            this.main.push(' indterminate if other information can not be used to dtermine its value.')
+            this.main.push(' is called indeterminate if other information can not be used to determine its value.')
         }
         else if(this.denominator==='0'){
             this.main.push(this.inlineLatex());
