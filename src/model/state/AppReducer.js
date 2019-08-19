@@ -53,8 +53,9 @@ const appReducer=(state=initialState, action) => {
 
         case 'SET_IS_MOBILE':  return {...state, isMobile: isMobile()};
 
-        case 'SET_PARAMETER_LABELS': return {...state, paramaterLabels: action.paramaterLabels}
+        case 'SET_PARAMETER_LABELS': return {...state, paramaterLabels: action.paramaterLabels};
 
+        case 'PREPARED_TEACHING': return {...state, teachingObject: state.teachingObject.slice()};
         default: return state;
         }
 };

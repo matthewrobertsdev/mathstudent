@@ -1,5 +1,6 @@
 import MathTeaching from './MathTeaching';
 import AboutFraction from './aboutsections/AboutFraction';
+import {preparedTeaching} from  '../../manager/Actions';
 class FractionTeaching extends MathTeaching{
     constructor(){
         super();
@@ -20,17 +21,44 @@ class FractionTeaching extends MathTeaching{
 
         this.numerator='';
         this.denominator='';
+        this.main=[];
     }
-    createFromNumAndDenom(args){
-        this.numerator=args[0];
-        this.denominator=args[1];
-    }
-    createFromInteger(args){
-        this.numerator=args[0];
-        this.denominator=1;
-    }
+    createFromNumAndDenom(args){ this.numerator=args[0]; this.denominator=args[1]; this.teach();}
+    createFromInteger(args){ this.numerator=args[0]; this.denominator=1; this.teach();}
     latex=()=>{
-        return `\\Huge\\color{gold}\\frac{${this.numerator}}{${this.denominator}}`;
+            return `\\Huge\\color{gold}`+this.basicLatex();
+      }
+      basicLatex(){
+        return `\\frac{${this.numerator}}{${this.denominator}}`
+      }
+    teach(){
+        this.main=[];
+        if (this.denominator==='0'&&this.numerator==='0'){
+            this.main.push('You cannot tell what the value of ')
+            this.main.push(`{L}\\Large`+this.basicLatex());
+            this.main.push(' because the numerator is divided by the denominator and'+
+            'this asks you to find the value that the denominator, 0, is multiplied by to get '+
+            "0 which could be any number because 0 multiplied by any number is 0.");
+        }
+        else if(this.denominator==='0'){
+            this.main.push(`{L}\\Large`+this.basicLatex());
+            this.main.push(' is not a number becuase ')
+            this.main.push(`{L}\\Large`+this.basicLatex());
+            this.main.push('is asking you what number times 0 gives you '+this.numerator+' and no number can be multiplied by 0 to get'+
+            ' any number other than 0.');
+        }
       }
 }
+
 export default FractionTeaching;
+
+/*
+if (this.denominator==='0'&&this.numerator==='0'){
+            fractionString+=`~ is ~ indeterminate`;
+        }
+        else if(this.denominator==='0'){
+            fractionString+=`~ is ~ not ~ a ~ number`;
+        }
+        return fractionString;
+      }
+*/

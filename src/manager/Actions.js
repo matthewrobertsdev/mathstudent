@@ -40,6 +40,7 @@ const _createTeachingObject = (teachingObject) => ({ type: 'CREATE_TEACHING_OBJE
 
 const _setParamaterLabels = (paramaterLabels) => ({ type: 'SET_PARAMETER_LABELS', paramaterLabels});
 
+const _preparedTeaching = () => ({ type: 'PREPARED_TEACHING'});
 
 /* gets all topics for now for teaching */
 export const getTopics = () => { return  (dispatch)=>{ dispatch(_getTopics(curriculum)); }; };
@@ -102,3 +103,6 @@ export const createTeachingObject = (teachingName, args) =>
 
 export const setParamaterLabels = (labelArray) => 
 { return (dispatch) => { return dispatch(_setParamaterLabels(labelArray)); }; }
+
+export const preparedTeaching = () => 
+{ return (dispatch) => { return dispatch(_preparedTeaching()); }; }

@@ -24,7 +24,6 @@ class UnconnectedCreateView extends React.Component {
   const { match: { params } } = this.props;
     const { clearTeaching, setTeachingObjectName, getTeaching} = this.props;
     clearTeaching(); setTeachingObjectName(params.teachingName);
-    console.log(params.teachingName);
     getTeaching(params.teachingName);
     updateURL();
     document.title="Create a "+params.teachingName;
