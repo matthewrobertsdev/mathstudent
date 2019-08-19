@@ -31,7 +31,7 @@ class FractionTeaching extends MathTeaching{
         return `\\frac{${this.numerator}}{${this.denominator}}`
       }
       inlineLatex(){
-          return `{L}\\Large`+this.basicLatex();
+          return `{L}\\Large\\color{gold}`+this.basicLatex();
       }
     teach(){
         this.main=[];
@@ -51,6 +51,7 @@ class FractionTeaching extends MathTeaching{
             this.main.push('is asking you what number times 0 gives you '+this.numerator+' and no number can be multiplied by 0 to get'+
             ' any number other than 0.');
         }
+        this.main.push('{H}Get simplest form:');
       }
 }
 
