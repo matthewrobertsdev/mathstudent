@@ -1,9 +1,9 @@
 import MathTeacher from './MathTeacher';
 import AboutFraction from './mathteachings/aboutsections/AboutFraction';
-//import FractionTeaching from '../mathteachings/FractionTeaching';
+import FractionTeaching from './mathteachings/FractionTeaching';
 class FractionTeacher extends MathTeacher{
 
-    //teaching=new FractionTeaching();
+    teaching=FractionTeaching;
 
     constructor(){
         super();
@@ -12,10 +12,11 @@ class FractionTeacher extends MathTeacher{
         this.about=new AboutFraction().about
         this.anyNumbers=true;
         this.onlyFractions=false;
-        //this.creationMethodSignatures=this.teaching.creationMethodSignatures
+        this.creationMethodSignatures=this.teaching.creationMethodSignatures
         this.numerator='';
         this.denominator='';
         this.main=[];
+        /*
         this.objectName="Fraction";
         this.displayNameSingular="Fraction";
         this.singularLowerCase="fraction";
@@ -26,6 +27,7 @@ class FractionTeacher extends MathTeacher{
         const INTEGER=['Create a fraction from an integer', 'createFromInteger', 'integer', 'integer'];
         const DECIMAL=['Create a fraction from a decimal', 'createFromDevcimal', 'decimal', 'decimal'];
         this.creationMethodSignatures.push(NUMERATOR_AND_DENOMINATOR, INTEGER, DECIMAL);
+        */
     }
     createFromNumAndDenom(args){ this.numerator=args[0]; this.denominator=args[1]; this.teach();}
     createFromInteger(args){ this.numerator=args[0]; this.denominator=1; this.teach();}

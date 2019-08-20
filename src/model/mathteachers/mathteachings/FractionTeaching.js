@@ -8,6 +8,7 @@ class FractionTeaching extends MathTeaching{
         this.singularLowerCase="fraction";
         this.displayNamePlural="Fractions";
         this.pluralLowerCase="fractions";
+        this.creationMethodSignatures=[];
         const NUMERATOR_AND_DENOMINATOR=['Create a fraction with a numerator and a denominator', 'createFromNumAndDenom', 
         'numerator', 'integer', 'denominator', 'integer'];
         const INTEGER=['Create a fraction from an integer', 'createFromInteger', 'integer', 'integer'];

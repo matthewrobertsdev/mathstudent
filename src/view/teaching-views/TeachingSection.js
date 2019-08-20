@@ -73,9 +73,9 @@ class UnconnectedTeachingView extends React.Component{
               if (this.props.teaching.main[i]==='\n\n'){
                 mainTeaching.push(<div key={i} ><br></br></div>);
               } else if (this.props.teaching.main[i].startsWith('{H}')){
-                mainTeaching.push(<h1 className="main-text-color">{this.props.teaching.main[i].slice(3)}</h1>);
+                mainTeaching.push(<h1 key={i} className="main-text-color">{this.props.teaching.main[i].slice(3)}</h1>);
               } else if (this.props.teaching.main[i].startsWith('{L}')) {
-                mainTeaching.push(<InlineMath className='inline-math'>{this.props.teaching.main[i].slice(3)}</InlineMath>);
+                mainTeaching.push(<InlineMath key={i} className='inline-math'>{this.props.teaching.main[i].slice(3)}</InlineMath>);
               }
               else{
                 mainTeaching.push(<span key={i} className="Heading">{this.props.teaching.main[i]}</span>);

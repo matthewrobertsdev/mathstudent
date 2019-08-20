@@ -19,8 +19,7 @@ const mapDispatchToProps = (dispatch) =>  { return  { createTeaching: (methodInf
   dispatch(updateKeyAndValue(key, value)); }, createTeachingObject: (teachingobjectName, args) => {
   dispatch(createTeachingObject(teachingobjectName, args)); }, setParamaterLabels: (argumentLabels)=>{
   dispatch(setParamaterLabels(argumentLabels));}, clearTeaching: () => { 
-    dispatch(clearTeaching());}, clearTeaching: ()=>{
-      dispatch(clearTeaching());}};}
+    dispatch(clearTeaching());}, };}
 
 /* for creating a teaching, but not connected yet */
 class UnconnectedCreatorView extends React.Component{
