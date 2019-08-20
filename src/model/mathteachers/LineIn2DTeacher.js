@@ -1,6 +1,6 @@
-import MathTeaching from './MathTeaching';
-import AboutLineIn2D from '../mathteaching/aboutsections/AboutLineIn2D'
-class LineIn2DTeaching extends MathTeaching{
+import MathTeacher from './MathTeacher';
+import AboutLineIn2D from '../mathteachings/aboutsections/AboutLineIn2D'
+class LineIn2DTeacher extends MathTeacher{
     constructor(){
         super();
         this.objectName="LineIn2D";
@@ -21,4 +21,4 @@ class LineIn2DTeaching extends MathTeaching{
 
     }
 }
-export default new LineIn2DTeaching();
+export default new LineIn2DTeacher();

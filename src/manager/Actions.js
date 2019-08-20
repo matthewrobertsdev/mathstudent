@@ -45,7 +45,7 @@ export const getTopics = () => { return  (dispatch)=>{ dispatch(_getTopics(curri
 
 export const getTeaching = (teachingName) => {
    return (dispatch) => {
-    return import(`../model/mathteaching/${teachingName}`).then(teaching => {
+    return import(`../model/mathteachers/${teachingName}Teacher`).then(teaching => {
         console.log(teaching.default)
         dispatch(_getTeaching(teaching.default));
     }).catch(function(error) { console.log(error); }); };
@@ -93,7 +93,7 @@ export const setIsMobile = (isMobile) =>
 
 export const createTeachingObject = (teachingName, args) => 
 { return (dispatch) => {
-    return import(`../model/mathteaching/${teachingName}`).then(teaching => {
+    return import(`../model/mathteachers/${teachingName}Teacher`).then(teaching => {
         const firstArg=args.shift();
         const teachingObject=teaching.default
         teachingObject[firstArg](args);

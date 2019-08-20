@@ -1,5 +1,4 @@
 import MathTeachingObject from './MathTeachingObject';
-import LineIn2DTeaching from '.././mathteaching/LineIn2DTeaching';
 class LineIn2D extends MathTeachingObject{
     slope; xOfXIntercept; yOfYIntercept; slopeYInterceptForm;
     constructor(){

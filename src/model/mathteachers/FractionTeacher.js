@@ -1,6 +1,6 @@
-import MathTeaching from './MathTeaching';
-import AboutFraction from './aboutsections/AboutFraction';
-class FractionTeaching extends MathTeaching{
+import MathTeacher from './MathTeacher';
+import AboutFraction from '../mathteachings/aboutsections/AboutFraction';
+class FractionTeacher extends MathTeacher{
     constructor(){
         super();
         this.objectName="Fraction";
@@ -55,7 +55,7 @@ class FractionTeaching extends MathTeaching{
       }
 }
 
-export default new FractionTeaching();
+export default new FractionTeacher();
 
 /*
 if (this.denominator==='0'&&this.numerator==='0'){

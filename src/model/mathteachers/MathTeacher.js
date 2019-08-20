@@ -1,4 +1,4 @@
-class MathTeaching{
+class MathTeacher{
     constructor(){
         this.objectName="";
         this.displayNameSingular=""; this.singularLowerCase=""; this.displayNamePlural=""; this.pluralLowerCase="";
@@ -17,4 +17,4 @@ class MathTeaching{
         return '';
     }
 }
-export default MathTeaching;
+export default MathTeacher;
