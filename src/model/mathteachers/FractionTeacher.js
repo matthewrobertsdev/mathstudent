@@ -1,26 +1,31 @@
 import MathTeacher from './MathTeacher';
-import AboutFraction from '../mathteachings/aboutsections/AboutFraction';
+import AboutFraction from './mathteachings/aboutsections/AboutFraction';
+//import FractionTeaching from '../mathteachings/FractionTeaching';
 class FractionTeacher extends MathTeacher{
+
+    //teaching=new FractionTeaching();
+
     constructor(){
         super();
+        console.log('1234'+this.teaching)
+        this.callingStrings=[];
+        this.about=new AboutFraction().about
+        this.anyNumbers=true;
+        this.onlyFractions=false;
+        //this.creationMethodSignatures=this.teaching.creationMethodSignatures
+        this.numerator='';
+        this.denominator='';
+        this.main=[];
         this.objectName="Fraction";
         this.displayNameSingular="Fraction";
         this.singularLowerCase="fraction";
         this.displayNamePlural="Fractions";
         this.pluralLowerCase="fractions";
-        this.callingStrings=[];
-        this.about=new AboutFraction().about
-        this.anyNumbers=true;
-        this.onlyFractions=false;
         const NUMERATOR_AND_DENOMINATOR=['Create a fraction with a numerator and a denominator', 'createFromNumAndDenom', 
         'numerator', 'integer', 'denominator', 'integer'];
         const INTEGER=['Create a fraction from an integer', 'createFromInteger', 'integer', 'integer'];
         const DECIMAL=['Create a fraction from a decimal', 'createFromDevcimal', 'decimal', 'decimal'];
         this.creationMethodSignatures.push(NUMERATOR_AND_DENOMINATOR, INTEGER, DECIMAL);
-
-        this.numerator='';
-        this.denominator='';
-        this.main=[];
     }
     createFromNumAndDenom(args){ this.numerator=args[0]; this.denominator=args[1]; this.teach();}
     createFromInteger(args){ this.numerator=args[0]; this.denominator=1; this.teach();}

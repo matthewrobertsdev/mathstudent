@@ -1,5 +1,5 @@
 import MathTeacher from './MathTeacher';
-import AboutLineIn2D from '../mathteachings/aboutsections/AboutLineIn2D'
+import AboutLineIn2D from './mathteachings/aboutsections/AboutLineIn2D'
 class LineIn2DTeacher extends MathTeacher{
     constructor(){
         super();

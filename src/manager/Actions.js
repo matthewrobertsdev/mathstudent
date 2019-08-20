@@ -95,7 +95,7 @@ export const createTeachingObject = (teachingName, args) =>
 { return (dispatch) => {
     return import(`../model/mathteachers/${teachingName}Teacher`).then(teaching => {
         const firstArg=args.shift();
-        const teachingObject=teaching.default
+        const teachingObject=teaching.default;
         teachingObject[firstArg](args);
         dispatch(_createTeachingObject(teachingObject));
          }).catch(function(error) { console.log(error);
