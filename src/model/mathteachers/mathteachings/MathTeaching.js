@@ -7,3 +7,4 @@ class MathTeaching{
     }
 
 }
+export default MathTeaching;
