@@ -1,93 +1,146 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {withRouter} from 'react-router-dom'
-import {getTeaching, setTeachingObject, clearTeaching} from  '../../manager/Actions';
-import 'katex/dist/katex.min.css';
-import {BlockMath, InlineMath } from 'react-katex';
-import TeachingLink from './TeachingLink'
+import { getTeaching, clearTeaching, updateURL, updateActiveValue, setTeachingObjectName, setDisplayTeaching} from '../../manager/Actions';
+import CreatorView from './CreatorView';
+import isMobile from '../../model/utilities/IsMobile';
+import NumberKeyboard from '../keyboard-views/NumberKeyboard';
+import KeyboardSpacer from '../keyboard-views/KeyboardSpacer';
+import AboutSection from './AboutSection'
+import TeachingSection from './TeachingSection'
+import 'react-simple-keyboard/build/css/index.css';
 import '../views-general/app.css';
-
-
-const mapStateToProps = (state) => {
-  return { teaching: state.teaching, creationStrings: state.creationStrings, 
-    callingStrings: state.callingStrings, paramaterLabels: 
-    state.paramaterLabels } };
-
+const mapStateToProps = (state) => { return { teaching: state.teaching, displayTeaching: state.displayTeaching, 
+  callingStrings: state.callingStrings, displayKeyboard: state.displayKeyboard} };
 const mapDispatchToProps = (dispatch) => {
-  return { /* gets teaching from home of teaching */
-    getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
-    setTeachingObject: (name) => { dispatch(setTeachingObject(name)); },
-    clearTeaching: () => { dispatch(clearTeaching()); } } };
-
-class UnconnectedTeachingView extends React.Component{
-    constructor(props) { super(props); this.state={id: this.props.location.pathname, 
-      creationStrings: this.props.creationStrings}}
-      componentWillMount() {
-        /*
-        const pathArray=this.props.location.pathname.split('$');
-        console.log(pathArray);
-        const pathStartArray=pathArray[0].split('/')
-        console.log(pathStartArray[pathStartArray.length-2]);
-        document.title="A "+pathStartArray[pathStartArray.length-2]
-        */
-      }
-      render() {
-        return(
-          <div className='fullWidth'>
-          <div className='center-text textMargins'>
-          <h1 className="main-text-color">{this.createTitleString()}</h1>
-          <h1 className="main-text-color">Here it is:</h1>
-          <BlockMath className='block-math'>{this.createMath()}</BlockMath>
-          </div>
-          {this.createTeaching()}
-        </div>
-        );
-      }
-      createTitleString(){
-        if(this.props.teaching){
-          var titleString='';
-          titleString+="We've created a "+this.props.teaching.singularLowerCase+" with ";
-          var c=0; var m=1;
-          while (c<this.props.paramaterLabels.length) {
-            titleString+=this.props.paramaterLabels[c]+': '+this.props.creationStrings[m]
-            c++; m++;
-            if (c<this.props.paramaterLabels.length){
-              titleString+=', '
-            }
-          }
-          return titleString;
-        }
-      }
-      createMath(){
-        if(this.props.teaching){
-          return this.props.teaching.latex();
-        }
-      }
-      createTeaching(){
-        console.log('soon to teach');
-        if(this.props.teaching){
-          console.log('teaching now');
-          var mainTeaching=[];
-          for (var i=0; i<this.props.teaching.main.length; i++){
-            if ( typeof this.props.teaching.main[i]==='string'){
-              if (this.props.teaching.main[i]==='\n\n'){
-                mainTeaching.push(<div key={i} ><br></br></div>);
-              } else if (this.props.teaching.main[i].startsWith('{H}')){
-                mainTeaching.push(<h1 className="main-text-color">{this.props.teaching.main[i].slice(3)}</h1>);
-              } else if (this.props.teaching.main[i].startsWith('{L}')) {
-                mainTeaching.push(<InlineMath className='inline-math'>{this.props.teaching.main[i].slice(3)}</InlineMath>);
-              }
-              else{
-                mainTeaching.push(<span key={i} className="Heading">{this.props.teaching.main[i]}</span>);
-              }
-            } else {
-              mainTeaching.push(<TeachingLink key={i} displayName={this.props.teaching.main[i].displayName}
-                        codeName={this.props.teaching.main[i].codeName}></TeachingLink>);
-            }
-          }
-          return mainTeaching;
-        }
-      }
+  return { /* gets teaching */ getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
+    clearTeaching: () => { dispatch(clearTeaching()); },
+    updateURL: () => { dispatch(updateURL()); },
+    updateActiveValue: (key) => { dispatch(updateActiveValue(key)); } ,
+    setTeachingObjectName: (teachingName) => { dispatch(setTeachingObjectName(teachingName)); }, 
+    setDisplayTeaching: (teachingName) => { dispatch(setDisplayTeaching(teachingName)); } }; };
+/* This view is for the UI for creating a MathTeachingObject */
+class UnconnectedCreateView extends React.Component {
+  constructor(props) { super(props); this.state={ activeText: null, displayKeyboard: false};
+  const { match: { params } } = this.props;
+    const { clearTeaching, setTeachingObjectName, getTeaching} = this.props;
+    clearTeaching(); setTeachingObjectName(params.teachingName);
+    console.log(params.teachingName);
+    getTeaching(params.teachingName);
+    updateURL();
+    document.title="Create a "+params.teachingName;
 }
-const TeachingView=connect(mapStateToProps, mapDispatchToProps)(withRouter((UnconnectedTeachingView)));
-export default TeachingView;
+activeInput='';
+  componentWillMount() { 
+    this.teachingViewRef=React.createRef();
+    //this.teachingViewRef = React.createRef();
+    //this.scrollToTeaching = () => this.scrollToRef(this.teachingViewRef);
+  }
+  componentWillUnmount() { 
+    const {setDisplayTeaching}=this.props;
+    setDisplayTeaching(false);
+  }
+  render() {
+    return (
+      <div className='fullWidth'>
+        {this.createView()}
+      </div>
+    );
+  }
+
+  createView(){
+    if (this.props.teaching){
+      return (
+      <div>
+        <div className='center-text textMargins'>
+        {this.createAD()}
+        {/* About section */}
+        <h1 className="main-text-color">{/*console.log(this.props.teaching.default)*/}About {this.props.teaching.displayNamePlural}</h1>
+        {this.createAboutSection()}
+        {this.createAD()}
+        {/* Display TeachingView if an object has been created */}
+        {this.displayChosenObject()}
+        {this.createInputHeading()}
+        </div>
+        <br></br>
+        <div className='fullWidth center-text'>
+          {/* Display CreatorViews to create objects */}
+        <h1 className="main-text-color .heading-size">Create {this.props.teaching.displayNamePlural}</h1>
+        {this.createCreatorViews()}
+        </div>
+        {/* On mobile, display keyboard */}
+        {this.addKeyboardForMobile()}
+      </div>
+      );
+    }
+  }
+
+
+  createAboutSection(){
+      return (<div>
+        <AboutSection/>
+        <br></br>
+        <br></br>
+        </div>)
+  }
+  displayChosenObject(){
+      if (this.props.displayTeaching){
+        return (
+        <div ref={this.teachingViewRef}>
+        {<TeachingSection/>}
+        <br></br>
+        <br></br>
+        {this.createAD()}
+        </div>
+      );
+      } else {
+        return (<span ref={this.teachingViewRef}></span>);
+      }
+  }
+  createAD(){
+    return <div>
+      <br></br>
+      <div className='hide-for-small leaderBoardAd center-text'>There is an ad here when you are online.<br></br><br></br>Ads help Learn Math make money.</div>
+      <div className='hide-for-big mobileBanner center-text'>There is an ad here when you are online.<br></br><br></br>Ads help Learn Math make money.</div>
+    </div>
+  }
+  createInputHeading(){
+    var heading=<span></span>;
+    if(this.props.teaching&&this.props.teaching.anyNumbers){
+    heading=<h3 className="Heading">Enter numbers as integers or fractions.  If you want a fraction, type '/' to separate the denominator from the numerator.</h3>;
+    }
+    else if (this.props.teaching&&this.props.teaching.onlyFractions){
+      heading=<h3 className="Heading">To type a fraction, type '/' to separate the denominator from the numerator.</h3>;
+    }
+    return heading;
+  }
+  
+  createCreatorViews() {
+    if (this.props.teaching.creationMethodSignatures === undefined) { return; }
+    const creatorViews = this.props.teaching.creationMethodSignatures.map((methodSignature, i) => {
+      return (
+        <div key={i} className='fullWidth'>
+          <CreatorView className='CreatorView fullWidth' methodSignature={methodSignature} 
+          row={this.createKey(i)} teachingViewRef={this.teachingViewRef}></CreatorView>
+          {this.createAdEverySecond(i)}
+        </div>
+      );
+    });
+    return creatorViews;
+  }
+  createAdEverySecond(i){
+      if (i-1%2===0){
+        return <div className='fullWidth'>{this.createAD()}</div>
+      }
+  }
+
+  onKeyPress = key => { const {updateActiveValue}=this.props; updateActiveValue(key); };
+
+  addKeyboardForMobile() { if( isMobile() ) { return <div><NumberKeyboard className={this.props.displayKeyboard ? 
+    'display-keyboard' : 'hide-keyboard'} keyPressHandler={this.onKeyPress}/><KeyboardSpacer/></div> } 
+  else { return <div><br></br><br></br><br></br><br></br></div> }}
+
+  createKey(index) { return this.props.teaching.objectName+"-"+index; }
+
+}
+const CreateView = connect(mapStateToProps, mapDispatchToProps)(UnconnectedCreateView)
+export default CreateView;

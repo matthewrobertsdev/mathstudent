@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import SubjectsView from '../view/curriculum-views/SubjectsView';
-import CreateView from '../view/teaching-views/CreateView';
+import TeachingView from '../view/teaching-views/TeachingView';
 import HeaderView from '../view/views-general/HeaderView';
 const AppRouter= () => (
     <BrowserRouter>
@@ -11,7 +11,7 @@ const AppRouter= () => (
             <Switch>
                 {/*displays all topics from home*/}
                 <Route path="/" exact component={SubjectsView}/>
-                <Route path="/teaching/:teachingName" component={CreateView}/>
+                <Route path="/teaching/:teachingName" component={TeachingView}/>
                 {/*displays UI for creating objects from teaching*/}
 
             </Switch>
