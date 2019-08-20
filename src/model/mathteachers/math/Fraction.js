@@ -18,5 +18,8 @@ class Fraction extends MathTeachingObject{
     inlineLatex(){
         return `{L}\\Large\\color{gold}`+this.basicLatex();
     }
+    primesInCommon(array1, array2){
+        
+    }
 }
 export default new Fraction();
