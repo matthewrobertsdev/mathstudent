@@ -1,9 +1,11 @@
 import MathTeacher from './MathTeacher';
 import AboutFraction from './mathteachings/aboutsections/AboutFraction';
 import FractionTeaching from './mathteachings/FractionTeaching';
+import Fraction from './math/Fraction'
 class FractionTeacher extends MathTeacher{
 
     teaching=FractionTeaching;
+    mathObject=Fraction
 
     constructor(){
         super();
@@ -12,32 +14,33 @@ class FractionTeacher extends MathTeacher{
         this.anyNumbers=true;
         this.onlyFractions=false;
         this.creationMethodSignatures=this.teaching.creationMethodSignatures
-        this.numerator='';
-        this.denominator='';
-        this.main=[];
+        this.description=[];
+        this.concepts=[];
     }
-    createFromNumAndDenom(args){ this.numerator=args[0]; this.denominator=args[1]; this.teach();}
-    createFromInteger(args){ this.numerator=args[0]; this.denominator=1; this.teach();}
+    createFromNumAndDenom(args){ this.mathObject.numerator=parseInt(args[0]); 
+        this.mathObject.denominator=parseInt(args[1]); this.teach();}
+    createFromInteger(args){ this.mathObject.numerator=parseInt(args[0]); 
+        this.mathObject.denominator=1; this.teach();}
     latex=()=>{
             return `\\Huge\\color{gold}`+this.basicLatex();
       }
       basicLatex(){
-        return `\\frac{${this.numerator}}{${this.denominator}}`
+        return `\\frac{${this.mathObject.numerator}}{${this.mathObject.denominator}}`
       }
       inlineLatex(){
           return `{L}\\Large\\color{gold}`+this.basicLatex();
       }
     teach(){
-        this.main=[];
-        if (this.denominator==='0'&&this.numerator==='0'){
-            this.main.push(this.teaching.indeterminate());
+        if (this.mathObject.denominator===0&&this.mathObject.numerator===0){
+            this.description=this.teaching.indeterminate(this.inlineLatex());
         }
-        else if(this.denominator==='0'){
-            this.main.push(this.teaching.notANumber());
+        else if(this.mathObject.denominator===0){
+            this.description=this.teaching.notANumber(this.inlineLatex(), this.numerator);
         }
         this.headings=[];
         this.concepts=[];
         this.headings.push('{H}Get simplest form:');
+        console.log(this.description)
       }
 }
 

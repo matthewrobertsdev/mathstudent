@@ -34,15 +34,22 @@ class UnconnectedTeachingSection extends React.Component{
           <h1 className="main-text-color">{this.createTitleString()}</h1>
           <h1 className="main-text-color">Here it is:</h1>
           <BlockMath className='block-math'>{this.createMath()}</BlockMath>
+          {this.displayTeaching()}
           </div>
-          {this.teachConcept(this.props.teaching.main)}
         </div>
         );
+      }
+      displayTeaching(){
+        console.log(this.props.teaching.description)
+        if (this.props.teaching.description){
+            console.log(this.props.teaching.description)
+            return this.teachConcept(this.props.teaching.description)
+        }
       }
       createTitleString(){
         if(this.props.teaching){
           var titleString='';
-          titleString+="We've created a "+this.props.teaching.singularLowerCase+" with ";
+          titleString+="We've created a "+this.props.teaching.teaching.singularLowerCase+" with ";
           var c=0; var m=1;
           while (c<this.props.paramaterLabels.length) {
             titleString+=this.props.paramaterLabels[c]+': '+this.props.creationStrings[m]
@@ -59,12 +66,9 @@ class UnconnectedTeachingSection extends React.Component{
           return this.props.teaching.latex();
         }
       }
-      teachConcepts(){
-
-      }
       teachConcept(concept){
         console.log('soon to teach');
-        if(this.props.teaching){
+        if(concept){
           console.log('teaching now');
           var mainTeaching=[];
           for (var i=0; i<concept.length; i++){
@@ -80,6 +84,7 @@ class UnconnectedTeachingSection extends React.Component{
                 mainTeaching.push(<span key={i} className="Heading">{concept[i]}</span>);
               }
             } else {
+              console.log(concept[i])
               mainTeaching.push(<TeachingLink key={i} displayName={concept[i].displayName}
                         codeName={this.props.teaching.main[i].codeName}></TeachingLink>);
             }

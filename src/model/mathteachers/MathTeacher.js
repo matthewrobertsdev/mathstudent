@@ -8,6 +8,8 @@ class MathTeacher{
         this.anyNumbers=false;
         this.onlyFractions=false;
         this.teachingArray=[];
+        this.main=[];
+        this.concepts=[];
     }
 
     latex=()=>{

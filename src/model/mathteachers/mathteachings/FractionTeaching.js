@@ -16,33 +16,23 @@ class FractionTeaching extends MathTeaching{
         this.creationMethodSignatures.push(NUMERATOR_AND_DENOMINATOR, INTEGER, DECIMAL);
         this.main=[];
     }
-
-    latex=()=>{
-        return `\\Huge\\color{gold}`+this.basicLatex();
-  }
-  basicLatex(){
-    return `\\frac{${this.numerator}}{${this.denominator}}`
-  }
-  inlineLatex(){
-      return `{L}\\Large\\color{gold}`+this.basicLatex();
-  }
-notANumber(){
+notANumber(inlineLatex){
     var concept=[]
     concept.push('You cannot tell what the value of ')
-    concept.push(this.inlineLatex());
+    concept.push(inlineLatex);
     concept.push(' because the numerator is divided by the denominator and '+
     'this asks you to find what number times 0 gives you 0, '+
     "which could be any number because 0 multiplied by any number is 0.  ");
-    concept.push(this.inlineLatex());
+    concept.push(inlineLatex);
     concept.push(' is called indeterminate if other information can not be used to determine its value.')
     return concept;
 }
-indeterminate(){
+indeterminate(inlineLatex, numerator){
     var concept=[]
-    concept.push(this.inlineLatex());
+    concept.push(inlineLatex);
     concept.push(' is not a number becuase ')
-    concept.push(this.inlineLatex());
-    this.concept.push('is asking you what number times 0 gives you '+this.numerator+' and no number can be multiplied by 0 to get'+
+    concept.push(inlineLatex);
+    this.concept.push('is asking you what number times 0 gives you '+numerator+' and no number can be multiplied by 0 to get'+
         ' any number other than 0.');
     return concept;
 }
