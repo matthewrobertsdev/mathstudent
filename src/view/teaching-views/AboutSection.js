@@ -11,15 +11,14 @@ class UnconnectedAboutSection extends React.Component {
 				if ( typeof this.props.teaching.about[i]==='string'){
 					if (this.props.teaching.about[i]==='\n\n'){
 						aboutSection.push(<div key={i} ><br></br></div>);
-					} else{
-						aboutSection.push(<span key={i} className="Heading">{this.props.teaching.about[i]}</span>);
+					} else{ aboutSection.push(<span key={i} className="Heading">
+					{this.props.teaching.about[i]}</span>);
 					}
-				} else {
-					aboutSection.push(<TeachingLink key={i} displayName={this.props.teaching.about[i].displayName}
-									  codeName={this.props.teaching.about[i].codeName}></TeachingLink>);
+				} else { aboutSection.push(<TeachingLink key={i} displayName=
+					{this.props.teaching.about[i].displayName}
+					codeName={this.props.teaching.about[i].codeName}></TeachingLink>);
 				}
-			}
-			return aboutSection;
+			} return aboutSection;
 		}
 	}
 }

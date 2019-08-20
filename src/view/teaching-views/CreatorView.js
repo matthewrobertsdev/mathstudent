@@ -40,7 +40,7 @@ class UnconnectedCreatorView extends React.Component{
           <div className='CreatorView'>
                 <h3 className='heading-size'>{this.props.methodSignature[0]}</h3>
                 {this.createView()}<button className="createButton creator-text-size" onClick={() => this.handleClick()}>
-                Create a {this.props.teaching.displayNameSingular}</button>
+                Create a {this.props.teaching.teaching.displayNameSingular}</button>
                 <ReactModal className="notNumberModal" isOpen={this.state.showModal} >
                 <br></br>
                 <span classname='creator-text-size'>{this.getErrorString()}</span>

@@ -135,9 +135,10 @@ activeInput='';
 
   onKeyPress = key => { const {updateActiveValue}=this.props; updateActiveValue(key); };
 
-  addKeyboardForMobile() { if( isMobile() ) { return <div><NumberKeyboard className={this.props.displayKeyboard ? 
-    'display-keyboard' : 'hide-keyboard'} keyPressHandler={this.onKeyPress}/><KeyboardSpacer/></div> } 
-  else { return <div><br></br><br></br><br></br><br></br></div> }}
+  addKeyboardForMobile() { if( isMobile() ) { return <div><NumberKeyboard className=
+    {this.props.displayKeyboard ? 'display-keyboard' : 'hide-keyboard'} 
+    keyPressHandler={this.onKeyPress}/><KeyboardSpacer/></div> } 
+    else { return <div><br></br><br></br><br></br><br></br></div> }}
 
   createKey(index) { return this.props.teaching.objectName+"-"+index; }
 
