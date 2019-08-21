@@ -40,14 +40,15 @@ class UnconnectedTeachingSection extends React.Component{
         );
       }
       displayTeaching(){
-        console.log(this.props.teaching.description)
+        console.log(this.props.teaching.headings)
         var teachingDisplay=[]
-        if (this.props.teaching.description&&this.props.teaching.headers&&this.props.teaching.concepts){
+        if (this.props.teaching.description&&this.props.teaching.headings&&this.props.teaching.concepts){
             console.log(this.props.teaching.description)
             teachingDisplay.push(this.teachConcept(this.props.teaching.description));
-            for (var i=0; i<this.props.teaching.headers.length; i++){
-              teachingDisplay.push(this.props.teaching.headers[i]);
-              teachingDisplay.push(this.props.teaching.concepts[i]);
+            for (var i=0; i<this.props.teaching.headings.length; i++){
+              console.log(i)
+              teachingDisplay.push(this.displayHeading(this.props.teaching.headings[i], i));
+              teachingDisplay.push(this.teachConcept(this.props.teaching.concepts[i], i));
             }
         }
         return teachingDisplay;
@@ -72,7 +73,10 @@ class UnconnectedTeachingSection extends React.Component{
           return this.props.teaching.latex();
         }
       }
-      teachConcept(concept){
+      displayHeading(heading, i){
+        return <h1 key={'H'+i} className="main-text-color">{heading.slice(3)}</h1>;
+      }
+      teachConcept(concept, c){
         console.log('soon to teach');
         if(concept){
           console.log('teaching now');
@@ -80,18 +84,18 @@ class UnconnectedTeachingSection extends React.Component{
           for (var i=0; i<concept.length; i++){
             if ( typeof concept[i]==='string'){
               if (concept[i]==='\n\n'){
-                mainTeaching.push(<div key={i} ><br></br></div>);
+                mainTeaching.push(<div key={i+'-'+c} ><br></br></div>);
               } else if (concept[i].startsWith('{H}')){
-                mainTeaching.push(<h1 key={i} className="main-text-color">{concept[i].slice(3)}</h1>);
+                mainTeaching.push(<h1 key={i+'-'+c} className="main-text-color">{concept[i].slice(3)}</h1>);
               } else if (concept[i].startsWith('{L}')) {
-                mainTeaching.push(<InlineMath key={i} className='inline-math'>{concept[i].slice(3)}</InlineMath>);
+                mainTeaching.push(<InlineMath key={i+'-'+c} className='inline-math'>{concept[i].slice(3)}</InlineMath>);
               }
               else{
-                mainTeaching.push(<span key={i} className="Heading">{concept[i]}</span>);
+                mainTeaching.push(<span key={i+'-'+c} className="Heading">{concept[i]}</span>);
               }
             } else {
               console.log(concept[i])
-              mainTeaching.push(<TeachingLink key={i} displayName={concept[i].displayName}
+              mainTeaching.push(<TeachingLink key={i+'-'+c} displayName={concept[i].displayName}
                         codeName={this.props.teaching.main[i].codeName}></TeachingLink>);
             }
           }
