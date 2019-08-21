@@ -41,17 +41,30 @@ class FractionTeacher extends MathTeacher{
         else if(this.mathObject.denominator===0){
             this.description=this.teaching.notANumber(this.inlineLatex(), this.mathObject.numerator);
         }
-        this.headings.push(this.teaching.simplestFormHeading);
-        this.concepts.push([]);
-        var apology='';
-        if (!PrimeFactorization.absValUnder10_000){
+        if ( this.mathObject.numerator===0 && this.mathObject.denominator!==0){
+            this.headings.push(this.teaching.simplestFormHeading);
+            this.concepts.push([]);
+            this.concepts[0].push(this.teaching.zeroNumerator)
+        }
+        else if(this.mathObject.denominator===1 && this.mathObject.numerator !==0){
+            this.headings.push(this.teaching.simplestFormHeading);
+            this.concepts.push([]);
+            this.concepts[0].push(this.teaching.oneAsDenominator)
+        }
+        else{
+            this.headings.push(this.teaching.simplestFormHeading);
+            this.concepts.push([]);
+            var apology='';
+        if (!PrimeFactorization.absValUnder10_000(this.mathObject.numerator)
+        ||!PrimeFactorization.absValUnder10_000(this.mathObject.denominator)){
             apology=this.teaching.tooLargeToSimplify;
         }
         var nArray=PrimeFactorization.getPrimeFactorsUnder10_000(this.mathObject.numerator);
         var dArray=PrimeFactorization.getPrimeFactorsUnder10_000(this.mathObject.denominator);
         this.concepts[0].push(this.teaching.getPrimeFactors(this.mathObject.numerator, nArray, 
             this.mathObject.denominator, dArray, apology));
-        console.log(this.description);
+        }
+        
       }
 }
 

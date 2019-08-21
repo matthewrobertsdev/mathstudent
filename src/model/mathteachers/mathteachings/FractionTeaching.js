@@ -39,15 +39,21 @@ notANumber(inlineLatex, numerator){
 simplestFormHeading='{H}Get simplest form:';
 
 tooLargeToSimplify="Learn Math can only promise to simplify fractions "+
-    "completely that are less than 10,000.  Sorry it can not go higher.  "+
-    "Still, we will try to simplify with the primes that we have available.";
+    "completely that are less than 10,000.  Sorry it can not promise higher.  "+
+    "Still, we will try to simplify with the primes that we have available and "+
+    "will let you know if we manage to simplify the fraction completely.  ";
 
 getPrimeFactors(numerator, nArray, denominator, dArray, apology){
     return apology+"The prime factors "+
-    "of the numerator , "+numerator+" are "+JSON.stringify(nArray)+" and the prime factors "+
+    "of the numerator, "+numerator+" are "+(MathTeaching.makeListFromArray(nArray)||'none')+" and the prime factors "+
     " of the denominator, "+
-    denominator+" are "+JSON.stringify(dArray)+".  They are the samllest numbers you can "+
+    denominator+" are "+(MathTeaching.makeListFromArray(dArray)||'none')+".  Primes are the smallest numbers you can "+
     "divide up the numerator and denominator into  and still get whole numbers."
 }
+zeroNumerator="If the numerator is 0 and the denominator is not 0, then the value is 0"+
+" divided by anything other than 0 is always 0."
+oneAsDenominator="If the denominator is one, and the numerator is not 0, the value of "+
+"the fraction is just the number that the numerator is, as it is just divided by one, "+
+"which goes in once the number of times of the numerator."
 }
 export default new FractionTeaching();

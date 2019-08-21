@@ -40,14 +40,10 @@ class UnconnectedTeachingSection extends React.Component{
         );
       }
       displayTeaching(){
-        console.log(this.props.teaching.headings)
         var teachingDisplay=[]
         if (this.props.teaching.description&&this.props.teaching.headings&&this.props.teaching.concepts){
-            console.log(this.props.teaching.description)
             teachingDisplay.push(this.teachConcept(this.props.teaching.description));
             for (var i=0; i<this.props.teaching.headings.length; i++){
-              console.log(i)
-              console.log(this.props.teaching.headings[i])
               teachingDisplay.push(this.displayHeading(this.props.teaching.headings[i], i));
               teachingDisplay.push(this.teachConcept(this.props.teaching.concepts[i], i));
             }
@@ -78,9 +74,7 @@ class UnconnectedTeachingSection extends React.Component{
         return <h1 key={'H'+i} className="main-text-color">{heading.slice(3)}</h1>;
       }
       teachConcept(concept, c){
-        console.log('soon to teach');
         if(concept){
-          console.log('teaching now');
           var mainTeaching=[];
           for (var i=0; i<concept.length; i++){
             if ( typeof concept[i]==='string'){

@@ -4,7 +4,7 @@ import AbsoluteValue from './AbsoluteValue';
 class PrimeFactorization{
 
     static absValUnder10_000(value){
-        return AbsoluteValue.absoluteValueIsUnder(value);
+        return AbsoluteValue.absoluteValueIsUnder(value, 10000);
     }
 
     /* Take square root

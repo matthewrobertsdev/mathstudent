@@ -4,10 +4,10 @@ class AbosoluteValue{
             return -value;
         } else return value;
     }
-    static absoluteValueIsUnder(value){
-        if (AbosoluteValue.absoluteValue(value)<value){
+    static absoluteValueIsUnder(input, value){
+        if (AbosoluteValue.absoluteValue(input)<value){
             return true;
-        } else return false;
+        } else { return false;}
     }
 }
 export default AbosoluteValue;
