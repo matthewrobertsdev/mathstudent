@@ -3,7 +3,7 @@ import AbsoluteValue from './AbsoluteValue';
 
 class PrimeFactorization{
 
-    static absValUnder10_000_000(value){
+    static absValUnder10_000(value){
         return AbsoluteValue.absoluteValueIsUnder(value);
     }
 
@@ -13,12 +13,12 @@ class PrimeFactorization{
     */ 
 
     static getPrimeFactorsUnder10_000(value){
-        const limit=Math.sqrt(AbsoluteValue.absoluteValue(value));
+        const limit=AbsoluteValue.absoluteValue(value);
         const primes=Primes0to10_000;
         var primeFactors=[];
         var i=0;
         while (primes[i]<=limit){
-            while(value%primes[i]==0){
+            while(value%primes[i]===0){
                 primeFactors.push(primes[i]);
                 value/=primes[i];
             }

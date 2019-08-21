@@ -36,5 +36,18 @@ notANumber(inlineLatex, numerator){
         ' any number other than 0.');
     return concept;
 }
+simplestFormHeading='{H}Get simplest form:';
+
+tooLargeToSimplify="Learn Math can only promise to simplify fractions "+
+    "completely that are less than 10,000.  Sorry it can not go higher.  "+
+    "Still, we will try to simplify with the primes that we have available.";
+
+getPrimeFactors(numerator, nArray, denominator, dArray, apology){
+    return apology+"The prime factors "+
+    "of the numerator , "+numerator+" are "+JSON.stringify(nArray)+" and the prime factors "+
+    " of the denominator, "+
+    denominator+" are "+JSON.stringify(dArray)+".  They are the samllest numbers you can "+
+    "divide up the numerator and denominator into  and still get whole numbers."
+}
 }
 export default new FractionTeaching();

@@ -37,7 +37,7 @@ class Fraction extends MathTeachingObject{
             var notDone=true;
             var c=0;
             while(notDone && c<array2.length){
-                if (array1[i]==array2[c]){
+                if (array1[i]===array2[c]){
                     elementsinCommon.push(array2[c]);
                     array2.splice(c, 1);
                     notDone=false;

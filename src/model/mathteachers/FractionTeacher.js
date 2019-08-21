@@ -2,6 +2,7 @@ import MathTeacher from './MathTeacher';
 import AboutFraction from './mathteachings/aboutsections/AboutFraction';
 import FractionTeaching from './mathteachings/FractionTeaching';
 import Fraction from './math/Fraction'
+import PrimeFactorization from './math/PrimeFactorization';
 class FractionTeacher extends MathTeacher{
 
     teaching=FractionTeaching;
@@ -32,15 +33,25 @@ class FractionTeacher extends MathTeacher{
           return `{L}\\Large\\color{gold}`+this.basicLatex();
       }
     teach(){
+        this.headings=[];
+        this.concepts=[];
         if (this.mathObject.denominator===0&&this.mathObject.numerator===0){
             this.description=this.teaching.indeterminate(this.inlineLatex());
         }
         else if(this.mathObject.denominator===0){
             this.description=this.teaching.notANumber(this.inlineLatex(), this.mathObject.numerator);
         }
-        this.headings.push('{H}Get simplest form:');
-        this.concepts.push('');
-        console.log(this.description)
+        this.headings.push(this.teaching.simplestFormHeading);
+        this.concepts.push([]);
+        var apology='';
+        if (!PrimeFactorization.absValUnder10_000){
+            apology=this.teaching.tooLargeToSimplify;
+        }
+        var nArray=PrimeFactorization.getPrimeFactorsUnder10_000(this.mathObject.numerator);
+        var dArray=PrimeFactorization.getPrimeFactorsUnder10_000(this.mathObject.denominator);
+        this.concepts[0].push(this.teaching.getPrimeFactors(this.mathObject.numerator, nArray, 
+            this.mathObject.denominator, dArray, apology));
+        console.log(this.description);
       }
 }
 

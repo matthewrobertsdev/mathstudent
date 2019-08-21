@@ -47,6 +47,7 @@ class UnconnectedTeachingSection extends React.Component{
             teachingDisplay.push(this.teachConcept(this.props.teaching.description));
             for (var i=0; i<this.props.teaching.headings.length; i++){
               console.log(i)
+              console.log(this.props.teaching.headings[i])
               teachingDisplay.push(this.displayHeading(this.props.teaching.headings[i], i));
               teachingDisplay.push(this.teachConcept(this.props.teaching.concepts[i], i));
             }
