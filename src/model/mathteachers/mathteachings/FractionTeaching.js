@@ -16,7 +16,7 @@ class FractionTeaching extends MathTeaching{
         this.creationMethodSignatures.push(NUMERATOR_AND_DENOMINATOR, INTEGER, DECIMAL);
         this.main=[];
     }
-notANumber(inlineLatex){
+    indeterminate(inlineLatex){
     var concept=[]
     concept.push('You cannot tell what the value of ')
     concept.push(inlineLatex);
@@ -27,12 +27,12 @@ notANumber(inlineLatex){
     concept.push(' is called indeterminate if other information can not be used to determine its value.')
     return concept;
 }
-indeterminate(inlineLatex, numerator){
+notANumber(inlineLatex, numerator){
     var concept=[]
     concept.push(inlineLatex);
     concept.push(' is not a number becuase ')
     concept.push(inlineLatex);
-    this.concept.push('is asking you what number times 0 gives you '+numerator+' and no number can be multiplied by 0 to get'+
+    concept.push(' is asking you what number times 0 gives you '+numerator+' and no number can be multiplied by 0 to get'+
         ' any number other than 0.');
     return concept;
 }

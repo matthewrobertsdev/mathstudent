@@ -15,6 +15,7 @@ class FractionTeacher extends MathTeacher{
         this.onlyFractions=false;
         this.creationMethodSignatures=this.teaching.creationMethodSignatures
         this.description=[];
+        this.headings=[];
         this.concepts=[];
     }
     createFromNumAndDenom(args){ this.mathObject.numerator=parseInt(args[0]); 
@@ -35,11 +36,10 @@ class FractionTeacher extends MathTeacher{
             this.description=this.teaching.indeterminate(this.inlineLatex());
         }
         else if(this.mathObject.denominator===0){
-            this.description=this.teaching.notANumber(this.inlineLatex(), this.numerator);
+            this.description=this.teaching.notANumber(this.inlineLatex(), this.mathObject.numerator);
         }
-        this.headings=[];
-        this.concepts=[];
         this.headings.push('{H}Get simplest form:');
+        this.concepts.push('');
         console.log(this.description)
       }
 }

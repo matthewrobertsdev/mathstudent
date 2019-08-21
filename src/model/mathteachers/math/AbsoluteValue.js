@@ -2,7 +2,7 @@ class AbosoluteValue{
     static absoluteValue(value){
         if (value<0){
             return -value;
-        } else value;
+        } else return value;
     }
     static absoluteValueIsUnder(value){
         if (AbosoluteValue.absoluteValue(value)<value){
@@ -10,3 +10,4 @@ class AbosoluteValue{
         } else return false;
     }
 }
+export default AbosoluteValue;

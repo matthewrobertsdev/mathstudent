@@ -1,9 +1,10 @@
 import Primes0to10_000 from "./Primes0to10_000";
+import AbsoluteValue from './AbsoluteValue';
 
 class PrimeFactorization{
 
     static absValUnder10_000_000(value){
-        return AbosoluteValue.absoluteValueIsUnder(value);
+        return AbsoluteValue.absoluteValueIsUnder(value);
     }
 
     /* Take square root
@@ -17,9 +18,9 @@ class PrimeFactorization{
         var primeFactors=[];
         var i=0;
         while (primes[i]<=limit){
-            while(value%currentPrime==0){
-                primeFactors.push(prime[i]);
-                value/prime[i];
+            while(value%primes[i]==0){
+                primeFactors.push(primes[i]);
+                value/=primes[i];
             }
             i++;
         }
