@@ -9,6 +9,8 @@ import AboutSection from './AboutSection'
 import TeachingSection from './TeachingSection'
 import 'react-simple-keyboard/build/css/index.css';
 import '../views-general/app.css';
+import {Accordion, AccordionItem, AccordionItemHeading, AccordionItemPanel, AccordionItemButton} from 'react-accessible-accordion';
+import 'react-accessible-accordion/dist/fancy-example.css';
 
 const mapStateToProps = (state) => { return { teaching: state.teaching, displayTeaching: state.displayTeaching, 
   callingStrings: state.callingStrings, displayKeyboard: state.displayKeyboard} };
@@ -33,15 +35,25 @@ activeInput='';
   createView(){
     if (this.props.teaching.teaching){
       return (
-      <div>
-        <div className='center-text textMargins'>{this.createAD()}
-        {/* About section */}
-        <h1 className="main-text-color">{/*console.log(this.props.teaching.default)*/}
-        About {this.props.teaching.teaching.displayNamePlural}</h1>
-        {this.createAboutSection()} {this.createAD()}
+      <Accordion allowZeroExpanded={true}>
+        <div className='center-text textMargins'>{this.createAD()}</div>
+        <AccordionItem>
+                <AccordionItemHeading>
+                    <AccordionItemButton>
+                       {/* About section */}
+                    <h1 className="center-text main-text-color">{/*console.log(this.props.teaching.default)*/}
+                    About {this.props.teaching.teaching.displayNamePlural}</h1>
+                    </AccordionItemButton>
+                </AccordionItemHeading>
+                <AccordionItemPanel>
+                    <p className='center-text textMargins'>
+                    {this.createAboutSection()} {this.createAD()}
+                    </p>
+                </AccordionItemPanel>
+            </AccordionItem>
         {/* Display TeachingView if an object has been created */}
         {this.displayChosenObject()} {this.createInputHeading()}
-        </div><br></br>
+        <br></br>
         <div className='fullWidth center-text'>
           {/* Display CreatorViews to create objects */}
         <h1 className="main-text-color .heading-size">Create {this.props.teaching.teaching.displayNamePlural}</h1>
@@ -49,10 +61,11 @@ activeInput='';
         </div>
         {/* On mobile, display keyboard */}
         {this.addKeyboardForMobile()}
-      </div>
+      </Accordion>
       );
     }
   }
+
   createAboutSection(){
       return (<div><AboutSection/><br></br><br></br></div>)
   }
@@ -74,10 +87,10 @@ activeInput='';
   createInputHeading(){
     var heading=<span></span>;
     if(this.props.teaching&&this.props.teaching.anyNumbers){
-    heading=<h3 className="Heading">Enter numbers as integers or fractions.  
+    heading=<h3 className="center-text Heading">Enter numbers as integers or fractions.  
     If you want a fraction, type '/' to separate the denominator from the numerator.</h3>;
     } else if (this.props.teaching&&this.props.teaching.onlyFractions){
-      heading=<h3 className="Heading">To type a fraction, type '/' to separate the 
+      heading=<h3 className="center-text Heading">To type a fraction, type '/' to separate the 
       denominator from the numerator.</h3>;
     }
     return heading;
