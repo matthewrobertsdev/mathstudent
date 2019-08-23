@@ -23,3 +23,5 @@ class LimitBreachDetector{
       */
 
 }
+
+export default LimitBreachDetector

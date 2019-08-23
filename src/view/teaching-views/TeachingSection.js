@@ -82,8 +82,10 @@ class UnconnectedTeachingSection extends React.Component{
                 mainTeaching.push(<div key={i+'-'+c} ><br></br></div>);
               } else if (concept[i].startsWith('{H}')){
                 mainTeaching.push(<h1 key={i+'-'+c} className="main-text-color">{concept[i].slice(3)}</h1>);
-              } else if (concept[i].startsWith('{L}')) {
-                mainTeaching.push(<InlineMath key={i+'-'+c} className='inline-math'>{concept[i].slice(3)}</InlineMath>);
+              } else if (concept[i].startsWith('{IL}')) {
+                mainTeaching.push(<InlineMath key={i+'-'+c} className='inline-math'>{concept[i].slice(4)}</InlineMath>);
+              } else if (concept[i].startsWith('{BL}')) {
+                mainTeaching.push(<BlockMath key={i+'-'+c} className='block-math'>{concept[i].slice(4)}</BlockMath>);
               }
               else{
                 mainTeaching.push(<span key={i+'-'+c} className="Heading">{concept[i]}</span>);

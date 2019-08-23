@@ -1,9 +1,11 @@
 import MathTeachingObject from './MathTeachingObject';
 class LineIn2D extends MathTeachingObject{
     slope; xOfXIntercept; yOfYIntercept; slopeYInterceptForm;
+    /*
     constructor(){
         super();
     }
+    */
     createPointSlope(slope, x1, y1){
         if(!this.checkSlope){
             return;

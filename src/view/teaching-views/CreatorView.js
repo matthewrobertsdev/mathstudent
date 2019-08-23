@@ -28,7 +28,7 @@ class UnconnectedCreatorView extends React.Component{
         /* methods strings to create view, calling strings to call method */
         this.state={methodSignature: this.props.methodSignature, key: undefined, creationStrings: 
           this.createCallingStrings(), gridIDs: [], showModal: false, type: 'number', 
-          showKeyboard: false}
+          first: true}
           this.props.creationStrings[0]=this.props.methodSignature[1];
           this.textHandler = this.textHandler.bind(this);
           this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -153,14 +153,20 @@ class UnconnectedCreatorView extends React.Component{
     }
   }
   }
-  updateForTeaching(callingStrings){
+  updateForTeaching(creationStrings){
     const {createTeachingObject, updateCreationStrings, setDisplayTeaching,
       setParamaterLabels, clearTeaching}=this.props;
     const paramaterLabels=this.getParamaterLabels();
     setParamaterLabels(paramaterLabels);
-    updateCreationStrings(callingStrings);
+    if(true){
+      updateCreationStrings(creationStrings);
+    } else {
+
+    }
     clearTeaching()
-    createTeachingObject(this.props.teachingObjectName, callingStrings.slice());
+    if (true){
+      createTeachingObject(this.props.teachingObjectName, creationStrings.slice());
+    }
     setDisplayTeaching(true);
     this.props.teachingViewRef.current.scrollIntoView();
   }

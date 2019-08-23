@@ -32,20 +32,20 @@ class Fraction extends MathTeachingObject{
     }
 
     elementsInCommonOrderCounts(array1, array2){
-        var elementsinCommon=[];
+        var elementsInCommon=[];
         for (var i=0; i<array1.length; i++){
             var notDone=true;
             var c=0;
             while(notDone && c<array2.length){
                 if (array1[i]===array2[c]){
-                    elementsinCommon.push(array2[c]);
+                    elementsInCommon.push(array2[c]);
                     array2.splice(c, 1);
                     notDone=false;
                 }
                 c++
             }
         }
-        return elementsinCommon;
+        return elementsInCommon;
     }
 }
 export default new Fraction();
