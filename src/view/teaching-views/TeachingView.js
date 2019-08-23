@@ -10,7 +10,6 @@ import TeachingSection from './TeachingSection'
 import 'react-simple-keyboard/build/css/index.css';
 import '../views-general/app.css';
 import {Accordion, AccordionItem, AccordionItemHeading, AccordionItemPanel, AccordionItemButton} from 'react-accessible-accordion';
-import 'react-accessible-accordion/dist/fancy-example.css';
 
 const mapStateToProps = (state) => { return { teaching: state.teaching, displayTeaching: state.displayTeaching, 
   callingStrings: state.callingStrings, displayKeyboard: state.displayKeyboard} };
@@ -41,8 +40,8 @@ activeInput='';
                 <AccordionItemHeading>
                     <AccordionItemButton>
                        {/* About section */}
-                    <h1 className="center-text main-text-color">{/*console.log(this.props.teaching.default)*/}
-                    About {this.props.teaching.teaching.displayNamePlural}</h1>
+                    <span className="center-text main-text-color heading-size">{/*console.log(this.props.teaching.default)*/}
+                    About {this.props.teaching.teaching.displayNamePlural}</span>
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
@@ -52,11 +51,12 @@ activeInput='';
                 </AccordionItemPanel>
             </AccordionItem>
         {/* Display TeachingView if an object has been created */}
-        {this.displayChosenObject()} {this.createInputHeading()}
+        {this.displayChosenObject()}
         <br></br>
         <div className='fullWidth center-text'>
           {/* Display CreatorViews to create objects */}
-        <h1 className="main-text-color .heading-size">Create {this.props.teaching.teaching.displayNamePlural}</h1>
+        <h1 className="main-text-color heading-size">Create {this.props.teaching.teaching.displayNamePlural}</h1>
+        {this.createInputHeading()}
         {this.createCreatorViews()}
         </div>
         {/* On mobile, display keyboard */}
