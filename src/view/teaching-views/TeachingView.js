@@ -34,13 +34,14 @@ activeInput='';
   createView(){
     if (this.props.teaching.teaching){
       return (
-      <Accordion allowZeroExpanded={true}>
+      <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
         <div className='center-text textMargins'>{this.createAD()}</div>
+        <h1 className='center-text main-text-color Heading'>{this.props.teaching.teaching.displayNamePlural}</h1>
         <AccordionItem>
                 <AccordionItemHeading>
                     <AccordionItemButton>
                        {/* About section */}
-                    <span className="center-text main-text-color heading-size">{/*console.log(this.props.teaching.default)*/}
+                    <span className="center-text main-text-color Heading">{/*console.log(this.props.teaching.default)*/}
                     About {this.props.teaching.teaching.displayNamePlural}</span>
                     </AccordionItemButton>
                 </AccordionItemHeading>
@@ -50,14 +51,24 @@ activeInput='';
                     </p>
                 </AccordionItemPanel>
             </AccordionItem>
-        {/* Display TeachingView if an object has been created */}
+             {/* Display TeachingView if an object has been created */}
         {this.displayChosenObject()}
         <br></br>
+            <AccordionItem>
+                <AccordionItemHeading>
+                    <AccordionItemButton>
+                       {/* Display CreatorViews to create objects */}
+                    <span className="center-text main-text-color Heading">{/*console.log(this.props.teaching.default)*/}
+                    Create {this.props.teaching.teaching.displayNamePlural}</span>
+                    </AccordionItemButton>
+                </AccordionItemHeading>
+                <AccordionItemPanel>
+                    <p className='center-text textMargins'>
+                    {this.createInputHeading()} {this.createCreatorViews()}
+                    </p>
+                </AccordionItemPanel>
+            </AccordionItem>
         <div className='fullWidth center-text'>
-          {/* Display CreatorViews to create objects */}
-        <h1 className="main-text-color heading-size">Create {this.props.teaching.teaching.displayNamePlural}</h1>
-        {this.createInputHeading()}
-        {this.createCreatorViews()}
         </div>
         {/* On mobile, display keyboard */}
         {this.addKeyboardForMobile()}
@@ -71,7 +82,7 @@ activeInput='';
   }
   displayChosenObject(){
       if (this.props.displayTeaching){
-        return (<div ref={this.teachingViewRef}>{<TeachingSection/>}<br></br>
+        return (<div ref={this.teachingViewRef} className='center-text'>{<TeachingSection/>}<br></br>
         <br></br>{this.createAD()}</div>
       );} else { return (<span ref={this.teachingViewRef}></span>); }
   }
