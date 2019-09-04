@@ -5,8 +5,9 @@ import CreatorView from './CreatorView';
 import isMobile from '../../model/utilities/IsMobile';
 import NumberKeyboard from '../keyboard-views/NumberKeyboard';
 import KeyboardSpacer from '../keyboard-views/KeyboardSpacer';
-import AboutSection from './AboutSection'
-import TeachingSection from './TeachingSection'
+import AboutSection from './AboutSection';
+import TeachingSection from './TeachingSection';
+import LearnerView from './LearnerView';
 import 'react-simple-keyboard/build/css/index.css';
 import '../views-general/app.css';
 import {Accordion, AccordionItem, AccordionItemHeading, AccordionItemPanel, AccordionItemButton} from 'react-accessible-accordion';
@@ -36,12 +37,12 @@ activeInput='';
       return (
       <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
         <div className='center-text textMargins'>{this.createAD()}</div>
-        <h1 className='center-text main-text-color Heading'>{this.props.teaching.teaching.displayNamePlural}</h1>
+        <h1 className='center-text main-text-color Heading large-heading-size'>{this.props.teaching.teaching.displayNamePlural}</h1>
         <AccordionItem>
                 <AccordionItemHeading>
                     <AccordionItemButton>
                        {/* About section */}
-                    <span className="center-text main-text-color Heading">{/*console.log(this.props.teaching.default)*/}
+                    <span className="center-text main-text-color Heading large-heading-size">{/*console.log(this.props.teaching.default)*/}
                     About {this.props.teaching.teaching.displayNamePlural}</span>
                     </AccordionItemButton>
                 </AccordionItemHeading>
@@ -51,14 +52,12 @@ activeInput='';
                     </p>
                 </AccordionItemPanel>
             </AccordionItem>
-             {/* Display TeachingView if an object has been created */}
-        {this.displayChosenObject()}
-        <br></br>
+            <br></br>
             <AccordionItem>
                 <AccordionItemHeading>
                     <AccordionItemButton>
                        {/* Display CreatorViews to create objects */}
-                    <span className="center-text main-text-color Heading">{/*console.log(this.props.teaching.default)*/}
+                    <span className="center-text main-text-color Heading large-heading-size">{/*console.log(this.props.teaching.default)*/}
                     Create {this.props.teaching.teaching.displayNamePlural}</span>
                     </AccordionItemButton>
                 </AccordionItemHeading>
@@ -68,6 +67,9 @@ activeInput='';
                     </p>
                 </AccordionItemPanel>
             </AccordionItem>
+             {/* Display TeachingView if an object has been created */}
+        {this.displayChosenObject()}
+        {this.createUseObjectsViews()}
         <div className='fullWidth center-text'>
         </div>
         {/* On mobile, display keyboard */}
@@ -128,6 +130,42 @@ activeInput='';
   else { return <div><br></br><br></br><br></br><br></br></div> }}
 
   createKey(index) { return this.props.teaching.objectName+"-"+index; }
+
+  createUseObjectsViews(){
+    if(this.props.teaching.instanceMethodSignatures.length>0){
+    return <div className='center-text'><br></br><AccordionItem>
+    <AccordionItemHeading>
+        <AccordionItemButton>
+           {/* About section */}
+        <span className=" main-text-color Heading large-heading-size">{/*console.log(this.props.teaching.default)*/}
+        Learn {this.props.teaching.teaching.displayNamePlural}</span>
+        </AccordionItemButton>
+    </AccordionItemHeading>
+    <AccordionItemPanel>
+      {this.createUseViews()}
+    </AccordionItemPanel>
+</AccordionItem></div>
+    }
+    }
+
+
+createUseViews(){
+  if (this.props.displayTeaching){
+    return <div>{this.createInputHeading()}
+    {this.props.teaching.instanceMethodSignatures.map((methodSignature, i) => {
+    return (
+      <div key={i} className='fullWidth'>
+        <LearnerView className='CreatorView fullWidth' methodSignature={methodSignature} 
+        row={this.createKey(i)} teachingViewRef={this.teachingViewRef}></LearnerView>
+        {this.createAdEverySecond(i)}
+      </div>
+    );
+  })}
+  </div>
+} else {
+  return <h3 className='large-heading-size main-text-color center-text'>Before learning fractions, please create one first.</h3>
+}
+}
 }
 const CreateView = connect(mapStateToProps, mapDispatchToProps)(UnconnectedCreateView)
 export default CreateView;

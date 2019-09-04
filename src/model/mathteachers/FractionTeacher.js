@@ -15,7 +15,8 @@ class FractionTeacher extends MathTeacher{
         this.about=new AboutFraction().about
         this.anyNumbers=true;
         this.onlyFractions=false;
-        this.creationMethodSignatures=this.teaching.creationMethodSignatures
+        this.creationMethodSignatures=this.teaching.creationMethodSignatures;
+        this.instanceMethodSignatures=this.teaching.instanceMethodSignatures;
         this.description=[];
         this.headings=[];
         this.concepts=[];

@@ -15,6 +15,12 @@ class FractionTeaching extends MathTeaching{
         //const DECIMAL=['Create a fraction from a decimal', 'createFromDevcimal', 'decimal', 'decimal'];
         this.creationMethodSignatures.push(NUMERATOR_AND_DENOMINATOR, INTEGER);
         this.main=[];
+        this.instanceMethodSignatures=[];
+        const ADD=['Add two fractions'];
+        const SUBTRACT=['Subtract one fractions from another'];
+        const MULTIPLY=['Multiply two fractions'];
+        const DIVIDE=['Divide one fractions by another'];
+        this.instanceMethodSignatures.push(ADD, SUBTRACT, MULTIPLY, DIVIDE);
     }
     indeterminate(inlineLatex){
     var concept=[]
