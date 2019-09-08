@@ -32,7 +32,7 @@ const appReducer=(state=initialState, action) => {
             return {...state, pageNotFound: true};}
             return { ...state, teacher: action.teachingObject, pageNotFound: false };}
         
-        case 'CLEAR_TEACHING': return { ...state, teaching: action.teaching };
+        case 'CLEAR_TEACHING': return { ...state, teacher: action.teaching };
 
         case 'CLEAR_TEACHING_OBJECT': return { ...state, teachingObject: {} };
 

@@ -78,7 +78,7 @@ activeInput='';
       </Accordion>
       );
     } else if (this.props.pageNotFound){
-      return <PageNotFoundView/>
+      return <PageNotFoundView className='center-text'/>
     }
   }
 
