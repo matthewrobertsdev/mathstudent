@@ -11,9 +11,10 @@ import LearnerView from './LearnerView';
 import 'react-simple-keyboard/build/css/index.css';
 import '../views-general/app.css';
 import {Accordion, AccordionItem, AccordionItemHeading, AccordionItemPanel, AccordionItemButton} from 'react-accessible-accordion';
+import PageNotFoundView from '../views-general/PageNotFoundView';
 
-const mapStateToProps = (state) => { return { teaching: state.teaching, displayTeaching: state.displayTeaching, 
-  callingStrings: state.callingStrings, displayKeyboard: state.displayKeyboard} };
+const mapStateToProps = (state) => { return { teacher: state.teacher, displayTeaching: state.displayTeaching, 
+  callingStrings: state.callingStrings, displayKeyboard: state.displayKeyboard, pageNotFound: state.pageNotFound} };
 const mapDispatchToProps = (dispatch) => {
   return { /* gets teaching */ getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
     clearTeaching: () => { dispatch(clearTeaching()); }, updateURL: () => { dispatch(updateURL()); },
@@ -33,23 +34,23 @@ activeInput='';
   componentWillUnmount() { const {setDisplayTeaching}=this.props; setDisplayTeaching(false); }
   render() { return ( <div className='fullWidth'> {this.createView()} </div> ); }
   createView(){
-    if (this.props.teaching.teaching){
+    if (this.props.teacher){
       return (
       <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
         <div className='center-text textMargins'>{this.createAD()}</div>
-        <h1 className='center-text main-text-color Heading large-heading-size'>{this.props.teaching.teaching.displayNamePlural}</h1>
+        <h1 className='center-text main-text-color Heading large-heading-size'>{this.props.teacher.teaching.displayNamePlural}</h1>
         <AccordionItem>
                 <AccordionItemHeading>
                     <AccordionItemButton>
                        {/* About section */}
                     <span className="center-text main-text-color Heading large-heading-size">{/*console.log(this.props.teaching.default)*/}
-                    About {this.props.teaching.teaching.displayNamePlural}</span>
+                    About {this.props.teacher.teaching.displayNamePlural}</span>
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
-                    <p className='center-text textMargins'>
+                    <span className='center-text textMargins'>
                     {this.createAboutSection()} {this.createAD()}
-                    </p>
+                    </span>
                 </AccordionItemPanel>
             </AccordionItem>
             <br></br>
@@ -58,13 +59,13 @@ activeInput='';
                     <AccordionItemButton>
                        {/* Display CreatorViews to create objects */}
                     <span className="center-text main-text-color Heading large-heading-size">{/*console.log(this.props.teaching.default)*/}
-                    Create {this.props.teaching.teaching.displayNamePlural}</span>
+                    Create {this.props.teacher.teaching.displayNamePlural}</span>
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
-                    <p className='center-text textMargins'>
+                    <span className='center-text textMargins'>
                     {this.createInputHeading()} {this.createCreatorViews()}
-                    </p>
+                    </span>
                 </AccordionItemPanel>
             </AccordionItem>
              {/* Display TeachingView if an object has been created */}
@@ -76,6 +77,8 @@ activeInput='';
         {this.addKeyboardForMobile()}
       </Accordion>
       );
+    } else if (this.props.pageNotFound){
+      return <PageNotFoundView/>
     }
   }
 
@@ -99,18 +102,18 @@ activeInput='';
   }
   createInputHeading(){
     var heading=<span></span>;
-    if(this.props.teaching&&this.props.teaching.anyNumbers){
+    if(this.props.teacher&&this.props.teacher.anyNumbers){
     heading=<h3 className="center-text Heading">Enter numbers as integers or fractions.  
     If you want a fraction, type '/' to separate the denominator from the numerator.</h3>;
-    } else if (this.props.teaching&&this.props.teaching.onlyFractions){
+    } else if (this.props.teacher&&this.props.teacher.onlyFractions){
       heading=<h3 className="center-text Heading">To type a fraction, type '/' to separate the 
       denominator from the numerator.</h3>;
     }
     return heading;
   }
   createCreatorViews() {
-    if (this.props.teaching.creationMethodSignatures === undefined) { return; }
-    const creatorViews = this.props.teaching.creationMethodSignatures.map((methodSignature, i) => {
+    if (this.props.teacher.creationMethodSignatures === undefined) { return; }
+    const creatorViews = this.props.teacher.creationMethodSignatures.map((methodSignature, i) => {
       return (
         <div key={i} className='fullWidth'>
           <CreatorView className='CreatorView fullWidth' methodSignature={methodSignature} 
@@ -129,16 +132,16 @@ activeInput='';
     'display-keyboard' : 'hide-keyboard'} keyPressHandler={this.onKeyPress}/><KeyboardSpacer/></div> } 
   else { return <div><br></br><br></br><br></br><br></br></div> }}
 
-  createKey(index) { return this.props.teaching.objectName+"-"+index; }
+  createKey(index) { return this.props.teacher.objectName+"-"+index; }
 
   createUseObjectsViews(){
-    if(this.props.teaching.instanceMethodSignatures.length>0){
+    if(this.props.teacher.instanceMethodSignatures.length>0){
     return <div className='center-text'><br></br><AccordionItem>
     <AccordionItemHeading>
         <AccordionItemButton>
            {/* About section */}
         <span className=" main-text-color Heading large-heading-size">{/*console.log(this.props.teaching.default)*/}
-        Learn {this.props.teaching.teaching.displayNamePlural}</span>
+        Learn {this.props.teacher.teaching.displayNamePlural}</span>
         </AccordionItemButton>
     </AccordionItemHeading>
     <AccordionItemPanel>
@@ -152,7 +155,7 @@ activeInput='';
 createUseViews(){
   if (this.props.displayTeaching){
     return <div>{this.createInputHeading()}
-    {this.props.teaching.instanceMethodSignatures.map((methodSignature, i) => {
+    {this.props.teacher.instanceMethodSignatures.map((methodSignature, i) => {
     return (
       <div key={i} className='fullWidth'>
         <LearnerView className='CreatorView fullWidth' methodSignature={methodSignature} 

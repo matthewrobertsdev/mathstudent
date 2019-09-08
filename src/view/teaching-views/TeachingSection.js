@@ -7,7 +7,7 @@ import {BlockMath, InlineMath } from 'react-katex';
 import TeachingLink from './TeachingLink'
 import '../views-general/app.css';
 const mapStateToProps = (state) => {
-  return { teaching: state.teaching, creationStrings: state.creationStrings, 
+  return { teacher: state.teacher, creationStrings: state.creationStrings, 
     callingStrings: state.callingStrings, paramaterLabels: 
     state.paramaterLabels } };
 const mapDispatchToProps = (dispatch) => {
@@ -41,19 +41,19 @@ class UnconnectedTeachingSection extends React.Component{
       }
       displayTeaching(){
         var teachingDisplay=[]
-        if (this.props.teaching.description&&this.props.teaching.headings&&this.props.teaching.concepts){
-            teachingDisplay.push(this.teachConcept(this.props.teaching.description));
-            for (var i=0; i<this.props.teaching.headings.length; i++){
-              teachingDisplay.push(this.displayHeading(this.props.teaching.headings[i], i));
-              teachingDisplay.push(this.teachConcept(this.props.teaching.concepts[i], i));
+        if (this.props.teacher.description&&this.props.teacher.headings&&this.props.teacher.concepts){
+            teachingDisplay.push(this.teachConcept(this.props.teacher.description));
+            for (var i=0; i<this.props.teacher.headings.length; i++){
+              teachingDisplay.push(this.displayHeading(this.props.teacher.headings[i], i));
+              teachingDisplay.push(this.teachConcept(this.props.teacher.concepts[i], i));
             }
         }
         return teachingDisplay;
       }
       createTitleString(){
-        if(this.props.teaching){
+        if(this.props.teacher){
           var titleString='';
-          titleString+="We've created a "+this.props.teaching.teaching.singularLowerCase+" with ";
+          titleString+="We've created a "+this.props.teacher.teaching.singularLowerCase+" with ";
           var c=0; var m=1;
           while (c<this.props.paramaterLabels.length) {
             titleString+=this.props.paramaterLabels[c]+': '+this.props.creationStrings[m]
@@ -66,8 +66,9 @@ class UnconnectedTeachingSection extends React.Component{
         }
       }
       createMath(){
-        if(this.props.teaching){
-          return this.props.teaching.latex();
+        if(this.props.teacher){
+          console.log(this.props.teacher.latex());
+          return this.props.teacher.latex();
         }
       }
       displayHeading(heading, i){
@@ -93,7 +94,7 @@ class UnconnectedTeachingSection extends React.Component{
             } else {
               console.log(concept[i])
               mainTeaching.push(<TeachingLink key={i+'-'+c} displayName={concept[i].displayName}
-                        codeName={this.props.teaching.main[i].codeName}></TeachingLink>);
+                        codeName={this.props.teacher.main[i].codeName}></TeachingLink>);
             }
           }
           return mainTeaching;

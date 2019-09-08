@@ -48,7 +48,7 @@ export const getTeaching = (teachingName) => {
     return import(`../model/mathteachers/${teachingName}Teacher`).then(teaching => {
         console.log(teaching.default)
         dispatch(_getTeaching(teaching.default));
-    }).catch(function(error) { console.log(error); }); };
+    }).catch(function(error) { console.log(error); dispatch(_getTeaching(undefined)) }); };
 };
 export const createTeaching = (methodInfo) => { return (dispatch) => { return dispatch(_createTeaching(methodInfo)); }; };
 
@@ -94,6 +94,7 @@ export const setIsMobile = (isMobile) =>
 export const createTeachingObject = (teachingName, args) => 
 { return (dispatch) => {
     return import(`../model/mathteachers/${teachingName}Teacher`).then(teaching => {
+        console.log("Got teaching in create teaching."+args);
         const firstArg=args.shift();
         const teachingObject=teaching.default;
         teachingObject[firstArg](args);

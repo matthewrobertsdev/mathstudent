@@ -9,7 +9,7 @@ import {createTeaching, createTeachingObject, updateCreationStrings, setDisplayT
     setParamaterLabels, updateKeyAndValue, clearTeaching} from '../../manager/Actions';
 import {AccordionItem, AccordionItemHeading, AccordionItemPanel, AccordionItemButton} from 'react-accessible-accordion';
 /* gets the teaching for this method */
-const mapStateToProps = (state) => { return { teaching: state.teaching, topics: state.topics, inputMap: state.inputMap, 
+const mapStateToProps = (state) => { return { teacher: state.teacher, topics: state.topics, inputMap: state.inputMap, 
     callingStrings: state.callingStrings, creationStrings: state.creationStrings,
      teachingObjectName: state.teachingObjectName, argumentLabels: state.argumentLabels} };
   /* so that the creator view can get the teaching */
@@ -49,7 +49,7 @@ class UnconnectedLearnerView extends React.Component{
     <AccordionItemPanel>
     <div className='CreatorView'>
                 {this.createView()}<button className="createButton creator-text-size" onClick={() => this.handleClick()}>
-                Learn {this.props.teaching.teaching.displayNamePlural}</button>
+                Learn {this.props.teacher.teaching.displayNamePlural}</button>
                 <ReactModal className="notNumberModal" isOpen={this.state.showModal} >
                 <br></br>
                 <span classname='creator-text-size'>{this.getErrorString()}</span>

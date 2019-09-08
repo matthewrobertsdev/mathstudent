@@ -3,7 +3,7 @@ import isMobile from '../utilities/IsMobile'
 const initialState = { loaded: false, /* all topics for now */ topics: [], /* the teaching being taught */ teaching: {},
     error: {}, URL: '', inputMap: {}, activeMap: {}, activeKey: '', inputArray: [], textStrings: [], callingStrings: [],
     creationStrings: [], teachingObject: {}, teachingObjectName: '', displayTeaching: false, displayKeyboard: false,
-    paramaterLabels: []};
+    paramaterLabels: [], pageNotFound: false };
     
 const appReducer=(state=initialState, action) => {
         switch (action.type) {
@@ -28,7 +28,9 @@ const appReducer=(state=initialState, action) => {
 
         case 'GET_TOPICS': return { ...state, topics: action.topics };
 
-        case 'GET_TEACHING': return { ...state, teaching: action.teachingObject };
+        case 'GET_TEACHING': {if (action.teachingObject===undefined) {console.log('teaching was null'); 
+            return {...state, pageNotFound: true};}
+            return { ...state, teacher: action.teachingObject, pageNotFound: false };}
         
         case 'CLEAR_TEACHING': return { ...state, teaching: action.teaching };
 

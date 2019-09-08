@@ -21,7 +21,7 @@ class FractionTeacher extends MathTeacher{
         this.headings=[];
         this.concepts=[];
     }
-    createFromNumAndDenom(args){ this.mathObject.numerator=parseInt(args[0]); 
+    createFromNumAndDenom(args){ console.log('in num and denom'); this.mathObject.numerator=parseInt(args[0]); 
         this.mathObject.denominator=parseInt(args[1]); this.teach();}
     createFromInteger(args){ this.mathObject.numerator=parseInt(args[0]); 
         this.mathObject.denominator=1; this.teach();}

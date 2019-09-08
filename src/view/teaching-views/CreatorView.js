@@ -8,7 +8,7 @@ import { withRouter } from "react-router-dom";
 import '../views-general/app.css';
 import ReactModal from 'react-modal';
 /* gets the teaching for this method */
-const mapStateToProps = (state) => { return { teaching: state.teaching, topics: state.topics, inputMap: state.inputMap, 
+const mapStateToProps = (state) => { return { teacher: state.teacher, topics: state.topics, inputMap: state.inputMap, 
   callingStrings: state.callingStrings, creationStrings: state.creationStrings,
    teachingObjectName: state.teachingObjectName, argumentLabels: state.argumentLabels} };
 /* so that the creator view can get the teaching */
@@ -40,7 +40,7 @@ class UnconnectedCreatorView extends React.Component{
           <div className='CreatorView'>
                 <h3 className='heading-size'>{this.props.methodSignature[0]}</h3>
                 {this.createView()}<button className="createButton creator-text-size" onClick={() => this.handleClick()}>
-                Create a {this.props.teaching.teaching.displayNameSingular}</button>
+                Create a {this.props.teacher.teaching.displayNameSingular}</button>
                 <ReactModal className="notNumberModal" isOpen={this.state.showModal} >
                 <br></br>
                 <span classname='creator-text-size'>{this.getErrorString()}</span>
