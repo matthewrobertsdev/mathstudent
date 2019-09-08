@@ -23,7 +23,7 @@ const appReducer=(state=initialState, action) => {
             //teachingObject.default.teaching[firstArg](action.args);
             const newTeaching={};
             Object.assign(newTeaching, action.teaching)
-            return {...state, teaching: newTeaching}; //}).catch(function(error) { console.log(error);
+            return {...state, teacher: newTeaching}; //}).catch(function(error) { console.log(error);
                  //return state;});
 
         case 'GET_TOPICS': return { ...state, topics: action.topics };
