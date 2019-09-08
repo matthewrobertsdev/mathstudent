@@ -32,9 +32,9 @@ const appReducer=(state=initialState, action) => {
             return {...state, pageNotFound: true};}
             return { ...state, teacher: action.teachingObject, pageNotFound: false };}
         
-        case 'CLEAR_TEACHING': return { ...state, teacher: action.teaching };
+        case 'CLEAR_TEACHING': return { ...state, teacher: action.teaching, pageNotFound: false};
 
-        case 'CLEAR_TEACHING_OBJECT': return { ...state, teachingObject: {} };
+        case 'CLEAR_TEACHING_OBJECT': return { ...state, teachingObject: {}, pageNotFound: false};
 
         case 'UPDATE_URL': return { ...state, URLpathname: action.URLpathname };
 

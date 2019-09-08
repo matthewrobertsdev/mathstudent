@@ -32,7 +32,7 @@ class UnconnectedCreateView extends React.Component {
 activeInput='';
   componentWillMount() { this.teachingViewRef=React.createRef(); }
   componentWillUnmount() { const {setDisplayTeaching}=this.props; setDisplayTeaching(false); }
-  render() { return ( <div className='fullWidth'> {this.createView()} </div> ); }
+  render() { return ( <div className='fullWidth center-text'> {this.createView()} </div> ); }
   createView(){
     if (this.props.teacher){
       return (
@@ -78,7 +78,7 @@ activeInput='';
       </Accordion>
       );
     } else if (this.props.pageNotFound){
-      return <PageNotFoundView className='center-text'/>
+      return <div><br></br><br></br><PageNotFoundView className='fullWidth center-text'/></div>
     }
   }
 
