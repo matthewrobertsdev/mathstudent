@@ -7,15 +7,10 @@ import '../views-general/app.css';
 addMathquillStyles();
 const mapStateToProps = (state) => { return { inputMap: state.inputMap, teaching: state.teaching, 
     activeKey: state.activeKey, displayKeyboard: state.displayKeyboard} };
-
 const mapDispatchToProps = (dispatch) => { return {
-
         updateKeyAndValue: (key, value) => { dispatch(updateKeyAndValue(key, value)); },
-
         updateActiveKey: (key) => {dispatch(updateActiveKey(key)); },
-    
         updateDisplayKeyboard: (isDisplayed) => {dispatch(updateDisplayKeyboard(isDisplayed))}} };
-        
 class UnconnectedNumberInput extends React.Component{
     constructor(props) {
         super(props);
@@ -45,9 +40,8 @@ class UnconnectedNumberInput extends React.Component{
     }
     forClick() { const { updateActiveKey, updateDisplayKeyboard } = this.props; 
     updateActiveKey(this.props.gridID); updateDisplayKeyboard(true); 
-
 }
-    getMobileValue() { return this.props.inputMap[this.props.gridID];}
+    getMobileValue() { return this.props.inputMap[this.props.gridID]; }
     onKeyPressed(e) {
         if (e.metaKey && (e.key==="h"||e.key==="q")){ return; }
         switch (e.key) {
@@ -57,15 +51,8 @@ class UnconnectedNumberInput extends React.Component{
             default:
                 e.preventDefault();
         }
-        if( isMobile() ) {
-            if (this.state.mobileValue.match("/")&&e.key==='/'){
-                e.preventDefault();
-            }
-        } else {
-            if (this.state.latex.match("frac")&&e.key==='/'){
-                e.preventDefault();
-            }
-        }
+        if( isMobile() ) { if (this.state.mobileValue.match("/")&&e.key==='/'){ e.preventDefault(); }
+        } else if (this.state.latex.match("frac")&&e.key==='/'){ e.preventDefault(); }
     }
 }
 const NumberInput=connect(mapStateToProps, mapDispatchToProps)(UnconnectedNumberInput)

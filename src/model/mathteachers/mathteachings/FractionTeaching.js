@@ -1,4 +1,5 @@
 import MathTeaching from './MathTeaching'
+import AboutFraction from './aboutsections/AboutFraction';
 
 class FractionTeaching extends MathTeaching{
     constructor(){
@@ -8,6 +9,7 @@ class FractionTeaching extends MathTeaching{
         this.singularLowerCase="fraction";
         this.displayNamePlural="Fractions";
         this.pluralLowerCase="fractions";
+        this.about=new AboutFraction().about
         this.creationMethodSignatures=[];
         const NUMERATOR_AND_DENOMINATOR=['Create a fraction with a numerator and a denominator', 'createFromNumAndDenom', 
         'numerator', 'integer', 'denominator', 'integer'];
@@ -16,10 +18,10 @@ class FractionTeaching extends MathTeaching{
         this.creationMethodSignatures.push(NUMERATOR_AND_DENOMINATOR, INTEGER);
         this.main=[];
         this.instanceMethodSignatures=[];
-        const ADD=['Add two fractions'];
-        const SUBTRACT=['Subtract one fractions from another'];
-        const MULTIPLY=['Multiply two fractions'];
-        const DIVIDE=['Divide one fractions by another'];
+        const ADD=['Add two fractions', 'add', 'numerator', 'integer', 'denominator', 'integer'];
+        const SUBTRACT=['Subtract one fractions from another', 'subtract', 'numerator', 'integer', 'denominator', 'integer'];
+        const MULTIPLY=['Multiply two fractions', 'multiply', 'numerator', 'integer', 'denominator', 'integer'];
+        const DIVIDE=['Divide one fractions by another', 'divide', 'numerator', 'integer', 'denominator', 'integer'];
         this.instanceMethodSignatures.push(ADD, SUBTRACT, MULTIPLY, DIVIDE);
     }
     indeterminate(inlineLatex){

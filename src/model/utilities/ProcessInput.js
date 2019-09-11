@@ -9,13 +9,10 @@ class ProcessInput{
         var fractions=[]
         for (var i=1; i<strArray.length; i++) {
           if (InputValidator.latexFractionOnly.test(strArray[i])){
-            var matches=[];
-            let match=null;
+            var matches=[]; let match=null;
             do {
               match = InputValidator.hasInteger.exec(strArray[i]);
-              if (match) {
-                matches.push(match);
-              }
+              if (match) { matches.push(match); }
           } while (match);
             fractions.push(new Fraction().fromNumeratorAndDenominator(parseInt(matches[0][0]),parseInt(matches[1][0])));
           } else{

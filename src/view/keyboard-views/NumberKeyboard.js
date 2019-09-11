@@ -14,7 +14,6 @@ render()
           onKeyPress={key => this.state.keyPressHandler(key)} display={{'{bksp}': 'delete', '{enter}':'done', '{space}': 'space', }}/>
       </div>
    }
-
 }
 const NumberKeyboard=connect(mapStateToProps, null)(UnconnectedNumberKeyboard);
 export default NumberKeyboard;

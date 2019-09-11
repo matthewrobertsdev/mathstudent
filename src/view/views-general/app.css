@@ -8,6 +8,7 @@
 
 .display{ display: inline-block; }
 
+.sticky-for-small{ position: relative;}
 @media (min-width: 700px) {
      .hide-for-big{ display: none !important; } 
 }
@@ -20,10 +21,9 @@
     .Heading{
         color: rgb(61, 32, 6); font-size: 1.50em; margin-top: 1em; margin-bottom: 1em;
       margin-left: 0; margin-right: 0; font-weight: bold; }
-    .heading-size {font-size: 1.50em}
-    .large-heading-size{
-        font-size: 2.00em;
-    }
+    .heading-size { font-size: 1.50em }
+    .large-heading-size{ font-size: 2.00em; }
+    .sticky-for-small{ position: sticky; }
 }
 
 @media (min-width: 500px){
@@ -45,7 +45,9 @@
 
 .center-text{ text-align: center; }
 
-.textMargins{ margin-left: 3%; margin-right: 3%; }
+.left-text{ text-align: left; }
+
+.text-margins{ margin-left: 3%; margin-right: 3%; }
 
 .Link { color: gold; background-color: rgb(22, 49, 131); /* background-color: rgb(110, 60, 14); */
     padding: 3px 14px; text-align: center; text-decoration: none; display: inline-block;

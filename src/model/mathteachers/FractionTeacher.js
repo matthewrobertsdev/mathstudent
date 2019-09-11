@@ -1,5 +1,4 @@
 import MathTeacher from './MathTeacher';
-import AboutFraction from './mathteachings/aboutsections/AboutFraction';
 import FractionTeaching from './mathteachings/FractionTeaching';
 import Fraction from './math/Fraction'
 import PrimeFactorization from './math/PrimeFactorization';
@@ -9,19 +8,12 @@ class FractionTeacher extends MathTeacher{
     teaching=FractionTeaching;
     mathObject=Fraction
 
-    constructor(){
-        super();
-        this.callingStrings=[];
-        this.about=new AboutFraction().about
-        this.anyNumbers=true;
-        this.onlyFractions=false;
+    constructor(){ super();
+        this.callingStrings=[]; this.anyNumbers=true; this.onlyFractions=false;
         this.creationMethodSignatures=this.teaching.creationMethodSignatures;
         this.instanceMethodSignatures=this.teaching.instanceMethodSignatures;
-        this.description=[];
-        this.headings=[];
-        this.concepts=[];
-    }
-    createFromNumAndDenom(args){ console.log('in num and denom'+args[0]+[args[1]]); this.mathObject.numerator=parseInt(args[0]); 
+        this.description=[]; this.headings=[]; this.concepts=[]; }
+    createFromNumAndDenom(args){ this.mathObject.numerator=parseInt(args[0]); 
         this.mathObject.denominator=parseInt(args[1]); this.teach();}
     createFromInteger(args){ this.mathObject.numerator=parseInt(args[0]); 
         this.mathObject.denominator=1; this.teach();}

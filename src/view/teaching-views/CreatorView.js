@@ -61,10 +61,7 @@ class UnconnectedCreatorView extends React.Component{
         }
       }
       createView(){
-        //this.createCallingStrings();
-        var creatorView=[];
-        var column=1;
-        this.num=0;
+        var creatorView=[]; var column=1; this.num=0;
         for (var i=0; i<this.props.methodSignature.length; i++){
           if (i<2) { /* do nothing */ }
           else if (i%2===0) {
@@ -83,44 +80,29 @@ class UnconnectedCreatorView extends React.Component{
         var paramaterLabels=[];
         for (var i=0; i<this.props.methodSignature.length; i++){
           if (i<2) { /* do nothing */ }
-          else if (i%2===0) {
-            paramaterLabels.push(this.props.methodSignature[i]);
-          }
+          else if (i%2===0) { paramaterLabels.push(this.props.methodSignature[i]); }
         }
         return paramaterLabels;
       }
       createCallingStrings(){
         var callingStrings=[];
-        for (var i=0; i<this.props.methodSignature.length/2; i++){
-          callingStrings.push('');
-        };
+        for (var i=0; i<this.props.methodSignature.length/2; i++){ callingStrings.push(''); };
         return callingStrings;
       }
       /* bring index to array */
-      createNumberInput(column){
-          this.state.gridIDs.push(this.createGridID(column));
+      createNumberInput(column){ this.state.gridIDs.push(this.createGridID(column));
           let fractionInput=<NumberInput gridID={this.createGridID(column)} index={column} 
           textHandler={(key, value) => this.textHandler(key, value)} activateInputHandler={this.props.activateInputHandler}>
-          </NumberInput>;
-          this.num++;
-        return fractionInput;
-      }
-      createGridID(column){
-        return this.props.row+"-"+column
-      }
-      textHandler(key, value){
-        { const { updateKeyAndValue } = this.props; updateKeyAndValue(key, value); }
-      }
+          </NumberInput>; this.num++; return fractionInput; }
+      createGridID(column){ return this.props.row+"-"+column }
+      textHandler(key, value){ { const { updateKeyAndValue } = this.props; updateKeyAndValue(key, value); } }
       makeObjectURLComponent(){
-        var urlComponent=`/`
-        for (var i=0; i<this.state.callingStrings.length; i++) {
-          urlComponent+=`$${this.state.callingStrings[i]}`;
-        }
+        var urlComponent='/'
+        for (var i=0; i<this.state.callingStrings.length; i++) { urlComponent+=`$${this.state.callingStrings[i]}`; }
         return urlComponent
       }
       getCallingStrings(){
-        var callingStrings=[];
-        callingStrings.push(this.props.methodSignature[1]);
+        var callingStrings=[]; callingStrings.push(this.props.methodSignature[1]);
         for (var i=0; i<this.props.methodSignature.length/2-1; i++){
           callingStrings.push(this.props.inputMap[this.state.gridIDs[i]]);
         };
@@ -128,29 +110,17 @@ class UnconnectedCreatorView extends React.Component{
     } 
   handleClick(){
     const callingStrings=this.getCallingStrings();
-    if (this.props.methodSignature[3]==='integer'){
-       this.setState({ type: 'integer' }); 
-      if (InputValidator.areIntegers(callingStrings)){
-        this.updateForTeaching(callingStrings);
-      } else {
-        this.handleOpenModal();
-      }
+    if (this.props.methodSignature[3]==='integer'){ this.setState({ type: 'integer' }); 
+      if (InputValidator.areIntegers(callingStrings)){ this.updateForTeaching(callingStrings);
+      } else { this.handleOpenModal(); }
     }
-    else if (this.props.methodSignature[3]==='number'){
-       this.setState({ type: 'number' }); 
-    if(InputValidator.areNumbers(callingStrings)){
-      this.updateForTeaching(callingStrings);
-    } else {
-        this.handleOpenModal();
-    }
-  }
+    else if (this.props.methodSignature[3]==='number'){ this.setState({ type: 'number' }); 
+    if(InputValidator.areNumbers(callingStrings)){ this.updateForTeaching(callingStrings);
+    } else { this.handleOpenModal(); } }
   else if (this.props.methodSignature[3]==='decimal'){
     this.setState({ type: 'decimal' }); this.handleOpenModal();
-    if(InputValidator.areNumbers(callingStrings)){
-      this.updateForTeaching(callingStrings);
-    } else {
-        this.handleOpenModal();
-    }
+    if(InputValidator.areNumbers(callingStrings)){ this.updateForTeaching(callingStrings); }
+     else { this.handleOpenModal(); }
   }
   }
   updateForTeaching(creationStrings){
@@ -158,15 +128,9 @@ class UnconnectedCreatorView extends React.Component{
       setParamaterLabels, clearTeaching}=this.props;
     const paramaterLabels=this.getParamaterLabels();
     setParamaterLabels(paramaterLabels);
-    if(true){
-      updateCreationStrings(creationStrings);
-    } else {
-
-    }
-    clearTeaching()
-    if (true){
-      createTeachingObject(this.props.teachingObjectName, creationStrings.slice());
-    }
+    if(true){ updateCreationStrings(creationStrings);
+    } else { } clearTeaching()
+    if (true){ createTeachingObject(this.props.teachingObjectName, creationStrings.slice()); }
     setDisplayTeaching(true);
     this.props.teachingViewRef.current.scrollIntoView();
   }
@@ -175,11 +139,3 @@ class UnconnectedCreatorView extends React.Component{
 }
 const CreatorView=connect(mapStateToProps, mapDispatchToProps)((withRouter)(UnconnectedCreatorView));
 export default CreatorView;
-
-        /* const historyState={teachingObjectName: this.state.teachingObjectName, 
-          callingStrings: this.state.callingStrings}
-        //this.props.history.push(`/teaching/${this.props.teaching.objectName}`);
-        //this.props.history.push(`/teaching/${this.props.teaching.objectName}`+
-        this.makeObjectURLComponent());
-        //this.props.history.push(`/teaching/${this.props.teaching.objectName}`+
-        this.makeObjectURLComponent()); */
