@@ -16,5 +16,8 @@ class MathTeacher{
     latex=()=>{
         return '';
     }
+    getSimplestForm(){
+        return '';
+    }
 }
 export default MathTeacher;

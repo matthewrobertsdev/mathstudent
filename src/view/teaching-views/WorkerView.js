@@ -5,6 +5,7 @@ import InputValidator from '../../model/utilities/InputValidator';
 import { withRouter } from "react-router-dom";
 import '../views-general/app.css';
 import ReactModal from 'react-modal';
+import {BlockMath, InlineMath } from 'react-katex';
 import {createTeaching, createTeachingObject, updateCreationStrings, setDisplayTeaching, 
     setParamaterLabels, updateKeyAndValue, clearTeaching} from '../../manager/Actions';
 import {AccordionItem, AccordionItemHeading, AccordionItemPanel, AccordionItemButton} from 'react-accessible-accordion';
@@ -23,7 +24,7 @@ const mapStateToProps = (state) => { return { teacher: state.teacher, topics: st
       dispatch(clearTeaching());}, };}
 
 /* for creating a teaching, but not connected yet */
-class UnconnectedLearnerView extends React.Component{
+class UnconnectedWorkerView extends React.Component{
     constructor(props) {
         super(props);
         /* methods strings to create view, calling strings to call method */
@@ -74,6 +75,7 @@ class UnconnectedLearnerView extends React.Component{
       createView(){
         //this.createCallingStrings();
         var creatorView=[];
+        creatorView.push(<InlineMath key={-1} className='inline-math'>{this.props.teacher.simplestForm}</InlineMath>)
         var column=1;
         this.num=0;
         for (var i=0; i<this.props.methodSignature.length; i++){
@@ -184,8 +186,8 @@ class UnconnectedLearnerView extends React.Component{
   handleOpenModal () { this.setState({ showModal: true }); }
   handleCloseModal () { this.setState({ showModal: false }); }
 }
-const LearnerView=connect(mapStateToProps, mapDispatchToProps)((withRouter)(UnconnectedLearnerView));
-export default LearnerView;
+const WorkerView=connect(mapStateToProps, mapDispatchToProps)((withRouter)(UnconnectedWorkerView));
+export default WorkerView;
 
         /* const historyState={teachingObjectName: this.state.teachingObjectName, 
           callingStrings: this.state.callingStrings}

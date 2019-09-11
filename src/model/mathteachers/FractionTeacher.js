@@ -7,24 +7,30 @@ class FractionTeacher extends MathTeacher{
 
     teaching=FractionTeaching;
     mathObject=Fraction
+    numerator
+    denominator
+    simplestForm
 
     constructor(){ super();
         this.callingStrings=[]; this.anyNumbers=true; this.onlyFractions=false;
         this.creationMethodSignatures=this.teaching.creationMethodSignatures;
         this.instanceMethodSignatures=this.teaching.instanceMethodSignatures;
         this.description=[]; this.headings=[]; this.concepts=[]; }
-    createFromNumAndDenom(args){ this.mathObject.numerator=parseInt(args[0]); 
-        this.mathObject.denominator=parseInt(args[1]); this.teach();}
-    createFromInteger(args){ this.mathObject.numerator=parseInt(args[0]); 
-        this.mathObject.denominator=1; this.teach();}
+    createFromNumAndDenom(args){ this.init(args)}
+    createFromInteger(args){ this.init(args)}
+    init(args){this.numerator=parseInt(args[0]); this.mathObject.numerator=parseInt(args[0]);
+        this.denominator=parseInt(args[1]); this.mathObject.denominator=parseInt(args[1]); this.teach();}
     latex=()=>{
             return `\\Huge\\color{gold}`+this.basicLatex();
       }
       basicLatex(){
-        return `\\frac{${this.mathObject.numerator}}{${this.mathObject.denominator}}`
+        return `\\frac{${this.numerator}}{${this.denominator}}`
       }
       inlineLatex(){
           return `{IL}\\Large\\color{gold}`+this.basicLatex();
+      }
+      setSimplestForm(numerator, denominator){
+        this.simplestForm=`\\Large\\color{gold}\\frac{${numerator}}{${denominator}}`;
       }
     teach(){
         this.headings=[];
@@ -62,9 +68,11 @@ class FractionTeacher extends MathTeacher{
             this.concepts[0].push(this.teaching.tellPrimesInCommon(primes))
             const gcf=Product.getProductOfList(primes);
             this.concepts[0].push(this.teaching.tellGCF(gcf))
-            const reducedNumerator=this.mathObject.numerator/gcf;
-            const reducedDenominator=this.mathObject.denominator/gcf;
-            if (reducedNumerator<=10000&&reducedDenominator<=10000){
+            //const reducedNumerator=this.mathObject.numerator/gcf;
+            //const reducedDenominator=this.mathObject.denominator/gcf;
+            this.mathObject.numerator/=gcf;
+            this.mathObject.denominator/=gcf;
+            if (this.mathObject.numerator<=10000&&this.mathObject.denominator<=10000){
                 this.concepts[0].push(this.teaching.tellSimplifiedForm(this.mathObject.numerator,
                     this.mathObject.denominator, gcf));
                     this.concepts[0].push(this.teaching.simplestFormHeading);
@@ -73,11 +81,12 @@ class FractionTeacher extends MathTeacher{
                     this.mathObject.denominator, gcf));
                     this.concepts[0].push(this.teaching.reducedFormHeading);
             }
-            if (reducedDenominator===1){
-                this.concepts[0].push(`{BL}\\Huge\\color{gold}${reducedNumerator}`);
+            if (this.mathObject.denominator===1){
+                this.concepts[0].push(`{BL}\\Huge\\color{gold}${this.mathObject.numerator}`);
             } else {
-                this.concepts[0].push(`{BL}\\Huge\\color{gold}\\frac{${reducedNumerator}}{${reducedDenominator}}`);
+                this.concepts[0].push(`{BL}\\Huge\\color{gold}\\frac{${this.mathObject.numerator}}{${this.mathObject.denominator}}`);
             }
+            this.setSimplestForm(this.mathObject.numerator, this.mathObject.denominator)
         }
         
       }

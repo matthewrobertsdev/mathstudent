@@ -3,7 +3,9 @@ class AboutFraction {
 
     constructor(){
         this.about=[];
-        this.about.push("A fraction is a way of expressing a number as being a part of another number.");
+        this.about.push("A fraction is a way of expressing a number as being a part of another number.  "+
+        'The numerator is on top and the dnominator is on the bottom, they are both integers (numbers with no deicmal point '+
+        'and the numerator is divided by the dnominator to give you the value of the fraction.  ');
         this.about.push('\n\n');
         this.about.push("It can be a part "+
         "of that number or a part of a multiple of that number.  Fractions use only numbers that have nothing after the "+

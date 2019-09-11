@@ -7,7 +7,7 @@ import NumberKeyboard from '../keyboard-views/NumberKeyboard';
 import KeyboardSpacer from '../keyboard-views/KeyboardSpacer';
 import AboutSection from './AboutSection';
 import TeachingSection from './TeachingSection';
-import LearnerView from './LearnerView';
+import WorkerView from './WorkerView';
 import 'react-simple-keyboard/build/css/index.css';
 import '../views-general/app.css';
 import {Accordion, AccordionItem, AccordionItemHeading, AccordionItemPanel, AccordionItemButton} from 'react-accessible-accordion';
@@ -32,12 +32,13 @@ class UnconnectedCreateView extends React.Component {
 	activeInput='';
 	componentWillMount() { this.teachingViewRef=React.createRef();}
 	componentDidUpdate(){
-		if (this.props.teacher){ document.title=this.props.teacher.teaching.displayNamePlural}
+		if (this.props.teacher){if(this.props.teaching){ document.title=this.props.teacher.teaching.displayNamePlural}};
 	}
 	componentWillUnmount() { const {setDisplayTeaching}=this.props; setDisplayTeaching(false); }
 	render() { return ( <div className='fullWidth'> {this.createView()} </div> ); }
 	createView(){
 		if (this.props.teacher){
+			if(this.props.teacher.teaching){
 			return (
 					<Accordion allowZeroExpanded={true} allowMultipleExpanded={true} preExpanded={this.expandIfNotMobile()}>
 					<div className='center-text textMargins'>{this.createAD()}</div>
@@ -83,6 +84,7 @@ class UnconnectedCreateView extends React.Component {
 		} else if (this.props.pageNotFound){
 			return <div><br></br><br></br><PageNotFoundView className='fullWidth center-text'/></div>
 		}
+	}
 	}
 	
 	createAboutSection(){
@@ -161,8 +163,9 @@ class UnconnectedCreateView extends React.Component {
 			{this.props.teacher.instanceMethodSignatures.map((methodSignature, i) => {
 															 return (
 																	 <div key={i} className='fullWidth'>
-																	 <LearnerView className='CreatorView fullWidth' methodSignature={methodSignature}
-																	 row={this.createKey(i)} teachingViewRef={this.teachingViewRef}></LearnerView>
+																	 <WorkerView className='CreatorView fullWidth' methodSignature={methodSignature}
+																	 row={this.createKey(i)} teachingViewRef={this.teachingViewRef}></WorkerView
+																	>
 																	 {this.createAdEverySecond(i)}
 																	 </div>
 																	 );

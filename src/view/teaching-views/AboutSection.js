@@ -9,7 +9,7 @@ class UnconnectedAboutSection extends React.Component {
 			var aboutSection=[];
 			for (var i=0; i<this.props.teacher.teaching.about.length; i++){
 				if ( typeof this.props.teacher.teaching.about[i]==='string'){
-					if (this.props.teacher.about[i]==='\n\n'){
+					if (this.props.teacher.teaching.about[i]==='\n\n'){
 						aboutSection.push(<div key={i} ><br></br></div>);
 					} else { aboutSection.push(<span key={i} className="Heading">
 					{this.props.teacher.teaching.about[i]}</span>);
