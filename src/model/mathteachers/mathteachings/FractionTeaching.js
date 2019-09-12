@@ -1,6 +1,6 @@
 import MathTeaching from './MathTeaching'
 import AboutFraction from './aboutsections/AboutFraction';
-
+import MathHeading from '../../utilities/MathHeading'
 class FractionTeaching extends MathTeaching{
     constructor(){
         super();
@@ -18,9 +18,23 @@ class FractionTeaching extends MathTeaching{
         this.creationMethodSignatures.push(NUMERATOR_AND_DENOMINATOR, INTEGER);
         this.main=[];
         this.instanceMethodSignatures=[];
-        const ADD=['Add two fractions', 'add', 'numerator', 'integer', 'denominator', 'integer'];
+        const addHeading=new MathHeading();
+        addHeading.components.push('Add a fraction to ');
+        addHeading.components.push('{Latex}');
+        const ADD=[addHeading, 'add', 'numerator', 'integer', 'denominator', 'integer'];
+        const subtractHeading=new MathHeading();
+        subtractHeading.components.push('Subtract a fraction from ');
+        subtractHeading.components.push('{Latex}');
         const SUBTRACT=['Subtract one fractions from another', 'subtract', 'numerator', 'integer', 'denominator', 'integer'];
+        const multiplyHeading=new MathHeading();
+        multiplyHeading.components.push('Multiply ');
+        multiplyHeading.components.push('{Latex}');
+        multiplyHeading.components.push(' by a fraction');
         const MULTIPLY=['Multiply two fractions', 'multiply', 'numerator', 'integer', 'denominator', 'integer'];
+        const dvideHeading=new MathHeading();
+        dvideHeading.components.push('Divide ');
+        dvideHeading.components.push('{Latex}');
+        dvideHeading.components.push(' by a fraction');
         const DIVIDE=['Divide one fractions by another', 'divide', 'numerator', 'integer', 'denominator', 'integer'];
         this.instanceMethodSignatures.push(ADD, SUBTRACT, MULTIPLY, DIVIDE);
     }

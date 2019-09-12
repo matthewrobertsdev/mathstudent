@@ -43,7 +43,7 @@ class UnconnectedCreatorView extends React.Component{
                 Create a {this.props.teacher.teaching.displayNameSingular}</button>
                 <ReactModal className="notNumberModal" isOpen={this.state.showModal} >
                 <br></br>
-                <span classname='creator-text-size'>{this.getErrorString()}</span>
+                <span className='creator-text-size'>{this.getErrorString()}</span>
                 <br></br>
                 <br></br>
                 <button className='closeButton button-size' onClick={this.handleCloseModal}>Close</button>
@@ -104,12 +104,15 @@ class UnconnectedCreatorView extends React.Component{
       getCallingStrings(){
         var callingStrings=[]; callingStrings.push(this.props.methodSignature[1]);
         for (var i=0; i<this.props.methodSignature.length/2-1; i++){
+          console.log(JSON.stringify('1234'+this.state.gridIDs[i]))
+          console.log(JSON.stringify('5678'+this.props.inputMap[this.state.gridIDs[i]]));
           callingStrings.push(this.props.inputMap[this.state.gridIDs[i]]);
         };
         return callingStrings;
     } 
   handleClick(){
     const callingStrings=this.getCallingStrings();
+    console.log(JSON.stringify('abcd'+callingStrings));
     if (this.props.methodSignature[3]==='integer'){ this.setState({ type: 'integer' }); 
       if (InputValidator.areIntegers(callingStrings)){ this.updateForTeaching(callingStrings);
       } else { this.handleOpenModal(); }

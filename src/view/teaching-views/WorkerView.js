@@ -5,14 +5,14 @@ import InputValidator from '../../model/utilities/InputValidator';
 import { withRouter } from "react-router-dom";
 import '../views-general/app.css';
 import ReactModal from 'react-modal';
-import {BlockMath, InlineMath } from 'react-katex';
+import {InlineMath } from 'react-katex';
 import {createTeaching, createTeachingObject, updateCreationStrings, setDisplayTeaching, 
     setParamaterLabels, updateKeyAndValue, clearTeaching} from '../../manager/Actions';
 import {AccordionItem, AccordionItemHeading, AccordionItemPanel, AccordionItemButton} from 'react-accessible-accordion';
 /* gets the teaching for this method */
 const mapStateToProps = (state) => { return { teacher: state.teacher, topics: state.topics, inputMap: state.inputMap, 
     callingStrings: state.callingStrings, creationStrings: state.creationStrings,
-     teachingObjectName: state.teachingObjectName, argumentLabels: state.argumentLabels} };
+     teachingObjectName: state.teachingObjectName, argumentLabels: state.argumentLabels, simplestForm: state.simplestForm} };
   /* so that the creator view can get the teaching */
   const mapDispatchToProps = (dispatch) =>  { return  { createTeaching: (methodInfo) => { 
     dispatch(createTeaching(methodInfo));  }, updateCreationStrings: (creationStrings) => { 
@@ -44,7 +44,7 @@ class UnconnectedWorkerView extends React.Component{
         <AccordionItemButton>
            {/* About section */}
         <span className=" main-text-color Heading">{/*console.log(this.props.teaching.default)*/}
-        {this.props.methodSignature[0]}</span>
+        {this.createHeading()}</span>
         </AccordionItemButton>
     </AccordionItemHeading>
     <AccordionItemPanel>
@@ -119,7 +119,7 @@ class UnconnectedWorkerView extends React.Component{
         return fractionInput;
       }
       createGridID(column){
-        return this.props.row+"-"+column
+        return 'worker'+this.props.row+"-"+column
       }
       textHandler(key, value){
         { const { updateKeyAndValue } = this.props; updateKeyAndValue(key, value); }
@@ -185,6 +185,27 @@ class UnconnectedWorkerView extends React.Component{
   }
   handleOpenModal () { this.setState({ showModal: true }); }
   handleCloseModal () { this.setState({ showModal: false }); }
+
+  createHeading(){
+		if (this.props.methodSignature[0].components === undefined || this.props.simplestForm===undefined ) { return; }
+		const creatorViews = this.props.methodSignature[0].components.map((component, i) => {
+																			 return (
+																					 <span key={i} className='fullWidth'>
+																					 {this.createHeadingComponent(component)}
+																					 </span>
+																					 );
+																			 });
+		return creatorViews;
+	}
+  
+  createHeadingComponent(component){
+    if (component==='{Latex}'){
+      console.log("here"+this.props.simplestForm);
+      return <InlineMath>{this.props.simplestForm}</InlineMath>;
+    } else {
+      return component;
+    }
+  }
 }
 const WorkerView=connect(mapStateToProps, mapDispatchToProps)((withRouter)(UnconnectedWorkerView));
 export default WorkerView;

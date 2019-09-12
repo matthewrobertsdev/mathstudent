@@ -38,7 +38,7 @@ const appReducer=(state=initialState, action) => {
 
         case 'UPDATE_URL': return { ...state, URLpathname: action.URLpathname };
 
-        case 'UPDATE_KEY_AND_VALUE': return { ...state, inputMap: {...state.inputMap, [action.key]: action.value} };
+        case 'UPDATE_KEY_AND_VALUE': console.log('cdef upating key and value'); return { ...state, inputMap: {...state.inputMap, [action.key]: action.value} };
 
         case 'UPDATE_ACTIVE_KEY': return { ...state, activeKey: action.key };
 
@@ -58,6 +58,8 @@ const appReducer=(state=initialState, action) => {
         case 'SET_IS_MOBILE':  return {...state, isMobile: isMobile()};
 
         case 'SET_PARAMETER_LABELS': return {...state, paramaterLabels: action.paramaterLabels};
+
+        case 'UPDATE_SIMPLEST_FORM': return {...state, simplestForm: action.simplestForm};
 
         default: return state;
         }

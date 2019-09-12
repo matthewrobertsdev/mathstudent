@@ -99,8 +99,11 @@ export const createTeachingObject = (teachingName, args) =>
         const teachingObject=teaching.default;
         teachingObject[firstArg](args);
         dispatch(_createTeachingObject(teachingObject));
+        dispatch(_updateSimplestForm(teachingObject.simplestForm));
          }).catch(function(error) { console.log(error);
             dispatch(_createTeachingObject(null)) }); }; }
 
 export const setParamaterLabels = (labelArray) => 
 { return (dispatch) => { return dispatch(_setParamaterLabels(labelArray)); }; }
+
+const _updateSimplestForm = (simplestForm) => ({ type: 'UPDATE_SIMPLEST_FORM', simplestForm });

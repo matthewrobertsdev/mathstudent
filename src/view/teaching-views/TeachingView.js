@@ -137,7 +137,7 @@ class UnconnectedCreateView extends React.Component {
 		'display-keyboard' : 'hide-keyboard'} keyPressHandler={this.onKeyPress}/><KeyboardSpacer/></div> }
 		else { return <div><br></br><br></br><br></br><br></br></div> }}
 	
-	createKey(index) { return this.props.teacher.objectName+"-"+index; }
+	createKey(index) { return this.props.teacher.teaching.objectName+"-"+index; }
 	
 	createUseObjectsViews(){
 		if(this.props.teacher.instanceMethodSignatures.length>0){
@@ -150,14 +150,14 @@ class UnconnectedCreateView extends React.Component {
 			</AccordionItemButton>
 			</AccordionItemHeading>
 			<AccordionItemPanel>
-			{this.createUseViews()}
+			{this.createLearnerViews()}
 			</AccordionItemPanel>
 			</AccordionItem></div>
 		}
 	}
 	
 	
-	createUseViews(){
+	createLearnerViews(){
 		if (this.props.displayTeaching){
 			return <div>{this.createInputHeading()}
 			{this.props.teacher.instanceMethodSignatures.map((methodSignature, i) => {

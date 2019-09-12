@@ -65,9 +65,9 @@ class FractionTeacher extends MathTeacher{
         this.concepts[0].push(this.teaching.getPrimeFactors(this.mathObject.numerator, nArray, 
             this.mathObject.denominator, dArray, apology));
             const primes=this.mathObject.elemntsInCommon(nArray, dArray);
-            this.concepts[0].push(this.teaching.tellPrimesInCommon(primes))
+            this.concepts[0].push(this.teaching.tellPrimesInCommon(primes));
             const gcf=Product.getProductOfList(primes);
-            this.concepts[0].push(this.teaching.tellGCF(gcf))
+            this.concepts[0].push(this.teaching.tellGCF(gcf));
             //const reducedNumerator=this.mathObject.numerator/gcf;
             //const reducedDenominator=this.mathObject.denominator/gcf;
             this.mathObject.numerator/=gcf;
@@ -86,8 +86,8 @@ class FractionTeacher extends MathTeacher{
             } else {
                 this.concepts[0].push(`{BL}\\Huge\\color{gold}\\frac{${this.mathObject.numerator}}{${this.mathObject.denominator}}`);
             }
-            this.setSimplestForm(this.mathObject.numerator, this.mathObject.denominator)
         }
+        this.setSimplestForm(this.mathObject.numerator, this.mathObject.denominator)
         
       }
 }
