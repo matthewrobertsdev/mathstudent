@@ -25,7 +25,7 @@ class FractionTeaching extends MathTeaching{
         const subtractHeading=new MathHeading();
         subtractHeading.components.push('Subtract a fraction from ');
         subtractHeading.components.push('{Latex}');
-        const SUBTRACT=['Subtract a fraction', subtractHeading, 'subtract', 'numerator', 'integer', 'denominator', 'integer'];
+        const SUBTRACT=['Subtract a Fraction', subtractHeading, 'subtract', 'numerator', 'integer', 'denominator', 'integer'];
         const multiplyHeading=new MathHeading();
         multiplyHeading.components.push('Multiply ');
         multiplyHeading.components.push('{Latex}');

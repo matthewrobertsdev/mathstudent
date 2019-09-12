@@ -39,19 +39,16 @@ class UnconnectedWorkerView extends React.Component{
       render() {
         return(
           /* will take user to teaching with these names.  Will get teaching from home first. */
-          <div className='center-text'><br></br><AccordionItem>
-    <AccordionItemHeading>
-        <AccordionItemButton>
+          <div className='center-text'><br></br>
            {/* About section */}
-        <span className="main-text-color Heading">{this.props.methodSignature[0]}
-        </span>
-        </AccordionItemButton>
-    </AccordionItemHeading>
-    <AccordionItemPanel>
+        {/*<span className="main-text-color Heading">{this.props.methodSignature[0]}
+        </span>*/}
     {this.createHeading()}
     <div className='CreatorView'>
                 {this.createView()}<button className="createButton creator-text-size" onClick={() => this.handleClick()}>
-                Learn {this.props.teacher.teaching.displayNamePlural}</button>
+                {this.props.methodSignature[0]}</button>
+                <br></br>
+                <br></br>
                 <ReactModal className="notNumberModal" isOpen={this.state.showModal} >
                 <br></br>
                 <span classname='creator-text-size'>{this.getErrorString()}</span>
@@ -60,8 +57,7 @@ class UnconnectedWorkerView extends React.Component{
                 <button className='closeButton button-size' onClick={this.handleCloseModal}>Close</button>
                 </ReactModal>
           </div>
-    </AccordionItemPanel>
-</AccordionItem></div>
+</div>
         );
       }
       getErrorString(){
@@ -80,7 +76,7 @@ class UnconnectedWorkerView extends React.Component{
         this.num=0;
         for (var i=0; i<this.props.methodSignature.length; i++){
           if (i<3) { /* do nothing */ }
-          else if (i%2===0) {
+          else if (i%2!==0) {
             creatorView.push(<span className='small-right-margin creator-text-size' 
             key={i} id={i}>{this.props.methodSignature[i]+': '}</span>);
           } else {
@@ -201,6 +197,7 @@ class UnconnectedWorkerView extends React.Component{
   createHeadingComponent(component){
     if (component==='{Latex}'){
       console.log("here"+this.props.simplestForm);
+      console.log('should update simplest form for real');
       return <InlineMath>{this.props.simplestForm}</InlineMath>;
     } else {
       return component;
