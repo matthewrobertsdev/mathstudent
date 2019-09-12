@@ -43,11 +43,12 @@ class UnconnectedWorkerView extends React.Component{
     <AccordionItemHeading>
         <AccordionItemButton>
            {/* About section */}
-        <span className=" main-text-color Heading">{/*console.log(this.props.teaching.default)*/}
-        {this.createHeading()}</span>
+        <span className="main-text-color Heading">{this.props.methodSignature[0]}
+        </span>
         </AccordionItemButton>
     </AccordionItemHeading>
     <AccordionItemPanel>
+    {this.createHeading()}
     <div className='CreatorView'>
                 {this.createView()}<button className="createButton creator-text-size" onClick={() => this.handleClick()}>
                 Learn {this.props.teacher.teaching.displayNamePlural}</button>
@@ -75,11 +76,10 @@ class UnconnectedWorkerView extends React.Component{
       createView(){
         //this.createCallingStrings();
         var creatorView=[];
-        creatorView.push(<InlineMath key={-1} className='inline-math'>{this.props.teacher.simplestForm}</InlineMath>)
         var column=1;
         this.num=0;
         for (var i=0; i<this.props.methodSignature.length; i++){
-          if (i<2) { /* do nothing */ }
+          if (i<3) { /* do nothing */ }
           else if (i%2===0) {
             creatorView.push(<span className='small-right-margin creator-text-size' 
             key={i} id={i}>{this.props.methodSignature[i]+': '}</span>);
@@ -187,10 +187,10 @@ class UnconnectedWorkerView extends React.Component{
   handleCloseModal () { this.setState({ showModal: false }); }
 
   createHeading(){
-		if (this.props.methodSignature[0].components === undefined || this.props.simplestForm===undefined ) { return; }
-		const creatorViews = this.props.methodSignature[0].components.map((component, i) => {
+		if (this.props.methodSignature[1].components === undefined || this.props.simplestForm===undefined ) { return; }
+		const creatorViews = this.props.methodSignature[1].components.map((component, i) => {
 																			 return (
-																					 <span key={i} className='fullWidth'>
+																					 <span key={i} className='main-text-color Heading'>
 																					 {this.createHeadingComponent(component)}
 																					 </span>
 																					 );

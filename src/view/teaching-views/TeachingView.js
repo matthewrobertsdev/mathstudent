@@ -164,7 +164,7 @@ class UnconnectedCreateView extends React.Component {
 															 return (
 																	 <div key={i} className='fullWidth'>
 																	 <WorkerView className='CreatorView fullWidth' methodSignature={methodSignature}
-																	 row={this.createKey(i)} teachingViewRef={this.teachingViewRef}></WorkerView
+																	 row={(i)} teachingViewRef={this.teachingViewRef}></WorkerView
 																	>
 																	 {this.createAdEverySecond(i)}
 																	 </div>
