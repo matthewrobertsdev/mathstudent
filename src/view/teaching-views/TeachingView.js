@@ -6,8 +6,8 @@ import isMobile from '../../model/utilities/IsMobile';
 import NumberKeyboard from '../keyboard-views/NumberKeyboard';
 import KeyboardSpacer from '../keyboard-views/KeyboardSpacer';
 import AboutSection from './AboutSection';
-import TeachingSection from './TeachingSection';
-import WorkerView from './WorkerView';
+import CreationSection from './CreationSection';
+import LearnerView from './LearnerView';
 import 'react-simple-keyboard/build/css/index.css';
 import '../views-general/app.css';
 import {Accordion, AccordionItem, AccordionItemHeading, AccordionItemPanel, AccordionItemButton} from 'react-accessible-accordion';
@@ -74,7 +74,7 @@ class UnconnectedCreateView extends React.Component {
 					</AccordionItem>
 					{/* Display TeachingView if an object has been created */}
 					{this.displayChosenObject()}
-					{this.createUseObjectsViews()}
+					{this.createInteractionSection()}
 					<div className='fullWidth center-text'>
 					</div>
 					{/* On mobile, display keyboard */}
@@ -92,7 +92,7 @@ class UnconnectedCreateView extends React.Component {
 	}
 	displayChosenObject(){
 		if (this.props.displayTeaching){
-			return (<div ref={this.teachingViewRef}>{<TeachingSection/>}<br></br>
+			return (<div ref={this.teachingViewRef}>{<CreationSection/>}<br></br>
 					<br></br>{this.createAD()}</div>
 					);} else { return (<span ref={this.teachingViewRef}></span>); }
 	}
@@ -122,7 +122,7 @@ class UnconnectedCreateView extends React.Component {
 																			 return (
 																					 <div key={i} className='fullWidth'>
 																					 <CreatorView className='CreatorView fullWidth' methodSignature={methodSignature}
-																					 row={this.createKey(i)} teachingViewRef={this.teachingViewRef}></CreatorView>
+																					 row={this.createCreatorKey(i)} teachingViewRef={this.teachingViewRef}></CreatorView>
 																					 {this.createAdEverySecond(i)}
 																					 </div>
 																					 );
@@ -137,9 +137,11 @@ class UnconnectedCreateView extends React.Component {
 		'display-keyboard' : 'hide-keyboard'} keyPressHandler={this.onKeyPress}/><KeyboardSpacer/></div> }
 		else { return <div><br></br><br></br><br></br><br></br></div> }}
 	
-	createKey(index) { return this.props.teacher.teaching.objectName+"-"+index; }
+	createCreatorKey(index) { return 'creator'+this.props.teacher.teaching.objectName+"-"+index; }
+
+	createCreatorKey(index) { return 'learner'+this.props.teacher.teaching.objectName+"-"+index; }
 	
-	createUseObjectsViews(){
+	createInteractionSection(){
 		if(this.props.teacher.instanceMethodSignatures.length>0){
 			return <div className='center-text'><br></br><AccordionItem uuid='working-with'>
 			<AccordionItemHeading>
@@ -163,8 +165,8 @@ class UnconnectedCreateView extends React.Component {
 			{this.props.teacher.instanceMethodSignatures.map((methodSignature, i) => {
 															 return (
 																	 <div key={i} className='fullWidth'>
-																	 <WorkerView className='CreatorView fullWidth' methodSignature={methodSignature}
-																	 row={(i)} teachingViewRef={this.teachingViewRef}></WorkerView
+																	 <LearnerView className='CreatorView fullWidth' methodSignature={methodSignature}
+																	 row={(i)} teachingViewRef={this.teachingViewRef}></LearnerView
 																	>
 																	 {this.createAdEverySecond(i)}
 																	 </div>

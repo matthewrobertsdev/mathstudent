@@ -8,7 +8,6 @@ import ReactModal from 'react-modal';
 import {InlineMath } from 'react-katex';
 import {createTeaching, createTeachingObject, updateCreationStrings, setDisplayTeaching, 
     setParamaterLabels, updateKeyAndValue, clearTeaching} from '../../manager/Actions';
-import {AccordionItem, AccordionItemHeading, AccordionItemPanel, AccordionItemButton} from 'react-accessible-accordion';
 /* gets the teaching for this method */
 const mapStateToProps = (state) => { return { teacher: state.teacher, topics: state.topics, inputMap: state.inputMap, 
     callingStrings: state.callingStrings, creationStrings: state.creationStrings,
@@ -19,12 +18,12 @@ const mapStateToProps = (state) => { return { teacher: state.teacher, topics: st
     dispatch(updateCreationStrings(creationStrings)); }, setDisplayTeaching: (boolean) => { 
     dispatch(setDisplayTeaching(boolean)); }, updateKeyAndValue: (key, value) => { 
     dispatch(updateKeyAndValue(key, value)); }, createTeachingObject: (teachingobjectName, args) => {
-    dispatch(createTeachingObject(teachingobjectName, args)); }, setParamaterLabels: (argumentLabels)=>{
+    dispatch(createTeachingObject(teachingobjectName, args)); }, setParamaterLabels: (argumentLabels) => {
     dispatch(setParamaterLabels(argumentLabels));}, clearTeaching: () => { 
       dispatch(clearTeaching());}, };}
 
 /* for creating a teaching, but not connected yet */
-class UnconnectedWorkerView extends React.Component{
+class UnconnectedLearnerView extends React.Component{
     constructor(props) {
         super(props);
         /* methods strings to create view, calling strings to call method */
@@ -47,13 +46,11 @@ class UnconnectedWorkerView extends React.Component{
     <div className='CreatorView'>
                 {this.createView()}<button className="createButton creator-text-size" onClick={() => this.handleClick()}>
                 {this.props.methodSignature[0]}</button>
-                <br></br>
-                <br></br>
+                <br></br><br></br>
                 <ReactModal className="notNumberModal" isOpen={this.state.showModal} >
                 <br></br>
                 <span classname='creator-text-size'>{this.getErrorString()}</span>
-                <br></br>
-                <br></br>
+                <br></br><br></br>
                 <button className='closeButton button-size' onClick={this.handleCloseModal}>Close</button>
                 </ReactModal>
           </div>
@@ -115,13 +112,13 @@ class UnconnectedWorkerView extends React.Component{
         return fractionInput;
       }
       createGridID(column){
-        return 'worker'+this.props.row+"-"+column
+        return this.props.row+"-"+column
       }
       textHandler(key, value){
         { const { updateKeyAndValue } = this.props; updateKeyAndValue(key, value); }
       }
       makeObjectURLComponent(){
-        var urlComponent=`/`
+        var urlComponent='/'
         for (var i=0; i<this.state.callingStrings.length; i++) {
           urlComponent+=`$${this.state.callingStrings[i]}`;
         }
@@ -204,8 +201,8 @@ class UnconnectedWorkerView extends React.Component{
     }
   }
 }
-const WorkerView=connect(mapStateToProps, mapDispatchToProps)((withRouter)(UnconnectedWorkerView));
-export default WorkerView;
+const LearnerView=connect(mapStateToProps, mapDispatchToProps)((withRouter)(UnconnectedLearnerView));
+export default LearnerView;
 
         /* const historyState={teachingObjectName: this.state.teachingObjectName, 
           callingStrings: this.state.callingStrings}

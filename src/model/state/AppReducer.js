@@ -17,14 +17,10 @@ const appReducer=(state=initialState, action) => {
         /* action for getting topics for user choice */
         case 'SET_DISPLAY_TEACHING': return { ...state, displayTeaching: action.isDisplayed };
 
-        case 'CREATE_TEACHING_OBJECT': //import(`../math/${action.teachingName}`).then(teachingObject => {
-            //const firstArg=action.args.shift();
-            //console.log('1234'+JSON.stringify(teachingObject));
-            //teachingObject.default.teaching[firstArg](action.args);
+        case 'CREATE_TEACHING_OBJECT':
             const newTeaching={};
             Object.assign(newTeaching, action.teaching)
-            return {...state, teacher: newTeaching}; //}).catch(function(error) { console.log(error);
-                 //return state;});
+            return {...state, teacher: newTeaching}; 
 
         case 'GET_TOPICS': return { ...state, topics: action.topics };
 

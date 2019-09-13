@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
     getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
     setTeachingObject: (name) => { dispatch(setTeachingObject(name)); },
     clearTeaching: () => { dispatch(clearTeaching()); } } };
-class UnconnectedTeachingSection extends React.Component{
+class UnconnectedCreationSection extends React.Component{
     constructor(props) { super(props); this.state={id: this.props.location.pathname, 
       creationStrings: this.props.creationStrings}}
       componentWillMount() {
@@ -102,5 +102,5 @@ class UnconnectedTeachingSection extends React.Component{
         }
       }
 }
-const TeachingSection=connect(mapStateToProps, mapDispatchToProps)(withRouter((UnconnectedTeachingSection)));
-export default TeachingSection;
+const CreationSection=connect(mapStateToProps, mapDispatchToProps)(withRouter((UnconnectedCreationSection)));
+export default CreationSection;
