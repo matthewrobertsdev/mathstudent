@@ -47,7 +47,7 @@ class UnconnectedCreateView extends React.Component {
 					<AccordionItemHeading >
 					<AccordionItemButton >
 					{/* About section */}
-					<span className="center-text main-text-color Heading large-heading-size">{/*console.log(this.props.teaching.default)*/}
+					<span className="center-text main-text-color Heading large-heading-size">
 					About {this.props.teacher.teaching.displayNamePlural}</span>
 					</AccordionItemButton>
 					</AccordionItemHeading>
@@ -62,7 +62,7 @@ class UnconnectedCreateView extends React.Component {
 					<AccordionItemHeading>
 					<AccordionItemButton>
 					{/* Display CreatorViews to create objects */}
-					<span className="center-text main-text-color Heading large-heading-size">{/*console.log(this.props.teaching.default)*/}
+					<span className="center-text main-text-color Heading large-heading-size">
 					Create {this.props.teacher.teaching.displayNamePlural}</span>
 					</AccordionItemButton>
 					</AccordionItemHeading>
@@ -74,16 +74,17 @@ class UnconnectedCreateView extends React.Component {
 					</AccordionItem>
 					{/* Display TeachingView if an object has been created */}
 					{this.displayChosenObject()}
-					{this.createInteractionSection()}
+					{this.createLearningSection()}
 					<div className='fullWidth center-text'>
 					</div>
 					{/* On mobile, display keyboard */}
 					{this.addKeyboardForMobile()}
 					</Accordion>
 					);
-		} else if (this.props.pageNotFound){
-			return <div><br></br><br></br><PageNotFoundView className='fullWidth center-text'/></div>
 		}
+	}
+	else if (this.props.pageNotFound){
+		return <div className="text-margins main-text-color"><br></br><br></br><PageNotFoundView className='fullWidth center-text'/></div>
 	}
 	}
 	
@@ -138,16 +139,14 @@ class UnconnectedCreateView extends React.Component {
 		else { return <div><br></br><br></br><br></br><br></br></div> }}
 	
 	createCreatorKey(index) { return 'creator'+this.props.teacher.teaching.objectName+"-"+index; }
-
-	createCreatorKey(index) { return 'learner'+this.props.teacher.teaching.objectName+"-"+index; }
 	
-	createInteractionSection(){
+	createLearningSection(){
 		if(this.props.teacher.instanceMethodSignatures.length>0){
 			return <div className='center-text'><br></br><AccordionItem uuid='working-with'>
 			<AccordionItemHeading>
 			<AccordionItemButton>
 			{/* About section */}
-			<span className=" main-text-color Heading large-heading-size">{/*console.log(this.props.teaching.default)*/}
+			<span className=" main-text-color Heading large-heading-size">
 			Working with {this.props.teacher.teaching.displayNamePlural}</span>
 			</AccordionItemButton>
 			</AccordionItemHeading>
@@ -166,7 +165,7 @@ class UnconnectedCreateView extends React.Component {
 															 return (
 																	 <div key={i} className='fullWidth'>
 																	 <LearnerView className='CreatorView fullWidth' methodSignature={methodSignature}
-																	 row={(i)} teachingViewRef={this.teachingViewRef}></LearnerView
+																	 row={this.props.teacher.teaching.objectName+'-'+methodSignature[2]+'-'+i} teachingViewRef={this.teachingViewRef}></LearnerView
 																	>
 																	 {this.createAdEverySecond(i)}
 																	 </div>
@@ -179,7 +178,7 @@ class UnconnectedCreateView extends React.Component {
 	}
 	expandIfNotMobile(){
 		if (!isMobile()){
-			return ['about', 'create', 'working-with']
+			return ['about', 'create', 'working-with'];
 		} else {
 			return [];
 		}

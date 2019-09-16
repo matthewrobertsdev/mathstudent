@@ -134,46 +134,46 @@ class UnconnectedLearnerView extends React.Component{
     } 
   handleClick(){
     const callingStrings=this.getCallingStrings();
-    if (this.props.methodSignature[3]==='integer'){
+    if (this.props.methodSignature[4]==='integer'){
        this.setState({ type: 'integer' }); 
       if (InputValidator.areIntegers(callingStrings)){
-        this.updateForTeaching(callingStrings);
+        //this.updateForTeaching(callingStrings);
       } else {
         this.handleOpenModal();
       }
     }
-    else if (this.props.methodSignature[3]==='number'){
+    else if (this.props.methodSignature[4]==='number'){
        this.setState({ type: 'number' }); 
     if(InputValidator.areNumbers(callingStrings)){
-      this.updateForTeaching(callingStrings);
+      //this.updateForTeaching(callingStrings);
     } else {
         this.handleOpenModal();
     }
   }
-  else if (this.props.methodSignature[3]==='decimal'){
+  else if (this.props.methodSignature[4]==='decimal'){
     this.setState({ type: 'decimal' }); this.handleOpenModal();
     if(InputValidator.areNumbers(callingStrings)){
-      this.updateForTeaching(callingStrings);
+      //this.updateForTeaching(callingStrings);
     } else {
         this.handleOpenModal();
     }
   }
   }
-  updateForTeaching(creationStrings){
+  updateForTeaching(callingStrings){
     const {createTeachingObject, updateCreationStrings, setDisplayTeaching,
       setParamaterLabels, clearTeaching}=this.props;
     const paramaterLabels=this.getParamaterLabels();
-    setParamaterLabels(paramaterLabels);
+    //setParamaterLabels(paramaterLabels);
     if(true){
-      updateCreationStrings(creationStrings);
+      //updateCreationStrings(callingStrings);
     } else {
 
     }
     clearTeaching()
     if (true){
-      createTeachingObject(this.props.teachingObjectName, creationStrings.slice());
+      //createTeachingObject(this.props.teachingObjectName, creationStrings.slice());
     }
-    setDisplayTeaching(true);
+    //setDisplayTeaching(true);
     this.props.teachingViewRef.current.scrollIntoView();
   }
   handleOpenModal () { this.setState({ showModal: true }); }
@@ -193,8 +193,6 @@ class UnconnectedLearnerView extends React.Component{
   
   createHeadingComponent(component){
     if (component==='{Latex}'){
-      console.log("here"+this.props.simplestForm);
-      console.log('should update simplest form for real');
       return <InlineMath>{this.props.simplestForm}</InlineMath>;
     } else {
       return component;

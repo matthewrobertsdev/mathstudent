@@ -34,18 +34,17 @@ const appReducer=(state=initialState, action) => {
 
         case 'UPDATE_URL': return { ...state, URLpathname: action.URLpathname };
 
-        case 'UPDATE_KEY_AND_VALUE': console.log('cdef upating key and value'); return { ...state, inputMap: {...state.inputMap, [action.key]: action.value} };
+        case 'UPDATE_KEY_AND_VALUE': return { ...state, inputMap: {...state.inputMap, [action.key]: action.value} };
 
         case 'UPDATE_ACTIVE_KEY': return { ...state, activeKey: action.key };
 
-        case 'UPDATE_CALLING_STRINGS': console.log('updated calling strings'); return { ...state, callingStrings: action.callingStrings };
+        case 'UPDATE_CALLING_STRINGS': return { ...state, callingStrings: action.callingStrings };
 
-        case 'UPDATE_DISPLAY_KEYBOARD': console.log('update display keyboard'); return { ...state, displayKeyboard: action.displayKeyboard };
+        case 'UPDATE_DISPLAY_KEYBOARD': return { ...state, displayKeyboard: action.displayKeyboard };
 
         case 'UPDATE_CREATION_STRINGS': return { ...state, creationStrings: action.creationStrings.slice() };
 
         case 'SET_TEACHING_OBJECT': import(`../math${action.objectName}`).then(teachingObj => {
-                console.log('abcd'+JSON.stringify(teachingObj));
                 return {...state, teachingObject: teachingObj}; }).catch(function(error) { console.log(error);
                      return state;}); return state;
 
