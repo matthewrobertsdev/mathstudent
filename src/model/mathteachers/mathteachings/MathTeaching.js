@@ -11,7 +11,7 @@ class MathTeaching{
             return array[0];
         }
         else{
-            var list='';;
+            var list='';
             for (var i=0; i<array.length; i++){
                 list+=array[i];
                 if (i===array.length-2){

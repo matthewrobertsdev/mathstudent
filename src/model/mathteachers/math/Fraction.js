@@ -23,7 +23,7 @@ class Fraction extends MathTeachingObject{
     otherwise, just remove from first array
     while array[i]
     */
-    elemntsInCommon(array1, array2){
+    elementsInCommon(array1, array2){
         if (array1.length<array2.length){
             return this.elementsInCommonOrderCounts(array1, array2);
         } else {

@@ -64,22 +64,35 @@ class FractionTeacher extends MathTeacher{
         var dArray=PrimeFactorization.getPrimeFactorsUnder10_000(this.mathObject.denominator);
         this.concepts[0].push(this.teaching.getPrimeFactors(this.mathObject.numerator, nArray, 
             this.mathObject.denominator, dArray, apology));
-            const primes=this.mathObject.elemntsInCommon(nArray, dArray);
-            this.concepts[0].push(this.teaching.tellPrimesInCommon(primes));
-            const gcf=Product.getProductOfList(primes);
+            const primes=this.mathObject.elementsInCommon(nArray, dArray);
+            if (primes.length>0){
+                this.concepts[0].push(this.teaching.tellPrimesInCommon(primes));
+                const gcf=Product.getProductOfList(primes);
             this.concepts[0].push(this.teaching.tellGCF(gcf));
             //const reducedNumerator=this.mathObject.numerator/gcf;
             //const reducedDenominator=this.mathObject.denominator/gcf;
             this.mathObject.numerator/=gcf;
             this.mathObject.denominator/=gcf;
-            if (this.mathObject.numerator<=10000&&this.mathObject.denominator<=10000){
-                this.concepts[0].push(this.teaching.tellSimplifiedForm(this.mathObject.numerator,
-                    this.mathObject.denominator, gcf));
+            if (this.mathObject.numerator<=10000||this.mathObject.denominator<=10000){
+                this.concepts[0].push(this.teaching.getSimplifiedForm(this.numerator,
+                    this.denominator, gcf));
+                    this.concepts[0].push(this.teaching.tellSimplifiedForm(this.mathObject.numerator,
+                        this.mathObject.denominator));
                     this.concepts[0].push(this.teaching.simplestFormHeading);
             } else{
-                this.concepts[0].push(this.teaching.tellReducedForm(this.mathObject.numerator,
-                    this.mathObject.denominator, gcf));
+                this.concepts[0].push(this.teaching.getReducedForm(this.numerator,
+                    this.denominator, gcf));
+                    this.concepts[0].push(this.teaching.tellReducedForm(this.mathObject.numerator,
+                        this.mathObject.denominator));
                     this.concepts[0].push(this.teaching.reducedFormHeading);
+            }
+            } else {
+                if (this.mathObject.numerator>10000 &&this.mathObject.denominator>10000){
+                this.concepts[0].push(this.teaching.tellNoPrimesInCommon());
+                }
+                else {
+                    this.concepts[0].push(this.teaching.tooLargeToSimplify);
+                }
             }
             if (this.mathObject.denominator===1){
                 this.concepts[0].push(`{BL}\\Huge\\color{gold}${this.mathObject.numerator}`);
