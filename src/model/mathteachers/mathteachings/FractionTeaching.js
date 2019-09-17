@@ -60,21 +60,20 @@ notANumber(inlineLatex, numerator){
 }
 getSimplestFormHeading='{H}Get simplest form:';
 
-tooLargeToSimplify="Learn Math can only promise to simplify fractions "+
-    "completely that are less than 10,000.  Sorry it can not promise higher.  "+
-    "Still, we will try to simplify with the primes that we have available and "+
-    "will let you know if we manage to simplify the fraction completely.  ";
+tooLargeToSimplify="Math Teacher was not able to simplify either of the numerator nor denominator to less than 10,000."+
+'This has to do with the number of primes we use.  Math Teacher can only know we have simplified the fraction completely '+
+'if we are able to simpliofy them to where one or both of them is less than 10,000.  We cannot tell you if this fraction '+
+'is fully simplified';
 
-getPrimeFactors(numerator, nArray, denominator, dArray, apology){
-    return apology+"The prime factors "+
+getPrimeFactors(numerator, nArray, denominator, dArray){
+    return "The prime factors "+
     "of the numerator, "+numerator+" is/are "+(MathTeaching.makeListFromArray(nArray)||'none')+" and the prime factors "+
     " of the denominator, "+
     denominator+" is/are "+(MathTeaching.makeListFromArray(dArray)||'none')+".  Primes are the smallest numbers you can "+
     "divide up the numerator and denominator into  and still get whole numbers.  If you find the primes that the denominator "+
-    "has in common with the numerator, dividing the top and bottom by them doesn't change the value of the fraction, as the "+
-    "top gets smaller by the amount that the bottom, which you are dividing it by, gets smaller by as well.  It is like saying "+
-    "you have one fraction is multiplied by another fraction whose value is 1, so dividing by that fraction is like dividing by "+
-    "1, which does not change the value of the fraction.  ";
+    "has in common with the numerator, dividing the denominator and numerator by them doesn't change the value of the fraction, as the "+
+    "top gets smaller by the amount that the bottom, which you are dividing it by, gets smaller by as well.  So the value of "
+    +"the fraction doesn't change.  ";
 }
 zeroNumerator="If the numerator is 0 and the denominator is not 0, then the value is 0"+
 " divided by anything other than 0 is always 0.  ";
