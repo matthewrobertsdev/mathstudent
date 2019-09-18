@@ -68,6 +68,10 @@
 
 .NavLink:hover { background-color: royalblue; /* background-color: rgb(158, 89, 25); */ }
 
+.selected-nav-link {color: gold; background-color: purple; 
+    padding: 3px 14px; text-align: center; text-decoration: none; display: inline-block; 
+    border-radius: 10px;margin: 10px 10px; }
+
 .mathquill-field { background-color: rgb(228, 171, 85); border-color: rgb(61, 32, 6);
     color: rgb(61, 32, 6); border-radius: 3.5px;}
 

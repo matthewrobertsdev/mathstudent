@@ -32,14 +32,15 @@ class Fraction extends MathTeachingObject{
     }
 
     elementsInCommonOrderCounts(array1, array2){
+        var a1=array1.slice(); var a2=array2.slice();
         var elementsInCommon=[];
-        for (var i=0; i<array1.length; i++){
+        for (var i=0; i<a1.length; i++){
             var notDone=true;
             var c=0;
-            while(notDone && c<array2.length){
-                if (array1[i]===array2[c]){
-                    elementsInCommon.push(array2[c]);
-                    array2.splice(c, 1);
+            while(notDone && c<a2.length){
+                if (a1[i]===a2[c]){
+                    elementsInCommon.push(a2[c]);
+                    a2.splice(c, 1);
                     notDone=false;
                 }
                 c++

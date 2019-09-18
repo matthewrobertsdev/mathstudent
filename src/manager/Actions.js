@@ -6,7 +6,7 @@ const _getTeaching = (teachingObject) => ({ type: 'GET_TEACHING', teachingObject
 
 const _createTeaching = (teaching) => ({ type: 'CREATE_TEACHING', teaching });
 
-const _clearTeaching = (teaching) => ({ type: 'CLEAR_TEACHING_OBJECT' });
+const _clearTeaching = () => ({ type: 'CLEAR_TEACHING_OBJECT' });
 
 const _updateURL = (URLpathname) => ({ type: 'UPDATE_URL', URLpathname });
 

@@ -27,10 +27,10 @@ class UnconnectedCreateView extends React.Component {
 		const { match: { params } } = this.props;
 		const { clearTeaching, setTeachingObjectName, getTeaching} = this.props;
 		clearTeaching(); setTeachingObjectName(params.teachingName);
-		getTeaching(params.teachingName);  updateURL();document.title=params.teachingName
+		getTeaching(params.teachingName); document.title=params.teachingName
 	}
 	activeInput='';
-	componentWillMount() { this.teachingViewRef=React.createRef();}
+	componentWillMount() { this.teachingViewRef=React.createRef(); this.props.updateURL(window.location.href);}
 	componentDidUpdate(){
 		if (this.props.teacher){if(this.props.teaching){ document.title=this.props.teacher.teaching.displayNamePlural}};
 	}

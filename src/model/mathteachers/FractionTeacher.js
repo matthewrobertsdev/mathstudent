@@ -55,12 +55,14 @@ class FractionTeacher extends MathTeacher{
         else{
             this.headings.push(this.teaching.getSimplestFormHeading);
             this.concepts.push([]);
-        var nArray=PrimeFactorization.getPrimeFactorsUnder10_000(this.mathObject.numerator);
-        var dArray=PrimeFactorization.getPrimeFactorsUnder10_000(this.mathObject.denominator);
+            console.log('hello and bye'+this.numerator)
+            var nArray=PrimeFactorization.getPrimeFactorsUnder10_000(this.numerator);
+            var dArray=PrimeFactorization.getPrimeFactorsUnder10_000(this.denominator);
             const primes=this.mathObject.elementsInCommon(nArray, dArray);
             const gcf=Product.getProductOfList(primes);
             this.mathObject.numerator/=gcf;
             this.mathObject.denominator/=gcf;
+            console.log(nArray);
             this.concepts[0].push(this.teaching.getPrimeFactors(this.numerator, nArray, 
                 this.denominator, dArray));
             if (primes.length>0){
