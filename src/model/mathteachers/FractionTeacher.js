@@ -3,6 +3,7 @@ import FractionTeaching from './mathteachings/FractionTeaching';
 import Fraction from './math/Fraction'
 import PrimeFactorization from './math/PrimeFactorization';
 import Product from './Product';
+import ListUtility from '../utilities/ListUtility';
 class FractionTeacher extends MathTeacher{
 
     teaching=FractionTeaching;
@@ -58,7 +59,7 @@ class FractionTeacher extends MathTeacher{
             console.log('hello and bye'+this.numerator)
             var nArray=PrimeFactorization.getPrimeFactorsUnder10_000(this.numerator);
             var dArray=PrimeFactorization.getPrimeFactorsUnder10_000(this.denominator);
-            const primes=this.mathObject.elementsInCommon(nArray, dArray);
+            const primes=ListUtility.elementsInCommon(nArray, dArray);
             const gcf=Product.getProductOfList(primes);
             this.mathObject.numerator/=gcf;
             this.mathObject.denominator/=gcf;
