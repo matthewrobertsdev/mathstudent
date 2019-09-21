@@ -2,7 +2,7 @@ import React from 'react';
 import MathQuill, { addStyles as addMathquillStyles } from 'react-mathquill';
 import { updateKeyAndValue, updateActiveKey, updateDisplayKeyboard} from '../../manager/Actions';
 import { connect } from 'react-redux';
-import isMobile from '../../model/utilities/IsMobile';
+import isMobile from '../../utilities/IsMobile';
 import '../views-general/app.css';
 addMathquillStyles();
 const mapStateToProps = (state) => { return { inputMap: state.inputMap, teaching: state.teaching, 

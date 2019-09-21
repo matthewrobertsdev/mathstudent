@@ -42,7 +42,6 @@ class UnconnectedCreationSection extends React.Component{
       displayTeaching(){
         var teachingDisplay=[]
         if (this.props.teacher.description&&this.props.teacher.headings&&this.props.teacher.concepts){
-          console.log("should display teaching");
             teachingDisplay.push(this.teachConcept(this.props.teacher.description));
             for (var i=0; i<this.props.teacher.headings.length; i++){
               teachingDisplay.push(this.displayHeading(this.props.teacher.headings[i], i));
@@ -77,28 +76,27 @@ class UnconnectedCreationSection extends React.Component{
       }
       teachConcept(concept, c){
         if(concept){
-          var mainTeaching=[];
+          var teaching=[];
           for (var i=0; i<concept.length; i++){
             if ( typeof concept[i]==='string'){
               if (concept[i]==='\n\n'){
-                mainTeaching.push(<div key={i+'-'+c} ><br></br></div>);
+                teaching.push(<div key={i+'-'+c} ><br></br></div>);
               } else if (concept[i].startsWith('{H}')){
-                mainTeaching.push(<h1 key={i+'-'+c} className="main-text-color center-text">{concept[i].slice(3)}</h1>);
+                teaching.push(<h1 key={i+'-'+c} className="main-text-color center-text">{concept[i].slice(3)}</h1>);
               } else if (concept[i].startsWith('{IL}')) {
-                mainTeaching.push(<InlineMath key={i+'-'+c} className='inline-math'>{concept[i].slice(4)}</InlineMath>);
+                teaching.push(<InlineMath key={i+'-'+c} className='inline-math'>{concept[i].slice(4)}</InlineMath>);
               } else if (concept[i].startsWith('{BL}')) {
-                mainTeaching.push(<BlockMath key={i+'-'+c} className='block-math'>{concept[i].slice(4)}</BlockMath>);
+                teaching.push(<BlockMath key={i+'-'+c} className='block-math'>{concept[i].slice(4)}</BlockMath>);
               }
               else{
-                mainTeaching.push(<span key={i+'-'+c} className="Heading center-text">{concept[i]}</span>);
+                teaching.push(<span key={i+'-'+c} className="Heading center-text">{concept[i]}</span>);
               }
             } else {
-              console.log(concept[i])
-              mainTeaching.push(<TeachingLink key={i+'-'+c} displayName={concept[i].displayName}
+              teaching.push(<TeachingLink key={i+'-'+c} displayName={concept[i].displayName}
                         codeName={this.props.teacher.main[i].codeName}></TeachingLink>);
             }
           }
-          return mainTeaching;
+          return teaching;
         }
       }
 }

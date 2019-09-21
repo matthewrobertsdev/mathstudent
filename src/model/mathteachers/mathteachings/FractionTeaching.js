@@ -1,6 +1,6 @@
 import MathTeaching from './MathTeaching'
 import AboutFraction from './aboutsections/AboutFraction';
-import MathHeading from '../../utilities/MathHeading'
+import MathHeading from '../../../utilities/MathHeading'
 class FractionTeaching extends MathTeaching{
     constructor(){
         super();
@@ -21,21 +21,21 @@ class FractionTeaching extends MathTeaching{
         const addHeading=new MathHeading();
         addHeading.components.push('Add a fraction to ');
         addHeading.components.push('{Latex}');
-        const ADD=['Add a Fraction', addHeading, 'add', 'numerator', 'integer', 'denominator', 'integer'];
+        const ADD=['Add a Fraction', addHeading, 'addFraction', 'numerator', 'integer', 'denominator', 'integer'];
         const subtractHeading=new MathHeading();
         subtractHeading.components.push('Subtract a fraction from ');
         subtractHeading.components.push('{Latex}');
-        const SUBTRACT=['Subtract a Fraction', subtractHeading, 'subtract', 'numerator', 'integer', 'denominator', 'integer'];
+        const SUBTRACT=['Subtract a Fraction', subtractHeading, 'subtractFraction', 'numerator', 'integer', 'denominator', 'integer'];
         const multiplyHeading=new MathHeading();
         multiplyHeading.components.push('Multiply ');
         multiplyHeading.components.push('{Latex}');
         multiplyHeading.components.push(' by a fraction');
-        const MULTIPLY=['Multiply by a Fraction', multiplyHeading, 'multiply', 'numerator', 'integer', 'denominator', 'integer'];
+        const MULTIPLY=['Multiply by a Fraction', multiplyHeading, 'multiplyFraction', 'numerator', 'integer', 'denominator', 'integer'];
         const dvideHeading=new MathHeading();
         dvideHeading.components.push('Divide ');
         dvideHeading.components.push('{Latex}');
         dvideHeading.components.push(' by a fraction');
-        const DIVIDE=['Divide By a Fraction', dvideHeading, 'divide', 'numerator', 'integer', 'denominator', 'integer'];
+        const DIVIDE=['Divide By a Fraction', dvideHeading, 'divideFraction', 'numerator', 'integer', 'denominator', 'integer'];
         this.instanceMethodSignatures.push(ADD, SUBTRACT, MULTIPLY, DIVIDE);
     }
     indeterminate(inlineLatex){

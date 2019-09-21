@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import NumberInput from './NumberInput';
 import {createTeaching, createTeachingObject, updateCreationStrings, setDisplayTeaching, 
   setParamaterLabels, updateKeyAndValue, clearTeaching} from '../../manager/Actions';
-import InputValidator from '../../model/utilities/InputValidator';
+import InputValidator from '../../utilities/InputValidator';
 import { withRouter } from "react-router-dom";
 import '../views-general/app.css';
 import ReactModal from 'react-modal';
@@ -69,7 +69,7 @@ class UnconnectedCreatorView extends React.Component{
             key={i} id={i}>{this.props.methodSignature[i]+': '}</span>);
           } else {
             creatorView.push(<span key={i} id={i}><span className='medium-right-margin creator-text-size'>
-            {this.createNumberInput(column)}</span><br className='hide-for-big'></br>
+            {this.createNumberInput(column-1)}</span><br className='hide-for-big'></br>
             </span>);
             column++
           }
@@ -104,15 +104,12 @@ class UnconnectedCreatorView extends React.Component{
       getCallingStrings(){
         var callingStrings=[]; callingStrings.push(this.props.methodSignature[1]);
         for (var i=0; i<this.props.methodSignature.length/2-1; i++){
-          console.log(JSON.stringify('1234'+this.state.gridIDs[i]))
-          console.log(JSON.stringify('5678'+this.props.inputMap[this.state.gridIDs[i]]));
           callingStrings.push(this.props.inputMap[this.state.gridIDs[i]]);
         };
         return callingStrings;
     } 
   handleClick(){
     const callingStrings=this.getCallingStrings();
-    console.log(JSON.stringify('abcd'+callingStrings));
     if (this.props.methodSignature[3]==='integer'){ this.setState({ type: 'integer' }); 
       if (InputValidator.areIntegers(callingStrings)){ this.updateForTeaching(callingStrings);
       } else { this.handleOpenModal(); }
@@ -132,7 +129,7 @@ class UnconnectedCreatorView extends React.Component{
     const paramaterLabels=this.getParamaterLabels();
     setParamaterLabels(paramaterLabels);
     if(true){ updateCreationStrings(creationStrings);
-    } else { } clearTeaching()
+    } clearTeaching()
     if (true){ createTeachingObject(this.props.teachingObjectName, creationStrings.slice()); }
     setDisplayTeaching(true);
     this.props.teachingViewRef.current.scrollIntoView();

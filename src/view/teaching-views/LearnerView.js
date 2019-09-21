@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import NumberInput from './NumberInput';
-import InputValidator from '../../model/utilities/InputValidator';
+import InputValidator from '../../utilities/InputValidator';
 import { withRouter } from "react-router-dom";
 import '../views-general/app.css';
 import ReactModal from 'react-modal';
@@ -29,7 +29,7 @@ class UnconnectedLearnerView extends React.Component{
         /* methods strings to create view, calling strings to call method */
         this.state={methodSignature: this.props.methodSignature, key: undefined, creationStrings: 
           this.createCallingStrings(), gridIDs: [], showModal: false, type: 'number', 
-          first: true}
+          first: true, localTeacher: undefined}
           this.props.creationStrings[0]=this.props.methodSignature[1];
           this.textHandler = this.textHandler.bind(this);
           this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -78,7 +78,7 @@ class UnconnectedLearnerView extends React.Component{
             key={i} id={i}>{this.props.methodSignature[i]+': '}</span>);
           } else {
             creatorView.push(<span key={i} id={i}><span className='medium-right-margin creator-text-size'>
-            {this.createNumberInput(column)}</span><br className='hide-for-big'></br>
+            {this.createNumberInput(column-1)}</span><br className='hide-for-big'></br>
             </span>);
             column++
           }
@@ -112,7 +112,8 @@ class UnconnectedLearnerView extends React.Component{
         return fractionInput;
       }
       createGridID(column){
-        return this.props.row+"-"+column
+        console.log(this.props.row+"-"+column);
+        return this.props.row+"-"+column;
       }
       textHandler(key, value){
         { const { updateKeyAndValue } = this.props; updateKeyAndValue(key, value); }
@@ -126,8 +127,8 @@ class UnconnectedLearnerView extends React.Component{
       }
       getCallingStrings(){
         var callingStrings=[];
-        callingStrings.push(this.props.methodSignature[1]);
-        for (var i=0; i<this.props.methodSignature.length/2-1; i++){
+        callingStrings.push(this.props.methodSignature[2]);
+        for (var i=0; i<(this.props.methodSignature.length-3)/2; i++){
           callingStrings.push(this.props.inputMap[this.state.gridIDs[i]]);
         };
         return callingStrings;
@@ -137,7 +138,7 @@ class UnconnectedLearnerView extends React.Component{
     if (this.props.methodSignature[4]==='integer'){
        this.setState({ type: 'integer' }); 
       if (InputValidator.areIntegers(callingStrings)){
-        //this.updateForTeaching(callingStrings);
+        this.updateForTeaching(callingStrings);
       } else {
         this.handleOpenModal();
       }
@@ -145,7 +146,7 @@ class UnconnectedLearnerView extends React.Component{
     else if (this.props.methodSignature[4]==='number'){
        this.setState({ type: 'number' }); 
     if(InputValidator.areNumbers(callingStrings)){
-      //this.updateForTeaching(callingStrings);
+      this.updateForTeaching(callingStrings);
     } else {
         this.handleOpenModal();
     }
@@ -153,7 +154,7 @@ class UnconnectedLearnerView extends React.Component{
   else if (this.props.methodSignature[4]==='decimal'){
     this.setState({ type: 'decimal' }); this.handleOpenModal();
     if(InputValidator.areNumbers(callingStrings)){
-      //this.updateForTeaching(callingStrings);
+      this.updateForTeaching(callingStrings);
     } else {
         this.handleOpenModal();
     }
@@ -162,8 +163,12 @@ class UnconnectedLearnerView extends React.Component{
   updateForTeaching(callingStrings){
     const {createTeachingObject, updateCreationStrings, setDisplayTeaching,
       setParamaterLabels, clearTeaching}=this.props;
-    const paramaterLabels=this.getParamaterLabels();
-    //setParamaterLabels(paramaterLabels);
+    //const paramaterLabels=this.getParamaterLabels();
+    this.state.localTeacher=JSON.parse(JSON.stringify(this.props.teacher.mathObject));
+    console.log("created a local copy of teacher: "+this.state.localTeacher)
+    const methodString=callingStrings[0];
+    callingStrings.shift()
+    this.state.localTeacher[methodString](callingStrings);
     if(true){
       //updateCreationStrings(callingStrings);
     } else {
@@ -174,7 +179,7 @@ class UnconnectedLearnerView extends React.Component{
       //createTeachingObject(this.props.teachingObjectName, creationStrings.slice());
     }
     //setDisplayTeaching(true);
-    this.props.teachingViewRef.current.scrollIntoView();
+    //this.props.teachingViewRef.current.scrollIntoView();
   }
   handleOpenModal () { this.setState({ showModal: true }); }
   handleCloseModal () { this.setState({ showModal: false }); }

@@ -20,7 +20,7 @@ const isLocalhost = Boolean(
     )
 );
 
-const date='9-17-2019-v9';
+const date='9-18-2019';
 
 export function register(config) {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {

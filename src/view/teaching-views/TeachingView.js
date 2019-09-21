@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getTeaching, clearTeaching, updateURL, updateActiveValue, setTeachingObjectName, setDisplayTeaching} from '../../manager/Actions';
 import CreatorView from './CreatorView';
-import isMobile from '../../model/utilities/IsMobile';
+import isMobile from '../../utilities/IsMobile';
 import NumberKeyboard from '../keyboard-views/NumberKeyboard';
 import KeyboardSpacer from '../keyboard-views/KeyboardSpacer';
 import AboutSection from './AboutSection';

@@ -1,4 +1,4 @@
-import isMobile from '../utilities/IsMobile'
+import isMobile from '../../utilities/IsMobile'
 
 const initialState = { loaded: false, /* all topics for now */ topics: [], /* the teaching being taught */ teaching: {},
     error: {}, URL: '', inputMap: {}, activeMap: {}, activeKey: '', inputArray: [], textStrings: [], callingStrings: [],

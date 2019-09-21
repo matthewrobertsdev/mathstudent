@@ -1,6 +1,5 @@
 class LimitBreachDetector{
 
-    /*
     static isAdditionOutOfLimit(a, b) {
         var c = a + b;
         return a !== c-b || b !== c-a;
@@ -20,7 +19,7 @@ class LimitBreachDetector{
         var c = a / b;
         return a !== c*b || 1/b !== a*c;
       }
-      */
+      
 
 }
 
