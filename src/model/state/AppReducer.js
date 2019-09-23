@@ -3,7 +3,7 @@ import isMobile from '../../utilities/IsMobile'
 const initialState = { loaded: false, /* all topics for now */ topics: [], /* the teaching being taught */ teaching: {},
     error: {}, URL: '', inputMap: {}, activeMap: {}, activeKey: '', inputArray: [], textStrings: [], callingStrings: [],
     creationStrings: [], teachingObject: {}, teachingObjectName: '', displayTeaching: false, displayKeyboard: false,
-    paramaterLabels: [], pageNotFound: false };
+    paramaterLabels: [], pageNotFound: false, techingMap: {}};
     
 const appReducer=(state=initialState, action) => {
         switch (action.type) {
@@ -46,7 +46,11 @@ const appReducer=(state=initialState, action) => {
 
         case 'SET_TEACHING_OBJECT': import(`../math${action.objectName}`).then(teachingObj => {
                 return {...state, teachingObject: teachingObj}; }).catch(function(error) { console.log(error);
-                     return state;}); return state;
+                    return state;}); return state;
+
+        case 'SET_TEACHING_MAP_OBJECT': import(`../math${action.objectName}`).then(teachingObj => {
+                return {...state, teachingMap: {...state.teachingMap, [action.method]: teachingObj}}; }).catch(function(error) { console.log(error);
+                    return state;}); return state;
 
         case 'SET_TEACHING_OBJECT_NAME':  return {...state, teachingObjectName: action.objectName};
 

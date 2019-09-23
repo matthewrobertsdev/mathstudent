@@ -17,10 +17,10 @@ class FractionTeacher extends MathTeacher{
         this.creationMethodSignatures=this.teaching.creationMethodSignatures;
         this.instanceMethodSignatures=this.teaching.instanceMethodSignatures;
         this.description=[]; this.headings=[]; this.concepts=[];
-        this.createFromNumAndDenom=this.createFromNumAndDenom; this.createFromInteger=this.createFromInteger;
+        /*this.createFromNumAndDenom=this.createFromNumAndDenom; this.createFromInteger=this.createFromInteger;
         this.init=this.init; this.latex=this.latex; this.basicLatex=this.basicLatex; this.inlineLatex=this.inlineLatex;
         this.setSimplestForm=this.setSimplestForm; this.teachSimplification=this.teachSimplification;
-        this.teachAddFraction=this.teachAddFraction; this.addFraction=this.addFraction;}
+    this.teachAddFraction=this.teachAddFraction; this.addFraction=this.addFraction;*/}
 
     createFromNumAndDenom(args){ this.init(args)}
     createFromInteger(args){ this.init(args)}

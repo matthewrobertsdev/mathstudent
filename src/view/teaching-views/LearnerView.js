@@ -7,7 +7,7 @@ import '../views-general/app.css';
 import ReactModal from 'react-modal';
 import {InlineMath } from 'react-katex';
 import {createTeaching, createTeachingObject, updateCreationStrings, setDisplayTeaching, 
-    setParamaterLabels, updateKeyAndValue, clearTeaching} from '../../manager/Actions';
+    setParamaterLabels, updateKeyAndValue, clearTeaching, createTeachingObjectForMap} from '../../manager/Actions';
 import deepClone from 'lodash.clonedeep';
 /* gets the teaching for this method */
 const mapStateToProps = (state) => { return { teacher: state.teacher, topics: state.topics, inputMap: state.inputMap, 
@@ -21,7 +21,8 @@ const mapStateToProps = (state) => { return { teacher: state.teacher, topics: st
     dispatch(updateKeyAndValue(key, value)); }, createTeachingObject: (teachingobjectName, args) => {
     dispatch(createTeachingObject(teachingobjectName, args)); }, setParamaterLabels: (argumentLabels) => {
     dispatch(setParamaterLabels(argumentLabels));}, clearTeaching: () => { 
-      dispatch(clearTeaching());}, };}
+      dispatch(clearTeaching());}, 
+      createTeachingObjectForMap:(teachingName, args, method)=>{dispatch(createTeachingObjectForMap(teachingName, args, method));}};}
 
 /* for creating a teaching, but not connected yet */
 class UnconnectedLearnerView extends React.Component{
@@ -31,7 +32,7 @@ class UnconnectedLearnerView extends React.Component{
         this.state={methodSignature: this.props.methodSignature, key: undefined, creationStrings: 
           this.createCallingStrings(), gridIDs: [], showModal: false, type: 'number', 
           first: true, localTeacher: undefined}
-          this.props.creationStrings[0]=this.props.methodSignature[1];
+          //this.props.creationStrings[0]=this.props.methodSignature[1];
           this.textHandler = this.textHandler.bind(this);
           this.handleOpenModal = this.handleOpenModal.bind(this);
           this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -128,6 +129,7 @@ class UnconnectedLearnerView extends React.Component{
       }
       getCallingStrings(){
         var callingStrings=[];
+        console.log("methods"+this.props.methodSignature)
         callingStrings.push(this.props.methodSignature[2]);
         for (var i=0; i<(this.props.methodSignature.length-3)/2; i++){
           callingStrings.push(this.props.inputMap[this.state.gridIDs[i]]);
@@ -162,15 +164,16 @@ class UnconnectedLearnerView extends React.Component{
   }
   }
   updateForTeaching(callingStrings){
-    const {createTeachingObject, updateCreationStrings, setDisplayTeaching,
-      setParamaterLabels, clearTeaching}=this.props;
+    const {createTeachingObjectForMap, clearTeaching}=this.props;
     //const paramaterLabels=this.getParamaterLabels();
-    this.state.localTeacher=deepClone(this.props.teacher);
+    //this.state.localTeacher=deepClone(this.props.teacher);
+    console.log("creation Strings"+this.props.creationStrings);
+    createTeachingObjectForMap(this.props.teachingObjectName, this.props.creationStrings, callingStrings[0])
     console.log("created a local copy of teacher: "+this.state.localTeacher)
     const methodString=callingStrings[0];
     console.log("methodString: "+methodString);
     callingStrings.shift()
-    this.state.localTeacher[methodString](callingStrings);
+    //this.state.localTeacher[methodString](callingStrings);
     if(true){
       //updateCreationStrings(callingStrings);
     } else {
