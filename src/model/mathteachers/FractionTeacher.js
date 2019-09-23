@@ -51,19 +51,22 @@ class FractionTeacher extends MathTeacher{
 													  this.mathObject.numerator);
 		}
 		else if ( this.mathObject.numerator===0 && this.mathObject.denominator!==0){
-			this.headings.push(this.teaching.getSimplestFormHeading);
-			this.concepts.push([]);
-			this.concepts[0].push(this.teaching.zeroNumerator)
+			//this.headings.push(this.teaching.getSimplestFormHeading);
+            this.concepts.push([]);
+            this.concepts[0].push(this.teaching.getSimplestFormHeading);
+			this.concepts[0].push(this.teaching.zeroNumerator);
 		}
 		else if(this.mathObject.denominator===1 && this.mathObject.numerator !==0){
-			this.headings.push(this.teaching.getSimplestFormHeading);
-			this.concepts.push([]);
+			//this.headings.push(this.teaching.getSimplestFormHeading);
+            this.concepts.push([]);
+            this.concepts[0].push(this.teaching.getSimplestFormHeading);
 			this.concepts[0].push(this.teaching.oneAsDenominator)
 			this.concepts[0].push(`{BL}\\Huge\\color{gold}${this.mathObject.numerator}`);
 		}
 		else{
-			this.headings.push(this.teaching.getSimplestFormHeading);
-			this.concepts.push([]);
+			//this.headings.push(this.teaching.getSimplestFormHeading);
+            this.concepts.push([]);
+            this.concepts[0].push(this.teaching.getSimplestFormHeading);
 			var nArray=PrimeFactorization.getPrimeFactorsUnder10_000(this.numerator);
             var dArray=PrimeFactorization.getPrimeFactorsUnder10_000(this.denominator);
             var primes=null;
