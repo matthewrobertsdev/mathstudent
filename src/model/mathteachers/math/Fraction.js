@@ -23,8 +23,8 @@ class Fraction extends MathTeachingObject{
     }
 
     reducedFraction(args){
-        parseInt(this.numerator=args[0]); 
-        parseInt(this.denominator=args[1]);
+        this.numerator=parseInt(args[0]); 
+        this.denominator=parseInt(args[1]);
         var nArray=PrimeFactorization.getPrimeFactorsUnder10_000(this.numerator);
         var dArray=PrimeFactorization.getPrimeFactorsUnder10_000(this.denominator);
         const primes=ListUtility.elementsInCommon(nArray, dArray);

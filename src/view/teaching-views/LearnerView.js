@@ -8,6 +8,7 @@ import ReactModal from 'react-modal';
 import {InlineMath } from 'react-katex';
 import {createTeaching, createTeachingObject, updateCreationStrings, setDisplayTeaching, 
     setParamaterLabels, updateKeyAndValue, clearTeaching} from '../../manager/Actions';
+import deepClone from 'lodash.clonedeep';
 /* gets the teaching for this method */
 const mapStateToProps = (state) => { return { teacher: state.teacher, topics: state.topics, inputMap: state.inputMap, 
     callingStrings: state.callingStrings, creationStrings: state.creationStrings,
@@ -164,9 +165,10 @@ class UnconnectedLearnerView extends React.Component{
     const {createTeachingObject, updateCreationStrings, setDisplayTeaching,
       setParamaterLabels, clearTeaching}=this.props;
     //const paramaterLabels=this.getParamaterLabels();
-    this.state.localTeacher=JSON.parse(JSON.stringify(this.props.teacher.mathObject));
+    this.state.localTeacher=deepClone(this.props.teacher);
     console.log("created a local copy of teacher: "+this.state.localTeacher)
     const methodString=callingStrings[0];
+    console.log("methodString: "+methodString);
     callingStrings.shift()
     this.state.localTeacher[methodString](callingStrings);
     if(true){

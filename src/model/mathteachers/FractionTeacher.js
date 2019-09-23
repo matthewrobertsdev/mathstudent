@@ -7,7 +7,7 @@ import ListUtility from '../../utilities/ListUtility';
 class FractionTeacher extends MathTeacher{
 
     teaching=FractionTeaching;
-    mathObject=Fraction
+    mathObject=Fraction;
     numerator
     denominator
     simplestForm
@@ -16,9 +16,15 @@ class FractionTeacher extends MathTeacher{
         this.callingStrings=[]; this.anyNumbers=true; this.onlyFractions=false;
         this.creationMethodSignatures=this.teaching.creationMethodSignatures;
         this.instanceMethodSignatures=this.teaching.instanceMethodSignatures;
-        this.description=[]; this.headings=[]; this.concepts=[]; }
+        this.description=[]; this.headings=[]; this.concepts=[];
+        this.createFromNumAndDenom=this.createFromNumAndDenom; this.createFromInteger=this.createFromInteger;
+        this.init=this.init; this.latex=this.latex; this.basicLatex=this.basicLatex; this.inlineLatex=this.inlineLatex;
+        this.setSimplestForm=this.setSimplestForm; this.teachSimplification=this.teachSimplification;
+        this.teachAddFraction=this.teachAddFraction; this.addFraction=this.addFraction;}
+
     createFromNumAndDenom(args){ this.init(args)}
     createFromInteger(args){ this.init(args)}
+    
     init(args){this.numerator=parseInt(args[0]); this.mathObject.numerator=parseInt(args[0]);
         this.denominator=parseInt(args[1]); this.mathObject.denominator=parseInt(args[1]); this.teachSimplification();}
     latex=()=>{
@@ -101,13 +107,14 @@ class FractionTeacher extends MathTeacher{
       }
 
       addFraction(args){
-        teachAddFraction(fraction(parseInt(args[0]), parseInt(args[1])))
+        this.teachAddFraction(args);
       }
 
-      teachAddFraction(fraction){
+      teachAddFraction(args){
         this.concepts.push([]);
-        fraction.reducedFraction();
-        if (this.fraction.numerator<=10000||this.fraction.denominator<=10000){
+        var fraction=Fraction;
+        fraction.reducedFraction(args);
+        if (fraction.numerator<=10000||fraction.denominator<=10000){
             this.concepts[0].push(this.teaching.tellSimplifiedForm(fraction.numerator,
                 fraction.denominator));
                 this.concepts[0].push(this.teaching.simplestFormHeading);
