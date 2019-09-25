@@ -11,9 +11,9 @@ class FractionTeaching extends MathTeaching{
 		this.pluralLowerCase="fractions";
 		this.about=new AboutFraction().about
 		this.creationMethodSignatures=[];
-		const NUMERATOR_AND_DENOMINATOR=['Create a fraction with a numerator and a denominator', 'createFromNumAndDenom',
+		const NUMERATOR_AND_DENOMINATOR=['Create a fraction with a numerator and a denominator', 'fromNumAndDenom',
 										 'numerator', 'integer', 'denominator', 'integer'];
-		const INTEGER=['Create a fraction from an integer', 'createFromInteger', 'integer', 'integer'];
+		const INTEGER=['Create a fraction from an integer', 'fromInteger', 'integer', 'integer'];
 		//const DECIMAL=['Create a fraction from a decimal', 'createFromDevcimal', 'decimal', 'decimal'];
 		this.creationMethodSignatures.push(NUMERATOR_AND_DENOMINATOR, INTEGER);
 		this.main=[];

@@ -16,17 +16,14 @@ class FractionTeacher extends MathTeacher{
 		this.callingStrings=[]; this.anyNumbers=true; this.onlyFractions=false;
 		this.creationMethodSignatures=this.teaching.creationMethodSignatures;
 		this.instanceMethodSignatures=this.teaching.instanceMethodSignatures;
-		this.description=[]; this.headings=[]; this.concepts=[];
-		/*this.createFromNumAndDenom=this.createFromNumAndDenom; this.createFromInteger=this.createFromInteger;
-		 this.init=this.init; this.latex=this.latex; this.basicLatex=this.basicLatex; this.inlineLatex=this.inlineLatex;
-		 this.setSimplestForm=this.setSimplestForm; this.teachSimplification=this.teachSimplification;
-		 this.teachAddFraction=this.teachAddFraction; this.addFraction=this.addFraction;*/}
+		this.description=[]; this.headings=[]; this.concepts=[]; }
 	
-	createFromNumAndDenom(args){ this.init(args)}
-	createFromInteger(args){ this.init(args)}
-	
-	init(args){this.numerator=parseInt(args[0]); this.mathObject.numerator=parseInt(args[0]);
-		this.denominator=parseInt(args[1]); this.mathObject.denominator=parseInt(args[1]); this.teachSimplification();}
+	fromNumAndDenom(args){this.init(args);}
+	fromInteger(args){args.push(1);this.init(args);}
+	init(args){
+		this.numerator=parseInt(args[0]); this.mathObject.numerator=parseInt(args[0]);
+		this.denominator=parseInt(args[1]); this.mathObject.denominator=parseInt(args[1]); this.simplify();
+	}
 	latex=()=>{
 		return `\\Huge\\color{gold}`+this.basicLatex(this.numerator, this.denominator);
 	}
@@ -39,7 +36,7 @@ class FractionTeacher extends MathTeacher{
 	setSimplestForm(numerator, denominator){
 		this.simplestForm=`\\Large\\color{gold}\\frac{${numerator}}{${denominator}}`;
 	}
-	teachSimplification(){
+	simplify(){
 		this.headings=[];
         this.concepts=[];
         this.description=[];
@@ -110,14 +107,8 @@ class FractionTeacher extends MathTeacher{
 			}
 		}
 		this.setSimplestForm(this.mathObject.numerator, this.mathObject.denominator)
-		
 	}
-	
 	addFraction(args){
-		this.teachAddFraction(args);
-	}
-	
-	teachAddFraction(args){
 		this.concepts.push([]);
 		var fraction=Fraction;
 		fraction.reducedFraction(args);
@@ -133,16 +124,4 @@ class FractionTeacher extends MathTeacher{
 		this.concepts[0].push(this.inlineLatex(fraction.numerator, fraction.denominator));
 	}
 }
-
 export default new FractionTeacher();
-
-/*
- if (this.denominator==='0'&&this.numerator==='0'){
- fractionString+=`~ is ~ indeterminate`;
- }
- else if(this.denominator==='0'){
- fractionString+=`~ is ~ not ~ a ~ number`;
- }
- return fractionString;
- }
- */
