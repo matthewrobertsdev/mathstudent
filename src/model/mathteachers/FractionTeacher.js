@@ -13,17 +13,14 @@ class FractionTeacher extends MathTeacher{
 	simplestForm
 	
 	constructor(){ super();
-		this.callingStrings=[]; this.anyNumbers=true; this.onlyFractions=false;
 		this.creationMethodSignatures=this.teaching.creationMethodSignatures;
 		this.instanceMethodSignatures=this.teaching.instanceMethodSignatures;
-		this.description=[]; this.headings=[]; this.concepts=[]; }
+		this.concept=[]; }
 	
 	fromNumAndDenom(args){this.init(args);}
 	fromInteger(args){args.push(1);this.init(args);}
-	init(args){
-		this.numerator=parseInt(args[0]); this.mathObject.numerator=parseInt(args[0]);
-		this.denominator=parseInt(args[1]); this.mathObject.denominator=parseInt(args[1]); this.simplify();
-	}
+	init(args){ this.numerator=parseInt(args[0]); this.mathObject.numerator=parseInt(args[0]);
+		this.denominator=parseInt(args[1]); this.mathObject.denominator=parseInt(args[1]); this.simplify(); }
 	latex=()=>{
 		return `\\Huge\\color{gold}`+this.basicLatex(this.numerator, this.denominator);
 	}
@@ -37,33 +34,32 @@ class FractionTeacher extends MathTeacher{
 		this.simplestForm=`\\Large\\color{gold}\\frac{${numerator}}{${denominator}}`;
 	}
 	simplify(){
-		this.headings=[];
-        this.concepts=[];
-        this.description=[];
+        this.concept=[];
 		if (this.mathObject.denominator===0&&this.mathObject.numerator===0){
-			this.description=this.teaching.indeterminate(this.inlineLatex(this.numerator, this.denominator));
+			this.concept=[]
+			this.concept=this.teaching.indeterminate(this.inlineLatex(this.numerator, this.denominator));
 		}
 		else if(this.mathObject.denominator===0){
-			this.description=this.teaching.notANumber(this.inlineLatex(this.numerator, this.denominator),
+			this.concept=[]
+			this.concept=this.teaching.notANumber(this.inlineLatex(this.numerator, this.denominator),
 													  this.mathObject.numerator);
 		}
 		else if ( this.mathObject.numerator===0 && this.mathObject.denominator!==0){
-			//this.headings.push(this.teaching.getSimplestFormHeading);
-            this.concepts.push([]);
-            this.concepts[0].push(this.teaching.getSimplestFormHeading);
-			this.concepts[0].push(this.teaching.zeroNumerator);
+            this.concept=[]
+			this.concept.push(this.teaching.getSimplestFormHeading);
+			this.concept.push(this.teaching.simplestFormHeading);
+			this.concept.push(this.teaching.zeroNumerator);
 		}
 		else if(this.mathObject.denominator===1 && this.mathObject.numerator !==0){
-			//this.headings.push(this.teaching.getSimplestFormHeading);
-            this.concepts.push([]);
-            this.concepts[0].push(this.teaching.getSimplestFormHeading);
-			this.concepts[0].push(this.teaching.oneAsDenominator)
-			this.concepts[0].push(`{BL}\\Huge\\color{gold}${this.mathObject.numerator}`);
+            this.concept=[]
+            this.concept.push(this.teaching.getSimplestFormHeading);
+			this.concept.push(this.teaching.oneAsDenominator)
+			this.concept.push(this.teaching.simplestFormHeading);
+			this.concept.push(`{BL}\\Huge\\color{gold}${this.mathObject.numerator}`);
 		}
 		else{
-			//this.headings.push(this.teaching.getSimplestFormHeading);
-            this.concepts.push([]);
-            this.concepts[0].push(this.teaching.getSimplestFormHeading);
+            this.concept=[]
+            this.concept.push(this.teaching.getSimplestFormHeading);
 			var nArray=PrimeFactorization.getPrimeFactorsUnder10_000(this.numerator);
             var dArray=PrimeFactorization.getPrimeFactorsUnder10_000(this.denominator);
             var primes=null;
@@ -71,57 +67,57 @@ class FractionTeacher extends MathTeacher{
 			const gcf=Product.getProductOfList(primes);
 			this.mathObject.numerator/=gcf;
 			this.mathObject.denominator/=gcf;
-			this.concepts[0].push(this.teaching.getPrimeFactors(this.numerator, nArray,
+			this.concept.push(this.teaching.getPrimeFactors(this.numerator, nArray,
 																this.denominator, dArray));
 			if (primes.length>0){
-				this.concepts[0].push(this.teaching.tellPrimesInCommon(primes));
-				this.concepts[0].push(this.teaching.tellGCF(gcf));
+				this.concept.push(this.teaching.tellPrimesInCommon(primes));
+				this.concept.push(this.teaching.tellGCF(gcf));
 				if (this.mathObject.numerator<=10000||this.mathObject.denominator<=10000){
-					this.concepts[0].push(this.teaching.getSimplifiedForm(this.numerator,
+					this.concept.push(this.teaching.getSimplifiedForm(this.numerator,
 																		  this.denominator, gcf));
-					this.concepts[0].push(this.teaching.tellSimplifiedForm(this.mathObject.numerator,
+					this.concept.push(this.teaching.tellSimplifiedForm(this.mathObject.numerator,
 																		   this.mathObject.denominator));
-					this.concepts[0].push(this.teaching.simplestFormHeading);
+					this.concept.push(this.teaching.simplestFormHeading);
 				} else{
-					this.concepts[0].push(this.teaching.tooLargeToSimplify);
-					this.concepts[0].push(this.teaching.getReducedForm(this.numerator,
+					this.concept.push(this.teaching.tooLargeToSimplify);
+					this.concept.push(this.teaching.getReducedForm(this.numerator,
 																	   this.denominator, gcf));
-					this.concepts[0].push(this.teaching.tellReducedForm(this.mathObject.numerator,
+					this.concept.push(this.teaching.tellReducedForm(this.mathObject.numerator,
 																		this.mathObject.denominator));
-					this.concepts[0].push(this.teaching.reducedFormHeading);
+					this.concept.push(this.teaching.reducedFormHeading);
 				}
 			}
 			else if (this.mathObject.numerator<10000 &&this.mathObject.denominator<10000){
-                this.concepts[0].push(this.teaching.tellNoPrimesInCommon());
-                this.concepts[0].push(this.teaching.simplestFormHeading);
+                this.concept.push(this.teaching.tellNoPrimesInCommon());
+                this.concept.push(this.teaching.simplestFormHeading);
 			}
 			else{
-                this.concepts[0].push(this.teaching.tooLargeToSimplify);
-                this.concepts[0].push(this.teaching.reducedFormHeading);
+                this.concept.push(this.teaching.tooLargeToSimplify);
+                this.concept.push(this.teaching.reducedFormHeading);
 			}
 			
 			if (this.mathObject.denominator===1){
-				this.concepts[0].push(`{BL}\\Huge\\color{gold}${this.mathObject.numerator}`);
+				this.concept.push(`{BL}\\Huge\\color{gold}${this.mathObject.numerator}`);
 			} else {
-				this.concepts[0].push(`{BL}\\Huge\\color{gold}\\frac{${this.mathObject.numerator}}{${this.mathObject.denominator}}`);
+				this.concept.push(`{BL}\\Huge\\color{gold}\\frac{${this.mathObject.numerator}}{${this.mathObject.denominator}}`);
 			}
 		}
 		this.setSimplestForm(this.mathObject.numerator, this.mathObject.denominator)
 	}
 	addFraction(args){
-		this.concepts.push([]);
+		this.concept.push([]);
 		var fraction=Fraction;
 		fraction.reducedFraction(args);
 		if (fraction.numerator<=10000||fraction.denominator<=10000){
-			this.concepts[0].push(this.teaching.tellSimplifiedForm(fraction.numerator,
+			this.concept.push(this.teaching.tellSimplifiedForm(fraction.numerator,
 																   fraction.denominator));
-			this.concepts[0].push(this.teaching.simplestFormHeading);
+			this.concept.push(this.teaching.simplestFormHeading);
 		} else {
-			this.concepts[0].push(this.teaching.tooLargeToSimplify);
-			this.concepts[0].push(this.teaching.tellReducedForm(fraction.numerator,
+			this.concept.push(this.teaching.tooLargeToSimplify);
+			this.concept.push(this.teaching.tellReducedForm(fraction.numerator,
 																fraction.denominator));
 		}
-		this.concepts[0].push(this.inlineLatex(fraction.numerator, fraction.denominator));
+		this.concept.push(this.inlineLatex(fraction.numerator, fraction.denominator));
 	}
 }
 export default new FractionTeacher();

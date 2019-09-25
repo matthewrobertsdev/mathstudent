@@ -9,7 +9,7 @@ class MathTeacher{
         this.onlyFractions=false;
         this.teachingArray=[];
         this.description=[];
-        this.concepts=[];
+        this.concept=[];
         this.headers=[];
     }
 

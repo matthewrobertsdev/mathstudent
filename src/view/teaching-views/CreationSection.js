@@ -11,22 +11,12 @@ const mapStateToProps = (state) => {
     callingStrings: state.callingStrings, paramaterLabels: 
     state.paramaterLabels } };
 const mapDispatchToProps = (dispatch) => {
-  return { /* gets teaching from home of teaching */
-    getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
+  return { getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
     setTeachingObject: (name) => { dispatch(setTeachingObject(name)); },
     clearTeaching: () => { dispatch(clearTeaching()); } } };
 class UnconnectedCreationSection extends React.Component{
     constructor(props) { super(props); this.state={id: this.props.location.pathname, 
       creationStrings: this.props.creationStrings}}
-      componentWillMount() {
-        /*
-        const pathArray=this.props.location.pathname.split('$');
-        console.log(pathArray);
-        const pathStartArray=pathArray[0].split('/')
-        console.log(pathStartArray[pathStartArray.length-2]);
-        document.title="A "+pathStartArray[pathStartArray.length-2]
-        */
-      }
       render() {
         return(
           <div>
@@ -41,11 +31,10 @@ class UnconnectedCreationSection extends React.Component{
       }
       displayTeaching(){
         var teachingDisplay=[]
-        if (this.props.teacher.description&&/*this.props.teacher.headings&&*/this.props.teacher.concepts){
-            teachingDisplay.push(this.teachConcept(this.props.teacher.description));
-            for (var i=0; i<this.props.teacher.concepts.length; i++){
+        if (this.props.teacher.concept){
+            for (var i=0; i<this.props.teacher.concept.length; i++){
               //teachingDisplay.push(this.displayHeading(this.props.teacher.headings[i], i));
-              teachingDisplay.push(this.teachConcept(this.props.teacher.concepts[i], i));
+              teachingDisplay.push(this.teachConcept(this.props.teacher.concept[i], i));
             }
         }
         return teachingDisplay;
@@ -77,25 +66,24 @@ class UnconnectedCreationSection extends React.Component{
       teachConcept(concept, c){
         if(concept){
           var teaching=[];
-          for (var i=0; i<concept.length; i++){
-            if ( typeof concept[i]==='string'){
-              if (concept[i]==='\n\n'){
-                teaching.push(<div key={i+'-'+c} ><br></br></div>);
-              } else if (concept[i].startsWith('{H}')){
-                teaching.push(<h1 key={i+'-'+c} className="main-text-color center-text">{concept[i].slice(3)}</h1>);
-              } else if (concept[i].startsWith('{IL}')) {
-                teaching.push(<InlineMath key={i+'-'+c} className='inline-math'>{concept[i].slice(4)}</InlineMath>);
-              } else if (concept[i].startsWith('{BL}')) {
-                teaching.push(<BlockMath key={i+'-'+c} className='block-math'>{concept[i].slice(4)}</BlockMath>);
+            if ( typeof concept==='string'){
+              if (concept==='\n\n'){
+                teaching.push(<div key={c} ><br></br></div>);
+              } else if (concept.startsWith('{H}')){
+                teaching.push(<h1 key={c} className="main-text-color center-text">{concept.slice(3)}</h1>);
+              } else if (concept.startsWith('{IL}')) {
+                teaching.push(<InlineMath key={c} className='inline-math'>{concept.slice(4)}</InlineMath>);
+              } else if (concept.startsWith('{BL}')) {
+                teaching.push(<BlockMath key={c} className='block-math'>{concept.slice(4)}</BlockMath>);
               }
               else{
-                teaching.push(<span key={i+'-'+c} className="Heading center-text">{concept[i]}</span>);
+                teaching.push(<span key={c} className="Heading center-text">{concept}</span>);
               }
             } else {
-              teaching.push(<TeachingLink key={i+'-'+c} displayName={concept[i].displayName}
-                        codeName={this.props.teacher.main[i].codeName}></TeachingLink>);
+              teaching.push(<TeachingLink key={c} displayName={concept.displayName}
+                        codeName={this.props.teacher.main[c].codeName}></TeachingLink>);
             }
-          }
+          
           return teaching;
         }
       }
