@@ -38,26 +38,22 @@ class FractionTeacher extends MathTeacher{
 		if (this.mathObject.denominator===0&&this.mathObject.numerator===0){
 			this.concept=[]
 			this.concept=this.teaching.indeterminate(this.inlineLatex(this.numerator, this.denominator));
-		}
-		else if(this.mathObject.denominator===0){
+		} else if(this.mathObject.denominator===0){
 			this.concept=[]
 			this.concept=this.teaching.notANumber(this.inlineLatex(this.numerator, this.denominator),
 													  this.mathObject.numerator);
-		}
-		else if ( this.mathObject.numerator===0 && this.mathObject.denominator!==0){
+		} else if ( this.mathObject.numerator===0 && this.mathObject.denominator!==0){
             this.concept=[]
 			this.concept.push(this.teaching.getSimplestFormHeading);
 			this.concept.push(this.teaching.simplestFormHeading);
 			this.concept.push(this.teaching.zeroNumerator);
-		}
-		else if(this.mathObject.denominator===1 && this.mathObject.numerator !==0){
+		} else if (this.mathObject.denominator===1 && this.mathObject.numerator !==0){
             this.concept=[]
             this.concept.push(this.teaching.getSimplestFormHeading);
 			this.concept.push(this.teaching.oneAsDenominator)
 			this.concept.push(this.teaching.simplestFormHeading);
 			this.concept.push(`{BL}\\Huge\\color{gold}${this.mathObject.numerator}`);
-		}
-		else{
+		} else {
             this.concept=[]
             this.concept.push(this.teaching.getSimplestFormHeading);
 			var nArray=PrimeFactorization.getPrimeFactorsUnder10_000(this.numerator);
@@ -78,7 +74,7 @@ class FractionTeacher extends MathTeacher{
 					this.concept.push(this.teaching.tellSimplifiedForm(this.mathObject.numerator,
 																		   this.mathObject.denominator));
 					this.concept.push(this.teaching.simplestFormHeading);
-				} else{
+				} else {
 					this.concept.push(this.teaching.tooLargeToSimplify);
 					this.concept.push(this.teaching.getReducedForm(this.numerator,
 																	   this.denominator, gcf));
@@ -86,12 +82,10 @@ class FractionTeacher extends MathTeacher{
 																		this.mathObject.denominator));
 					this.concept.push(this.teaching.reducedFormHeading);
 				}
-			}
-			else if (this.mathObject.numerator<10000 &&this.mathObject.denominator<10000){
+			} else if (this.mathObject.numerator<10000 &&this.mathObject.denominator<10000){
                 this.concept.push(this.teaching.tellNoPrimesInCommon());
                 this.concept.push(this.teaching.simplestFormHeading);
-			}
-			else{
+			} else{
                 this.concept.push(this.teaching.tooLargeToSimplify);
                 this.concept.push(this.teaching.reducedFormHeading);
 			}
