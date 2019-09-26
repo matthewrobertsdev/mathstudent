@@ -7,10 +7,11 @@ import InputValidator from '../../utilities/InputValidator';
 import { withRouter } from "react-router-dom";
 import '../views-general/app.css';
 import ReactModal from 'react-modal';
+import {InlineMath } from 'react-katex';
 /* gets the teaching for this method */
 const mapStateToProps = (state) => { return { teacher: state.teacher, topics: state.topics, inputMap: state.inputMap, 
   callingStrings: state.callingStrings, creationStrings: state.creationStrings,
-   teachingObjectName: state.teachingObjectName, argumentLabels: state.argumentLabels} };
+   teachingObjectName: state.teachingObjectName, argumentLabels: state.argumentLabels, simplestForm: state.simplestForm} };
 /* so that the creator view can get the teaching */
 const mapDispatchToProps = (dispatch) =>  { return  { createTeaching: (methodInfo) => { 
   dispatch(createTeaching(methodInfo));  }, updateCreationStrings: (creationStrings) => { 
@@ -38,9 +39,10 @@ class UnconnectedCreatorView extends React.Component{
         return(
           /* will take user to teaching with these names.  Will get teaching from home first. */
           <div className='CreatorView'>
-                <h3 className='heading-size'>{this.props.methodSignature[0]}</h3>
-                {this.createView()}<button className="createButton creator-text-size" onClick={() => this.handleClick()}>
-                Create a {this.props.teacher.teaching.displayNameSingular}</button>
+                {this.createHeading()}
+                {this.createView()}<button className="createButton creator-text-size" 
+                onClick={() => this.handleClick()}>{this.createButtonString()}
+                </button>
                 <ReactModal className="notNumberModal" isOpen={this.state.showModal} >
                 <br></br>
                 <span className='creator-text-size'>{this.getErrorString()}</span>
@@ -51,6 +53,32 @@ class UnconnectedCreatorView extends React.Component{
           </div>
         );
       }
+      createButtonString(){
+        return this.props.creator ? "Create a "+this.props.teacher.teaching.displayNameSingular : this.props.methodSignature[0];
+      }
+      createHeading(){
+          return this.props.creator ? <h3 className='heading-size'>{this.props.methodSignature[0]}</h3> : <div>{this.createInstanceHeading()}</div>
+      }
+      createInstanceHeading(){
+        if (this.props.methodSignature[1].components === undefined || this.props.simplestForm===undefined ) { return; }
+        const creatorViews = this.props.methodSignature[1].components.map((component, i) => {
+                                           return (
+                                               <span key={i} className='main-text-color Heading'>
+                                               {this.createInstanceHeadingComponent(component)}
+                                               </span>
+                                               );
+                                           });
+        return creatorViews;
+      }
+      
+      createInstanceHeadingComponent(component){
+        if (component==='{Latex}'){
+          return <InlineMath>{this.props.simplestForm}</InlineMath>;
+        } else {
+          return component;
+        }
+      }
+    
       getErrorString(){
         switch(this.state.type){
           case 'integer': return 'Sorry, those were not all integers or some were left blank.';

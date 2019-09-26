@@ -130,6 +130,8 @@ class UnconnectedCreateView extends React.Component {
 		return creatorViews;
 	}
 	createAdEverySecond(i) { if (i-1%2===0){ return <div className='fullWidth'>{this.createAD()}</div> } }
+
+	createSpaceEverySecond(i) { if (i-1%2===0){ return <div><br></br><br></br></div> } }
 	
 	onKeyPress = key => { const {updateActiveValue}=this.props; updateActiveValue(key); };
 	
@@ -165,7 +167,9 @@ class UnconnectedCreateView extends React.Component {
 																	 <div key={i} className='fullWidth'>
 																	 <LearnerView className='CreatorView fullWidth' creator={false} methodSignature={methodSignature}
 																	 row={this.props.teacher.teaching.objectName+'-'+methodSignature[2]+'-'+i} teachingViewRef={this.teachingViewRef}></LearnerView>
+																	 <br></br><br></br>
 																	 {this.createAdEverySecond(i)}
+																	 {this.createSpaceEverySecond(i)}
 																	 </div>
 																	 );
 															 })}
