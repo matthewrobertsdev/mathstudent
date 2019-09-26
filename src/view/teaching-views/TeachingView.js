@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getTeaching, clearTeaching, updateURL, updateActiveValue, setTeachingObjectName, setDisplayTeaching} from '../../manager/Actions';
-import CreatorView from './CreatorView';
 import isMobile from '../../utilities/IsMobile';
 import NumberKeyboard from '../keyboard-views/NumberKeyboard';
 import KeyboardSpacer from '../keyboard-views/KeyboardSpacer';
@@ -122,8 +121,8 @@ class UnconnectedCreateView extends React.Component {
 		const creatorViews = this.props.teacher.creationMethodSignatures.map((methodSignature, i) => {
 																			 return (
 																					 <div key={i} className='fullWidth'>
-																					 <CreatorView className='CreatorView fullWidth' methodSignature={methodSignature}
-																					 row={this.createCreatorKey(i)} teachingViewRef={this.teachingViewRef}></CreatorView>
+																					 <LearnerView className='CreatorView fullWidth' creator={true} methodSignature={methodSignature}
+																					 row={this.createCreatorKey(i)} teachingViewRef={this.teachingViewRef}></LearnerView>
 																					 {this.createAdEverySecond(i)}
 																					 </div>
 																					 );
@@ -164,9 +163,8 @@ class UnconnectedCreateView extends React.Component {
 			{this.props.teacher.instanceMethodSignatures.map((methodSignature, i) => {
 															 return (
 																	 <div key={i} className='fullWidth'>
-																	 <LearnerView className='CreatorView fullWidth' methodSignature={methodSignature}
-																	 row={this.props.teacher.teaching.objectName+'-'+methodSignature[2]+'-'+i} teachingViewRef={this.teachingViewRef}></LearnerView
-																	>
+																	 <LearnerView className='CreatorView fullWidth' creator={false} methodSignature={methodSignature}
+																	 row={this.props.teacher.teaching.objectName+'-'+methodSignature[2]+'-'+i} teachingViewRef={this.teachingViewRef}></LearnerView>
 																	 {this.createAdEverySecond(i)}
 																	 </div>
 																	 );
