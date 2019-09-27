@@ -16,12 +16,16 @@ const mapStateToProps = (state) => {
 class UnconnectedDisplayView extends React.Component{
     render() {
         return(
-          <div className='text-margins'>
+          this.displayMath()
+        );
+      }
+      displayMath(){
+          const display=<div className='text-margins'>
           <h1 className="main-text-color center-text">{this.createTitleString()}</h1>
           <h1 className="main-text-color center-text">Here it is:</h1>
-          <BlockMath className='block-math'>{this.createMath()}</BlockMath>
+          <BlockMath className='block-math'>{this.createBlockLatex()}</BlockMath>
           </div>
-        );
+          return display
       }
       createTitleString(){
         if(this.props.teacher){
@@ -38,7 +42,7 @@ class UnconnectedDisplayView extends React.Component{
           return titleString;
         }
       }
-      createMath(){
+      createBlockLatex(){
         if(this.props.teacher){
           console.log(this.props.teacher.latex());
           return this.props.teacher.latex();

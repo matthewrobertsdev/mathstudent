@@ -1,42 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {withRouter} from 'react-router-dom'
-import {getTeaching, setTeachingObject, clearTeaching} from  '../../manager/Actions';
+import {withRouter} from 'react-router-dom';
 import 'katex/dist/katex.min.css';
 import {BlockMath, InlineMath } from 'react-katex';
-import TeachingLink from './TeachingLink'
+import TeachingLink from './TeachingLink';
 import '../views-general/app.css';
-const mapStateToProps = (state) => {
-  return { teacher: state.teacher, creationStrings: state.creationStrings, 
-    callingStrings: state.callingStrings, paramaterLabels: 
-    state.paramaterLabels } };
-const mapDispatchToProps = (dispatch) => {
-  return { getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
-    setTeachingObject: (name) => { dispatch(setTeachingObject(name)); },
-    clearTeaching: () => { dispatch(clearTeaching()); } } };
+const mapStateToProps = (state) => { return { teacher: state.teacher}; }
 class UnconnectedTeachingSection extends React.Component{
     constructor(props) { super(props); this.state={id: this.props.location.pathname, 
       creationStrings: this.props.creationStrings}}
       render() {
         return(
-          this.displayTeaching()
+          this.displayConcept()
         );
       }
-      displayTeaching(){
-        var teachingDisplay=[]
+      displayConcept(){
         if (this.props.purpose==='about'){
-          for (var i=0; i<this.props.teacher.teaching.about.length; i++){
-            teachingDisplay.push(this.teachConcept(this.props.teacher.teaching.about[i], i));
-          }
+          return this.teachConcept(this.props.teacher.teaching.about)
+        } else if (this.props.teacher.concept){
+          return this.teachConcept(this.props.teacher.concept)
         }
-        else if (this.props.teacher.concept){
-            for (var j=0; j<this.props.teacher.concept.length; j++){
-              teachingDisplay.push(this.teachConcept(this.props.teacher.concept[i], i));
-            }
+      }
+      teachConcept(segmentArray){
+        var teachingDisplay=[]
+        for (var i=0; i<segmentArray.length; i++){
+          teachingDisplay.push(this.createSegment(segmentArray[i], i));
         }
         return teachingDisplay;
       }
-      teachConcept(concept, c){
+      createSegment(concept, c){
         if(concept){
           var teaching=[];
             if ( typeof concept==='string'){
@@ -61,5 +53,5 @@ class UnconnectedTeachingSection extends React.Component{
         }
       }
 }
-const TeachingSection=connect(mapStateToProps, mapDispatchToProps)(withRouter(UnconnectedTeachingSection));
+const TeachingSection=connect(mapStateToProps, null)(withRouter(UnconnectedTeachingSection));
 export default TeachingSection;

@@ -11,6 +11,7 @@ import '../views-general/app.css';
 import {Accordion, AccordionItem, AccordionItemHeading, AccordionItemPanel, AccordionItemButton} from 'react-accessible-accordion';
 import PageNotFoundView from '../views-general/PageNotFoundView';
 import TeachingSection from './TeachingSection';
+import AdView from './AdView';
 const mapStateToProps = (state) => { return { teacher: state.teacher, displayTeaching: state.displayTeaching, 
 	callingStrings: state.callingStrings, displayKeyboard: state.displayKeyboard, pageNotFound: state.pageNotFound} };
 const mapDispatchToProps = (dispatch) => {
@@ -39,7 +40,7 @@ class UnconnectedCreateView extends React.Component {
 			if(this.props.teacher.teaching){
 			return (
 					<Accordion allowZeroExpanded={true} allowMultipleExpanded={true} preExpanded={this.expandIfNotMobile()}>
-					<div className='center-text textMargins'>{this.createAD()}</div>
+					<div className='center-text textMargins'><AdView/></div>
 					<h1 className='center-text main-text-color Heading large-heading-size'>{this.props.teacher.teaching.displayNamePlural}</h1>
 					<AccordionItem uuid='about' >
 					<AccordionItemHeading >
@@ -51,7 +52,7 @@ class UnconnectedCreateView extends React.Component {
 					</AccordionItemHeading>
 					<AccordionItemPanel>
 					<span className='textMargins'>
-					{this.createAboutSection()} {this.createAD()}
+					{this.createAboutSection()} <AdView/>
 					</span>
 					</AccordionItemPanel>
 					</AccordionItem >
@@ -92,17 +93,8 @@ class UnconnectedCreateView extends React.Component {
 	displayChosenObject(){
 		if (this.props.displayTeaching){
 			return (<div ref={this.teachingViewRef}>{<CreationSection/>}<br></br>
-					<br></br>{this.createAD()}</div>
+					<br></br><AdView/></div>
 					);} else { return (<span ref={this.teachingViewRef}></span>); }
-	}
-	createAD(){
-		return <div className='center-text'>
-		<br></br>
-		<div className='hide-for-small leaderBoardAd center-text'>
-		There is an ad here when you are online.<br></br><br></br>Ads help Learn Math make money.</div>
-		<div className='hide-for-big mobileBanner center-text'>
-		There is an ad here when you are online.<br></br><br></br>Ads help Learn Math make money.</div>
-		</div>
 	}
 	createInputHeading(){
 		var heading=<span></span>;
@@ -128,7 +120,7 @@ class UnconnectedCreateView extends React.Component {
 																			 });
 		return creatorViews;
 	}
-	createAdEverySecond(i) { if (i-1%2===0){ return <div className='fullWidth'>{this.createAD()}</div> } }
+	createAdEverySecond(i) { if (i-1%2===0){ return <div className='fullWidth'><AdView/></div> } }
 
 	createSpaceEverySecond(i) { if (i-1%2===0){ return <div><br></br><br></br></div> } }
 	
