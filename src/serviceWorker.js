@@ -21,6 +21,7 @@ const isLocalhost = Boolean(
 );
 
 const date='9-18-2019';
+console.log(date)
 
 export function register(config) {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {

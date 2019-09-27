@@ -17,8 +17,8 @@ const mapDispatchToProps = (dispatch) =>  { return  { createTeaching: (methodInf
   dispatch(createTeaching(methodInfo));  }, updateCreationStrings: (creationStrings) => { 
   dispatch(updateCreationStrings(creationStrings)); }, setDisplayTeaching: (boolean) => { 
   dispatch(setDisplayTeaching(boolean)); }, updateKeyAndValue: (key, value) => { 
-  dispatch(updateKeyAndValue(key, value)); }, createTeachingObject: (teachingobjectName, args) => {
-  dispatch(createTeachingObject(teachingobjectName, args)); }, setParamaterLabels: (argumentLabels)=>{
+  dispatch(updateKeyAndValue(key, value)); }, createTeachingObject: (teachingObjectName, args) => {
+  dispatch(createTeachingObject(teachingObjectName, args)); }, setParamaterLabels: (argumentLabels)=>{
   dispatch(setParamaterLabels(argumentLabels));}, clearTeaching: () => { 
     dispatch(clearTeaching());}, };}
 
@@ -165,10 +165,7 @@ class UnconnectedCreatorView extends React.Component{
   }
   }
   updateForTeaching(creationStrings){
-    const {createTeachingObject, updateCreationStrings, setDisplayTeaching,
-      setParamaterLabels, clearTeaching}=this.props;
-    //const paramaterLabels=this.getParamaterLabels();
-    //setParamaterLabels(paramaterLabels);
+    const {createTeachingObject, updateCreationStrings, setDisplayTeaching, clearTeaching}=this.props;
     if(true){ updateCreationStrings(creationStrings);
     } clearTeaching()
     if (true){ createTeachingObject(this.props.teachingObjectName, creationStrings.slice()); }

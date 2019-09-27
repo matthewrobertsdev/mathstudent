@@ -4,14 +4,13 @@ import { getTeaching, clearTeaching, updateURL, updateActiveValue, setTeachingOb
 import isMobile from '../../utilities/IsMobile';
 import NumberKeyboard from '../keyboard-views/NumberKeyboard';
 import KeyboardSpacer from '../keyboard-views/KeyboardSpacer';
-import AboutSection from './AboutSection';
 import CreationSection from './CreationSection';
 import LearnerView from './LearnerView';
 import 'react-simple-keyboard/build/css/index.css';
 import '../views-general/app.css';
 import {Accordion, AccordionItem, AccordionItemHeading, AccordionItemPanel, AccordionItemButton} from 'react-accessible-accordion';
 import PageNotFoundView from '../views-general/PageNotFoundView';
-
+import TeachingSection from './TeachingSection';
 const mapStateToProps = (state) => { return { teacher: state.teacher, displayTeaching: state.displayTeaching, 
 	callingStrings: state.callingStrings, displayKeyboard: state.displayKeyboard, pageNotFound: state.pageNotFound} };
 const mapDispatchToProps = (dispatch) => {
@@ -88,7 +87,7 @@ class UnconnectedCreateView extends React.Component {
 	}
 	
 	createAboutSection(){
-		return (<div><AboutSection/><br></br><br></br></div>)
+		return (<div><TeachingSection purpose={'about'}/><br></br><br></br></div>)
 	}
 	displayChosenObject(){
 		if (this.props.displayTeaching){

@@ -26,7 +26,7 @@ class UnconnectHeaderView extends React.Component{
         this.props.history.goForward();
       }
       getClassName(url){
-        if (url==this.props.URLpathname){
+        if (url===this.props.URLpathname){
             return 'selected-nav-link float-left';
         } else {
           return 'NavLink float-left';

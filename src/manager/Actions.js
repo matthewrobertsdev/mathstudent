@@ -117,8 +117,7 @@ export const createTeachingObjectForMap = (teachingName, args, method) =>
 																				dispatch(_createTeachingObject(null)) }); }; }
 
 export const useTeachingObject = (args) => {
-	{ return (dispatch) => {}}
-	
+	return (dispatch) => {}
 }
 
 
