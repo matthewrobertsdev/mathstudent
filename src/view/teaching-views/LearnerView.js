@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import NumberInput from './NumberInput';
 import {createTeachingObject, updateCreationStrings, setDisplayTeaching, updateKeyAndValue, 
-  clearTeaching} from '../../manager/Actions';
+  clearCreationTeaching} from '../../manager/Actions';
 import InputValidator from '../../utilities/InputValidator';
 import { withRouter } from "react-router-dom";
 import '../views-general/app.css';
@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) =>  { return  {
   setDisplayTeaching: (boolean) => { dispatch(setDisplayTeaching(boolean)); }, 
   updateKeyAndValue: (key, value) => { dispatch(updateKeyAndValue(key, value)); }, 
   createTeachingObject: (teachingObjectName, args) => {dispatch(createTeachingObject(teachingObjectName, args)); }, 
-  clearTeaching: () => { dispatch(clearTeaching());}, };}
+  clearCreationTeaching: () => { dispatch(clearCreationTeaching());}, };}
 class UnconnectedCreatorView extends React.Component{
     constructor(props) {
         super(props);
@@ -131,14 +131,18 @@ class UnconnectedCreatorView extends React.Component{
         return urlComponent
       }
       getCreationStrings(){
-        var creationStrings=[]; creationStrings.push(this.props.methodSignature[1]);
-        for (var i=0; i<this.props.methodSignature.length/2-1; i++){
+        console.log(this.props.methodSignature)
+        var j=0;
+        this.props.creator ? j=1 : j=2;
+        var creationStrings=[]; creationStrings.push(this.props.methodSignature[j]);
+        for (var i=0; i<(this.props.methodSignature.length-j-1)/2; i++){
           creationStrings.push(this.props.inputMap[this.state.gridIDs[i]]);
         };
         return creationStrings;
     } 
   handleButtonClick(){
     const creationStrings=this.getCreationStrings();
+    console.log(creationStrings)
     var i=0;
     this.props.creator ? i=3 : i=4;
     if (this.props.methodSignature[i]==='integer'){ this.setState({ type: 'integer' }); 
@@ -154,10 +158,14 @@ class UnconnectedCreatorView extends React.Component{
   }
   }
   updateForTeaching(creationStrings){
-    this.props.updateCreationStrings(creationStrings); this.props.clearTeaching()
-    this.props.createTeachingObject(this.props.teachingObjectName, creationStrings.slice());
-    this.props.setDisplayTeaching(true);
-    this.props.teachingViewRef.current.scrollIntoView();
+    if (this.props.creator){
+        this.props.updateCreationStrings(creationStrings); this.props.clearCreationTeaching()
+        this.props.createTeachingObject(this.props.teachingObjectName, creationStrings.slice());
+        this.props.setDisplayTeaching(true);
+        this.props.teachingViewRef.current.scrollIntoView();
+    } else {
+
+    }
   }
   openModal () { this.setState({ showModal: true }); }
   closeModal () { this.setState({ showModal: false }); }

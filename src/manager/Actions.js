@@ -2,9 +2,9 @@ import curriculum from  '../model/Curriculum';
 
 const _getTopics = (topics) => ({ type: 'GET_TOPICS', topics });
 
-const _getTeaching = (teachingObject) => ({ type: 'GET_TEACHING', teachingObject });
+const _getTeaching = (creationTeaching) => ({ type: 'GET_TEACHING', creationTeaching });
 
-const _clearTeaching = () => ({ type: 'CLEAR_TEACHING_OBJECT' });
+const _clearCreationTeaching = () => ({ type: 'CLEAR_CREATION_TEACHING' });
 
 const _updateURL = (URLpathname) => ({ type: 'UPDATE_URL', URLpathname });
 
@@ -42,7 +42,7 @@ export const getTeaching = (teachingName) => {
 																		   }).catch(function(error) { console.log(error); dispatch(_getTeaching(undefined)) }); };
 };
 
-export const clearTeaching = () => {return (dispatch) => { return dispatch(_clearTeaching({})); }; };
+export const clearCreationTeaching = () => {return (dispatch) => { return dispatch(_clearCreationTeaching({})); }; };
 
 export const updateURL = () => { return (dispatch) => { return dispatch(_updateURL(window.location.pathname)); }; };
 
@@ -74,10 +74,10 @@ export const createTeachingObject = (teachingName, args) =>
 { return (dispatch) => {
 	return import(`../model/mathteachers/${teachingName}Teacher`).then(teaching => {
 																	   const firstArg=args.shift();
-																	   const teachingObject=teaching.default;
-																	   teachingObject[firstArg](args);
-																	   dispatch(_createTeachingObject(teachingObject));
-																	   dispatch(_updateSimplestForm(teachingObject.simplestForm));
+																	   const creationTeaching=teaching.default;
+																	   creationTeaching[firstArg](args);
+																	   dispatch(_createTeachingObject(creationTeaching));
+																	   dispatch(_updateSimplestForm(creationTeaching.simplestForm));
 																	   }).catch(function(error) { console.log(error);
 																				dispatch(_createTeachingObject(null)) }); }; }
 
@@ -86,18 +86,24 @@ export const createTeachingObjectForMap = (teachingName, args, method) =>
 	return import(`../model/mathteachers/${teachingName}Teacher`).then(teaching => {
 																	   const firstArg=args.shift();
 																	   console.log("firstArg"+JSON.stringify(firstArg))
-																	   const teachingObject=teaching.default;
-																	   teachingObject[firstArg](args);
-																	   dispatch(_createTeachingObjectForMap(teachingObject, method));
+																	   const creationTeaching=teaching.default;
+																	   creationTeaching[firstArg](args);
+																	   dispatch(_createTeachingObjectForMap(creationTeaching, method));
 																	   }).catch(function(error) { console.log(error);
 																				dispatch(_createTeachingObject(null)) }); }; }
 
-export const useTeachingObject = (args) => {
-	return (dispatch) => {}
+export const updateInstanceStrings = (instanceStrings) => {
+	return (dispatch) => {return dispatch(_updateInstanceStrings(instanceStrings))}
 }
 
+const _updateInstanceStrings = (instanceStrings) => ({ type: 'UPDATE_INSTANCE_STRINGS', instanceStrings });
 
 export const setParamaterLabels = (labelArray) => 
 { return (dispatch) => { return dispatch(_setParamaterLabels(labelArray)); }; }
 
 const _updateSimplestForm = (simplestForm) => ({ type: 'UPDATE_SIMPLEST_FORM', simplestForm });
+
+export const updateActiveMethod = (activeMethod) => 
+{ return (dispatch) => { return dispatch(_updateActiveMethod(activeMethod)); }; }
+
+const _updateActiveMethod = (activeMethod) => ({ type: 'UPDATE_ACTIVE_METHOD', activeMethod });

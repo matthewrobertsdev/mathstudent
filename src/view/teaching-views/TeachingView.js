@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getTeaching, clearTeaching, updateURL, updateActiveValue, setTeachingObjectName, setDisplayTeaching} from '../../manager/Actions';
+import { getTeaching, clearCreationTeaching, updateURL, updateActiveValue, setTeachingObjectName, setDisplayTeaching} from '../../manager/Actions';
 import isMobile from '../../utilities/IsMobile';
 import NumberKeyboard from '../keyboard-views/NumberKeyboard';
 import KeyboardSpacer from '../keyboard-views/KeyboardSpacer';
@@ -16,7 +16,7 @@ const mapStateToProps = (state) => { return { teacher: state.teacher, displayTea
 	 displayKeyboard: state.displayKeyboard, pageNotFound: state.pageNotFound} };
 const mapDispatchToProps = (dispatch) => {
 	return { getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
-	clearTeaching: () => { dispatch(clearTeaching()); }, updateURL: () => { dispatch(updateURL()); },
+	clearTeaching: () => { dispatch(clearCreationTeaching()); }, updateURL: () => { dispatch(updateURL()); },
 	updateActiveValue: (key) => { dispatch(updateActiveValue(key)); } ,
 	setTeachingObjectName: (teachingName) => { dispatch(setTeachingObjectName(teachingName)); },
 		setDisplayTeaching: (teachingName) => { dispatch(setDisplayTeaching(teachingName)); } }; };

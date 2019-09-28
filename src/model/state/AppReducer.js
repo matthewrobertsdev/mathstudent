@@ -1,7 +1,7 @@
 import isMobile from '../../utilities/IsMobile'
 
 const initialState = { topics: [], inputMap: {}, activeMap: {}, activeKey: '', 
-    inputArray: [], textStrings: [], callingStrings: [], creationStrings: [], teachingObject: {}, teachingObjectName: '', 
+    inputArray: [], textStrings: [], creationStrings: [], instanceStrings: [], creationTeaching: {}, teachingObjectName: '', 
     displayTeaching: false, displayKeyboard: false, paramaterLabels: [], pageNotFound: false, techingMap: {}};
     
 const appReducer=(state=initialState, action) => {
@@ -22,13 +22,13 @@ const appReducer=(state=initialState, action) => {
 
         case 'GET_TOPICS': return { ...state, topics: action.topics };
 
-        case 'GET_TEACHING': {if (action.teachingObject===undefined) {console.log('teaching was null'); 
+        case 'GET_TEACHING': {if (action.creationTeaching===undefined) {console.log('teaching was null'); 
             return {...state, pageNotFound: true};}
-            return { ...state, teacher: action.teachingObject, pageNotFound: false };}
+            return { ...state, teacher: action.creationTeaching, pageNotFound: false };}
         
         case 'CLEAR_TEACHING': return { ...state, teacher: action.teaching, pageNotFound: false};
 
-        case 'CLEAR_TEACHING_OBJECT': return { ...state, teachingObject: {}, pageNotFound: false};
+        case 'CLEAR_CREATION_TEACHING': return { ...state, creationTeaching: {}, pageNotFound: false};
 
         case 'UPDATE_URL': return { ...state, URLpathname: action.URLpathname };
 
@@ -36,14 +36,16 @@ const appReducer=(state=initialState, action) => {
 
         case 'UPDATE_ACTIVE_KEY': return { ...state, activeKey: action.key };
 
-        case 'UPDATE_CALLING_STRINGS': return { ...state, callingStrings: action.callingStrings };
+        //case 'UPDATE_CALLING_STRINGS': return { ...state, callingStrings: action.callingStrings };
 
         case 'UPDATE_DISPLAY_KEYBOARD': return { ...state, displayKeyboard: action.displayKeyboard };
 
         case 'UPDATE_CREATION_STRINGS': return { ...state, creationStrings: action.creationStrings.slice() };
 
+        case 'UPDATE_INSTANCE_STRINGS': return {...state, instanceStrings: action.instanceStrings.slice()};
+
         case 'SET_TEACHING_OBJECT': import(`../math${action.objectName}`).then(teachingObj => {
-                return {...state, teachingObject: teachingObj}; }).catch(function(error) { console.log(error);
+                return {...state, creationTeaching: teachingObj}; }).catch(function(error) { console.log(error);
                     return state;}); return state;
 
         case 'SET_TEACHING_MAP_OBJECT': import(`../math${action.objectName}`).then(teachingObj => {
