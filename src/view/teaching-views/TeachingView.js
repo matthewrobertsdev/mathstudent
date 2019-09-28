@@ -13,14 +13,13 @@ import PageNotFoundView from '../views-general/PageNotFoundView';
 import TeachingSection from './TeachingSection';
 import AdView from './AdView';
 const mapStateToProps = (state) => { return { teacher: state.teacher, displayTeaching: state.displayTeaching, 
-	callingStrings: state.callingStrings, displayKeyboard: state.displayKeyboard, pageNotFound: state.pageNotFound} };
+	 displayKeyboard: state.displayKeyboard, pageNotFound: state.pageNotFound} };
 const mapDispatchToProps = (dispatch) => {
-	return { /* gets teaching */ getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
+	return { getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
 	clearTeaching: () => { dispatch(clearTeaching()); }, updateURL: () => { dispatch(updateURL()); },
 	updateActiveValue: (key) => { dispatch(updateActiveValue(key)); } ,
 	setTeachingObjectName: (teachingName) => { dispatch(setTeachingObjectName(teachingName)); },
 		setDisplayTeaching: (teachingName) => { dispatch(setDisplayTeaching(teachingName)); } }; };
-/* This view is for the UI for creating a MathTeachingObject */
 class UnconnectedCreateView extends React.Component {
 	constructor(props) { super(props); this.state={ activeText: null, displayKeyboard: false};
 		const { match: { params } } = this.props;
@@ -38,59 +37,59 @@ class UnconnectedCreateView extends React.Component {
 	createView(){
 		if (this.props.teacher){
 			if(this.props.teacher.teaching){
-			return (
-					<Accordion allowZeroExpanded={true} allowMultipleExpanded={true} preExpanded={this.expandIfNotMobile()}>
-					<div className='center-text textMargins'><AdView/></div>
-					<h1 className='center-text main-text-color Heading large-heading-size'>{this.props.teacher.teaching.displayNamePlural}</h1>
-					<AccordionItem uuid='about' >
-					<AccordionItemHeading >
-					<AccordionItemButton >
-					{/* About section */}
-					<span className="center-text main-text-color Heading large-heading-size">
-					About {this.props.teacher.teaching.displayNamePlural}</span>
-					</AccordionItemButton>
-					</AccordionItemHeading>
-					<AccordionItemPanel>
-					<span className='textMargins'>
-					{this.createAboutSection()} <AdView/>
-					</span>
-					</AccordionItemPanel>
-					</AccordionItem >
-					<br></br>
-					<AccordionItem uuid='create'>
-					<AccordionItemHeading>
-					<AccordionItemButton>
-					{/* Display CreatorViews to create objects */}
-					<span className="center-text main-text-color Heading large-heading-size">
-					Create {this.props.teacher.teaching.displayNamePlural}</span>
-					</AccordionItemButton>
-					</AccordionItemHeading>
-					<AccordionItemPanel>
-					<span className='center-text textMargins'>
-					{this.createInputHeading()} {this.createCreatorViews()}
-					</span>
-					</AccordionItemPanel>
-					</AccordionItem>
-					{/* Display TeachingView if an object has been created */}
-					{this.displayChosenObject()}
-					{this.createLearningSection()}
-					<div className='fullWidth center-text'>
-					</div>
-					{/* On mobile, display keyboard */}
-					{this.addKeyboardForMobile()}
-					</Accordion>
-					);
+				return (
+						<Accordion allowZeroExpanded={true} allowMultipleExpanded={true} preExpanded={this.expandTheseIfNotMobile()}>
+						<div className='center-text textMargins'><AdView/></div>
+						<h1 className='center-text main-text-color Heading large-heading-size'>{this.props.teacher.teaching.displayNamePlural}</h1>
+						<AccordionItem uuid='about' >
+						<AccordionItemHeading >
+						<AccordionItemButton >
+						{/* About section */}
+						<span className="center-text main-text-color Heading large-heading-size">
+						About {this.props.teacher.teaching.displayNamePlural}</span>
+						</AccordionItemButton>
+						</AccordionItemHeading>
+						<AccordionItemPanel>
+						<span className='textMargins'>
+						{this.createAboutSection()} <AdView/>
+						</span>
+						</AccordionItemPanel>
+						</AccordionItem >
+						<br></br>
+						<AccordionItem uuid='create'>
+						<AccordionItemHeading>
+						<AccordionItemButton>
+						{/* Display CreatorViews to create objects */}
+						<span className="center-text main-text-color Heading large-heading-size">
+						Create {this.props.teacher.teaching.displayNamePlural}</span>
+						</AccordionItemButton>
+						</AccordionItemHeading>
+						<AccordionItemPanel>
+						<span className='center-text textMargins'>
+						{this.createInputHeading()} {this.createCreatorViews()}
+						</span>
+						</AccordionItemPanel>
+						</AccordionItem>
+						{/* Display TeachingView if an object has been created */}
+						{this.displayCreatedObject()}
+						{this.createLearningSection()}
+						<div className='fullWidth center-text'>
+						</div>
+						{/* On mobile, display keyboard */}
+						{this.addKeyboardForMobile()}
+						</Accordion>
+						);
+			}
 		}
-	}
-	else if (this.props.pageNotFound){
-		return <div className="text-margins main-text-color"><br></br><br></br><PageNotFoundView className='fullWidth center-text'/></div>
-	}
+		else if (this.props.pageNotFound){
+			return <div className="text-margins main-text-color"><br></br><br></br><PageNotFoundView className='fullWidth center-text'/></div>
+		}
 	}
 	
 	createAboutSection(){
 		return (<div><TeachingSection purpose={'about'}/><br></br><br></br></div>)
 	}
-	displayChosenObject(){
+	displayCreatedObject(){
 		if (this.props.displayTeaching){
 			return (<div ref={this.teachingViewRef}>{<CreationSection/>}<br></br>
 					<br></br><AdView/></div>
@@ -121,10 +120,10 @@ class UnconnectedCreateView extends React.Component {
 		return creatorViews;
 	}
 	createAdEverySecond(i) { if (i-1%2===0){ return <div className='fullWidth'><AdView/></div> } }
-
+	
 	createSpaceEverySecond(i) { if (i-1%2===0){ return <div><br></br><br></br></div> } }
 	
-	onKeyPress = key => { const {updateActiveValue}=this.props; updateActiveValue(key); };
+	onKeyPress = key => { this.props.updateActiveValue(key); };
 	
 	addKeyboardForMobile() { if( isMobile() ) { return <div><NumberKeyboard className={this.props.displayKeyboard ?
 		'display-keyboard' : 'hide-keyboard'} keyPressHandler={this.onKeyPress}/><KeyboardSpacer/></div> }
@@ -169,7 +168,7 @@ class UnconnectedCreateView extends React.Component {
 			return <h3 className='large-heading-size main-text-color center-text'>Before working with fractions, please create one first.</h3>
 		}
 	}
-	expandIfNotMobile(){
+	expandTheseIfNotMobile(){
 		if (!isMobile()){
 			return ['about', 'create', 'working-with'];
 		} else {

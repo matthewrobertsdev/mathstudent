@@ -11,17 +11,17 @@ class UnconnectedTeachingSection extends React.Component{
       creationStrings: this.props.creationStrings}}
       render() {
         return(
-          this.displayConcept()
+          this.displaySection()
         );
       }
-      displayConcept(){
+      displaySection(){
         if (this.props.purpose==='about'){
-          return this.teachConcept(this.props.teacher.teaching.about)
+          return this.createSection(this.props.teacher.teaching.about)
         } else if (this.props.teacher.concept){
-          return this.teachConcept(this.props.teacher.concept)
+          return this.createSection(this.props.teacher.concept)
         }
       }
-      teachConcept(segmentArray){
+      createSection(segmentArray){
         var teachingDisplay=[]
         for (var i=0; i<segmentArray.length; i++){
           teachingDisplay.push(this.createSegment(segmentArray[i], i));

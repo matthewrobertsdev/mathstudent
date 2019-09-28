@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import isMobile from '../../utilities/IsMobile';
 import '../views-general/app.css';
 addMathquillStyles();
-const mapStateToProps = (state) => { return { inputMap: state.inputMap, teaching: state.teaching, 
-    activeKey: state.activeKey, displayKeyboard: state.displayKeyboard} };
+const mapStateToProps = (state) => { return { inputMap: state.inputMap, activeKey: state.activeKey, 
+    displayKeyboard: state.displayKeyboard} };
 const mapDispatchToProps = (dispatch) => { return {
         updateKeyAndValue: (key, value) => { dispatch(updateKeyAndValue(key, value)); },
         updateActiveKey: (key) => {dispatch(updateActiveKey(key)); },
@@ -15,10 +15,10 @@ class UnconnectedNumberInput extends React.Component{
     constructor(props) {
         super(props);
         if( isMobile()) { this.state = {index: this.props.index}
-        } else { this.state = { latex: '', text: '', index: this.props.index, classID: this.props.classID }
-        } this.mathQuillEl = null
+        } else { this.state = { latex: '', text: '', index: this.props.index, classID: this.props.classID } } 
+        this.mathQuillEl = null
     }
-    componentWillMount() { const {updateKeyAndValue} = this.props; updateKeyAndValue(this.props.gridID, ''); }
+    componentWillMount() { this.props.updateKeyAndValue(this.props.gridID, ''); }
     render() {
         if( isMobile() ) {
                     return (<span onKeyDown={(e) => this.onKeyPressed(e)}>
@@ -38,18 +38,16 @@ class UnconnectedNumberInput extends React.Component{
                     }} mathquillDidMount={el => { this.mathQuillEl = el; }}/> </span> );
         }
     }
-    forClick() { const { updateActiveKey, updateDisplayKeyboard } = this.props; 
-    updateActiveKey(this.props.gridID); updateDisplayKeyboard(true); 
-}
+    forClick() { this.props.updateActiveKey(this.props.gridID); this.props.updateDisplayKeyboard(true); }
     getMobileValue() { return this.props.inputMap[this.props.gridID]; }
     onKeyPressed(e) {
         if (e.metaKey && (e.key==="h"||e.key==="q")){ return; }
-        switch (e.key) {
-            case 'Tab': case 'Backspace': case ' ': case '1':case '2':case '3':case '4':case '5':
-            case '6':case '7':case '8':case '9':case '0': case '/':case '-':
-                break;
-            default:
-                e.preventDefault();
+            switch (e.key) {
+                case 'Tab': case 'Backspace': case ' ': case '1':case '2':case '3':case '4':case '5':
+                case '6':case '7':case '8':case '9':case '0': case '/':case '-':
+                    break;
+                default:
+                    e.preventDefault();
         }
         if( isMobile() ) { if (this.state.mobileValue.match("/")&&e.key==='/'){ e.preventDefault(); }
         } else if (this.state.latex.match("frac")&&e.key==='/'){ e.preventDefault(); }

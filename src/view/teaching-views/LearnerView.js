@@ -1,32 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import NumberInput from './NumberInput';
-import {createTeaching, createTeachingObject, updateCreationStrings, setDisplayTeaching, 
-  setParamaterLabels, updateKeyAndValue, clearTeaching} from '../../manager/Actions';
+import {createTeachingObject, updateCreationStrings, setDisplayTeaching, updateKeyAndValue, 
+  clearTeaching} from '../../manager/Actions';
 import InputValidator from '../../utilities/InputValidator';
 import { withRouter } from "react-router-dom";
 import '../views-general/app.css';
 import ReactModal from 'react-modal';
 import {InlineMath } from 'react-katex';
 /* gets the teaching for this method */
-const mapStateToProps = (state) => { return { teacher: state.teacher, topics: state.topics, inputMap: state.inputMap, 
-  callingStrings: state.callingStrings, creationStrings: state.creationStrings,
-   teachingObjectName: state.teachingObjectName, argumentLabels: state.argumentLabels, simplestForm: state.simplestForm} };
+const mapStateToProps = (state) => { return { teacher: state.teacher, inputMap: state.inputMap,  
+  creationStrings: state.creationStrings, teachingObjectName: state.teachingObjectName, 
+  simplestForm: state.simplestForm} };
 /* so that the creator view can get the teaching */
-const mapDispatchToProps = (dispatch) =>  { return  { createTeaching: (methodInfo) => { 
-  dispatch(createTeaching(methodInfo));  }, updateCreationStrings: (creationStrings) => { 
-  dispatch(updateCreationStrings(creationStrings)); }, setDisplayTeaching: (boolean) => { 
-  dispatch(setDisplayTeaching(boolean)); }, updateKeyAndValue: (key, value) => { 
-  dispatch(updateKeyAndValue(key, value)); }, createTeachingObject: (teachingObjectName, args) => {
-  dispatch(createTeachingObject(teachingObjectName, args)); }, setParamaterLabels: (argumentLabels)=>{
-  dispatch(setParamaterLabels(argumentLabels));}, clearTeaching: () => { 
-    dispatch(clearTeaching());}, };}
-
-/* for creating a teaching, but not connected yet */
+const mapDispatchToProps = (dispatch) =>  { return  {
+  updateCreationStrings: (creationStrings) => { dispatch(updateCreationStrings(creationStrings)); }, 
+  setDisplayTeaching: (boolean) => { dispatch(setDisplayTeaching(boolean)); }, 
+  updateKeyAndValue: (key, value) => { dispatch(updateKeyAndValue(key, value)); }, 
+  createTeachingObject: (teachingObjectName, args) => {dispatch(createTeachingObject(teachingObjectName, args)); }, 
+  clearTeaching: () => { dispatch(clearTeaching());}, };}
 class UnconnectedCreatorView extends React.Component{
     constructor(props) {
         super(props);
-        /* methods strings to create view, calling strings to call method */
         this.state={methodSignature: this.props.methodSignature, key: undefined, creationStrings: 
           this.createCreationStrings(), gridIDs: [], showModal: false, type: 'number', 
           first: true}
@@ -37,18 +32,14 @@ class UnconnectedCreatorView extends React.Component{
       }
       render() {
         return(
-          /* will take user to teaching with these names.  Will get teaching from home first. */
           <div className='CreatorView'>
                 {this.createHeading()}
                 {this.createView()}<button className="createButton creator-text-size" 
                 onClick={() => this.handleButtonClick()}>{this.createButtonString()}
                 </button>
-                <ReactModal className="notNumberModal" isOpen={this.state.showModal} >
-                <br></br>
-                <span className='creator-text-size'>{this.getErrorString()}</span>
-                <br></br>
-                <br></br>
-                <button className='closeButton button-size' onClick={this.closeModal}>Close</button>
+                <ReactModal className="notNumberModal" isOpen={this.state.showModal} > <br></br>
+                <span className='creator-text-size'>{this.getErrorString()}</span><br></br>
+                <br></br><button className='closeButton button-size' onClick={this.closeModal}>Close</button>
                 </ReactModal>
           </div>
         );
@@ -70,7 +61,6 @@ class UnconnectedCreatorView extends React.Component{
                                            });
         return creatorViews;
       }
-      
       createInstanceHeadingComponent(component){
         if (component==='{Latex}'){
           return <InlineMath>{this.props.simplestForm}</InlineMath>;
@@ -78,7 +68,6 @@ class UnconnectedCreatorView extends React.Component{
           return component;
         }
       }
-    
       getErrorString(){
         switch(this.state.type){
           case 'integer': return 'Sorry, those were not all integers or some were left blank.';
@@ -127,16 +116,15 @@ class UnconnectedCreatorView extends React.Component{
       }
       createCreationStrings(){
         var creationStrings=[];
-        for (var i=0; i<this.props.methodSignature.length/2; i++){ creationStrings.push(''); };
+        for (var i=0; i<this.props.methodSignature.length/2; i++) { creationStrings.push(''); };
         return creationStrings;
       }
-      /* bring index to array */
       createNumberInput(column){ this.state.gridIDs.push(this.createGridID(column));
           let fractionInput=<NumberInput gridID={this.createGridID(column)} index={column} 
           textHandler={(key, value) => this.textHandler(key, value)} activateInputHandler={this.props.activateInputHandler}>
           </NumberInput>; this.num++; return fractionInput; }
       createGridID(column){ return this.props.row+"-"+column }
-      textHandler(key, value){ { const { updateKeyAndValue } = this.props; updateKeyAndValue(key, value); } }
+      textHandler(key, value){ this.props.updateKeyAndValue(key, value); }
       makeObjectURLComponent(){
         var urlComponent='/'
         for (var i=0; i<this.state.creationStrings.length; i++) { urlComponent+=`$${this.state.creationStrings[i]}`; }
@@ -151,15 +139,16 @@ class UnconnectedCreatorView extends React.Component{
     } 
   handleButtonClick(){
     const creationStrings=this.getCreationStrings();
-    if (this.props.methodSignature[3]==='integer'){ this.setState({ type: 'integer' }); 
+    var i=0;
+    this.props.creator ? i=3 : i=4;
+    if (this.props.methodSignature[i]==='integer'){ this.setState({ type: 'integer' }); 
       if (InputValidator.areIntegers(creationStrings)){ this.updateForTeaching(creationStrings);
       } else { this.openModal(); }
-    }
-    else if (this.props.methodSignature[3]==='number'){ this.setState({ type: 'number' }); 
-    if(InputValidator.areNumbers(creationStrings)){ this.updateForTeaching(creationStrings);
-    } else { this.openModal(); } }
-  else if (this.props.methodSignature[3]==='decimal'){
-    this.setState({ type: 'decimal' }); this.openModal();
+    } else if (this.props.methodSignature[i]==='number'){ this.setState({ type: 'number' }); 
+      if(InputValidator.areNumbers(creationStrings)){ this.updateForTeaching(creationStrings);
+      } else { this.openModal(); } }
+    else if (this.props.methodSignature[i]==='decimal'){
+      this.setState({ type: 'decimal' }); this.openModal();
     if(InputValidator.areNumbers(creationStrings)){ this.updateForTeaching(creationStrings); }
      else { this.openModal(); }
   }

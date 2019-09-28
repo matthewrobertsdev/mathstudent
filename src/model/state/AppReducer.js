@@ -1,9 +1,8 @@
 import isMobile from '../../utilities/IsMobile'
 
-const initialState = { loaded: false, /* all topics for now */ topics: [], /* the teaching being taught */ teaching: {},
-    error: {}, URL: '', inputMap: {}, activeMap: {}, activeKey: '', inputArray: [], textStrings: [], callingStrings: [],
-    creationStrings: [], teachingObject: {}, teachingObjectName: '', displayTeaching: false, displayKeyboard: false,
-    paramaterLabels: [], pageNotFound: false, techingMap: {}};
+const initialState = { topics: [], inputMap: {}, activeMap: {}, activeKey: '', 
+    inputArray: [], textStrings: [], callingStrings: [], creationStrings: [], teachingObject: {}, teachingObjectName: '', 
+    displayTeaching: false, displayKeyboard: false, paramaterLabels: [], pageNotFound: false, techingMap: {}};
     
 const appReducer=(state=initialState, action) => {
         switch (action.type) {
@@ -14,7 +13,6 @@ const appReducer=(state=initialState, action) => {
                 if (state.inputMap[state.activeKey].length>=1){ newValue=state.inputMap[state.activeKey].slice(0, -1); }
             } else { newValue=state.inputMap[state.activeKey]+=action.key }
              return { ...state, inputMap: {...state.inputMap, [state.activeKey]: newValue} };
-        /* action for getting topics for user choice */
         case 'SET_DISPLAY_TEACHING': return { ...state, displayTeaching: action.isDisplayed };
 
         case 'CREATE_TEACHING_OBJECT':

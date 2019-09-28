@@ -1,18 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom'
-import {getTeaching, setTeachingObject, clearTeaching} from  '../../manager/Actions';
 import 'katex/dist/katex.min.css';
 import {BlockMath } from 'react-katex';
 import '../views-general/app.css';
 const mapStateToProps = (state) => {
-    return { teacher: state.teacher, creationStrings: state.creationStrings, 
-      callingStrings: state.callingStrings, paramaterLabels: 
-      state.paramaterLabels } };
-  const mapDispatchToProps = (dispatch) => {
-    return { getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
-      setTeachingObject: (name) => { dispatch(setTeachingObject(name)); },
-      clearTeaching: () => { dispatch(clearTeaching()); } } };
+    return { teacher: state.teacher, paramaterLabels: state.paramaterLabels } };
 class UnconnectedDisplayView extends React.Component{
     render() {
         return(
@@ -49,5 +42,5 @@ class UnconnectedDisplayView extends React.Component{
         }
       }
 }
-const DisplayView=connect(mapStateToProps, mapDispatchToProps)(withRouter(UnconnectedDisplayView));
+const DisplayView=connect(mapStateToProps, null)(withRouter(UnconnectedDisplayView));
 export default DisplayView;
