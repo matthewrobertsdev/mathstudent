@@ -5,12 +5,7 @@ import PrimeFactorization from './math/PrimeFactorization';
 import Product from './math/Product';
 import ListUtility from '../../utilities/ListUtility';
 class FractionTeacher extends MathTeacher{
-	
-	teaching=FractionTeaching;
-	mathObject=Fraction;
-	numerator
-	denominator
-	simplestForm
+	teaching=FractionTeaching; mathObject=Fraction; numerator; denominator; simplestForm;
 	
 	constructor(){ super();
 		this.creationMethodSignatures=this.teaching.creationMethodSignatures;

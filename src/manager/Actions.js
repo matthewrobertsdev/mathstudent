@@ -4,23 +4,17 @@ const _getTopics = (topics) => ({ type: 'GET_TOPICS', topics });
 
 const _getTeaching = (teachingObject) => ({ type: 'GET_TEACHING', teachingObject });
 
-const _createTeaching = (teaching) => ({ type: 'CREATE_TEACHING', teaching });
-
 const _clearTeaching = () => ({ type: 'CLEAR_TEACHING_OBJECT' });
 
 const _updateURL = (URLpathname) => ({ type: 'UPDATE_URL', URLpathname });
 
-const _addToInputMap = (keyID, value) => ({ type: 'ADD_TO_INPUT_MAP', key: keyID, v: value });
+const _addToInputMap = (keyID, value) => ({ type: 'ADD_TO_INPUT_MAP', keyID, value });
 
 const _updateKeyAndValue = (key, value) => ({ type: 'UPDATE_KEY_AND_VALUE', key, value });
 
 const _updateActiveValue = (key) => ({ type: 'UPDATE_ACTIVE_VALUE', key });
 
-const _addInputPair = (key, value) => ({ type: 'ADD_INPUT_PAIR', key, value });
-
 const _updateActiveKey = (key) => ({ type: 'UPDATE_ACTIVE_KEY', key });
-
-const _updateCallingStrings= (callingStrings) => ({ type: 'UPDATE_CALLING_STRINGS', callingStrings });
 
 const _updateCreationStrings= (creationStrings) => ({ type: 'UPDATE_CREATION_STRINGS', creationStrings });
 
@@ -30,11 +24,7 @@ const _setTeachingObjectName=(objectName)=>({ type: 'SET_TEACHING_OBJECT_NAME', 
 
 const _setDisplayTeaching=(isDisplayed)=>({ type: 'SET_DISPLAY_TEACHING', isDisplayed });
 
-const _updateTextStrings=(textStrings)=>({ type: 'UPDATE_TEXT_STRINGS', textStrings });
-
 const _updateDisplayKeyboard = (displayKeyboard) => ({ type: 'UPDATE_DISPLAY_KEYBOARD', displayKeyboard});
-
-const _setIsMobile = (isMobile) => ({ type: 'SET_IS_MOBILE', isMobile});
 
 const _createTeachingObject = (teaching) => ({ type: 'CREATE_TEACHING_OBJECT', teaching});
 
@@ -42,7 +32,6 @@ const _setParamaterLabels = (paramaterLabels) => ({ type: 'SET_PARAMETER_LABELS'
 
 const _createTeachingObjectForMap = (teachingName, args, method) => ({ type: 'CREATE_TEACHING_OBJECT_FOR_MAP', teachingName, args, method});
 
-/* gets all topics for now for teaching */
 export const getTopics = () => { return  (dispatch)=>{ dispatch(_getTopics(curriculum)); }; };
 
 export const getTeaching = (teachingName) => {
@@ -52,7 +41,6 @@ export const getTeaching = (teachingName) => {
 																		   dispatch(_getTeaching(teaching.default));
 																		   }).catch(function(error) { console.log(error); dispatch(_getTeaching(undefined)) }); };
 };
-export const createTeaching = (methodInfo) => { return (dispatch) => { return dispatch(_createTeaching(methodInfo)); }; };
 
 export const clearTeaching = () => {return (dispatch) => { return dispatch(_clearTeaching({})); }; };
 
@@ -63,14 +51,9 @@ export const addToInputMap = (keyID, value) => { return (dispatch) => { return d
 export const updateKeyAndValue = (key, value) => { return (dispatch) => {
 	return dispatch(_updateKeyAndValue(key, value)); }; };
 
-export const updateActiveValue = (key) => { return (dispatch) => { return dispatch(_updateActiveValue(key)); }; };
-
-export const addInputPair = (key, value) => { return (dispatch) => { return dispatch(_addInputPair(key, value)); }; };
+export const updateActiveValue = (value) => { return (dispatch) => { return dispatch(_updateActiveValue(value)); }; };
 
 export const updateActiveKey = (key) => { return (dispatch) => { return dispatch(_updateActiveKey(key)); }; };
-
-export const updateCallingStrings = (callingStrings) => { return (dispatch) => {
-	return dispatch(_updateCallingStrings(callingStrings)); }; }
 
 export const updateCreationStrings = (creationStrings) => { return (dispatch) => { 
 	return dispatch(_updateCreationStrings(creationStrings)); }; }
@@ -84,14 +67,8 @@ export const setTeachingObjectName = (objectName) =>
 export const setDisplayTeaching = (boolean) => 
 { return (dispatch) => { return dispatch(_setDisplayTeaching(boolean)); }; }
 
-export const updateTextStrings = (textStrings) => 
-{ return (dispatch) => { return dispatch(_updateTextStrings(textStrings)); }; }
-
 export const updateDisplayKeyboard = (isDisplayed) => 
 { return (dispatch) => { return dispatch(_updateDisplayKeyboard(isDisplayed)); }; }
-
-export const setIsMobile = (isMobile) => 
-{ return (dispatch) => { return dispatch(_setIsMobile(isMobile)); }; }
 
 export const createTeachingObject = (teachingName, args) => 
 { return (dispatch) => {
@@ -104,7 +81,6 @@ export const createTeachingObject = (teachingName, args) =>
 																	   }).catch(function(error) { console.log(error);
 																				dispatch(_createTeachingObject(null)) }); }; }
 
-//create teaching with creation strings
 export const createTeachingObjectForMap = (teachingName, args, method) =>
 { return (dispatch) => {
 	return import(`../model/mathteachers/${teachingName}Teacher`).then(teaching => {

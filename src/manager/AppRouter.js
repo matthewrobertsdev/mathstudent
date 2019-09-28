@@ -9,20 +9,13 @@ const AppRouter= () => (
     <BrowserRouter>
         <div>
             <HeaderView/>
-            {/*changes components based on changes to path*/}
             <Switch>
-                {/*displays all topics from home*/}
                 <Route path="/" exact component={SubjectsView}/>
                 <Route path="/version" exact component={VersionView}/>
                 <Route path="/teaching/:teachingName" exact component={TeachingView}/>
                 <Route component={PageNotFoundView}/>
-                {/*displays UI for creating objects from teaching*/}
-
             </Switch>
         </div>
     </BrowserRouter>
 );
 export default AppRouter;
-
-/* <Route path="/teaching/:teachingName" component={TeachingView}/>
-<Route path="/create/:teachingName" component={CreateView}/> */

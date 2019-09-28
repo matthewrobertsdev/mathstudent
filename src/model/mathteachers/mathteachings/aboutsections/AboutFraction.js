@@ -1,6 +1,4 @@
-
 class AboutFraction {
-
     constructor(){
         this.about=[];
         this.about.push("A fraction is a way of expressing a number as being a part of another number.  "+
@@ -22,5 +20,4 @@ class AboutFraction {
         "and the fraction can be written as a number that is not a fraction and has no decimal point.");
     }
 }
-
 export default AboutFraction;

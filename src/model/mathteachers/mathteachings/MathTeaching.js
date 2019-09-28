@@ -1,11 +1,4 @@
 class MathTeaching{
-
-    constructor(){
-        /*this.objectName=""; this.displayNameSingular=""; this.singularLowerCase=""; 
-        this.displayNamePlural=""; this.pluralLowerCase=""; this.creationTeaching='';
-        this.creationSummary='';*/
-    }
-
     static makeListFromArray(array){
         if (array.length===1){
             return array[0];

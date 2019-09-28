@@ -21,7 +21,6 @@ class Fraction extends MathTeachingObject{
     inlineLatex(){
         return `{L}\\Large\\color{gold}`+this.basicLatex();
     }
-
     reducedFraction(args){
         this.numerator=parseInt(args[0]); 
         this.denominator=parseInt(args[1]);
@@ -32,11 +31,8 @@ class Fraction extends MathTeachingObject{
         this.numerator/=gcf;
         this.denominator/=gcf;
     }
-
     findLowestCommonMultiple(a,b){
-
     }
-
     addFraction(fraction){
         fraction.reducedFraction();
     }
