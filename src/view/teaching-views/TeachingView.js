@@ -26,9 +26,9 @@ class UnconnectedCreateView extends React.Component {
 		const { clearTeaching, setTeachingObjectName, getTeaching} = this.props;
 		clearTeaching(); setTeachingObjectName(params.teachingName);
 		getTeaching(params.teachingName); document.title=params.teachingName
+		this.teachingViewRef=React.createRef(); this.props.updateURL(window.location.href);
 	}
 	activeInput='';
-	componentWillMount() { this.teachingViewRef=React.createRef(); this.props.updateURL(window.location.href);}
 	componentDidUpdate(){
 		if (this.props.teacher){if(this.props.teaching){ document.title=this.props.teacher.teaching.displayNamePlural}};
 	}
@@ -157,7 +157,9 @@ class UnconnectedCreateView extends React.Component {
 																	 <div key={i} className='fullWidth'>
 																	 <LearnerView className='CreatorView fullWidth' creator={false} methodSignature={methodSignature}
 																	 row={this.props.teacher.teaching.objectName+'-'+methodSignature[2]+'-'+i} teachingViewRef={this.teachingViewRef}></LearnerView>
-																	 <br></br><br></br>
+																	 <br></br>
+																	 <TeachingSection purpose='method' ownMethod={methodSignature[2]}/>
+																	 <br></br>
 																	 {this.createAdEverySecond(i)}
 																	 {this.createSpaceEverySecond(i)}
 																	 </div>

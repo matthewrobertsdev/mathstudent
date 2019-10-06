@@ -93,8 +93,9 @@ class FractionTeacher extends MathTeacher{
 		}
 		this.setSimplestForm(this.mathObject.numerator, this.mathObject.denominator)
 	}
-	addFraction(args){
-		this.concept.push([]);
+
+	getSimplestFormTeaching(args){
+		this.concept=[];
 		var fraction=Fraction;
 		fraction.reducedFraction(args);
 		if (fraction.numerator<=10000||fraction.denominator<=10000){
@@ -107,6 +108,31 @@ class FractionTeacher extends MathTeacher{
 																fraction.denominator));
 		}
 		this.concept.push(this.inlineLatex(fraction.numerator, fraction.denominator));
+	}
+
+	doWithFraction(args, operator){
+		this.concept.push(`{IL}\\Huge\\color{gold}\\frac{${this.mathObject.numerator}}{${this.mathObject.denominator}}${operator}\\frac{${args[0]}}{${args[1]}}`);
+		this.concept.push('\n\n');
+	}
+
+	addAFraction(args){
+		this.concept=[];
+		this.doWithFraction(args, '+')
+	}
+
+	subtractAFraction(args){
+		this.concept=[];
+		this.doWithFraction(args, '-')
+	}
+
+	multiplyByAFraction(args){
+		this.concept=[];
+		this.doWithFraction(args, '\\cdot')
+	}
+
+	divideByAFraction(args){
+		this.concept=[];
+		this.doWithFraction(args, '\\div')
 	}
 }
 export default new FractionTeacher();

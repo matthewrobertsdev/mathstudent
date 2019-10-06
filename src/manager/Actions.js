@@ -80,7 +80,7 @@ export const createTeachingObject = (teachingName, args) =>
 																	   dispatch(_updateSimplestForm(creationTeaching.simplestForm));
 																	   }).catch(function(error) { console.log(error);
 																				dispatch(_createTeachingObject(null)) }); }; }
-
+/*
 export const createTeachingObjectForMap = (teachingName, args, method) =>
 { return (dispatch) => {
 	return import(`../model/mathteachers/${teachingName}Teacher`).then(teaching => {
@@ -91,12 +91,26 @@ export const createTeachingObjectForMap = (teachingName, args, method) =>
 																	   dispatch(_createTeachingObjectForMap(creationTeaching, method));
 																	   }).catch(function(error) { console.log(error);
 																				dispatch(_createTeachingObject(null)) }); }; }
+*/
+export const createMethodTeacher = (teachingName, creationStrings, methodStrings) => 
+{ return (dispatch) => {
+	return import(`../model/mathteachers/${teachingName}Teacher`).then(teaching => {
+																	   const firstArgC=creationStrings.shift();
+																	   const creationTeaching=teaching.default;
+																	   const firstArgM=methodStrings.shift()
+																	   creationTeaching[firstArgC](creationStrings);
+																	   creationTeaching[firstArgM](methodStrings);
+																	   dispatch(_createMethodTeacher(creationTeaching));
+																	   }).catch(function(error) { console.log(error);
+																				dispatch(_createTeachingObject(null)) }); }; }
 
-export const updateInstanceStrings = (instanceStrings) => {
-	return (dispatch) => {return dispatch(_updateInstanceStrings(instanceStrings))}
+const _createMethodTeacher = (methodTeacher) => ({ type: 'CREATE_METHOD_TEACHER', methodTeacher});
+
+export const updateMethodStrings = (instanceStrings) => {
+	return (dispatch) => {return dispatch(_updateMethodStrings(instanceStrings))}
 }
 
-const _updateInstanceStrings = (instanceStrings) => ({ type: 'UPDATE_INSTANCE_STRINGS', instanceStrings });
+const _updateMethodStrings = (instanceStrings) => ({ type: 'UPDATE_INSTANCE_STRINGS', instanceStrings });
 
 export const setParamaterLabels = (labelArray) => 
 { return (dispatch) => { return dispatch(_setParamaterLabels(labelArray)); }; }
@@ -107,3 +121,5 @@ export const updateActiveMethod = (activeMethod) =>
 { return (dispatch) => { return dispatch(_updateActiveMethod(activeMethod)); }; }
 
 const _updateActiveMethod = (activeMethod) => ({ type: 'UPDATE_ACTIVE_METHOD', activeMethod });
+
+

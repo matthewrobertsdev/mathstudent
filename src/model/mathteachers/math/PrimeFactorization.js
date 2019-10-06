@@ -15,15 +15,12 @@ class PrimeFactorization{
         var primeFactors=[];
         var i=0;
         while (primes[i]<=value){
-            console.log('prime: '+primes[i])
             while(value%primes[i]===0){
                 primeFactors.push(primes[i]);
-                console.log(primeFactors)
                 value/=primes[i];
             }
             i++;
         }
-        console.log(primeFactors)
         return primeFactors;
     }
 }

@@ -5,7 +5,8 @@ import 'katex/dist/katex.min.css';
 import {BlockMath, InlineMath } from 'react-katex';
 import TeachingLink from './TeachingLink';
 import '../views-general/app.css';
-const mapStateToProps = (state) => { return { teacher: state.teacher}; }
+const mapStateToProps = (state) => { return { teacher: state.teacher, activeMethod: state.activeMethod,
+  methodTeacher: state.methodTeacher}; }
 class UnconnectedTeachingSection extends React.Component{
     constructor(props) { super(props); this.state={id: this.props.location.pathname, 
       creationStrings: this.props.creationStrings}}
@@ -16,9 +17,21 @@ class UnconnectedTeachingSection extends React.Component{
       }
       displaySection(){
         if (this.props.purpose==='about'){
-          return this.createSection(this.props.teacher.teaching.about)
+            return this.createSection(this.props.teacher.teaching.about)
+        } else if (this.props.purpose==='method'){
+          //if (this.props.activeInstance==this.props.instanceMethod){
+            console.log('in method')
+            console.log(this.props.methodTeacher)
+            if (this.props.ownMethod===this.props.activeMethod && this.props.methodTeacher && this.props.methodTeacher.concept){
+              console.log('should show methodTeacher')
+              return this.createSection(this.props.methodTeacher.concept)
+            } else {
+              return null
+            }
+            //return this.createSection(this.props.instanceTeacher.concept)
+          //}
         } else if (this.props.teacher.concept){
-          return this.createSection(this.props.teacher.concept)
+            return this.createSection(this.props.teacher.concept)
         }
       }
       createSection(segmentArray){

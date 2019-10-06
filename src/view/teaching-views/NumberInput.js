@@ -17,8 +17,8 @@ class UnconnectedNumberInput extends React.Component{
         if( isMobile()) { this.state = {index: this.props.index}
         } else { this.state = { latex: '', text: '', index: this.props.index, classID: this.props.classID } } 
         this.mathQuillEl = null
+        this.props.updateKeyAndValue(this.props.gridID, '')
     }
-    componentWillMount() { this.props.updateKeyAndValue(this.props.gridID, ''); }
     render() {
         if( isMobile() ) {
                     return (<span onKeyDown={(e) => this.onKeyPressed(e)}>

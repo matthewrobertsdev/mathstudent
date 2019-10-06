@@ -37,7 +37,6 @@ class UnconnectedDisplayView extends React.Component{
       }
       createBlockLatex(){
         if(this.props.teacher){
-          console.log(this.props.teacher.latex());
           return this.props.teacher.latex();
         }
       }

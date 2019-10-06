@@ -2,7 +2,8 @@ import isMobile from '../../utilities/IsMobile'
 
 const initialState = { topics: [], inputMap: {}, activeMap: {}, activeKey: '', 
     inputArray: [], textStrings: [], creationStrings: [], instanceStrings: [], creationTeaching: {}, teachingObjectName: '', 
-    displayTeaching: false, displayKeyboard: false, paramaterLabels: [], pageNotFound: false, techingMap: {}};
+    displayTeaching: false, displayKeyboard: false, paramaterLabels: [], pageNotFound: false, techingMap: {}, 
+    activeMethod: '', instanceTeaching: {}};
     
 const appReducer=(state=initialState, action) => {
         switch (action.type) {
@@ -15,10 +16,17 @@ const appReducer=(state=initialState, action) => {
              return { ...state, inputMap: {...state.inputMap, [state.activeKey]: newValue} };
         case 'SET_DISPLAY_TEACHING': return { ...state, displayTeaching: action.isDisplayed };
 
+        case 'UPDATE_ACTIVE_METHOD': return { ...state, activeMethod: action.activeMethod };
+
         case 'CREATE_TEACHING_OBJECT':
             const newTeaching={};
             Object.assign(newTeaching, action.teaching)
             return {...state, teacher: newTeaching}; 
+
+        case 'CREATE_METHOD_TEACHER':
+                const newMethodTeaching={};
+                Object.assign(newMethodTeaching, action.methodTeacher)
+                return {...state, methodTeacher: newMethodTeaching};
 
         case 'GET_TOPICS': return { ...state, topics: action.topics };
 
@@ -42,7 +50,7 @@ const appReducer=(state=initialState, action) => {
 
         case 'UPDATE_CREATION_STRINGS': return { ...state, creationStrings: action.creationStrings.slice() };
 
-        case 'UPDATE_INSTANCE_STRINGS': return {...state, instanceStrings: action.instanceStrings.slice()};
+        case 'UPDATE_INSTANCE_STRINGS': console.log(action.instanceStrings); return {...state, instanceStrings: action.instanceStrings.slice()};
 
         case 'SET_TEACHING_OBJECT': import(`../math${action.objectName}`).then(teachingObj => {
                 return {...state, creationTeaching: teachingObj}; }).catch(function(error) { console.log(error);
