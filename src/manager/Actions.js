@@ -6,6 +6,8 @@ const _getTeaching = (creationTeaching) => ({ type: 'GET_TEACHING', creationTeac
 
 const _clearCreationTeaching = () => ({ type: 'CLEAR_CREATION_TEACHING' });
 
+const _clearMethodTeaching = () => ({ type: 'CLEAR_METHOD_TEACHING' });
+
 const _updateURL = (URLpathname) => ({ type: 'UPDATE_URL', URLpathname });
 
 const _addToInputMap = (keyID, value) => ({ type: 'ADD_TO_INPUT_MAP', keyID, value });
@@ -30,8 +32,6 @@ const _createTeachingObject = (teaching) => ({ type: 'CREATE_TEACHING_OBJECT', t
 
 const _setParamaterLabels = (paramaterLabels) => ({ type: 'SET_PARAMETER_LABELS', paramaterLabels});
 
-const _createTeachingObjectForMap = (teachingName, args, method) => ({ type: 'CREATE_TEACHING_OBJECT_FOR_MAP', teachingName, args, method});
-
 export const getTopics = () => { return  (dispatch)=>{ dispatch(_getTopics(curriculum)); }; };
 
 export const getTeaching = (teachingName) => {
@@ -43,6 +43,9 @@ export const getTeaching = (teachingName) => {
 };
 
 export const clearCreationTeaching = () => {return (dispatch) => { return dispatch(_clearCreationTeaching({})); }; };
+
+export const clearMethodTeaching = () => {return (dispatch) => { return dispatch(_clearMethodTeaching({})); }; };
+
 
 export const updateURL = () => { return (dispatch) => { return dispatch(_updateURL(window.location.pathname)); }; };
 

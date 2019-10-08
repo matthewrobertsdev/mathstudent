@@ -19,17 +19,11 @@ class UnconnectedTeachingSection extends React.Component{
         if (this.props.purpose==='about'){
             return this.createSection(this.props.teacher.teaching.about)
         } else if (this.props.purpose==='method'){
-          //if (this.props.activeInstance==this.props.instanceMethod){
-            console.log('in method')
-            console.log(this.props.methodTeacher)
             if (this.props.ownMethod===this.props.activeMethod && this.props.methodTeacher && this.props.methodTeacher.concept){
-              console.log('should show methodTeacher')
               return this.createSection(this.props.methodTeacher.concept)
             } else {
               return null
             }
-            //return this.createSection(this.props.instanceTeacher.concept)
-          //}
         } else if (this.props.teacher.concept){
             return this.createSection(this.props.teacher.concept)
         }

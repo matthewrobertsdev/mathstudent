@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import NumberInput from './NumberInput';
 import {createTeachingObject, updateCreationStrings, setDisplayTeaching, updateKeyAndValue, 
-  clearCreationTeaching, updateActiveMethod, updateMethodStrings, createMethodTeacher} from '../../manager/Actions';
+  clearCreationTeaching, updateActiveMethod, updateMethodStrings, createMethodTeacher,
+  clearMethodTeaching} from '../../manager/Actions';
 import InputValidator from '../../utilities/InputValidator';
 import { withRouter } from "react-router-dom";
 import '../views-general/app.css';
@@ -22,7 +23,8 @@ const mapDispatchToProps = (dispatch) =>  { return  {
   updateActiveMethod: (activeMethod) => {dispatch(updateActiveMethod(activeMethod))},
   updateMethodStrings: (methodStrings) => {dispatch(updateMethodStrings(methodStrings))},
   createMethodTeacher: (teachingObjectName, creationStrings, methodStrings) => 
-  {dispatch(createMethodTeacher(teachingObjectName, creationStrings, methodStrings))}};}
+  {dispatch(createMethodTeacher(teachingObjectName, creationStrings, methodStrings))},
+  clearMethodTeaching: ()=>{dispatch(clearMethodTeaching())}};}
 class UnconnectedCreatorView extends React.Component{
     constructor(props) {
         super(props);
@@ -164,6 +166,7 @@ class UnconnectedCreatorView extends React.Component{
   updateForTeaching(creationStrings){
     if (this.props.creator){
         this.props.updateCreationStrings(creationStrings); this.props.clearCreationTeaching()
+        this.props.clearMethodTeaching()
         this.props.createTeachingObject(this.props.teachingObjectName, creationStrings.slice());
         this.props.setDisplayTeaching(true);
         this.props.teachingViewRef.current.scrollIntoView();
