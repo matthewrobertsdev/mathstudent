@@ -5,7 +5,7 @@ import 'katex/dist/katex.min.css';
 import {BlockMath } from 'react-katex';
 import '../views-general/app.css';
 const mapStateToProps = (state) => {
-    return { teacher: state.teacher, paramaterLabels: state.paramaterLabels } };
+    return { teacher: state.teacher, paramaterLabels: state.paramaterLabels, creationStrings: state.creationStrings} };
 class UnconnectedDisplayView extends React.Component{
     render() {
         return(
@@ -16,7 +16,7 @@ class UnconnectedDisplayView extends React.Component{
           const display=<div className='text-margins'>
           <h1 className="main-text-color center-text">{this.createTitleString()}</h1>
           <h1 className="main-text-color center-text">Here it is:</h1>
-          <BlockMath className='block-math'>{this.createBlockLatex()}</BlockMath>
+          <div aria-label='test num'><BlockMath aria-hidden={true} className='block-math'>{this.createBlockLatex()}</BlockMath></div>
           </div>
           return display
       }

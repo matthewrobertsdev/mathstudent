@@ -24,22 +24,22 @@ class SmallNumber{
 
     add(value){
         LimitBreachDetector.isAdditionOutOfLimit(this.value, value)
-        this.value+value
+        this.value+=value
     }
 
     subtract(value){
         LimitBreachDetector.isSubtractionOutOfLimit(this.value, value)
-        this.value+value
+        this.value-=value
     }
 
     multiplication(value){
         LimitBreachDetector.isMultiplicationOutOfLimit(this.value, value)
-        this.value+value
+        this.value*=value
     }
 
     division(value){
         LimitBreachDetector.isDivisionOutOfLimit(this.value, value)
-        this.value+value
+        this.value/=value
     }
 
 }

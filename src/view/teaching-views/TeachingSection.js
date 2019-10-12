@@ -5,6 +5,7 @@ import 'katex/dist/katex.min.css';
 import {BlockMath, InlineMath } from 'react-katex';
 import TeachingLink from './TeachingLink';
 import '../views-general/app.css';
+var Latex = require('react-latex');
 const mapStateToProps = (state) => { return { teacher: state.teacher, activeMethod: state.activeMethod,
   methodTeacher: state.methodTeacher}; }
 class UnconnectedTeachingSection extends React.Component{
@@ -44,9 +45,9 @@ class UnconnectedTeachingSection extends React.Component{
               } else if (concept.startsWith('{H}')){
                 teaching.push(<h1 key={c} className="main-text-color center-text">{concept.slice(3)}</h1>);
               } else if (concept.startsWith('{IL}')) {
-                teaching.push(<InlineMath key={c} className='inline-math'>{concept.slice(4)}</InlineMath>);
+                teaching.push(<div aria-label="test number"><InlineMath aria-hidden="true" key={c} className='inline-math' >{concept.slice(4)}</InlineMath></div>);
               } else if (concept.startsWith('{BL}')) {
-                teaching.push(<BlockMath key={c} className='block-math'>{concept.slice(4)}</BlockMath>);
+                teaching.push(<div aria-label="test number"><BlockMath aria-hidden="true" key={c} className='block-math'>{concept.slice(4)}</BlockMath></div>);
               }
               else{
                 teaching.push(<span key={c} className="Heading center-text">{concept}</span>);

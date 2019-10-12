@@ -7,10 +7,17 @@
     "babel-preset-react-app": "^9.0.1",
     "katex": "^0.11.0",
     "lodash.clonedeep": "^4.5.0",
+    "mathjax": "^3.0.0",
+    "mathjax-full": "^3.0.0",
+    "mathjax-node": "^2.1.1",
     "react": "^16.8.6",
     "react-accessible-accordion": "^3.0.0",
     "react-dom": "^16.8.6",
     "react-katex": "^2.0.2",
+    "react-latex": "^1.4.0",
+    "react-mathjax": "^1.0.1",
+    "react-mathjax-preview": "^0.1.16",
+    "react-mathjax2": "0.0.2",
     "react-mathquill": "^0.1.9",
     "react-modal": "^3.10.1",
     "react-redux": "^7.1.0",
@@ -19,7 +26,8 @@
     "react-simple-keyboard": "^1.26.6",
     "react-sticky": "^6.0.3",
     "redux": "^4.0.1",
-    "redux-thunk": "2.2.0"
+    "redux-thunk": "2.2.0",
+    "tex-equation-to-svg": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

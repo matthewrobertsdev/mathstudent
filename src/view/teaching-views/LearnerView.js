@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import NumberInput from './NumberInput';
 import {createTeachingObject, updateCreationStrings, setDisplayTeaching, updateKeyAndValue, 
   clearCreationTeaching, updateActiveMethod, updateMethodStrings, createMethodTeacher,
-  clearMethodTeaching} from '../../manager/Actions';
+  clearMethodTeaching, setParamaterLabels} from '../../manager/Actions';
 import InputValidator from '../../utilities/InputValidator';
 import { withRouter } from "react-router-dom";
 import '../views-general/app.css';
 import ReactModal from 'react-modal';
 import {InlineMath } from 'react-katex';
+import Empty from './Circle.png'
 /* gets the teaching for this method */
 const mapStateToProps = (state) => { return { teacher: state.teacher, inputMap: state.inputMap,  
   creationStrings: state.creationStrings, teachingObjectName: state.teachingObjectName, 
@@ -24,7 +25,8 @@ const mapDispatchToProps = (dispatch) =>  { return  {
   updateMethodStrings: (methodStrings) => {dispatch(updateMethodStrings(methodStrings))},
   createMethodTeacher: (teachingObjectName, creationStrings, methodStrings) => 
   {dispatch(createMethodTeacher(teachingObjectName, creationStrings, methodStrings))},
-  clearMethodTeaching: ()=>{dispatch(clearMethodTeaching())}};}
+  clearMethodTeaching: ()=>{dispatch(clearMethodTeaching())},
+  setParamaterLabels: (labels)=>{dispatch(setParamaterLabels(labels))}};}
 class UnconnectedCreatorView extends React.Component{
     constructor(props) {
         super(props);
@@ -71,7 +73,7 @@ class UnconnectedCreatorView extends React.Component{
       }
       createInstanceHeadingComponent(component){
         if (component==='{Latex}'){
-          return <InlineMath>{this.props.simplestForm}</InlineMath>;
+          return <span aria-label='test number'><InlineMath aria-hidden={true}>{this.props.simplestForm}</InlineMath></span>;
         } else {
           return component;
         }
@@ -116,9 +118,11 @@ class UnconnectedCreatorView extends React.Component{
       getParamaterLabels(){
         var paramaterLabels=[];
         for (var i=0; i<this.props.methodSignature.length; i++){
+          console.log("get paramter labels: "+this.props.methodSignature[i])
           if (!this.props.creator&&i<3) { }
           else if (i<2){ }
-          else if (i%2===0) { paramaterLabels.push(this.props.methodSignature[i]); }
+          else if (i%2===0) { console.log("get paramter labels: true"+this.props.methodSignature[i]);
+          paramaterLabels.push(this.props.methodSignature[i]); }
         }
         return paramaterLabels;
       }
@@ -165,8 +169,9 @@ class UnconnectedCreatorView extends React.Component{
   }
   updateForTeaching(creationStrings){
     if (this.props.creator){
-        this.props.updateCreationStrings(creationStrings); this.props.clearCreationTeaching()
-        this.props.clearMethodTeaching()
+        this.props.setParamaterLabels(this.getParamaterLabels());
+        this.props.updateCreationStrings(creationStrings); this.props.clearCreationTeaching();
+        this.props.clearMethodTeaching();
         this.props.createTeachingObject(this.props.teachingObjectName, creationStrings.slice());
         this.props.setDisplayTeaching(true);
         this.props.teachingViewRef.current.scrollIntoView();
