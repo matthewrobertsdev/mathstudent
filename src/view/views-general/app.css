@@ -2,7 +2,7 @@ body{background-color: rgb(209, 28, 28);}
 
 .CreatorView{ text-align: center; }
 
-.SubjectView{ margin-left: 10%; /* background-color: brown; */ background-color: rgb(209, 28, 28);}
+.SubjectView{ margin-left: 10%; background-color: rgb(209, 28, 28);}
 
 .smallRightMargin{ margin-right: 10px; }
 
@@ -39,9 +39,6 @@ body{background-color: rgb(209, 28, 28);}
     }
 }
 
-@media (prefers-color-scheme: dark){
-    body{background-color: rgb(114, 9, 9);}
-}
 
 .button-size{ font-size: 1.00em}
 
@@ -176,6 +173,32 @@ body{background-color: rgb(209, 28, 28);}
 .accordion__panel {
     padding: 20px;
     animation: fadein 0.35s ease-in;
+}
+
+@media (prefers-color-scheme: dark){
+    body{background-color: rgb(114, 9, 9);background-color: rgb(101, 11, 11);}
+    .SubjectView{background-color: rgb(114, 9, 9);background-color: rgb(101, 11, 11);}
+    .Link { color: white;}
+    .NavLink{ color: white;}
+    .selected-nav-link{color: white}
+    .accordion__button {
+        background-color: rgb(114, 9, 9);background-color: rgb(101, 11, 11);
+        color: white;
+    }
+    .accordion__button:hover { background-color:rgb(114, 9, 9); background-color: rgb(101, 11, 11);}
+    .main-text-color{color: white;}
+    .Heading{color: white;}
+    .Heading{color: white;}
+    .Heading{color: white;}
+    .leaderBoardAd{color: white;}
+    .mobileBanner{color: white;}
+    .CreatorView{color: white;}
+    .createButton{color: white;}
+    .createButton{background-color: rgb(13, 100, 39);}
+    .MathText{ background-color: rgb(162, 118, 51); color: rgb(61, 32, 6); }
+    .notNumberModal{color: white;}
+    .closeButton{color: white;}
+    .mathquill-field{ background-color: rgb(61, 32, 6); color: white; }
 }
 
 /* -------------------------------------------------- */
