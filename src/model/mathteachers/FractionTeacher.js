@@ -28,6 +28,10 @@ class FractionTeacher extends MathTeacher{
 	setSimplestForm(numerator, denominator){
 		this.simplestForm=`\\Large\\color{gold}\\frac{${numerator}}{${denominator}}`;
 	}
+
+	basicVoice(numerator, denominator){
+		return `Begin fraction, ${numerator} over ${denominator}, end fraction.`
+	}
 	simplify(){
         this.concept=[];
 		if (this.mathObject.denominator===0&&this.mathObject.numerator===0){
@@ -113,6 +117,11 @@ class FractionTeacher extends MathTeacher{
 	doWithFraction(args, operator){
 		this.concept.push(`{IL}\\Huge\\color{gold}\\frac{${this.mathObject.numerator}}{${this.mathObject.denominator}}${operator}\\frac{${args[0]}}{${args[1]}}`);
 		this.concept.push('\n\n');
+	}
+
+	doWithFractionVoice(args, operation){
+		return `begin fraction, ${this.mathObject.numerator} over ${this.mathObject.denominator}, `
+		+`end fraction ${operation} begin fraction, ${args[0]} over ${args[1]} end fraction`;
 	}
 
 	addAFraction(args){

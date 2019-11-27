@@ -1,3 +1,5 @@
+body{background-color: rgb(209, 28, 28);}
+
 .CreatorView{ text-align: center; }
 
 .SubjectView{ margin-left: 10%; /* background-color: brown; */ background-color: rgb(209, 28, 28);}
@@ -35,6 +37,10 @@
     .large-heading-size{
         font-size: 2.00em;
     }
+}
+
+@media (prefers-color-scheme: dark){
+    body{background-color: rgb(114, 9, 9);}
 }
 
 .button-size{ font-size: 1.00em}

@@ -51,16 +51,7 @@ class UnconnectedCreateView extends React.Component {
 						</AccordionItemHeading>
 						<AccordionItemPanel>
 						<span className='textMargins'>
-						{this.createTexSVG()}
 						{this.createAboutSection()} <AdView/>
-						{/*}
-						<div>
-            <MathJax.Context input='tex'>
-                <div aria-label='test b'>
-                     <MathJax.Node aria-hidden='true' inline>{'\\frac{1}{2}'}</MathJax.Node>
-                </div>
-            </MathJax.Context>
-				</div>*/}
 						</span>
 						</AccordionItemPanel>
 						</AccordionItem >
@@ -94,31 +85,6 @@ class UnconnectedCreateView extends React.Component {
 		else if (this.props.pageNotFound){
 			return <div className="text-margins main-text-color"><br></br><br></br><PageNotFoundView className='fullWidth center-text'/></div>
 		}
-	}
-
-	createTexSVG(){
-
-		require('mathjax').init({
-			loader: {
-			  require: require,
-			  paths: {mathjax: 'mathjax/es5'},
-			  load: ['input/tex', 'output/svg']
-			}
-		  }).then((MathJax) => {
-			const svg = MathJax.tex2svg('\\frac{1}{x^2-1}', {display: true});
-			//return svg
-			console.log("abcd")
-			console.log(MathJax.startup.adaptor.outerHTML(svg));
-		  }).catch((err) => console.log(err.message));
-		  /*
-		var eqn = 'y = mx + b';
-		var clbk=( error, svg )=> {
-			if ( error ) {
-				throw error;
-			}
-		}
-		return tex2svg( eqn, clbk )
-		*/
 	}
 
 	

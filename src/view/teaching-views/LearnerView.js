@@ -118,11 +118,9 @@ class UnconnectedCreatorView extends React.Component{
       getParamaterLabels(){
         var paramaterLabels=[];
         for (var i=0; i<this.props.methodSignature.length; i++){
-          console.log("get paramter labels: "+this.props.methodSignature[i])
           if (!this.props.creator&&i<3) { }
           else if (i<2){ }
-          else if (i%2===0) { console.log("get paramter labels: true"+this.props.methodSignature[i]);
-          paramaterLabels.push(this.props.methodSignature[i]); }
+          else if (i%2===0) { paramaterLabels.push(this.props.methodSignature[i]); }
         }
         return paramaterLabels;
       }
