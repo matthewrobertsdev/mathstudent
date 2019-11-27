@@ -175,6 +175,8 @@ body{background-color: rgb(209, 28, 28);}
     animation: fadein 0.35s ease-in;
 }
 
+.katex { color:gold; }
+
 @media (prefers-color-scheme: dark){
     body{background-color: rgb(114, 9, 9);background-color: rgb(101, 11, 11);}
     .SubjectView{background-color: rgb(114, 9, 9);background-color: rgb(101, 11, 11);}
@@ -199,6 +201,8 @@ body{background-color: rgb(209, 28, 28);}
     .notNumberModal{color: white;}
     .closeButton{color: white;}
     .mathquill-field{ background-color: rgb(61, 32, 6); color: white; }
+    .main-colors{color: white;}
+    .katex { color:white; }
 }
 
 /* -------------------------------------------------- */
