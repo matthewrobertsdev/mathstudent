@@ -12,8 +12,14 @@ import {Accordion, AccordionItem, AccordionItemHeading, AccordionItemPanel, Acco
 import PageNotFoundView from '../views-general/PageNotFoundView';
 import TeachingSection from './TeachingSection';
 import AdView from './AdView';
+/*
+##########################################################################
+Renders an entire teaching view--all but the header for a teaching concept
+##########################################################################
+*/
 const mapStateToProps = (state) => { return { teacher: state.teacher, displayTeaching: state.displayTeaching, 
 	 displayKeyboard: state.displayKeyboard, pageNotFound: state.pageNotFound} };
+	 //These need to be linted for redudant actions
 const mapDispatchToProps = (dispatch) => {
 	return { getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
 	clearTeaching: () => { dispatch(clearCreationTeaching()); }, updateURL: () => { dispatch(updateURL()); },
@@ -41,10 +47,10 @@ class UnconnectedCreateView extends React.Component {
 						<Accordion allowZeroExpanded={true} allowMultipleExpanded={true} preExpanded={this.expandTheseIfNotMobile()}>
 						<div className='center-text textMargins'><AdView/></div>
 						<h1 className='center-text main-text-color Heading large-heading-size'>{this.props.teacher.teaching.displayNamePlural}</h1>
+						{/*The about section*/}
 						<AccordionItem uuid='about' >
 						<AccordionItemHeading >
 						<AccordionItemButton >
-						{/* About section */}
 						<span className="center-text main-text-color Heading large-heading-size">
 						About {this.props.teacher.teaching.displayNamePlural}</span>
 						</AccordionItemButton>
@@ -56,10 +62,10 @@ class UnconnectedCreateView extends React.Component {
 						</AccordionItemPanel>
 						</AccordionItem >
 						<br></br>
+						{/*The section for creating math objects*/}
 						<AccordionItem uuid='create'>
 						<AccordionItemHeading>
 						<AccordionItemButton>
-						{/* Display CreatorViews to create objects */}
 						<span className="center-text main-text-color Heading large-heading-size">
 						Create {this.props.teacher.teaching.displayNamePlural}</span>
 						</AccordionItemButton>
@@ -71,7 +77,7 @@ class UnconnectedCreateView extends React.Component {
 						</span>
 						</AccordionItemPanel>
 						</AccordionItem>
-						{/* Display TeachingView if an object has been created */}
+						{/* Display info views if an object has been created */}
 						{this.displayCreatedObject()}
 						{this.createLearningSection()}
 						<div className='fullWidth center-text'>
@@ -138,7 +144,6 @@ class UnconnectedCreateView extends React.Component {
 			return <div className='center-text'><br></br><AccordionItem uuid='working-with'>
 			<AccordionItemHeading>
 			<AccordionItemButton>
-			{/* About section */}
 			<span className=" main-text-color Heading large-heading-size">
 			Working with {this.props.teacher.teaching.displayNamePlural}</span>
 			</AccordionItemButton>

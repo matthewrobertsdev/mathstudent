@@ -17,16 +17,16 @@ class FractionTeacher extends MathTeacher{
 	init(args){ this.numerator=parseInt(args[0]); this.mathObject.numerator=parseInt(args[0]);
 		this.denominator=parseInt(args[1]); this.mathObject.denominator=parseInt(args[1]); this.simplify(); }
 	latex=()=>{
-		return `\\Huge\\color{darkbrown}`+this.basicLatex(this.numerator, this.denominator);
+		return `\\Huge`+this.basicLatex(this.numerator, this.denominator);
 	}
 	basicLatex(numerator, denominator){
 		return `\\frac{${numerator}}{${denominator}}`
 	}
 	inlineLatex(numerator, denominator){
-		return `{IL}\\Large\\color{darkbrown}`+this.basicLatex(numerator, denominator);
+		return `{IL}\\Large`+this.basicLatex(numerator, denominator);
 	}
 	setSimplestForm(numerator, denominator){
-		this.simplestForm=`\\Large\\color{darkbrown}\\frac{${numerator}}{${denominator}}`;
+		this.simplestForm=`\\Large\\frac{${numerator}}{${denominator}}`;
 	}
 
 	basicVoice(numerator, denominator){
@@ -51,7 +51,7 @@ class FractionTeacher extends MathTeacher{
             this.concept.push(this.teaching.getSimplestFormHeading);
 			this.concept.push(this.teaching.oneAsDenominator)
 			this.concept.push(this.teaching.simplestFormHeading);
-			this.concept.push(`{BL}\\Huge\\color{darkbrown}${this.mathObject.numerator}`);
+			this.concept.push(`{BL}\\Huge${this.mathObject.numerator}`);
 		} else {
             this.concept=[]
             this.concept.push(this.teaching.getSimplestFormHeading);
@@ -90,9 +90,9 @@ class FractionTeacher extends MathTeacher{
 			}
 			
 			if (this.mathObject.denominator===1){
-				this.concept.push(`{BL}\\Huge\\color{darkbrown}${this.mathObject.numerator}`);
+				this.concept.push(`{BL}\\Huge${this.mathObject.numerator}`);
 			} else {
-				this.concept.push(`{BL}\\Huge\\color{darkbrown}\\frac{${this.mathObject.numerator}}{${this.mathObject.denominator}}`);
+				this.concept.push(`{BL}\\Huge\\frac{${this.mathObject.numerator}}{${this.mathObject.denominator}}`);
 			}
 		}
 		this.setSimplestForm(this.mathObject.numerator, this.mathObject.denominator)
@@ -114,34 +114,34 @@ class FractionTeacher extends MathTeacher{
 		this.concept.push(this.inlineLatex(fraction.numerator, fraction.denominator));
 	}
 
-	doWithFraction(args, operator){
-		this.concept.push(`{IL}\\Huge\\color{darkbrown}\\frac{${this.mathObject.numerator}}{${this.mathObject.denominator}}${operator}\\frac{${args[0]}}{${args[1]}}`);
+	operateWithFraction(args, operator){
+		this.concept.push(`{IL}\\Huge\\frac{${this.mathObject.numerator}}{${this.mathObject.denominator}}${operator}\\frac{${args[0]}}{${args[1]}}`);
 		this.concept.push('\n\n');
 	}
 
-	doWithFractionVoice(args, operation){
+	operateWithFractionVoice(args, operation){
 		return `begin fraction, ${this.mathObject.numerator} over ${this.mathObject.denominator}, `
 		+`end fraction ${operation} begin fraction, ${args[0]} over ${args[1]} end fraction`;
 	}
 
 	addAFraction(args){
 		this.concept=[];
-		this.doWithFraction(args, '+')
+		this.operateWithFraction(args, '+')
 	}
 
 	subtractAFraction(args){
 		this.concept=[];
-		this.doWithFraction(args, '-')
+		this.operateWithFraction(args, '-')
 	}
 
 	multiplyByAFraction(args){
 		this.concept=[];
-		this.doWithFraction(args, '\\cdot')
+		this.operateWithFraction(args, '\\cdot')
 	}
 
 	divideByAFraction(args){
 		this.concept=[];
-		this.doWithFraction(args, '\\div')
+		this.operateWithFraction(args, '\\div')
 	}
 }
 export default new FractionTeacher();
