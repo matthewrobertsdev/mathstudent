@@ -180,9 +180,11 @@ body{background-color: rgb(209, 28, 28);}
 @media (prefers-color-scheme: dark){
     body{background-color: rgb(114, 9, 9);background-color: rgb(101, 11, 11);}
     .SubjectView{background-color: rgb(114, 9, 9);background-color: rgb(101, 11, 11);}
-    .Link { color: white;}
-    .NavLink{ color: white;}
-    .selected-nav-link{color: white}
+    .Link { color: white; background-color: rgb(13, 33, 96);}
+    .Link:hover{ color: white; background-color:rgb(6, 18, 57);}
+    .NavLink{ color: white; background-color:rgb(13, 33, 96);}
+    .NavLink:hover{ color: white; background-color:rgb(6, 18, 57);}
+    .selected-nav-link{color: white; background-color: rgb(68, 4, 68);}
     .accordion__button {
         background-color: rgb(114, 9, 9);background-color: rgb(101, 11, 11);
         color: white;
@@ -192,8 +194,8 @@ body{background-color: rgb(209, 28, 28);}
     .Heading{color: white;}
     .Heading{color: white;}
     .Heading{color: white;}
-    .leaderBoardAd{color: white;}
-    .mobileBanner{color: white;}
+    .leaderBoardAd{color: white; background-color:rgb(13, 33, 96);}
+    .mobileBanner{color: white; background-color:rgb(13, 33, 96);}
     .CreatorView{color: white;}
     .createButton{color: white;}
     .createButton{background-color: rgb(13, 100, 39);}
@@ -203,6 +205,7 @@ body{background-color: rgb(209, 28, 28);}
     .mathquill-field{ background-color: rgb(61, 32, 6); color: white; }
     .main-colors{color: white;}
     .katex { color:white; }
+    .textLink{color: rgb(13, 33, 96);}
 }
 
 /* -------------------------------------------------- */
