@@ -10,7 +10,7 @@
 // To learn more about the benefits of this model and instructions on how to
 // opt-in, read https://bit.ly/CRA-PWA
 
-const date='11-28-2019';
+const date='12-2-2019';
 console.log(date)
 
 const isLocalhost = Boolean(
