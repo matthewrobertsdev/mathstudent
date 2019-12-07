@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getTeaching, clearCreationTeaching, updateURL, updateActiveValue, setTeachingObjectName, setDisplayTeaching } from '../../manager/Actions';
+import { getTeaching, clearCreationTeaching, updateURL, setTeachingObjectName, setDisplayTeaching } from '../../manager/Actions';
 import isMobile from '../../utilities/IsMobile';
 import NumberKeyboard from '../keyboard-views/NumberKeyboard';
 import KeyboardSpacer from '../keyboard-views/KeyboardSpacer';
@@ -10,14 +10,14 @@ import '../views-general/app.css';
 import { Accordion } from 'react-accessible-accordion';
 import PageNotFoundView from '../views-general/PageNotFoundView';
 import AdView from './AdView';
-import LearningSection from './LearningSection';
-import AboutSection from './AboutSection';
-import CreatorSection from './CreatorSection';
+import LearningPanel from './LearningPanel';
+import AboutPanel from './AboutPanel';
+import CreatorPanel from './CreatorPanel';
 
 
 /*
 ##########################################################################
-Renders an entire teaching view--all but the header for a teaching concept
+Renders an entire teaching view--all but the header for a teaching a topic
 ##########################################################################
 */
 const mapStateToProps = (state) => {
@@ -30,26 +30,27 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
-		clearTeaching: () => { dispatch(clearCreationTeaching()); }, updateURL: () => { dispatch(updateURL()); },
-		updateActiveValue: (key) => { dispatch(updateActiveValue(key)); },
+		clearCreationTeaching: () => { dispatch(clearCreationTeaching()); }, 
+		updateURL: () => { dispatch(updateURL()); },
 		setTeachingObjectName: (teachingName) => { dispatch(setTeachingObjectName(teachingName)); },
 		setDisplayTeaching: (teachingName) => { dispatch(setDisplayTeaching(teachingName)); }
 	};
 };
 class UnconnectedTeachingView extends React.Component {
 	constructor(props) {
-		super(props); this.state = { activeText: null, displayKeyboard: false, math: 'tex' };
+		super(props); this.state = { displayKeyboard: false };
 		const { match: { params } } = this.props;
-		const { clearTeaching, setTeachingObjectName, getTeaching } = this.props;
-		clearTeaching(); setTeachingObjectName(params.teachingName);
-		getTeaching(params.teachingName); document.title = params.teachingName
-		this.teachingViewRef = React.createRef(); this.props.updateURL(window.location.href);
+		this.props.clearTeaching(); this.props.setTeachingObjectName(params.teachingName);
+		this.props.getTeaching(params.teachingName); document.title = params.teachingName
+		/*this.teachingViewRef = React.createRef();*/ this.props.updateURL(window.location.href);
 	}
 	componentDidUpdate() {
 		if (this.props.teacher) { if (this.props.teaching) { document.title = this.props.teacher.teaching.displayNamePlural } };
 	}
-	componentWillUnmount() { const { setDisplayTeaching } = this.props; setDisplayTeaching(false); }
+	componentWillUnmount() { this.props.setDisplayTeaching(false); }
+
 	render() { return (<div className='fullWidth'> {this.createView()} </div>); }
+	
 	createView() {
 		if (this.props.teacher) {
 			if (this.props.teacher.teaching) {
@@ -57,11 +58,11 @@ class UnconnectedTeachingView extends React.Component {
 					<Accordion allowZeroExpanded={true} allowMultipleExpanded={true} preExpanded={this.expandTheseIfNotMobile()}>
 						<div className='center-text textMargins'><AdView /></div>
 						<h1 className='center-text main-text-color Heading large-heading-size'>{this.props.teacher.teaching.displayNamePlural}</h1>
-						<AboutSection/>
+						<AboutPanel uuid='about'/>
 						<br></br>
-						<CreatorSection/>
+						<CreatorPanel uuid='create'/>
 						{this.displayCreatedObject()}
-						<LearningSection/>
+						<LearningPanel uuid='working-with'/>
 						{this.addKeyboardForMobile()}
 					</Accordion>
 				);
@@ -74,10 +75,10 @@ class UnconnectedTeachingView extends React.Component {
 
 	displayCreatedObject() {
 		if (this.props.displayTeaching) {
-			return (<div ref={this.teachingViewRef}>{<CreationSection />}<br></br>
+			return (<div /*ref={this.teachingViewRef}*/>{<CreationSection />}<br></br>
 				<br></br><AdView /></div>
 			);
-		} else { return (<span ref={this.teachingViewRef}></span>); }
+		} else { return (<span /*ref={this.teachingViewRef}*/></span>); }
 	}
 	
 	addKeyboardForMobile() {
