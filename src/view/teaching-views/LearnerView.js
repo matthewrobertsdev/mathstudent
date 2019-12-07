@@ -42,7 +42,7 @@ class UnconnectedCreatorView extends React.Component{
       }
       render() {
         return(
-          <div className='CreatorView'>
+          <div className='creator-view'>
                 {this.createHeading()}
                 {this.createView()}<button className="createButton creator-text-size" 
                 onClick={() => this.handleButtonClick()}>{this.createButtonString()}

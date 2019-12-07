@@ -1,6 +1,6 @@
 body{background-color: rgb(209, 28, 28);}
 
-.CreatorView{ text-align: center; }
+.creator-view{ text-align: center; }
 
 .SubjectView{ margin-left: 10%; background-color: rgb(209, 28, 28);}
 
@@ -58,7 +58,7 @@ body{background-color: rgb(209, 28, 28);}
 
 .Link:hover { /* background-color: rgb(158, 89, 25); */ background-color: royalblue; }
 
-.CreatorView{ color: gold; }
+.creator-view{ color: gold; }
 
 .main-text-color { color: gold; }
 
@@ -196,7 +196,7 @@ body{background-color: rgb(209, 28, 28);}
     .Heading{color: white;}
     .leaderBoardAd{color: white; background-color:rgb(13, 33, 96);}
     .mobileBanner{color: white; background-color:rgb(13, 33, 96);}
-    .CreatorView{color: white;}
+    .creator-view{color: white;}
     .createButton{color: white;}
     .createButton{background-color: rgb(13, 100, 39);}
     .MathText{ background-color: rgb(162, 118, 51); color: rgb(61, 32, 6); }
