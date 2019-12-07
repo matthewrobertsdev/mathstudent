@@ -40,7 +40,7 @@ class UnconnectedTeachingView extends React.Component {
 	constructor(props) {
 		super(props); this.state = { displayKeyboard: false };
 		const { match: { params } } = this.props;
-		this.props.clearTeaching(); this.props.setTeachingObjectName(params.teachingName);
+		this.props.clearCreationTeaching(); this.props.setTeachingObjectName(params.teachingName);
 		this.props.getTeaching(params.teachingName); document.title = params.teachingName
 		/*this.teachingViewRef = React.createRef();*/ this.props.updateURL(window.location.href);
 	}
@@ -50,7 +50,7 @@ class UnconnectedTeachingView extends React.Component {
 	componentWillUnmount() { this.props.setDisplayTeaching(false); }
 
 	render() { return (<div className='fullWidth'> {this.createView()} </div>); }
-	
+
 	createView() {
 		if (this.props.teacher) {
 			if (this.props.teacher.teaching) {
