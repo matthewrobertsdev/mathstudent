@@ -16,15 +16,11 @@ class UnconnectedCreatorSection extends React.Component {
 
 	render() { return (<div className='fullWidth'> {this.createView()} </div>); }
 	createView() {
-		if (this.props.teacher) {
-			if (this.props.teacher.teaching) {
 				return (
 					<span className='center-text textMargins'>
 						<InputHeading /> {this.createCreatorViews()}
 					</span>
 				);
-			}
-		}
 	}
 
 	createCreatorViews() {
