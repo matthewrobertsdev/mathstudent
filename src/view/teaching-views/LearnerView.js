@@ -9,7 +9,6 @@ import { withRouter } from "react-router-dom";
 import '../views-general/app.css';
 import ReactModal from 'react-modal';
 import {InlineMath } from 'react-katex';
-import Empty from './Circle.png'
 /* gets the teaching for this method */
 const mapStateToProps = (state) => { return { teacher: state.teacher, inputMap: state.inputMap,  
   creationStrings: state.creationStrings, teachingObjectName: state.teachingObjectName, 
@@ -172,7 +171,7 @@ class UnconnectedCreatorView extends React.Component{
         this.props.clearMethodTeaching();
         this.props.createTeachingObject(this.props.teachingObjectName, creationStrings.slice());
         this.props.setDisplayTeaching(true);
-        this.props.teachingViewRef.current.scrollIntoView();
+        //this.props.teachingViewRef.current.scrollIntoView();
     } else {
         this.props.updateActiveMethod(this.props.methodSignature[2]);
         this.props.updateMethodStrings(creationStrings);

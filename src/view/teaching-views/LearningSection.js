@@ -1,10 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import isMobile from '../../utilities/IsMobile';
 import LearnerView from './LearnerView';
 import 'react-simple-keyboard/build/css/index.css';
 import '../views-general/app.css';
-import {AccordionItem, AccordionItemHeading, AccordionItemPanel, AccordionItemButton } from 'react-accessible-accordion';
 import TeachingSection from './TeachingSection';
 import AdView from './AdView';
 import UncreatedView from './UncreatedView';
@@ -25,17 +23,7 @@ class UnconnectedLearningSection extends React.Component {
 
 	createLearningSection() {
 		if (this.props.teacher.instanceMethodSignatures.length > 0) {
-			return <div className='center-text'><br></br><AccordionItem uuid='working-with'>
-				<AccordionItemHeading>
-					<AccordionItemButton>
-						<span className="main-text-color Heading large-heading-size">
-							Working with {this.props.teacher.teaching.displayNamePlural}</span>
-					</AccordionItemButton>
-				</AccordionItemHeading>
-				<AccordionItemPanel>
-					{this.createLearnerViews()}
-				</AccordionItemPanel>
-			</AccordionItem></div>
+			return <span>{this.createLearnerViews()}</span>
 		}
 	}
 
@@ -58,15 +46,6 @@ class UnconnectedLearningSection extends React.Component {
 			</div>
 		} else {
 			return <UncreatedView/>
-		}
-	}
-
-	//for accordian tabs
-	expandTheseIfNotMobile() {
-		if (!isMobile()) {
-			return ['about', 'create', 'working-with'];
-		} else {
-			return [];
 		}
 	}
 }
