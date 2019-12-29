@@ -9,7 +9,7 @@ render()
       return <div className={this.props.displayKeyboard ? 
         'keyboard-container display-keyboard' : 'keyboard-container hide-keyboard'}>
         <Keyboard className={this.props.displayKeyboard ? 
-        'Keyboard display-keyboard' : 'Keyboard hide-keyboard'} layout={{ default: [ ' 1 2 3 4 5', ' 6 7 8 9 0',  
+        'keyboard display-keyboard' : 'keyboard hide-keyboard'} layout={{ default: [ ' 1 2 3 4 5', ' 6 7 8 9 0',  
         '. - / {bksp}', '{space} {enter}' ]}}
           onKeyPress={key => this.state.keyPressHandler(key)} display={{'{bksp}': 'delete', '{enter}':'done', '{space}': 'space', }}/>
       </div>

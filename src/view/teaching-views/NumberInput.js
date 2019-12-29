@@ -23,7 +23,7 @@ class UnconnectedNumberInput extends React.Component{
         if( isMobile() ) {
                     return (<span onKeyDown={(e) => this.onKeyPressed(e)}>
                     <button  className={this.props.gridID===this.props.activeKey 
-                    ? "SelectedMathText mobile-input-size" : "MathText mobile-input-size"} 
+                    ? "selected-math-text mobile-input-size" : "math-text mobile-input-size"} 
                     pattern='^(-?\\d\\/-?\\d)$|^(-?\\d+)$' onClick={() =>this.forClick()}>
                     {this.getMobileValue()}</button>
                     </span>) }

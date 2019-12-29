@@ -4,7 +4,7 @@ import '../views-general/app.css';
 class TeachingLink extends React.Component{
       render() {
         return(
-          <Link className={"textLink"} to={`/teaching/${this.props.codeName}`}>{this.props.displayName}</Link>
+          <Link className={"text-link"} to={`/teaching/${this.props.codeName}`}>{this.props.displayName}</Link>
         );
       }
 }

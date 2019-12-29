@@ -43,10 +43,10 @@ class UnconnectedCreatorView extends React.Component{
         return(
           <div className='creator-view'>
                 {this.createHeading()}
-                {this.createView()}<button className="createButton creator-text-size" 
+                {this.createView()}<button className="create-button creator-text-size" 
                 onClick={() => this.handleButtonClick()}>{this.createButtonString()}
                 </button>
-                <ReactModal className="notNumberModal" isOpen={this.state.showModal} > <br></br>
+                <ReactModal className="not-number-modal" isOpen={this.state.showModal} > <br></br>
                 <span className='creator-text-size'>{this.getErrorString()}</span><br></br>
                 <br></br><button className='closeButton button-size' onClick={this.closeModal}>Close</button>
                 </ReactModal>
@@ -63,7 +63,7 @@ class UnconnectedCreatorView extends React.Component{
         if (this.props.methodSignature[1].components === undefined || this.props.simplestForm===undefined ) { return; }
         const creatorViews = this.props.methodSignature[1].components.map((component, i) => {
                                            return (
-                                               <span key={i} className='main-text-color Heading'>
+                                               <span key={i} className='main-text-color heading'>
                                                {this.createInstanceHeadingComponent(component)}
                                                </span>
                                                );

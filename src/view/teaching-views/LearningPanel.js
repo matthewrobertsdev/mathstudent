@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
 };
 class UnconnectedLearningPanel extends React.Component {
 
-	render() { return (<div className='fullWidth'> {this.createLearningSection()} </div>); }
+	render() { return (<div className='full-width'> {this.createLearningSection()} </div>); }
 
 	createLearningSection() {
 		if (this.props.teacher.instanceMethodSignatures.length > 0) {

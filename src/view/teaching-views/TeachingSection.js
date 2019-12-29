@@ -58,7 +58,7 @@ class UnconnectedTeachingSection extends React.Component{
                 teaching.push(<div aria-label="test number"><BlockMath aria-hidden="true" key={c} className='block-math'>{concept.slice(4)}</BlockMath></div>);
               }
               else{
-                teaching.push(<span key={c} className="Heading center-text">{concept}</span>);
+                teaching.push(<span key={c} className="heading center-text">{concept}</span>);
               }
             } else {
               teaching.push(<TeachingLink key={c} displayName={concept.displayName}

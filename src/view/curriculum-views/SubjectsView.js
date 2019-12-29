@@ -10,7 +10,7 @@ class UnconnectedSubjectView extends React.Component{
       componentWillMount() { this.props.getTopics(); this.props.updateURL(window.location.href);}
       render() {
         return (
-          <div className='SubjectView'>
+          <div className='subject-view'>
             <br></br><br></br><br></br><br></br>
           {this.createSubjectsList()}
           </div>

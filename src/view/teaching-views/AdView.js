@@ -1,14 +1,12 @@
 import React from 'react';
-class AdView extends React.Component{
-    render(){
+function AdView(){
         return (
             <div className='center-text'><br></br>
-		    <div className='hide-for-small leaderBoardAd center-text'>
+		    <div className='hide-for-small leader-board-ad center-text'>
 		    There is an ad here when you are online.<br></br><br></br>Ads help Learn Math make money.</div>
-		    <div className='hide-for-big mobileBanner center-text'>
+		    <div className='hide-for-big mobile-banner center-text'>
 		    There is an ad here when you are online.<br></br><br></br>Ads help Learn Math make money.</div>
 		    </div>
         );
-    }
 }
 export default AdView;

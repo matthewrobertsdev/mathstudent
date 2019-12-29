@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getTeaching, clearCreationTeaching, updateURL, setTeachingObjectName, setDisplayTeaching } from '../../manager/Actions';
+import { getTeaching, clearCreationTeaching, updateURL, setTeachingObjectName, setDisplayTeaching, updateActiveValue} from '../../manager/Actions';
 import isMobile from '../../utilities/IsMobile';
 import NumberKeyboard from '../keyboard-views/NumberKeyboard';
 import KeyboardSpacer from '../keyboard-views/KeyboardSpacer';
@@ -33,7 +33,8 @@ const mapDispatchToProps = (dispatch) => {
 		clearCreationTeaching: () => { dispatch(clearCreationTeaching()); }, 
 		updateURL: () => { dispatch(updateURL()); },
 		setTeachingObjectName: (teachingName) => { dispatch(setTeachingObjectName(teachingName)); },
-		setDisplayTeaching: (teachingName) => { dispatch(setDisplayTeaching(teachingName)); }
+		setDisplayTeaching: (teachingName) => { dispatch(setDisplayTeaching(teachingName)); },
+		updateActiveValue: (key) =>{dispatch(updateActiveValue(key));}
 	};
 };
 class UnconnectedTeachingView extends React.Component {
@@ -49,15 +50,15 @@ class UnconnectedTeachingView extends React.Component {
 	}
 	componentWillUnmount() { this.props.setDisplayTeaching(false); }
 
-	render() { return (<div className='fullWidth'> {this.createView()} </div>); }
+	render() { return (<div className='full-width'> {this.createView()} </div>); }
 
 	createView() {
 		if (this.props.teacher) {
 			if (this.props.teacher.teaching) {
 				return (
 					<Accordion allowZeroExpanded={true} allowMultipleExpanded={true} preExpanded={this.expandTheseIfNotMobile()}>
-						<div className='center-text textMargins'><AdView /></div>
-						<h1 className='center-text main-text-color Heading large-heading-size'>{this.props.teacher.teaching.displayNamePlural}</h1>
+						<div className='center-text text-margins'><AdView /></div>
+						<h1 className='center-text main-text-color heading large-heading-size'>{this.props.teacher.teaching.displayNamePlural}</h1>
 						<AboutPanel uuid='about'/>
 						<br></br>
 						<CreatorPanel uuid='create'/>
@@ -84,7 +85,7 @@ class UnconnectedTeachingView extends React.Component {
 	addKeyboardForMobile() {
 		if (isMobile()) {
 			return <div><NumberKeyboard className={this.props.displayKeyboard ?
-				'display-keyboard' : 'hide-keyboard'} keyPressHandler={this.onKeyPress} /><KeyboardSpacer /></div>
+				'display-keyboard' : 'hide-keyboard'} keyPressHandler={(key)=>this.props.updateActiveValue(key)} /><KeyboardSpacer /></div>
 		}
 		else { return <div><br></br><br></br><br></br><br></br></div> }
 	}

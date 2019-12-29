@@ -14,8 +14,8 @@ class UnconnectedAboutSection extends React.Component {
 
     render() {
         return (
-            <span className='fullWidth textMargins'>
-                <div><TeachingSection purpose={'about'} /><br></br><br></br></div> <AdView />
+            <span className='full-width text-margins'>
+                <div><TeachingSection purpose={'about'} /><br></br><br></br></div><AdView/>
             </span>
         );
     }
