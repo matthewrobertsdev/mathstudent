@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom'
 import 'katex/dist/katex.min.css';
 import {BlockMath } from 'react-katex';
-import '../views-general/app.css';
+import '../../views-general/app.css';
 const mapStateToProps = (state) => {
     return { teacher: state.teacher, paramaterLabels: state.paramaterLabels, creationStrings: state.creationStrings} };
 class UnconnectedDisplayView extends React.Component{

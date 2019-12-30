@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {BlockMath, InlineMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
-import TeachingLink from './TeachingLink';
-import '../views-general/app.css';
+import TeachingLink from '../small-views/TeachingLink';
+import '../../views-general/app.css';
 /*
 ########################################################
 Renderer for a GUI teaching section based off of a model

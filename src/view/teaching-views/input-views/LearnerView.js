@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import NumberInput from './NumberInput';
 import {createTeachingObject, updateCreationStrings, setDisplayTeaching, updateKeyAndValue, 
   clearCreationTeaching, updateActiveMethod, updateMethodStrings, createMethodTeacher,
-  clearMethodTeaching, setParamaterLabels} from '../../manager/Actions';
-import InputValidator from '../../utilities/InputValidator';
+  clearMethodTeaching, setParamaterLabels} from '../../../manager/Actions';
+import InputValidator from '../../../utilities/InputValidator';
 import { withRouter } from "react-router-dom";
-import '../views-general/app.css';
+import '../../views-general/app.css';
 import ReactModal from 'react-modal';
 import {InlineMath } from 'react-katex';
 /* gets the teaching for this method */

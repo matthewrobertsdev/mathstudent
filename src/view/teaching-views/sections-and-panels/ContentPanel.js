@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import 'react-simple-keyboard/build/css/index.css';
-import '../views-general/app.css';
+import '../../views-general/app.css';
 import {AccordionItem, AccordionItemHeading, AccordionItemPanel, AccordionItemButton } from 'react-accessible-accordion';
 
 const mapStateToProps = (state) => {

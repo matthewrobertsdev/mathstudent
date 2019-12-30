@@ -4,15 +4,15 @@ import { getTeaching, clearCreationTeaching, updateURL, setTeachingObjectName, s
 import isMobile from '../../utilities/IsMobile';
 import NumberKeyboard from '../keyboard-views/NumberKeyboard';
 import KeyboardSpacer from '../keyboard-views/KeyboardSpacer';
-import CreationSection from './CreationSection';
+import CreationSection from './sections-and-panels/CreationSection';
 import 'react-simple-keyboard/build/css/index.css';
 import '../views-general/app.css';
 import { Accordion } from 'react-accessible-accordion';
 import PageNotFoundView from '../views-general/PageNotFoundView';
-import AdView from './AdView';
-import LearningPanel from './LearningPanel';
-import AboutPanel from './AboutPanel';
-import CreatorPanel from './CreatorPanel';
+import AdView from './small-views/AdView';
+import LearningPanel from './sections-and-panels/LearningPanel';
+import AboutPanel from './sections-and-panels/AboutPanel';
+import CreatorPanel from './sections-and-panels/CreatorPanel';
 
 
 /*

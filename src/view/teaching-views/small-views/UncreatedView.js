@@ -1,11 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
-/*
-##########################################################################
-Renders an entire teaching view--all but the header for a teaching concept
-##########################################################################
-*/
 const mapStateToProps = (state) => {
 	return {
 		teacher: state.teacher
