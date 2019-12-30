@@ -35,7 +35,6 @@ class UnconnectedCreatorView extends React.Component{
           if (this.props.creator){
             this.props.creationStrings[0]=this.props.methodSignature[1];
           }
-          this.textHandler = this.textHandler.bind(this);
           this.openModal = this.openModal.bind(this);
           this.closeModal = this.closeModal.bind(this);
       }
@@ -130,10 +129,9 @@ class UnconnectedCreatorView extends React.Component{
       }
       createNumberInput(column){ this.state.gridIDs.push(this.createGridID(column));
           let fractionInput=<NumberInput gridID={this.createGridID(column)} index={column} 
-          textHandler={(key, value) => this.textHandler(key, value)} activateInputHandler={this.props.activateInputHandler}>
+          textHandler={(key, value) => this.props.updateKeyAndValue(key, value)} activateInputHandler={this.props.activateInputHandler}>
           </NumberInput>; this.num++; return fractionInput; }
       createGridID(column){ return this.props.row+"-"+column }
-      textHandler(key, value){ this.props.updateKeyAndValue(key, value); }
       makeObjectURLComponent(){
         var urlComponent='/'
         for (var i=0; i<this.state.creationStrings.length; i++) { urlComponent+=`$${this.state.creationStrings[i]}`; }

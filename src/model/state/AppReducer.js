@@ -8,9 +8,9 @@ const initialState = { topics: [], inputMap: {}, activeMap: {}, activeKey: '',
 const appReducer=(state=initialState, action) => {
         switch (action.type) {
         case 'UPDATE_ACTIVE_VALUE': let newValue=''
-            if (action.value==='{enter}'){return {...state, displayKeyboard: false}}
-            else if (action.value==='{space}'){ newValue=state.inputMap[state.activeKey]+=' '
-            } else if (action.value==='{bksp}'&&state.inputMap[state.activeKey].length>=1){ 
+            if (action.key==='{enter}'){return {...state, displayKeyboard: false}}
+            else if (action.key==='{space}'){ newValue=state.inputMap[state.activeKey]+=' '
+            } else if (action.key==='{bksp}'&&state.inputMap[state.activeKey].length>=1){ 
                 newValue=state.inputMap[state.activeKey].slice(0, -1);
             } else { newValue=state.inputMap[state.activeKey]+=action.key }
              return { ...state, inputMap: {...state.inputMap, [state.activeKey]: newValue} };
@@ -42,7 +42,8 @@ const appReducer=(state=initialState, action) => {
 
         case 'UPDATE_URL': return { ...state, URLpathname: action.URLpathname };
 
-        case 'UPDATE_KEY_AND_VALUE': return { ...state, inputMap: {...state.inputMap, [action.key]: action.value} };
+        case 'UPDATE_KEY_AND_VALUE': 
+        return { ...state, inputMap: {...state.inputMap, [action.key]: action.value} };
 
         case 'UPDATE_ACTIVE_KEY': return { ...state, activeKey: action.key };
 
