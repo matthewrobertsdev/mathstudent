@@ -68,12 +68,10 @@ class UnconnectedTeachingView extends React.Component {
 					</Accordion>
 				);
 			}
-		}
-		else if (this.props.pageNotFound) {
+		} else if (this.props.pageNotFound) {
 			return <div className="text-margins main-text-color"><br></br><br></br><PageNotFoundView className='fullWidth center-text' /></div>
 		}
 	}
-
 	displayCreatedObject() {
 		if (this.props.displayTeaching) {
 			return (<div /*ref={this.teachingViewRef}*/>{<CreationSection />}<br></br>
@@ -81,7 +79,6 @@ class UnconnectedTeachingView extends React.Component {
 			);
 		} else { return (<span /*ref={this.teachingViewRef}*/></span>); }
 	}
-	
 	addKeyboardForMobile() {
 		if (isMobile()) {
 			return <div><NumberKeyboard className={this.props.displayKeyboard ?
@@ -89,14 +86,10 @@ class UnconnectedTeachingView extends React.Component {
 		}
 		else { return <div><br></br><br></br><br></br><br></br></div> }
 	}
-
 	//for accordian tabs
 	expandTheseIfNotMobile() {
-		if (!isMobile()) {
-			return ['about', 'create', 'working-with'];
-		} else {
-			return [];
-		}
+		if (!isMobile()) { return ['about', 'create', 'working-with'];} 
+		else { return []; }
 	}
 }
 const TeachingView = connect(mapStateToProps, mapDispatchToProps)(UnconnectedTeachingView)

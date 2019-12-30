@@ -9,13 +9,12 @@ const appReducer=(state=initialState, action) => {
         switch (action.type) {
         case 'UPDATE_ACTIVE_VALUE': let newValue=''
             if (action.key==='{enter}'){return {...state, displayKeyboard: false}}
-            else if (action.key==='{space}'){ newValue=state.inputMap[state.activeKey]+=' '
-            } else if (action.key==='{bksp}'&&state.inputMap[state.activeKey].length>=1){ 
-                newValue=state.inputMap[state.activeKey].slice(0, -1);
-            } else { newValue=state.inputMap[state.activeKey]+=action.key }
+            else if (action.key==='{space}'){newValue=state.inputMap[state.activeKey]+=' '}
+            else if (action.key==='{bksp}'&&state.inputMap[state.activeKey].length>=1){ 
+                newValue=state.inputMap[state.activeKey].slice(0, -1);} 
+            else { newValue=state.inputMap[state.activeKey]+=action.key }
              return { ...state, inputMap: {...state.inputMap, [state.activeKey]: newValue} };
         case 'SET_DISPLAY_TEACHING': return { ...state, displayTeaching: action.isDisplayed };
-
         case 'UPDATE_ACTIVE_METHOD': return { ...state, activeMethod: action.activeMethod };
 
         case 'CREATE_TEACHING_OBJECT':

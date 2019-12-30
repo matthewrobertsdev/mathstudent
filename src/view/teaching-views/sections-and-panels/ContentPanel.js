@@ -10,9 +10,11 @@ const mapStateToProps = (state) => {
 	}
 };
 class UnconnectedLearningPanel extends React.Component {
-
+	constructor(props) {
+		super(props); 
+	}
 	render() {
-			return <div className='full-width'><br></br><AccordionItem uuid='working-with'>
+			return <div className='full-width'><br></br><AccordionItem uuid={this.props.uuid}>
 				<AccordionItemHeading>
 					<AccordionItemButton>
 						<span className="main-text-color heading large-heading-size">
