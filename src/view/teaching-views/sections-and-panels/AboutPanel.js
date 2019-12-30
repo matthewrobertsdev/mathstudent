@@ -4,10 +4,6 @@ import '../../views-general/app.css';
 import AboutSection from './AboutSection';
 import ContentPanel from './ContentPanel';
 class AboutPanel extends React.Component {
-
-	render() {
-        return <ContentPanel introPhrase="About " section={<AboutSection/>}/>
-	}
-
+	render() { return <ContentPanel introPhrase="About " uuid='about' section={<AboutSection/>}/> }
 }
 export default AboutPanel;

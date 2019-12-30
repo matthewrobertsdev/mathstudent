@@ -7,26 +7,20 @@ import TeachingSection from './TeachingSection';
 import AdView from '../small-views/AdView';
 import UncreatedView from '../small-views/UncreatedView';
 import InputHeading from '../small-views/InputHeading';
-
 const mapStateToProps = (state) => {
 	return {
 		teacher: state.teacher, displayTeaching: state.displayTeaching,
 	}
 };
 class UnconnectedLearningSection extends React.Component {
-
 	render() { return (<div className='full-width'> {this.createLearningSection()} </div>); }
-	
 	createAdEverySecond(i) { if (i - 1 % 2 === 0) { return <div className='full-width'><AdView /></div> } }
-
 	createSpaceEverySecond(i) { if (i - 1 % 2 === 0) { return <div><br></br><br></br></div> } }
-
 	createLearningSection() {
 		if (this.props.teacher.instanceMethodSignatures.length > 0) {
 			return <span>{this.createLearnerViews()}</span>
 		}
 	}
-
 	createLearnerViews() {
 		if (this.props.displayTeaching) {
 			return <div><InputHeading/>

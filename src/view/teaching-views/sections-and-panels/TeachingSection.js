@@ -64,7 +64,6 @@ class UnconnectedTeachingSection extends React.Component{
               teaching.push(<TeachingLink key={c} displayName={concept.displayName}
                         codeName={this.props.teacher.main[c].codeName}></TeachingLink>);
             }
-          
           return teaching;
         }
       }

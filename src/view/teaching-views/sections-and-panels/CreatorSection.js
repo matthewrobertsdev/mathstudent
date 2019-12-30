@@ -5,15 +5,10 @@ import 'react-simple-keyboard/build/css/index.css';
 import '../../views-general/app.css';
 import AdView from '../small-views/AdView';
 import InputHeading from '../small-views/InputHeading';
-
 const mapStateToProps = (state) => {
-	return {
-		teacher: state.teacher
-	}
+	return { teacher: state.teacher }
 };
-
 class UnconnectedCreatorSection extends React.Component {
-
 	render() { return (<div className='full-width'> {this.createView()} </div>); }
 	createView() {
 				return (
@@ -22,7 +17,6 @@ class UnconnectedCreatorSection extends React.Component {
 					</span>
 				);
 	}
-
 	createCreatorViews() {
 		if (this.props.teacher.creationMethodSignatures === undefined) { return; }
 		const creatorViews = this.props.teacher.creationMethodSignatures.map((methodSignature, i) => {
@@ -37,9 +31,7 @@ class UnconnectedCreatorSection extends React.Component {
 		return creatorViews;
 	}
 	createAdEverySecond(i) { if (i - 1 % 2 === 0) { return <div className='full-width'><AdView /></div> } }
-
 	createCreatorKey(index) { return 'creator' + this.props.teacher.teaching.objectName + "-" + index; }
-
 }
 const CreatorSection = connect(mapStateToProps, null)(UnconnectedCreatorSection)
 export default CreatorSection;

@@ -5,9 +5,7 @@ import '../../views-general/app.css';
 import TeachingSection from './TeachingSection';
 import AdView from '../small-views/AdView';
 const mapStateToProps = (state) => {
-    return {
-        teacher: state.teacher
-    }
+    return { teacher: state.teacher }
 };
 class UnconnectedAboutSection extends React.Component {
     render() {

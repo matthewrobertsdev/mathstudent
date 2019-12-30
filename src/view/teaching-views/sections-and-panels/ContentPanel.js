@@ -3,16 +3,8 @@ import { connect } from 'react-redux';
 import 'react-simple-keyboard/build/css/index.css';
 import '../../views-general/app.css';
 import {AccordionItem, AccordionItemHeading, AccordionItemPanel, AccordionItemButton } from 'react-accessible-accordion';
-
-const mapStateToProps = (state) => {
-	return {
-		teacher: state.teacher
-	}
-};
-class UnconnectedLearningPanel extends React.Component {
-	constructor(props) {
-		super(props); 
-	}
+const mapStateToProps = (state) => { return { teacher: state.teacher } };
+class UnconnectedContentPanel extends React.Component {
 	render() {
 			return <div className='full-width'><br></br><AccordionItem uuid={this.props.uuid}>
 				<AccordionItemHeading>
@@ -24,10 +16,8 @@ class UnconnectedLearningPanel extends React.Component {
 				<AccordionItemPanel>
 					{this.props.section}
 				</AccordionItemPanel>
-			</AccordionItem></div>
-		
+			</AccordionItem></div>	
 	}
-
 }
-const LearningPanel = connect(mapStateToProps, null)(UnconnectedLearningPanel)
-export default LearningPanel;
+const ContentPanel = connect(mapStateToProps, null)(UnconnectedContentPanel)
+export default ContentPanel;
