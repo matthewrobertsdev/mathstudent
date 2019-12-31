@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {getTopics, updateURL} from '../../manager/Actions';
 import TopicView from './TopicView';
 import '../views-general/app.css';
-const mapStateToProps = (state) => { return { topics: state.topics } };
+const mapStateToProps = (state) => { return { topics: state.defaultReducer.topics } };
 const mapDispatchToProps = (dispatch) => {
   return { getTopics: () => { dispatch(getTopics()); }, updateURL: () => { dispatch(updateURL()); } } };
 class UnconnectedSubjectView extends React.Component{
