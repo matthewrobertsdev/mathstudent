@@ -45,6 +45,7 @@ class UnconnectedCreatorView extends React.Component{
                 {this.createView()}<button className="create-button creator-text-size" 
                 onClick={() => this.handleButtonClick()}>{this.createButtonString()}
                 </button>
+                <br className='hide-for-big'></br><br className='hide-for-big'></br>
                 <ReactModal className="not-number-modal" isOpen={this.state.showModal} > <br></br>
                 <span className='creator-text-size'>{this.getErrorString()}</span><br></br>
                 <br></br><button className='closeButton button-size' onClick={this.closeModal}>Close</button>

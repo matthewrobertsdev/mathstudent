@@ -8,7 +8,7 @@ body{background-color: rgb(209, 28, 28);}
 @media (min-width: 700px) { .hide-for-big{ display: none !important; }  }
 @media (max-width: 700px) { .hide-for-small{ display: none !important; } }
 @media (max-width: 500px){
-    .creator-text-size{ font-size: 45px; font-weight: 400;}
+    .creator-text-size{ font-size: 30px; font-weight: 400;}
     .heading{
         color: gold; font-size: 1.50em; margin-top: 1em; margin-bottom: 1em;
       margin-left: 0; margin-right: 0; font-weight: bold; }
@@ -17,7 +17,7 @@ body{background-color: rgb(209, 28, 28);}
     .sticky-for-small{ position: sticky; }
 }
 @media (min-width: 500px){
-    .creator-text-size{ font-size: 30px; font-weight: 400;}
+    .creator-text-size{ font-size: 20px; font-weight: 400;}
     .heading{
         color: gold; font-size: 1.50em; margin-top: 1em; margin-bottom: 1em;
       margin-left: 0; margin-right: 0; font-weight: bold; }
@@ -51,9 +51,9 @@ body{background-color: rgb(209, 28, 28);}
     color: rgb(61, 32, 6); border-radius: 3.5px;}
 .mathquill-field:focus { outline: none !important; border-color: gold; box-shadow: 0 0 10px gold; }
 .math-text{ padding: 3px 14px; background-color: rgb(228, 171, 85); color: rgb(61, 32, 6);
-    border:1px solid rgb(61, 32, 6); border-radius: 3.5px; width: 200px; height: 30px; }
+    border:1px solid rgb(61, 32, 6); border-radius: 3.5px; width: 200px; height: 40px; }
 .selected-math-text{ padding: 3px 14px; background-color: rgb(228, 171, 85); color: rgb(61, 32, 6);
-    border-radius: 3.5px; width: 200px; height: 30px; border:1px solid gold; box-shadow: 0 0 10px gold; }
+    border-radius: 3.5px; width: 200px; height: 40px; border:1px solid gold; box-shadow: 0 0 10px gold; }
 .create-button{ /* background-color: rgb(32, 66, 168); color: rgb(201, 188, 172); */
     /* background-color: rgb(139, 219, 199); color: rgb(61, 32, 6); */ background-color: rgb(19, 151, 59);
     color: rgb(61, 32, 6); border-radius: 7px; display: inline-block; margin-top: 10px; }
@@ -122,7 +122,7 @@ body{background-color: rgb(209, 28, 28);}
 
 @media (prefers-color-scheme: dark){
     body{background-color: rgb(114, 9, 9);background-color: rgb(101, 11, 11);}
-    .heading{color: gold;}
+    .heading{color: white;}
     .subject-view{background-color: rgb(114, 9, 9);background-color: rgb(101, 11, 11);}
     .link { color: white; background-color: rgb(13, 33, 96);}
     .link:hover{ color: white; background-color:rgb(6, 18, 57);}
@@ -140,7 +140,9 @@ body{background-color: rgb(209, 28, 28);}
     .creator-view{color: white;}
     .create-button{color: white;}
     .create-button{background-color: rgb(13, 100, 39);}
-    .math-text{ background-color: rgb(162, 118, 51); color: rgb(61, 32, 6); }
+    .math-text{ background-color: rgb(61, 32, 6); color: white; }
+    .selected-math-text{ padding: 3px 14px; background-color: rgb(61, 32, 6); color: white;
+        border-radius: 3.5px; width: 200px; height: 40px; border:1px solid gold; box-shadow: 0 0 10px gold; }
     .not-number-modal{color: white;}
     .close-button{color: white;}
     .mathquill-field{ background-color: rgb(61, 32, 6); color: white; }
