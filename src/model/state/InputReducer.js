@@ -1,5 +1,4 @@
-const initialState = { inputMap: {}, activeKey: '',
-    displayTeaching: false, displayKeyboard: false
+const initialState = { inputMap: {}, activeKey: '', displayTeaching: false, displayKeyboard: false
 };
 export default function inputReducer(state = initialState, action) {
     switch (action.type) {

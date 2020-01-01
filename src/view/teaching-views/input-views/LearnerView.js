@@ -10,9 +10,9 @@ import '../../views-general/app.css';
 import ReactModal from 'react-modal';
 import {InlineMath } from 'react-katex';
 /* gets the teaching for this method */
-const mapStateToProps = (state) => { return { teacher: state.teacher, inputMap: state.inputMap,  
-  creationStrings: state.creationStrings, teachingObjectName: state.teachingObjectName, 
-  simplestForm: state.simplestForm, methodStrings: state.methodStrings} };
+const mapStateToProps = (state) => { return { teacher: state.teacher.teacher, inputMap: state.input.inputMap,  
+  creationStrings: state.teacher.creationStrings, teachingObjectName: state.teacher.teachingObjectName, 
+  simplestForm: state.teacher.simplestForm, methodStrings: state.teacher.methodStrings} };
 /* so that the creator view can get the teaching */
 const mapDispatchToProps = (dispatch) =>  { return  {
   updateCreationStrings: (creationStrings) => { dispatch(updateCreationStrings(creationStrings)); }, 
@@ -170,7 +170,7 @@ class UnconnectedCreatorView extends React.Component{
         this.props.clearMethodTeaching();
         this.props.createTeachingObject(this.props.teachingObjectName, creationStrings.slice());
         this.props.setDisplayTeaching(true);
-        //this.props.teachingViewRef.current.scrollIntoView();
+        this.props.teachingViewRef.current.scrollIntoView();
     } else {
         this.props.updateActiveMethod(this.props.methodSignature[2]);
         this.props.updateMethodStrings(creationStrings);

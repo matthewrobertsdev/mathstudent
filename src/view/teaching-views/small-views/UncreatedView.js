@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 const mapStateToProps = (state) => {
 	return {
-		teacher: state.teacher
+		teacher: state.teacher.teacher
 	}
 };
 class UnconnectedUncreatedView extends React.Component {

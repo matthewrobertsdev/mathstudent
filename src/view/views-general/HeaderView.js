@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink, withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
-const mapStateToProps = (state) => { return { URLpathname: state.URLpathname } };
+const mapStateToProps = (state) => { return { URLpathname: state.misc.URLpathname } };
 class UnconnectHeaderView extends React.Component{
       render() { return( <div className="nav-bar">{this.createNavBar()}</div> ); }
 

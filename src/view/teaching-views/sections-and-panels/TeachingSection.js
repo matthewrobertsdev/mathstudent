@@ -10,8 +10,8 @@ import '../../views-general/app.css';
 Renderer for a GUI teaching section based off of a model
 ########################################################
 */
-const mapStateToProps = (state) => { return { teacher: state.teacher, activeMethod: state.activeMethod,
-  methodTeacher: state.methodTeacher}; }
+const mapStateToProps = (state) => { return { teacher: state.teacher.teacher, activeMethod: state.teacher.activeMethod,
+  methodTeacher: state.teacher.methodTeacher}; }
 class UnconnectedTeachingSection extends React.Component{
     constructor(props) { super(props); this.state={id: this.props.location.pathname, 
       creationStrings: this.props.creationStrings}}

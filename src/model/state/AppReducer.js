@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
-import inputReducer from './InputReducer';
-import defaultReducer from './DefaultReducer';
+import input from './InputReducer';
+import misc from './DefaultReducer';
+import teacher from './TeacherReducer';
 export default combineReducers({
-  inputReducer,
-  defaultReducer
+  input,
+  teacher,
+  misc
 })

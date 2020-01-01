@@ -5,7 +5,7 @@ import '../../views-general/app.css';
 import LearningSection from './LearningSection';
 import ContentPanel from './ContentPanel';
 const mapStateToProps = (state) => {
-	return { teacher: state.teacher }
+	return { teacher: state.teacher.teacher }
 };
 class UnconnectedLearningPanel extends React.Component {
 	render() { return (<div className='full-width'> {this.createLearningSection()} </div>); }

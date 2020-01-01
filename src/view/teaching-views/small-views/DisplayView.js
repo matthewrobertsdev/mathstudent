@@ -1,19 +1,29 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom'
 import 'katex/dist/katex.min.css';
 import {BlockMath } from 'react-katex';
 import '../../views-general/app.css';
 const mapStateToProps = (state) => {
-    return { teacher: state.teacher, paramaterLabels: state.paramaterLabels, creationStrings: state.creationStrings} };
+    return { teacher: state.teacher.teacher, paramaterLabels: state.teacher.paramaterLabels, 
+      creationStrings: state.teacher.creationStrings} };
 class UnconnectedDisplayView extends React.Component{
+  constructor(props) {
+    super(props);
+    this.displayRef = React.createRef();
+  }
+
+  componentDidMount() {
+      this.displayRef.current.scrollIntoView();
+  }
     render() {
         return(
           this.displayMath()
         );
       }
       displayMath(){
-          const display=<div className='text-margins'>
+          const display=<div className='text-margins' ref={this.displayRef} tabIndex={0}>
           <h1 className="main-text-color center-text">{this.createTitleString()}</h1>
           <h1 className="main-text-color center-text">Here it is:</h1>
           <div aria-label='test num'><BlockMath aria-hidden={true} className='block-math'>{this.createBlockLatex()}</BlockMath></div>

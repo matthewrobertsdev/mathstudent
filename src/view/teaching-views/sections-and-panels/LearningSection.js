@@ -9,7 +9,7 @@ import UncreatedView from '../small-views/UncreatedView';
 import InputHeading from '../small-views/InputHeading';
 const mapStateToProps = (state) => {
 	return {
-		teacher: state.teacher, displayTeaching: state.displayTeaching,
+		teacher: state.teacher.teacher, displayTeaching: state.teacher.displayTeaching,
 	}
 };
 class UnconnectedLearningSection extends React.Component {

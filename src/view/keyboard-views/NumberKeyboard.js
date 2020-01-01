@@ -1,7 +1,7 @@
 import React from 'react';
 import Keyboard from 'react-simple-keyboard';
 import { connect } from 'react-redux';
-const mapStateToProps = (state) => { return { displayKeyboard: state.displayKeyboard} };
+const mapStateToProps = (state) => { return { displayKeyboard: state.input.displayKeyboard} };
 class UnconnectedNumberKeyboard extends React.Component{
     constructor(props) { super(props); this.state={ keyPressHandler: this.props.keyPressHandler }; };
 render()

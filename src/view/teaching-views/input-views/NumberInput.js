@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import isMobile from '../../../utilities/IsMobile';
 import '../../views-general/app.css';
 addMathquillStyles();
-const mapStateToProps = (state) => { return { inputMap: state.inputMap, activeKey: state.activeKey, 
-    displayKeyboard: state.displayKeyboard} };
+const mapStateToProps = (state) => { return { inputMap: state.input.inputMap, activeKey: state.input.activeKey, 
+    displayKeyboard: state.input.displayKeyboard} };
 const mapDispatchToProps = (dispatch) => { return {
         updateKeyAndValue: (key, value) => { dispatch(updateKeyAndValue(key, value)); },
         updateActiveKey: (key) => {dispatch(updateActiveKey(key)); },

@@ -22,8 +22,8 @@ Renders an entire teaching view--all but the header for a teaching a topic
 */
 const mapStateToProps = (state) => {
 	return {
-		teacher: state.teacher, displayTeaching: state.displayTeaching,
-		displayKeyboard: state.displayKeyboard, pageNotFound: state.pageNotFound
+		teacher: state.teacher.teacher, displayTeaching: state.teacher.displayTeaching,
+		displayKeyboard: state.input.displayKeyboard, pageNotFound: state.misc.pageNotFound
 	}
 };
 //These need to be linted for redudant actions
@@ -43,7 +43,7 @@ class UnconnectedTeachingView extends React.Component {
 		const { match: { params } } = this.props;
 		this.props.clearCreationTeaching(); this.props.setTeachingObjectName(params.teachingName);
 		this.props.getTeaching(params.teachingName); document.title = params.teachingName
-		/*this.teachingViewRef = React.createRef();*/ this.props.updateURL(window.location.href);
+		this.teachingViewRef = React.createRef(); this.props.updateURL(window.location.href);
 	}
 	componentDidUpdate() {
 		if (this.props.teacher) { if (this.props.teaching) { document.title = this.props.teacher.teaching.displayNamePlural } };
@@ -61,7 +61,7 @@ class UnconnectedTeachingView extends React.Component {
 						<h1 className='center-text main-text-color heading large-heading-size'>{this.props.teacher.teaching.displayNamePlural}</h1>
 						<AboutPanel uuid='about'/>
 						<br></br>
-						<CreatorPanel uuid='create'/>
+						<CreatorPanel uuid='create' teachingViewRef={this.teachingViewRef}/>
 						{this.displayCreatedObject()}
 						<LearningPanel uuid='working-with'/>
 						{this.addKeyboardForMobile()}
@@ -74,10 +74,10 @@ class UnconnectedTeachingView extends React.Component {
 	}
 	displayCreatedObject() {
 		if (this.props.displayTeaching) {
-			return (<div /*ref={this.teachingViewRef}*/>{<CreationSection />}<br></br>
+			return (<div ref={this.teachingViewRef}>{<CreationSection />}<br></br>
 				<br></br><AdView /></div>
 			);
-		} else { return (<span /*ref={this.teachingViewRef}*/></span>); }
+		} else { return (<span ref={this.teachingViewRef}></span>); }
 	}
 	addKeyboardForMobile() {
 		if (isMobile()) {
