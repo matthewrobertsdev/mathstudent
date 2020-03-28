@@ -1,28 +1,22 @@
 import React from 'react';
-import {NavLink, withRouter} from 'react-router-dom';
-import { connect } from 'react-redux';
-const mapStateToProps = (state) => { return { URLpathname: state.misc.URLpathname } };
-class UnconnectHeaderView extends React.Component{
-      render() { return( <div className="nav-bar">{this.createNavBar()}</div> ); }
-
-      createNavBar() { var headerView=[];
-        headerView.push(this.createCurriculumLink());
-        headerView.push(this.createVersionPageLink());
-        return headerView; }
-
-      createBackButton(){ return (<span className='nav-link float-left' key={0} onClick={()=>this.goBack()}>Back</span>)};
-      createForwardButton(){ return (<span className='nav-link float-left' key={1} onClick={()=>this.goForward()}>Forward</span>)};
-      createCurriculumLink(){ return (<NavLink className={this.getClassName('/')}to='/' key={3}>Curriculum</NavLink>); }
-      createVersionPageLink(){ return (<NavLink className={this.getClassName('/version')} to='/version' key={4}>Version</NavLink>); }
-      goBack(){ this.props.history.goBack(); }
-      goForward(){ this.props.history.goForward(); }
-      getClassName(url){
-        if (url===this.props.URLpathname){
-            return 'selected-nav-link float-left';
-        } else {
-          return 'nav-link float-left';
-        }
-      }
+import { withRouter, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+const HeaderView = () => {
+  const URLpathname = useSelector(state => state.misc.URLpathname)
+  return (
+    <div className="nav-bar">
+      <Link className={getClassName(URLpathname, '/')} to='/' 
+      key={0}>Curriculum</Link>
+      <Link className={getClassName(URLpathname, '/version')} 
+      to='/version' key={1}>Version</Link>
+    </div>
+  );
 }
-const HeaderView=withRouter(connect(mapStateToProps,null)(UnconnectHeaderView));
-export default HeaderView;
+function getClassName(URLpathname, url) {
+  if (url === URLpathname) {
+    return 'selected-nav-link float-left';
+  } else {
+    return 'nav-link float-left';
+  }
+}
+export default withRouter(HeaderView);
