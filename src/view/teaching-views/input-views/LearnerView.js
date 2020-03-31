@@ -93,10 +93,10 @@ class UnconnectedCreatorView extends React.Component{
           else if (i<2) { }
           else if (!this.props.creator){
             if (i%2!==0) {
-              creatorView.push(<span className='small-right-margin creator-text-size' 
+              creatorView.push(<span className='small-right-margin creator-text-size creator-text' 
               key={i} id={i}>{this.props.methodSignature[i]+': '}</span>);
             } else {
-              creatorView.push(<span key={i} id={i}><span className='medium-right-margin creator-text-size'>
+              creatorView.push(<span key={i} id={i}><span className='medium-right-margin creator-text-size' creator-text>
               {this.createNumberInput(column-1)}</span><br className='hide-for-big'></br>
               </span>);
               column++
