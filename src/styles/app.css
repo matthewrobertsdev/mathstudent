@@ -68,7 +68,7 @@ body{background-color: rgb(209, 28, 28);}
     text-align: center; left: 50%; margin-left: -100px; top: 30%; margin-top: -75px; border-radius: 14px; font-size: 40px;}
 .not-number-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; }
 .close-button { background-color: rgb(61, 32, 6); color: gold; border-radius: 7px; }
-.nav-bar { margin: 0; padding: 0; width: 100%; overflow: auto; background-color: rgb(152, 112, 53);}
+.nav-bar { margin: 0; padding: 0; width: 100%; overflow: auto; background-color: rgb(19, 151, 59);}
 .leader-board-ad { color: gold; width: 728px; height: 90px; /* background-color: rgb(110, 60, 14); */
     background-color: rgb(22, 49, 131); display: inline-block; }
 .medium-rectangle { color: rgb(110, 60, 14); width: 300; height: 250; background-color: gold; display: inline-block; }
@@ -121,7 +121,7 @@ body{background-color: rgb(209, 28, 28);}
 .katex { color:gold; }
 
 @media (prefers-color-scheme: dark){
-    .nav-bar {background-color: rgb(94, 69, 31)}
+    .nav-bar {background-color: rgb(65, 47, 21)}
 
     body{background-color: rgb(120, 2, 20);background-color: rgb(120, 2, 20);}
     .heading{color: white;}
