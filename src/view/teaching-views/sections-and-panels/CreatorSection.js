@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import LearnerView from '../input-views/LearnerView';
 import 'react-simple-keyboard/build/css/index.css';
-import '../../views-general/app.css';
+import  '../../../styles/app.css'
 import AdView from '../small-views/AdView';
 import InputHeading from '../small-views/InputHeading';
 const mapStateToProps = (state) => {

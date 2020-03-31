@@ -7,8 +7,12 @@ const Header = () => {
     <div className="nav-bar">
       <Link className={getClassName(URLpathname, '/')} to='/' 
       key={0}>Curriculum</Link>
+      <Link className={getClassName(URLpathname, '/topics')} to='/topics' 
+      key={0}>Topics</Link>
       <Link className={getClassName(URLpathname, '/version')} 
       to='/version' key={1}>Version</Link>
+      <Link className={getClassName(URLpathname, '/login')} 
+      to='/login' key={1}>Login</Link>
     </div>
   );
 }

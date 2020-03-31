@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom'
 import 'katex/dist/katex.min.css';
 import {BlockMath } from 'react-katex';
-import '../../views-general/app.css';
+import  '../../../styles/app.css'
 const mapStateToProps = (state) => {
     return { teacher: state.teacher.teacher, paramaterLabels: state.teacher.paramaterLabels, 
       creationStrings: state.teacher.creationStrings} };

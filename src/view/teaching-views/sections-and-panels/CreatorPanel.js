@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import 'react-simple-keyboard/build/css/index.css';
-import '../../views-general/app.css';
+import  '../../../styles/app.css'
 import ContentPanel from './ContentPanel';
 import CreatorSection from './CreatorSection';
 const mapStateToProps = (state) => {

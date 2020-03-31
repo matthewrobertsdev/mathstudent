@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../../views-general/app.css';
+import  '../../../styles/app.css'
 class TeachingLink extends React.Component{
       render() {
         return(

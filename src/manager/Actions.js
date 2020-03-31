@@ -1,7 +1,5 @@
 import curriculum from  '../model/Curriculum';
 
-const _getTopics = (topics) => ({ type: 'GET_TOPICS', topics });
-
 const _getTeaching = (creationTeaching) => ({ type: 'GET_TEACHING', creationTeaching });
 
 const _clearCreationTeaching = () => ({ type: 'CLEAR_CREATION_TEACHING' });
@@ -32,7 +30,6 @@ const _createTeachingObject = (teaching) => ({ type: 'CREATE_TEACHING_OBJECT', t
 
 const _setParamaterLabels = (paramaterLabels) => ({ type: 'SET_PARAMETER_LABELS', paramaterLabels});
 
-export const getTopics = () => { return  (dispatch)=>{ dispatch(_getTopics(curriculum)); }; };
 
 export const getTeaching = (teachingName) => {
 	return (dispatch) => {
@@ -128,3 +125,10 @@ export const updateURL = () => {
 	   payload: window.location.pathname
 	 }
  }
+
+ export const getTopics = () => {
+	return {
+		 type: 'GET_TOPICS',
+		 payload: curriculum
+	}
+	 }

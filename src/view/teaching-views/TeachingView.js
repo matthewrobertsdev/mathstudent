@@ -6,7 +6,7 @@ import NumberKeyboard from '../keyboard-views/NumberKeyboard';
 import KeyboardSpacer from '../keyboard-views/KeyboardSpacer';
 import CreationSection from './sections-and-panels/CreationSection';
 import 'react-simple-keyboard/build/css/index.css';
-import '../views-general/app.css';
+import '../../styles/app.css'
 import { Accordion } from 'react-accessible-accordion';
 import PageNotFoundView from '../views-general/PageNotFoundView';
 import AdView from './small-views/AdView';

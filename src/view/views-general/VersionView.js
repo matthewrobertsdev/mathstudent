@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {updateURL} from '../../manager/Actions';
-import {mainHeading} from './Styles'
+import {mainHeading} from '../../styles/Styles'
 const VersionView = (props) => {
     const dispatch=useDispatch()
     useEffect( () => {dispatch(updateURL())})

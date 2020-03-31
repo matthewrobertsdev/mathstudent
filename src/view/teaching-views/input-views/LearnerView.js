@@ -6,7 +6,7 @@ import {createTeachingObject, updateCreationStrings, setDisplayTeaching, updateK
   clearMethodTeaching, setParamaterLabels} from '../../../manager/Actions';
 import InputValidator from '../../../utilities/InputValidator';
 import { withRouter } from "react-router-dom";
-import '../../views-general/app.css';
+import  '../../../styles/app.css'
 import ReactModal from 'react-modal';
 import {InlineMath } from 'react-katex';
 /* gets the teaching for this method */

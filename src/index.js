@@ -4,8 +4,8 @@ import {Provider} from 'react-redux';
 import AppRouter from './manager/AppRouter';
 import teachingStore from './model/state/TeachingsStore';
 import * as homeWorker from './serviceWorker';
-import './view/views-general/app.css';
-import './index.css';
+import './styles/app.css';
+import './styles/index.css';
 //document.body.style.backgroundColor = "rgb(209, 28, 28)";
 const store=teachingStore();
 const easyMath = (

@@ -16,7 +16,7 @@ export default function teacherReducer(state = initialState, action) {
             const newMethodTeaching = {};
             Object.assign(newMethodTeaching, action.methodTeacher)
             return { ...state, methodTeacher: newMethodTeaching };
-        case 'GET_TOPICS': return { ...state, topics: action.topics };
+        case 'GET_TOPICS': return { ...state, topics: action.payload };
         case 'GET_TEACHING': {
             if (action.creationTeaching === undefined) {
                 console.log('teaching was null');
