@@ -121,7 +121,7 @@ body{background-color: rgb(209, 28, 28);}
 .katex { color:gold; }
 
 @media (prefers-color-scheme: dark){
-    .nav-bar {background-color: rgb(65, 47, 21)}
+    .nav-bar {background-color: rgb(50, 36, 16)}
 
     body{background-color: rgb(120, 2, 20);background-color: rgb(120, 2, 20);}
     .heading{color: white;}
