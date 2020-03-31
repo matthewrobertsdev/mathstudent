@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-const HeaderView = () => {
+const Header = () => {
   const URLpathname = useSelector(state => state.misc.URLpathname)
   return (
     <div className="nav-bar">
@@ -19,4 +19,4 @@ function getClassName(URLpathname, url) {
     return 'nav-link float-left';
   }
 }
-export default withRouter(HeaderView);
+export default withRouter(Header);
