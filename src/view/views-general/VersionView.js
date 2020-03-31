@@ -1,19 +1,23 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import {updateURL} from '../../manager/Actions';
-const mapDispatchToProps = (dispatch) => {
-    return { updateURL: () => { dispatch(updateURL()); } } };
-class UnconnectedVersionView extends React.Component{
-      componentWillMount() { this.props.updateURL(window.location.href);}
-    render() { return <div className="center-text">{this.tellLastChecked()}
-    <br></br><br></br>{this.tellVersion()}<br></br><br></br><span 
+const VersionView = (props) => {
+    const dispatch=useDispatch()
+    useEffect( () => {dispatch(updateURL())})
+    return <div className="center-text">
+    {tellLastChecked()}
+    <br></br><br></br>
+    {tellVersion()}
+    <br></br><br></br>
+    <span 
     className="center-text main-text-color heading large-heading-size">
         Reload the page to see if a new update has been found.</span>
         <br></br><br></br><span 
     className="center-text main-text-color heading large-heading-size">
         Latest cached version only runs if you have closed every single page in your browser that has Math Teacher, 
-        so that none were open so that the new version could be launched when you next opened a Math Teacher page.</span></div>}
-    tellVersion(){
+        so that none were open so that the new version could be launched when you next opened a Math Teacher page.</span>
+    </div>
+    function tellVersion(){
         let lastUpdated=localStorage.getItem('lastUpdated');
         if (lastUpdated){
             return <span className="center-text main-text-color heading large-heading-size">Latest Cached Version: {lastUpdated}.</span>
@@ -21,12 +25,11 @@ class UnconnectedVersionView extends React.Component{
             return <span className="center-text main-text-color heading large-heading-size">No version fully cached yet.</span>
         }
     }
-    tellLastChecked(){
+    function tellLastChecked(){
         let lastChecked=localStorage.getItem('lastChecked');
         if (lastChecked){
             return <span className="center-text main-text-color heading large-heading-size">Update found on {lastChecked}.</span>
         }
     }
 }
-const VersionView=connect(null,mapDispatchToProps)(UnconnectedVersionView);
 export default VersionView;

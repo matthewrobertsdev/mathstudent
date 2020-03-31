@@ -46,9 +46,6 @@ export const clearCreationTeaching = () => {return (dispatch) => { return dispat
 
 export const clearMethodTeaching = () => {return (dispatch) => { return dispatch(_clearMethodTeaching({})); }; };
 
-
-export const updateURL = () => { return (dispatch) => { return dispatch(_updateURL(window.location.pathname)); }; };
-
 export const addToInputMap = (keyID, value) => { return (dispatch) => { return dispatch(_addToInputMap(keyID, value)); }; };
 
 export const updateKeyAndValue = (key, value) => { return (dispatch) => {
@@ -125,4 +122,9 @@ export const updateActiveMethod = (activeMethod) =>
 
 const _updateActiveMethod = (activeMethod) => ({ type: 'UPDATE_ACTIVE_METHOD', activeMethod });
 
-
+export const updateURL = () => {
+	return {
+	   type: "UPDATE_URL",
+	   payload: window.location.pathname
+	 }
+ }
