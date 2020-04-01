@@ -10,7 +10,7 @@ body{background-color: rgb(209, 28, 28);}
 @media (max-width: 500px){
     .creator-text{ font-size: 45px; font-weight: 400;}
     .heading{
-        color: gold; font-size: 1.50em; margin-top: 1em; margin-bottom: 1em;
+        color: black; font-size: 1.50em; margin-top: 1em; margin-bottom: 1em;
       margin-left: 0; margin-right: 0; font-weight: bold; }
     .heading-size { font-size: 1.50em }
     .large-heading-size{ font-size: 2.00em; }
@@ -19,7 +19,7 @@ body{background-color: rgb(209, 28, 28);}
 @media (min-width: 500px){
     .creator-text-size{ font-size: 30px; font-weight: 400;}
     .heading{
-        color: gold; font-size: 1.50em; margin-top: 1em; margin-bottom: 1em;
+        color: black; font-size: 1.50em; margin-top: 1em; margin-bottom: 1em;
       margin-left: 0; margin-right: 0; font-weight: bold; }
     .heading-size{ font-size: 1.80em;}
     .large-heading-size{
@@ -36,9 +36,9 @@ body{background-color: rgb(209, 28, 28);}
     padding: 3px 14px; text-align: center; text-decoration: none; display: inline-block;
     border-radius: 10px; border: 1px solid gold;}
 .link:hover { /* background-color: rgb(158, 89, 25); */ background-color: royalblue; }
-.creator-view{ color: gold; }
+.creator-view{ color: black; }
 .main-text-color { color: gold; }
-.main-colors { color: gold; background-color: rgb(110, 60, 14); }
+.main-colors { color: black; background-color: rgb(110, 60, 14); }
 .nav-link{ /* color: gold; background-color: rgb(110, 60, 14); */ color: gold;
     background-color: rgb(22, 49, 131); padding: 3px 14px; text-align: center; 
     text-decoration: none; display: inline-block; border-radius: 10px;
