@@ -61,7 +61,7 @@ class UnconnectedTeachingView extends React.Component {
 				return (
 					<div >
 						<Accordion allowZeroExpanded={true} allowMultipleExpanded={true} preExpanded={this.expandTheseIfNotMobile()}>
-						<AccordionItem uuid={''}>
+						<AccordionItem uuid={'problems'}>
         <AccordionItemHeading className="heading large-heading-size">
             <AccordionItemButton>
 			{this.props.teacher.teaching.displayNameSingular+" Problems"}
@@ -69,13 +69,20 @@ class UnconnectedTeachingView extends React.Component {
 				</AccordionItemHeading>
 				<AccordionItemPanel>
 						<ProblemPicker/>
+						<div className='center-text text-margins'><AdView /></div>
 				</AccordionItemPanel>
 			</AccordionItem>
-						</Accordion>
-						<div className='center-text text-margins'><AdView /></div>
-						<h1 className='center-text main-text-color heading large-heading-size'>{"About "+this.props.teacher.teaching.displayNamePlural}</h1>
-						<AboutSection uuid='about'/>
-						<br></br>
+						<AccordionItem uuid='about'>
+        <AccordionItemHeading className="heading large-heading-size">
+            <AccordionItemButton>
+						{"About "+this.props.teacher.teaching.displayNamePlural}
+						</AccordionItemButton>
+				</AccordionItemHeading>
+				<AccordionItemPanel>
+					<AboutSection/>
+						</AccordionItemPanel>
+			</AccordionItem>
+			</Accordion>
 						</div>
 				);
 			}
@@ -99,7 +106,7 @@ class UnconnectedTeachingView extends React.Component {
 	}
 	//for accordian tabs
 	expandTheseIfNotMobile() {
-		if (!isMobile()) { return ['about', 'create', 'working-with'];} 
+		if (!isMobile()) { return ['problems', 'about'];} 
 		else { return []; }
 	}
 }
