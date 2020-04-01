@@ -5,22 +5,31 @@ const Header = () => {
   const URLpathname = useSelector(state => state.misc.URLpathname)
   return (
     <div className="nav-bar">
-      <Link className={getClassName(URLpathname, '/')} to='/' 
-      key={0}>Curriculum</Link>
-      <Link className={getClassName(URLpathname, '/topics')} to='/topics' 
-      key={0}>Topics</Link>
-      <Link className={getClassName(URLpathname, '/version')} 
-      to='/version' key={1}>Version</Link>
-      <Link className={getClassName(URLpathname, '/login')} 
-      to='/login' key={1}>Login</Link>
+      <Link className={getClassNameLeft(URLpathname, '/')} to='/' 
+      key={0}>Math Teacher</Link>
+      <Link className={getClassNameLeft(URLpathname, '/curriculum')} to='/curriculum' 
+      key={1}>Curriculum</Link>
+      <Link className={getClassNameLeft(URLpathname, '/teachings')} to='/teachings' 
+      key={2}>Topics</Link>
+      <Link className={getClassNameLeft(URLpathname, '/version')} 
+      to='/version' key={3}>Version</Link>
+      <Link className={getClassNameRight(URLpathname, '/login')} 
+      to='/login' key={4}>Login</Link>
     </div>
   );
-}
-function getClassName(URLpathname, url) {
+function getClassNameLeft(URLpathname, url) {
   if (url === URLpathname) {
     return 'selected-nav-link float-left';
   } else {
     return 'nav-link float-left';
+  }
+}
+  function getClassNameRight(URLpathname, url) {
+    if (url === URLpathname) {
+      return 'selected-nav-link float-right';
+    } else {
+      return 'nav-link float-right';
+    }
   }
 }
 export default withRouter(Header);

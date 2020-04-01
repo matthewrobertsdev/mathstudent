@@ -5,14 +5,16 @@ import TeachingView from '../view/teaching-views/TeachingView';
 import Header from '../view/views-general/Header';
 import PageNotFoundView from '../view/views-general/PageNotFoundView';
 import VersionView from '../view/views-general/VersionView';
+import HomePage from '../view/teaching-views/sections-and-panels/HomePage';
 const AppRouter= () => (
     <BrowserRouter>
         <div>
             <Header/>
             <Switch>
-                <Route path="/" exact component={CurriculumView}/>
+                <Route path="/" exact component={HomePage}/>
+                <Route path="/curriculum" exact component={CurriculumView}/>
                 <Route path="/version" exact component={VersionView}/>
-                <Route path="/teaching/:teachingName" exact component={TeachingView}/>
+                <Route path="/teachings/:teachingName" exact component={TeachingView}/>
                 <Route component={PageNotFoundView}/>
             </Switch>
         </div>

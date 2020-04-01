@@ -1,1 +1,1 @@
-export const mainHeading = "center-text main-text-color heading large-heading-size";
+export const mainHeading = "center-text heading large-heading-size";

@@ -6,7 +6,7 @@ import TeachingSection from './TeachingSection';
 import AdView from '../small-views/AdView';
 const AboutSection = (props) =>  {
         return (
-            <span className='full-width text-margins'>
+            <span className='text-margins'>
                 <div><TeachingSection purpose={'about'} /><br></br><br></br></div><AdView/>
             </span>
         );

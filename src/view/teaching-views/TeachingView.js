@@ -53,7 +53,7 @@ class UnconnectedTeachingView extends React.Component {
 	}
 	componentWillUnmount() { this.props.setDisplayTeaching(false); }
 
-	render() { return (<div className='full-width'> {this.createView()} </div>); }
+	render() { return (<div> {this.createView()} </div>); }
 
 	createView() {
 		if (this.props.teacher) {
