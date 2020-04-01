@@ -6,17 +6,10 @@ import {AccordionItem, AccordionItemHeading, AccordionItemPanel, AccordionItemBu
 const mapStateToProps = (state) => { return { teacher: state.teacher.teacher } };
 class UnconnectedContentPanel extends React.Component {
 	render() {
-			return <div className='full-width'><br></br><AccordionItem uuid={this.props.uuid}>
-				<AccordionItemHeading>
-					<AccordionItemButton>
+			return <div className='full-width'><br></br>
 						<span className="main-text-color heading large-heading-size">
 							{this.props.introPhrase}{this.props.teacher.teaching.displayNamePlural}</span>
-					</AccordionItemButton>
-				</AccordionItemHeading>
-				<AccordionItemPanel>
-					{this.props.section}
-				</AccordionItemPanel>
-			</AccordionItem></div>	
+					</div>	
 	}
 }
 const ContentPanel = connect(mapStateToProps, null)(UnconnectedContentPanel)

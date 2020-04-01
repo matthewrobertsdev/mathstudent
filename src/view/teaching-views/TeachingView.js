@@ -11,7 +11,7 @@ import { Accordion } from 'react-accessible-accordion';
 import PageNotFoundView from '../views-general/PageNotFoundView';
 import AdView from './small-views/AdView';
 import LearningPanel from './sections-and-panels/LearningPanel';
-import AboutPanel from './sections-and-panels/AboutPanel';
+import AboutSection from './sections-and-panels/AboutSection';
 import CreatorPanel from './sections-and-panels/CreatorPanel';
 
 
@@ -56,16 +56,12 @@ class UnconnectedTeachingView extends React.Component {
 		if (this.props.teacher) {
 			if (this.props.teacher.teaching) {
 				return (
-					<Accordion allowZeroExpanded={true} allowMultipleExpanded={true} preExpanded={this.expandTheseIfNotMobile()}>
+					<div>
 						<div className='center-text text-margins'><AdView /></div>
 						<h1 className='center-text main-text-color heading large-heading-size'>{this.props.teacher.teaching.displayNamePlural}</h1>
-						<AboutPanel uuid='about'/>
+						<AboutSection uuid='about'/>
 						<br></br>
-						<CreatorPanel uuid='create' teachingViewRef={this.teachingViewRef}/>
-						{this.displayCreatedObject()}
-						<LearningPanel uuid='working-with'/>
-						{this.addKeyboardForMobile()}
-					</Accordion>
+						</div>
 				);
 			}
 		} else if (this.props.pageNotFound) {
