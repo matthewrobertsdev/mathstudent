@@ -7,12 +7,15 @@ import KeyboardSpacer from '../keyboard-views/KeyboardSpacer';
 import CreationSection from './sections-and-panels/CreationSection';
 import 'react-simple-keyboard/build/css/index.css';
 import '../../styles/app.css'
-import { Accordion } from 'react-accessible-accordion';
 import PageNotFoundView from '../views-general/PageNotFoundView';
 import AdView from './small-views/AdView';
 import LearningPanel from './sections-and-panels/LearningPanel';
 import AboutSection from './sections-and-panels/AboutSection';
 import CreatorPanel from './sections-and-panels/CreatorPanel';
+import { Link } from 'react-router-dom';
+import ProblemPicker from './small-views/ProblemPicker'
+import {Accordion} from 'react-accessible-accordion'
+import {AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel} from 'react-accessible-accordion'
 
 
 /*
@@ -56,9 +59,21 @@ class UnconnectedTeachingView extends React.Component {
 		if (this.props.teacher) {
 			if (this.props.teacher.teaching) {
 				return (
-					<div>
+					<div >
+						<Accordion allowZeroExpanded={true} allowMultipleExpanded={true} preExpanded={this.expandTheseIfNotMobile()}>
+						<AccordionItem uuid={''}>
+        <AccordionItemHeading className="heading large-heading-size">
+            <AccordionItemButton>
+			{this.props.teacher.teaching.displayNameSingular+" Problems"}
+						</AccordionItemButton>
+				</AccordionItemHeading>
+				<AccordionItemPanel>
+						<ProblemPicker/>
+				</AccordionItemPanel>
+			</AccordionItem>
+						</Accordion>
 						<div className='center-text text-margins'><AdView /></div>
-						<h1 className='center-text main-text-color heading large-heading-size'>{this.props.teacher.teaching.displayNamePlural}</h1>
+						<h1 className='center-text main-text-color heading large-heading-size'>{"About "+this.props.teacher.teaching.displayNamePlural}</h1>
 						<AboutSection uuid='about'/>
 						<br></br>
 						</div>

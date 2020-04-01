@@ -29,7 +29,7 @@ body{background-color: rgb(209, 28, 28);}
 .button-size{ font-size: 1.00em}
 .float-left{ float: left; }
 .float-right{ float: right; }
-.center-text{ text-align: center; }
+.center-text{ text-align: center;}
 .left-text{ text-align: left; }
 .text-margins{ margin-left: 3%; margin-right: 3%; }
 .link { color: gold; background-color: rgb(22, 49, 131); /* background-color: rgb(110, 60, 14); */
@@ -72,7 +72,7 @@ body{background-color: rgb(209, 28, 28);}
 .leader-board-ad { color: gold; width: 728px; height: 90px; /* background-color: rgb(110, 60, 14); */
     background-color: rgb(22, 49, 131); display: inline-block; border: 1px solid gold;}
 .medium-rectangle { color: rgb(110, 60, 14); width: 300; height: 250; background-color: gold; display: inline-block; }
-.full-width { width: 100%; }
+.full-width { width:90%; margin-left: 5%; margin-right: 5%;}
 .new-line-div { margin-bottom: 20px; }
 .mobile-banner { color: gold; width: 320; height: 100; /* background-color: rgb(110, 60, 14); */
     background-color: rgb(22, 49, 131); display: inline-block; border: 1px solid gold;}
