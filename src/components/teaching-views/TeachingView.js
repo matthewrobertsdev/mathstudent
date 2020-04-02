@@ -7,7 +7,7 @@ import KeyboardSpacer from '../keyboard-views/KeyboardSpacer';
 import CreationSection from '../sections-and-panels/CreationSection';
 import 'react-simple-keyboard/build/css/index.css';
 import '../../styles/app.css'
-import PageNotFoundPage from '../../pages/PageNotFoundPage';
+import UncreatedView from '../UncreatedView'
 import AdView from '../AdView';
 import AboutSection from '.././teaching-views/AboutSection';
 import ProblemPicker from './ProblemPicker'
@@ -84,7 +84,7 @@ class UnconnectedTeachingView extends React.Component {
 				);
 			}
 		} else if (this.props.teacher==null) {
-			return <PageNotFoundPage className='center-text'/>
+			return <UncreatedView className='full-width center-text'/>
 		}
 	}
 	displayCreatedObject() {
