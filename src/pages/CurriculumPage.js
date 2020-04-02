@@ -1,12 +1,9 @@
-import React, { useEffect } from 'react';
-import {useDispatch, connect } from 'react-redux';
-import {updateURL} from '../manager/Actions'
+import React from 'react';
+import {connect } from 'react-redux';
 import TeachingView from '../view/teaching-views/small-views/TeachingView'
 import '../styles/app.css'
 const mapStateToProps = (state) => { return { curriculum: state.teacher.curriculum } };
 const CurrciulumPage = (props) => {
-  const dispatch=useDispatch();
-  useEffect( () => {dispatch(updateURL())})
         return (
           <div className='subject-view'>
             <br></br>

@@ -1,19 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getTeaching, clearCreationTeaching, updateURL, setTeachingObjectName, setDisplayTeaching, updateActiveValue} from '../../manager/Actions';
+import { getTeaching, clearCreationTeaching, updateURL, setTeachingObjectName, setDisplayTeaching, updateActiveValue} from '../../store/Actions';
 import isMobile from '../../utilities/IsMobile';
 import NumberKeyboard from '../keyboard-views/NumberKeyboard';
 import KeyboardSpacer from '../keyboard-views/KeyboardSpacer';
-import CreationSection from './sections-and-panels/CreationSection';
+import CreationSection from '../sections-and-panels/CreationSection';
 import 'react-simple-keyboard/build/css/index.css';
 import '../../styles/app.css'
 import PageNotFoundPage from '../../pages/PageNotFoundPage';
-import AdView from './small-views/AdView';
-import LearningPanel from './sections-and-panels/LearningPanel';
-import AboutSection from './sections-and-panels/AboutSection';
-import CreatorPanel from './sections-and-panels/CreatorPanel';
-import { Link } from 'react-router-dom';
-import ProblemPicker from './small-views/ProblemPicker'
+import AdView from '../AdView';
+import AboutSection from '.././teaching-views/AboutSection';
+import ProblemPicker from './ProblemPicker'
 import {Accordion} from 'react-accessible-accordion'
 import {AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel} from 'react-accessible-accordion'
 

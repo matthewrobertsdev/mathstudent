@@ -1,8 +1,6 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 const Header = () => {
-  const URLpathname = useSelector(state => state.misc.URLpathname)
   return (
     <div className="nav-bar">
       <Link className={getClassNameLeft('/')} 

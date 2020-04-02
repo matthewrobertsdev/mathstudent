@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import AppRouter from './AppRouter';
-import teachingStore from './model/state/TeachingsStore';
+import teachingStore from './store/TeachingsStore';
 import * as homeWorker from './serviceWorker';
 import './styles/app.css';
 import './styles/index.css';

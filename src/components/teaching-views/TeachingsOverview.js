@@ -1,13 +1,13 @@
 import React from 'react';
-import TopicView from './TopicView'
-const TeachingView=(props) => {
+import TeachingLink from '../links/TeachingLink'
+const TeachingsOverview=(props) => {
     return (createView(props));
     function createView(){
     { if (props.topics==null) { return null; }
         const subjectsList = props.topics.map( (topic, index) => {
           return (
               <div key={index} i={index}>
-              <TopicView topic={topic}></TopicView>
+              <TeachingLink topic={topic}></TeachingLink>
               <br></br>
               </div>
           );
@@ -16,4 +16,4 @@ const TeachingView=(props) => {
       }
     }
     }
-export default TeachingView;
+export default TeachingsOverview;

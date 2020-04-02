@@ -1,4 +1,4 @@
-import isMobile from '../../utilities/IsMobile'
+import isMobile from '../utilities/IsMobile'
 
 const initialState = {
     URLpathname: 'https://mathteacher.com',

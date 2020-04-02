@@ -1,5 +1,5 @@
-import teachings from  '../Teachings'
-import curriculum from '../Curriculum'
+import teachings from  '../model/Teachings'
+import curriculum from '../model/Curriculum'
 
 const initialState = {
     topics: teachings, curriculum: curriculum, inputArray: [], textStrings: [], creationStrings: [], instanceStrings: [], creationTeaching: {}, teachingObjectName: '',

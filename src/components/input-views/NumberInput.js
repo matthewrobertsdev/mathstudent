@@ -1,6 +1,6 @@
 import React from 'react';
 import MathQuill, { addStyles as addMathquillStyles } from 'react-mathquill';
-import { updateKeyAndValue, updateActiveKey, updateDisplayKeyboard} from '../../../manager/Actions';
+import { updateKeyAndValue, updateActiveKey, updateDisplayKeyboard} from '../../../store/Actions';
 import { connect } from 'react-redux';
 import isMobile from '../../../utilities/IsMobile';
 import  '../../../styles/app.css'

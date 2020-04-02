@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import NumberInput from './NumberInput';
 import {createTeachingObject, updateCreationStrings, setDisplayTeaching, updateKeyAndValue, 
   clearCreationTeaching, updateActiveMethod, updateMethodStrings, createMethodTeacher,
-  clearMethodTeaching, setParamaterLabels} from '../../../manager/Actions';
+  clearMethodTeaching, setParamaterLabels} from '../../../store/Actions';
 import InputValidator from '../../../utilities/InputValidator';
 import { withRouter } from "react-router-dom";
 import  '../../../styles/app.css'

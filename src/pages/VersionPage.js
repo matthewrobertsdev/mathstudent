@@ -1,10 +1,6 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import {updateURL} from '../../manager/Actions';
-import {mainHeading} from '../../styles/Styles'
-const VersionView = (props) => {
-    const dispatch=useDispatch()
-    useEffect( () => {dispatch(updateURL())})
+import React from 'react';
+import {mainHeading} from '../styles/Styles'
+const VersionPage = () => {
     return <div className="center-text">
     {tellLastChecked()}
     <br></br><br></br>
@@ -33,4 +29,4 @@ const VersionView = (props) => {
         }
     }
 }
-export default VersionView;
+export default VersionPage;
