@@ -1,16 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import AppRouter from './manager/AppRouter';
+import AppRouter from './AppRouter';
 import teachingStore from './model/state/TeachingsStore';
 import * as homeWorker from './serviceWorker';
 import './styles/app.css';
 import './styles/index.css';
-//document.body.style.backgroundColor = "rgb(209, 28, 28)";
 const store=teachingStore();
 const easyMath = (
     <Provider store={store}>
-        <AppRouter />
+        <AppRouter/>
     </Provider>
 );
 ReactDOM.render(easyMath, document.getElementById('root'));

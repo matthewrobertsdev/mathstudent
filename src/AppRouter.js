@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import TeachingsPage from '../pages/TeachingsPage'
-import TeachingView from '../view/teaching-views/TeachingView';
-import Header from '../view/views-general/Header';
-import PageNotFoundPage from '../pages/PageNotFoundPage';
-import VersionView from '../view/views-general/VersionView';
-import HomePage from '../pages/HomePage';
-import CurriculumPage from '../pages/CurriculumPage';
+import TeachingsPage from './pages/TeachingsPage'
+import TeachingView from './view/teaching-views/TeachingView';
+import Header from './view/views-general/Header';
+import PageNotFoundPage from './pages/PageNotFoundPage';
+import VersionView from './view/views-general/VersionView';
+import HomePage from './pages/HomePage';
+import CurriculumPage from './pages/CurriculumPage';
 const AppRouter= () => (
     <BrowserRouter>
         <div>
