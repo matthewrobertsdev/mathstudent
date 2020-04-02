@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import {useDispatch } from 'react-redux';
-import {updateURL} from '../../../manager/Actions';
-const HomePage = (props) => {
+import {updateURL} from '../manager/Actions';
+import { Link } from 'react-router-dom';
+const HomePage = () => {
     const dispatch=useDispatch()
     useEffect(() => {dispatch(updateURL())})
     return (<div className="text-margins">
@@ -18,7 +19,8 @@ const HomePage = (props) => {
          <h1 className="heading large-heading-size center-text">Create an Account</h1>
          <div className="heading">To let Math Teacher save what problems you have completed 
          so that you may refer back to them and view your progress, 
-         please create an account here.</div>
+         please create an account: </div>
+         <div className="center-text"><Link to="/" className="link">Create Account</Link></div>
          <br></br><br></br><br></br><br></br>
     </div>);
 }

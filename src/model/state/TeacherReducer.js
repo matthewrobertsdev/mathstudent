@@ -1,6 +1,8 @@
+import teachings from  '../Teachings'
+import curriculum from '../Curriculum'
 
 const initialState = {
-    topics: [], inputArray: [], textStrings: [], creationStrings: [], instanceStrings: [], creationTeaching: {}, teachingObjectName: '',
+    topics: teachings, curriculum: curriculum, inputArray: [], textStrings: [], creationStrings: [], instanceStrings: [], creationTeaching: {}, teachingObjectName: '',
     displayTeaching: false, paramaterLabels: [], pageNotFound: false, activeMethod: '', methodTeacher: {}
 };
 

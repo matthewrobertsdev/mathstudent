@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import  '../../../styles/app.css'
-class TeachingLink extends React.Component{
-      render() {
+const TeachingLink = (props) => {
         return(
-          <Link className={"text-link"} to={`/teaching/${this.props.codeName}`}>{this.props.displayName}</Link>
+          <Link className={"text-link"} to={`/teachings/${this.props.codeName}`}>{this.props.displayName}</Link>
         );
-      }
 }
 export default TeachingLink;

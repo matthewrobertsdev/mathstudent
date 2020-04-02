@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-const ProblemPicker = (props) => {
+const ProblemPicker = () => {
     return (
         <div className='full-width center-text'>
             <Link className='link center-text' to="/">Enter Problem</Link>

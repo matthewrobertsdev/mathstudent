@@ -1,4 +1,3 @@
-import curriculum from  '../model/Curriculum';
 
 const _getTeaching = (creationTeaching) => ({ type: 'GET_TEACHING', creationTeaching });
 
@@ -125,10 +124,3 @@ export const updateURL = () => {
 	   payload: window.location.pathname
 	 }
  }
-
- export const getTopics = () => {
-	return {
-		 type: 'GET_TOPICS',
-		 payload: curriculum
-	}
-	 }

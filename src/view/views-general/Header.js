@@ -10,7 +10,7 @@ const Header = () => {
       <Link className={getClassNameLeft(URLpathname, '/curriculum')} to='/curriculum' 
       key={1}>Curriculum</Link>
       <Link className={getClassNameLeft(URLpathname, '/teachings')} to='/teachings' 
-      key={2}>Topics</Link>
+      key={2}>Teachings</Link>
       <Link className={getClassNameLeft(URLpathname, '/version')} 
       to='/version' key={3}>Version</Link>
       <Link className={getClassNameRight(URLpathname, '/login')} 
