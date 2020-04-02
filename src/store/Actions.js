@@ -29,6 +29,8 @@ const _createTeachingObject = (teaching) => ({ type: 'CREATE_TEACHING_OBJECT', t
 
 const _setParamaterLabels = (paramaterLabels) => ({ type: 'SET_PARAMETER_LABELS', paramaterLabels});
 
+const _setFound = () => ({ type: 'SET_FOUND'});
+
 
 export const getTeaching = (teachingName) => {
 	return (dispatch) => {
@@ -37,6 +39,9 @@ export const getTeaching = (teachingName) => {
 																		   dispatch(_getTeaching(teaching.default));
 																		   }).catch(function(error) { console.log(error); dispatch(_getTeaching(undefined)) }); };
 };
+
+export const setFound = () => {return (dispatch) => { return dispatch(_setFound()); }; };
+
 
 export const clearCreationTeaching = () => {return (dispatch) => { return dispatch(_clearCreationTeaching({})); }; };
 

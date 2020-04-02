@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getTeaching, clearCreationTeaching, updateURL, setTeachingObjectName, setDisplayTeaching, updateActiveValue} from '../../store/Actions';
+import { getTeaching, clearCreationTeaching, updateURL, setTeachingObjectName, setDisplayTeaching, updateActiveValue, setFound} from '../../store/Actions';
 import isMobile from '../../utilities/IsMobile';
 import NumberKeyboard from '../keyboard-views/NumberKeyboard';
 import KeyboardSpacer from '../keyboard-views/KeyboardSpacer';
 import CreationSection from '../sections-and-panels/CreationSection';
 import 'react-simple-keyboard/build/css/index.css';
 import '../../styles/app.css'
-import UncreatedView from '../UncreatedView'
+import UncreatedTeachingView from './UncreatedTeachingView'
 import AdView from '../AdView';
 import AboutSection from '.././teaching-views/AboutSection';
 import ProblemPicker from './ProblemPicker'
@@ -29,6 +29,7 @@ const mapStateToProps = (state) => {
 //These need to be linted for redudant actions
 const mapDispatchToProps = (dispatch) => {
 	return {
+		setFound: () => { dispatch(setFound()); },
 		getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
 		clearCreationTeaching: () => { dispatch(clearCreationTeaching()); }, 
 		updateURL: () => { dispatch(updateURL()); },
@@ -53,6 +54,7 @@ class UnconnectedTeachingView extends React.Component {
 	render() { return (<div> {this.createView()} </div>); }
 
 	createView() {
+		this.props.setFound()
 		if (this.props.teacher) {
 			if (this.props.teacher.teaching) {
 				return (
@@ -84,7 +86,7 @@ class UnconnectedTeachingView extends React.Component {
 				);
 			}
 		} else if (this.props.teacher==null) {
-			return <UncreatedView className='full-width center-text'/>
+			return <UncreatedTeachingView className='center-text'/>
 		}
 	}
 	displayCreatedObject() {

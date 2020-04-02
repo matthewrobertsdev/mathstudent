@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect } from 'react-redux';
-import TeachingView from '../view/teaching-views/small-views/TeachingView'
+import TeachingsOverview from '../components/teaching-views/TeachingsOverview'
 import '../styles/app.css'
 const mapStateToProps = (state) => { return { curriculum: state.teacher.curriculum } };
 const CurrciulumPage = (props) => {
@@ -19,7 +19,7 @@ const CurrciulumPage = (props) => {
             return (
                 <div key={index}>
                   <h2 className="heading heading-text-size">{course.name}</h2>
-                  {<TeachingView topics={course.topics}/>}
+                  {<TeachingsOverview topics={course.topics}/>}
                 <br></br>
                 </div>
             );

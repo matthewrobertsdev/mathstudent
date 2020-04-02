@@ -8,6 +8,7 @@ const initialState = {
 
 export default function teacherReducer(state = initialState, action) {
     switch (action.type) {
+        case 'SET_FOUND': return {...state, pageNotFound: false}
         case 'SET_DISPLAY_TEACHING': return { ...state, displayTeaching: action.isDisplayed };
         case 'UPDATE_ACTIVE_METHOD': return { ...state, activeMethod: action.activeMethod };
         case 'CREATE_TEACHING_OBJECT':
