@@ -124,19 +124,19 @@ body{background-color: rgb(209, 28, 28);}
     .text-link{color: rgb(141, 164, 235);}
     .nav-bar {background-color: rgb(8, 0, 96);}
 
-    body{background-color: rgb(120, 2, 20);background-color: rgb(99, 0, 15);}
+    body{background-color: rgb(99, 0, 15);}
     .heading{color: white;}
-    .subject-view{background-color: rgb(120, 2, 20);background-color: rgb(99, 0, 15);}
+    .subject-view{background-color: rgb(99, 0, 15);}
     .link { color: white; background-color: rgb(8, 0, 96);}
     .link:hover{ color: white; background-color:rgb(6, 18, 57);}
     .nav-link{ color: white; background-color:rgb(8, 0, 96);}
     .nav-link:hover{ color: white; background-color:rgb(6, 18, 57);}
     .selected-nav-link{color: white;}
     .accordion__button {
-        background-color: rgb(120, 2, 20);background-color: rgb(120, 2, 20);
+        background-color: rgb(99, 0, 15);;
         color: white;
     }
-    .accordion__button:hover { background-color:rgb(120, 2, 20); background-color: rgb(120, 2, 20);}
+    .accordion__button:hover { background-color: rgb(99, 0, 15);}
     .main-text-color{color: white;}
     .leader-board-ad{color: white; background-color:rgb(8, 0, 96); border-color: white;}
     .mobile-banner{color: white; background-color:rgb(8, 0, 96); border-color: white;}
