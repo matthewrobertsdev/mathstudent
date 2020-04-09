@@ -18,7 +18,7 @@ const CurrciulumPage = (props) => {
             console.log(props.curriculum)
             return (
                 <div key={index}>
-                  <h2 className="heading heading-text-size">{course.name}</h2>
+                  <h1 className="heading-text-size">{course.name}</h1>
                   {<TeachingsOverview topics={course.topics}/>}
                 <br></br>
                 </div>

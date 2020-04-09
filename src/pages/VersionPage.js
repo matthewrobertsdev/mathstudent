@@ -3,13 +3,11 @@ import {mainHeading} from '../styles/Styles'
 const VersionPage = () => {
     return <div className="center-text">
     {tellLastChecked()}
-    <br></br><br></br>
     {tellVersion()}
-    <br></br><br></br>
-    <span 
+    <h1 
     className={mainHeading}>
-        Reload the page to see if a new update has been found.</span>
-        <br></br><br></br><span 
+        Reload the page to see if a new update has been found.</h1>
+        <span 
     className={mainHeading}>
         Latest cached version only runs if you have closed every single page in your browser that has Math Teacher, 
         so that none were open so that the new version could be launched when you next opened a Math Teacher page.</span>
@@ -17,15 +15,15 @@ const VersionPage = () => {
     function tellVersion(){
         let lastUpdated=localStorage.getItem('lastUpdated');
         if (lastUpdated){
-            return <span className={mainHeading}>Latest Cached Version: {lastUpdated}.</span>
+            return <h1 className="center-text large-heading-size">Latest Cached Version: {lastUpdated}.</h1>
         } else {
-            return <span className={mainHeading}>No version fully cached yet.</span>
+            return <h1 className="center-text large-heading-size">No version fully cached yet.</h1>
         }
     }
     function tellLastChecked(){
         let lastChecked=localStorage.getItem('lastChecked');
         if (lastChecked){
-            return <span className={mainHeading}>Update found on {lastChecked}.</span>
+            return <h1 className="center-text large-heading-size">Update found on {lastChecked}.</h1>
         }
     }
 }
