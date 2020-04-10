@@ -43,11 +43,11 @@ h1{color: rgb(255, 255, 255);}
 .nav-link{ /* color: gold; background-color: rgb(110, 60, 14); */ color: gold;
     background-color: rgb(22, 49, 131); padding: 10px 14px; text-align: center; 
     text-decoration: none; display: inline-block; border-radius: 10px;
-    margin: 0px 0px; font-weight: 600; font-size: large;}
+    margin: 5px 0px 5px 0px; font-weight: 600; font-size: large;}
 .nav-link:hover { background-color: royalblue; /* background-color: rgb(158, 89, 25); */ }
 .selected-nav-link {color: gold; 
     padding: 10px 10px 9px 14px; text-align: center; text-decoration: none; display: inline-block; 
-    border-radius: 0px;margin: 0px 0px; font-weight: 600; font-size: large; border-bottom: 5px solid rgb(19, 151, 59);}
+    border-radius: 0px;margin: 5px 0px 0px 0px; font-weight: 600; font-size: large; border-bottom: 5px solid rgb(19, 151, 59);}
 .mathquill-field { background-color: rgb(228, 171, 85); border-color: rgb(61, 32, 6);
     color: rgb(61, 32, 6); border-radius: 3.5px;}
 .mathquill-field:focus { outline: none !important; border-color: gold; box-shadow: 0 0 10px gold; }
