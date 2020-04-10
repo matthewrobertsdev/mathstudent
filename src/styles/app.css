@@ -126,7 +126,7 @@ h1{color: rgb(255, 255, 255);}
     .nav-bar {background-color: rgb(14, 0, 164);}
 
     body{background-color: rgb(34, 34, 33);}
-    h1{color: rgb(199, 1, 31);}
+    h1{color: rgb(231, 0, 35);}
     .heading{color: white}
     h2{color: white}
     .subject-view{background-color: rgb(34, 34, 33);}
@@ -137,7 +137,7 @@ h1{color: rgb(255, 255, 255);}
     .selected-nav-link{}
     .accordion__button {
         background-color: rgb(34, 34, 33);
-        color: rgb(199, 1, 31);;
+        color: rgb(231, 0, 35);
     }
     .accordion__button:hover { background-color: rgb(34, 34, 33)}
     .main-text-color{color: white;}
