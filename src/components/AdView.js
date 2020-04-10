@@ -6,7 +6,8 @@ function AdView(){
 			<br></br>
 		    There is an ad here when you are online.<br></br>Ads help Math Teacher make money.</div>
 		    <div className='hide-for-big mobile-banner center-text'>
-		    There is an ad here when you are online.<br></br><br></br>Ads help Math Teacher make money.</div>
+			<br></br>
+		    There is an ad here when you are online.<br></br>Ads help Math Teacher make money.<br></br><br></br></div>
 		    </div>
         );
 }

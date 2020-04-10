@@ -76,7 +76,7 @@ h1{color: rgb(255, 255, 255);}
 .full-width { width:90%; margin-left: 5%; margin-right: 5%;}
 .new-line-div { margin-bottom: 20px; }
 .mobile-banner { color: gold; width: 320; height: 100; /* background-color: rgb(110, 60, 14); */
-    background-color: rgb(22, 49, 131); display: inline-block;}
+    background-color: rgb(22, 49, 131); display: inline-block; font-weight: 600; font-size: large;}
 .large-rectangle { color: gold; width: 336; height: 280; /* background-color: rgb(110, 60, 14); */
     background-color: rgb(22, 49, 131); display: inline-block;}
 .block-math { width: 200px; height: 200px; }
