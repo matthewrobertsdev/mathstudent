@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getTeaching, clearCreationTeaching, updateURL, setTeachingObjectName, setDisplayTeaching, updateActiveValue, setFound} from '../../store/Actions';
+import { getTeaching, clearCreationTeaching, setTeachingObjectName, setDisplayTeaching, updateActiveValue, setFound} from '../../store/Actions';
 import isMobile from '../../utilities/IsMobile';
 import NumberKeyboard from '../keyboard-views/NumberKeyboard';
 import KeyboardSpacer from '../keyboard-views/KeyboardSpacer';
@@ -32,7 +32,6 @@ const mapDispatchToProps = (dispatch) => {
 		setFound: () => { dispatch(setFound()); },
 		getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
 		clearCreationTeaching: () => { dispatch(clearCreationTeaching()); }, 
-		updateURL: () => { dispatch(updateURL()); },
 		setTeachingObjectName: (teachingName) => { dispatch(setTeachingObjectName(teachingName)); },
 		setDisplayTeaching: (teachingName) => { dispatch(setDisplayTeaching(teachingName)); },
 		updateActiveValue: (key) =>{dispatch(updateActiveValue(key));}
@@ -44,7 +43,7 @@ class UnconnectedTeachingView extends React.Component {
 		const { match: { params } } = this.props;
 		this.props.clearCreationTeaching(); this.props.setTeachingObjectName(params.teachingName);
 		this.props.getTeaching(params.teachingName); document.title = params.teachingName
-		this.teachingViewRef = React.createRef(); this.props.updateURL(window.location.href);
+		this.teachingViewRef = React.createRef();
 	}
 	componentDidUpdate() {
 		if (this.props.teacher) { if (this.props.teaching) { document.title = this.props.teacher.teaching.displayNamePlural } };

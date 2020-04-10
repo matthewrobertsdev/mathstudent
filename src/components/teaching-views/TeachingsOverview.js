@@ -3,7 +3,9 @@ import TeachingLink from '../links/TeachingLink'
 const TeachingsOverview=(props) => {
     return (createView(props));
     function createView(){
-    { if (props.topics==null) { return null; }
+      if (props.topics==null) { 
+        return null; 
+      }
         const subjectsList = props.topics.map( (topic, index) => {
           return (
               <div key={index} i={index}>
@@ -13,7 +15,6 @@ const TeachingsOverview=(props) => {
           );
         });
         return subjectsList
-      }
     }
-    }
+}
 export default TeachingsOverview;

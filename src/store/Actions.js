@@ -5,8 +5,6 @@ const _clearCreationTeaching = () => ({ type: 'CLEAR_CREATION_TEACHING' });
 
 const _clearMethodTeaching = () => ({ type: 'CLEAR_METHOD_TEACHING' });
 
-const _updateURL = (URLpathname) => ({ type: 'UPDATE_URL', URLpathname });
-
 const _addToInputMap = (keyID, value) => ({ type: 'ADD_TO_INPUT_MAP', keyID, value });
 
 const _updateKeyAndValue = (key, value) => ({ type: 'UPDATE_KEY_AND_VALUE', key, value });
@@ -122,10 +120,3 @@ export const updateActiveMethod = (activeMethod) =>
 { return (dispatch) => { return dispatch(_updateActiveMethod(activeMethod)); }; }
 
 const _updateActiveMethod = (activeMethod) => ({ type: 'UPDATE_ACTIVE_METHOD', activeMethod });
-
-export const updateURL = () => {
-	return {
-	   type: "UPDATE_URL",
-	   payload: window.location.pathname
-	 }
- }

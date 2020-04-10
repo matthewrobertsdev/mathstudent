@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 const mapStateToProps = (state) => { return { pageNotFound: state.teacher.pageNotFound } };
 const UncreatedTeachingView = (props) => {
