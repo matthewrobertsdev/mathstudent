@@ -6,7 +6,7 @@ const initialState = {
     displayTeaching: false, paramaterLabels: [], pageNotFound: false, activeMethod: '', methodTeacher: {}
 };
 
-export default function teacherReducer(state = initialState, action) {
+export default function teachingReducer(state = initialState, action) {
     switch (action.type) {
         case 'SET_FOUND': return {...state, pageNotFound: false}
         case 'SET_DISPLAY_TEACHING': return { ...state, displayTeaching: action.isDisplayed };

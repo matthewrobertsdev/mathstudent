@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import {connect } from 'react-redux';
 import TeachingsOverview from '../components/teaching-views/TeachingsOverview'
 import '../styles/app.css'
-const mapStateToProps = (state) => { return { curriculum: state.teacher.curriculum } };
+const mapStateToProps = (state) => { return { curriculum: state.teaching.curriculum } };
 const CurrciulumPage = (props) => {
   useEffect(()=>{document.title = "Curriculum"})
         return (

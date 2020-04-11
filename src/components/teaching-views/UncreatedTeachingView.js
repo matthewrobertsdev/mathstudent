@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-const mapStateToProps = (state) => { return { pageNotFound: state.teacher.pageNotFound } };
+const mapStateToProps = (state) => { return { pageNotFound: state.teaching.pageNotFound } };
 const UncreatedTeachingView = (props) => {
     return createView(props)
     function createView(props) {

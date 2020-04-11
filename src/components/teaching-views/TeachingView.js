@@ -47,8 +47,8 @@ const TeachingView = (props) => {
 	const dispatch=useDispatch()
 	const { match: { params } } = props;
 	dispatch(setTeacher(params.teachingName));
-	const teacher=useSelector(state=>state.teacher.teacher)
-	//useEffect(()=>{dispatch(setTeacher(params.teachingName));})
+	const teacher=useSelector(state=>state.teaching.teacher)
+	useEffect(()=>{dispatch(setFound());}, [])
 	//console.log(teacher)
 	/*
 	componentDidUpdate() {

@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import input from './InputReducer';
 import misc from './DefaultReducer';
-import teacher from './TeacherReducer';
+import teaching from './TeachingReducer';
 export default combineReducers({
   input,
-  teacher,
+  teaching,
   misc
 })
