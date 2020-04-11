@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getTeaching, clearCreationTeaching, setTeachingObjectName, setDisplayTeaching, updateActiveValue, setFound} from '../../store/Actions';
 import isMobile from '../../utilities/IsMobile';
@@ -31,13 +31,13 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		setFound: () => { dispatch(setFound()); },
 		getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
-		clearCreationTeaching: () => { dispatch(clearCreationTeaching()); }, 
 		setTeachingObjectName: (teachingName) => { dispatch(setTeachingObjectName(teachingName)); },
 		setDisplayTeaching: (teachingName) => { dispatch(setDisplayTeaching(teachingName)); },
 		updateActiveValue: (key) =>{dispatch(updateActiveValue(key));}
 	};
 };
-class UnconnectedTeachingView extends React.Component {
+const TeachingView = (props) => {
+	/*
 	constructor(props) {
 		super(props); this.state = { displayKeyboard: false };
 		const { match: { params } } = this.props;
@@ -45,24 +45,25 @@ class UnconnectedTeachingView extends React.Component {
 		this.props.getTeaching(params.teachingName); document.title = params.teachingName
 		this.teachingViewRef = React.createRef();
 	}
+	*/
+	useEffect(()=>{})
+	/*
 	componentDidUpdate() {
 		if (this.props.teacher) { if (this.props.teaching) { document.title = this.props.teacher.teaching.displayNamePlural } };
 	}
 	componentWillUnmount() { this.props.setDisplayTeaching(false); }
+	*/
+	return (<div> {createView()} </div>); 
 
-	render() { return (<div> {this.createView()} </div>); }
-
-	createView() {
-		this.props.setFound()
-		if (this.props.teacher) {
-			if (this.props.teacher.teaching) {
+	function createView() {
+		//props.setFound()
+		if (props.teacher && props.teacher.teaching) {
 				return (
-					<div >
-						<Accordion allowZeroExpanded={true} allowMultipleExpanded={true} preExpanded={this.expandTheseIfNotMobile()}>
+						<Accordion allowZeroExpanded={true} allowMultipleExpanded={true} preExpanded={expandTheseIfNotMobile()}>
 						<AccordionItem uuid={'problems'}>
         <AccordionItemHeading className="heading large-heading-size">
             <AccordionItemButton>
-			{this.props.teacher.teaching.displayNameSingular+" Problems"}
+			{props.teacher.teaching.displayNameSingular+" Problems"}
 						</AccordionItemButton>
 				</AccordionItemHeading>
 				<AccordionItemPanel>
@@ -73,7 +74,7 @@ class UnconnectedTeachingView extends React.Component {
 						<AccordionItem uuid='about'>
         <AccordionItemHeading className="heading large-heading-size">
             <AccordionItemButton>
-						{"About "+this.props.teacher.teaching.displayNamePlural}
+						{"About "+props.teacher.teaching.displayNamePlural}
 						</AccordionItemButton>
 				</AccordionItemHeading>
 				<AccordionItemPanel>
@@ -81,32 +82,31 @@ class UnconnectedTeachingView extends React.Component {
 						</AccordionItemPanel>
 			</AccordionItem>
 			</Accordion>
-						</div>
 				);
-			}
-		} else if (this.props.teacher==null) {
+		} else if (props.teacher==null) {
 			return <UncreatedTeachingView className='center-text'/>
 		}
 	}
-	displayCreatedObject() {
+	/*
+	function displayCreatedObject() {
 		if (this.props.displayTeaching) {
 			return (<div ref={this.teachingViewRef}>{<CreationSection />}<br></br>
 				<br></br><AdView /></div>
 			);
 		} else { return (<span ref={this.teachingViewRef}></span>); }
 	}
-	addKeyboardForMobile() {
+	*/
+	function addKeyboardForMobile() {
 		if (isMobile()) {
-			return <div><NumberKeyboard className={this.props.displayKeyboard ?
-				'display-keyboard' : 'hide-keyboard'} keyPressHandler={(key)=>this.props.updateActiveValue(key)} /><KeyboardSpacer /></div>
+			return <div><NumberKeyboard className={props.displayKeyboard ?
+				'display-keyboard' : 'hide-keyboard'} keyPressHandler={(key)=>props.updateActiveValue(key)} /><KeyboardSpacer /></div>
 		}
 		else { return <div><br></br><br></br><br></br><br></br></div> }
 	}
 	//for accordian tabs
-	expandTheseIfNotMobile() {
+	function expandTheseIfNotMobile() {
 		if (!isMobile()) { return ['problems', 'about'];} 
 		else { return []; }
 	}
 }
-const TeachingView = connect(mapStateToProps, mapDispatchToProps)(UnconnectedTeachingView)
 export default TeachingView;
