@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { connect, useDispatch } from 'react-redux';
-import { getTeaching, clearCreationTeaching, setTeacher, setDisplayTeaching, updateActiveValue, setFound} from '../../store/Actions';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { setTeacher, clearCreationTeaching, setDisplayTeaching, updateActiveValue, setFound} from '../../store/Actions';
 import isMobile from '../../utilities/IsMobile';
 import NumberKeyboard from '../keyboard-views/NumberKeyboard';
 import KeyboardSpacer from '../keyboard-views/KeyboardSpacer';
@@ -30,7 +30,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		setFound: () => { dispatch(setFound()); },
-		getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
 		setDisplayTeaching: (teachingName) => { dispatch(setDisplayTeaching(teachingName)); },
 		updateActiveValue: (key) =>{dispatch(updateActiveValue(key));}
 	};
@@ -47,7 +46,10 @@ const TeachingView = (props) => {
 	*/
 	const dispatch=useDispatch()
 	const { match: { params } } = props;
-	useEffect(()=>{document.title = params.teachingName; dispatch(setTeacher(params.teachingName))})
+	dispatch(setTeacher(params.teachingName));
+	const teacher=useSelector(state=>state.teacher.teacher)
+	//useEffect(()=>{dispatch(setTeacher(params.teachingName));})
+	//console.log(teacher)
 	/*
 	componentDidUpdate() {
 		if (this.props.teacher) { if (this.props.teaching) { document.title = this.props.teacher.teaching.displayNamePlural } };
@@ -58,13 +60,15 @@ const TeachingView = (props) => {
 
 	function createView() {
 		//props.setFound()
-		if (props.teacher && props.teacher.teaching) {
+		console.log(teacher)
+		if (teacher) {
+			document.title = params.teachingName;
 				return (
 						<Accordion allowZeroExpanded={true} allowMultipleExpanded={true} preExpanded={expandTheseIfNotMobile()}>
 						<AccordionItem uuid={'problems'}>
         <AccordionItemHeading className="heading large-heading-size">
             <AccordionItemButton>
-			{props.teacher.teaching.displayNameSingular+" Problems"}
+			{teacher.teaching.displayNameSingular+" Problems"}
 						</AccordionItemButton>
 				</AccordionItemHeading>
 				<AccordionItemPanel>
@@ -75,16 +79,16 @@ const TeachingView = (props) => {
 						<AccordionItem uuid='about'>
         <AccordionItemHeading className="heading large-heading-size">
             <AccordionItemButton>
-						{"About "+props.teacher.teaching.displayNamePlural}
+						{"About "+teacher.teaching.displayNamePlural}
 						</AccordionItemButton>
 				</AccordionItemHeading>
 				<AccordionItemPanel>
-					<AboutSection/>
+					
 						</AccordionItemPanel>
 			</AccordionItem>
 			</Accordion>
 				);
-		} else if (props.teacher==null) {
+		} else if (teacher==undefined) {
 			return <UncreatedTeachingView className='center-text'/>
 		}
 	}

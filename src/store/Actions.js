@@ -29,7 +29,7 @@ const _setParamaterLabels = (paramaterLabels) => ({ type: 'SET_PARAMETER_LABELS'
 
 const _setFound = () => ({ type: 'SET_FOUND'});
 
-
+/*
 export const getTeaching = (teachingName) => {
 	return (dispatch) => {
 		return import(`../model/mathteachers/${teachingName}Teacher`).then(teaching => {
@@ -37,6 +37,7 @@ export const getTeaching = (teachingName) => {
 																		   dispatch(_getTeaching(teaching.default));
 																		   }).catch(function(error) { console.log(error); dispatch(_getTeaching(undefined)) }); };
 };
+*/
 
 export const setFound = () => {return (dispatch) => { return dispatch(_setFound()); }; };
 
@@ -121,10 +122,18 @@ export const updateActiveMethod = (activeMethod) =>
 
 const _updateActiveMethod = (activeMethod) => ({ type: 'UPDATE_ACTIVE_METHOD', activeMethod });
 
-export const setTeacher=(teacherName)=>{return {type: "SET_TEACHER", payload: teacherName}}
+/*export const setTeacher=(teacherName)=>{return {type: "SET_TEACHER", payload: teacherName}}*/
 
 //export const setTeachingObject = (objectName) => { 
 	//return (dispatch) => { return dispatch(_setTeachingObject(objectName)); }; }
 
 //export const setTeachingObjectName = (objectName) => 
 //{ return (dispatch) => { return dispatch(_setTeachingObjectName(objectName)); }; }
+
+export const setTeacher = (teachingName) => {
+	return (dispatch) => {
+		return import(`../model/mathteachers/${teachingName}Teacher`).then(teaching => {
+																		   console.log(teaching.default)
+																		   dispatch({type: "SET_TEACHER", payload: teaching.default});
+																		   }).catch(function(error) { console.log(error); dispatch({type: "SET_TEACHER", payload: undefined})}); };
+};
