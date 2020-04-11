@@ -41,7 +41,7 @@ h1{color: rgb(255, 255, 255);}
 .main-text-color { color: gold; }
 .main-colors { color: black; background-color: rgb(110, 60, 14); }
 .nav-link{ /* color: gold; background-color: rgb(110, 60, 14); */ color: gold;
-    background-color: rgb(22, 49, 131); padding: 10px 14px; text-align: center; 
+    background-color: rgb(22, 49, 131); padding: 10px 10px 14px 14px; text-align: center; 
     text-decoration: none; display: inline-block; border-radius: 10px;
     margin: 5px 0px 4px 0px; font-weight: 600; font-size: large;}
 .nav-link:hover { background-color: royalblue; /* background-color: rgb(158, 89, 25); */ }
