@@ -120,3 +120,11 @@ export const updateActiveMethod = (activeMethod) =>
 { return (dispatch) => { return dispatch(_updateActiveMethod(activeMethod)); }; }
 
 const _updateActiveMethod = (activeMethod) => ({ type: 'UPDATE_ACTIVE_METHOD', activeMethod });
+
+export const setTeacher=(teacherName)=>{return {type: "SET_TEACHER", payload: teacherName}}
+
+//export const setTeachingObject = (objectName) => { 
+	//return (dispatch) => { return dispatch(_setTeachingObject(objectName)); }; }
+
+//export const setTeachingObjectName = (objectName) => 
+//{ return (dispatch) => { return dispatch(_setTeachingObjectName(objectName)); }; }

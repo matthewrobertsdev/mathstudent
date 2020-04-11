@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 const HomePage = () => {
+    useEffect(()=>{document.title = "Math Teacher"})
     return (<div className="text-margins">
         <h1 className="large-heading-size center-text">Math Teacher is a website 
         dedicated to helping you learn math, and teaching you math, all for free.</h1>

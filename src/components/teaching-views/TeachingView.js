@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { getTeaching, clearCreationTeaching, setTeachingObjectName, setDisplayTeaching, updateActiveValue, setFound} from '../../store/Actions';
+import { connect, useDispatch } from 'react-redux';
+import { getTeaching, clearCreationTeaching, setTeacher, setDisplayTeaching, updateActiveValue, setFound} from '../../store/Actions';
 import isMobile from '../../utilities/IsMobile';
 import NumberKeyboard from '../keyboard-views/NumberKeyboard';
 import KeyboardSpacer from '../keyboard-views/KeyboardSpacer';
@@ -31,7 +31,6 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		setFound: () => { dispatch(setFound()); },
 		getTeaching: (teachingName) => { dispatch(getTeaching(teachingName)); },
-		setTeachingObjectName: (teachingName) => { dispatch(setTeachingObjectName(teachingName)); },
 		setDisplayTeaching: (teachingName) => { dispatch(setDisplayTeaching(teachingName)); },
 		updateActiveValue: (key) =>{dispatch(updateActiveValue(key));}
 	};
@@ -46,7 +45,9 @@ const TeachingView = (props) => {
 		this.teachingViewRef = React.createRef();
 	}
 	*/
-	useEffect(()=>{})
+	const dispatch=useDispatch()
+	const { match: { params } } = props;
+	useEffect(()=>{document.title = params.teachingName; dispatch(setTeacher(params.teachingName))})
 	/*
 	componentDidUpdate() {
 		if (this.props.teacher) { if (this.props.teaching) { document.title = this.props.teacher.teaching.displayNamePlural } };

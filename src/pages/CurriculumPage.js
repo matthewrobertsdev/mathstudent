@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {connect } from 'react-redux';
 import TeachingsOverview from '../components/teaching-views/TeachingsOverview'
 import '../styles/app.css'
 const mapStateToProps = (state) => { return { curriculum: state.teacher.curriculum } };
 const CurrciulumPage = (props) => {
+  useEffect(()=>{document.title = "Curriculum"})
         return (
           <div className='subject-view'>
             <br></br>

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {mainHeading} from '../styles/Styles'
 const VersionPage = () => {
+    useEffect(()=>{document.title = "Version"})
     return <div className="center-text">
     {tellLastChecked()}
     {tellVersion()}

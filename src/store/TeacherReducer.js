@@ -32,13 +32,13 @@ export default function teacherReducer(state = initialState, action) {
         case 'CLEAR_METHOD_TEACHING': return { ...state, methodTeacher: {} };
         case 'UPDATE_CREATION_STRINGS': return { ...state, creationStrings: action.creationStrings.slice() };
         case 'UPDATE_INSTANCE_STRINGS': console.log(action.instanceStrings); return { ...state, instanceStrings: action.instanceStrings.slice() };
-        case 'SET_TEACHING_OBJECT': import(`../math${action.objectName}`).then(teachingObj => {
+        case 'SET_TEACHER': import(`../math${action.objectName}`).then(teachingObj => {
             return { ...state, creationTeaching: teachingObj };
         }).catch(function (error) {
             console.log(error);
             return state;
         }); return state;
-        case 'SET_TEACHING_OBJECT_NAME': return { ...state, teachingObjectName: action.objectName };
+        case 'SET_TEACHING_OBJECT_NAME': return { ...state, teachingObjectName: action.payload };
         case 'SET_PARAMETER_LABELS': return { ...state, paramaterLabels: action.paramaterLabels };
         case 'UPDATE_SIMPLEST_FORM': return { ...state, simplestForm: action.simplestForm };
         default: return state;
