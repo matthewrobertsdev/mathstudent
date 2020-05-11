@@ -8,7 +8,7 @@ const CurrciulumPage = (props) => {
   //update page title on navigation to page
   useEffect(() => { document.title = "Curriculum" })
   //get the curriculum (courses)
-  const curriculum = useSelector(state => state.teaching)
+  const curriculum = useSelector(state => state.teaching.curriculum)
   return (
     <div className='subject-view'>
       <br></br>
@@ -17,7 +17,7 @@ const CurrciulumPage = (props) => {
   );
   function createCourseViews(props) {
     //if curriculm isn't updated from store yet, return null
-    if (props.curriculum == null) {
+    if (curriculum == null) {
       return null
     }
     //create course GUIs
