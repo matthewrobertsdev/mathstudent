@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+//a description of the app.
 const HomePage = () => {
+    //set page title on navigation to page
     useEffect(()=>{document.title = "Math Teacher"})
     return (<div className="text-margins">
         <h1 className="large-heading-size center-text">Math Teacher is a website 

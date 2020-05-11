@@ -1,31 +1,39 @@
 import React, { useEffect } from 'react';
-import {connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import TeachingsOverview from '../components/teaching-views/TeachingsOverview'
 import '../styles/app.css'
-const mapStateToProps = (state) => { return { curriculum: state.teaching.curriculum } };
+//shows courses in sections
+//courses have a title, and a list of topics
 const CurrciulumPage = (props) => {
-  useEffect(()=>{document.title = "Curriculum"})
-        return (
-          <div className='subject-view'>
-            <br></br>
-            {createCourseViews(props)}
-          </div>
-        );
-        function createCourseViews(props) {
-          if (props.curriculum==null) {
-            return null
-          }
-          const coursesList = props.curriculum.map( (course, index) => {
-            console.log(props.curriculum)
-            return (
-                <div key={index}>
-                  <h1 className="heading-text-size">{course.name}</h1>
-                  {<TeachingsOverview topics={course.topics}/>}
-                <br></br>
-                </div>
-            );
-          });
-          return coursesList
-        }
+  //update page title on navigation to page
+  useEffect(() => { document.title = "Curriculum" })
+  //get the curriculum (courses)
+  const curriculum = useSelector(state => state.teaching)
+  return (
+    <div className='subject-view'>
+      <br></br>
+      {createCourseViews(props)}
+    </div>
+  );
+  function createCourseViews(props) {
+    //if curriculm isn't updated from store yet, return null
+    if (props.curriculum == null) {
+      return null
+    }
+    //create course GUIs
+    const coursesList = curriculum.map((course, index) => {
+      console.log(curriculum)
+      return (
+        <div key={index}>
+          {/*course name*/}
+          <h1 className="heading-text-size">{course.name}</h1>
+          {/*all topics in course*/}
+          {<TeachingsOverview topics={course.topics} />}
+          <br></br>
+        </div>
+      );
+    });
+    return coursesList
+  }
 }
-export default connect(mapStateToProps)(CurrciulumPage);
+export default CurrciulumPage;
