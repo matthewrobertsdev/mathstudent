@@ -9,19 +9,21 @@ const CurrciulumPage = (props) => {
   useEffect(() => { document.title = "Curriculum" })
   //get the curriculum (courses)
   const curriculum = useSelector(state => state.teaching.curriculum)
+  //if curriculm isn't updated from store yet, return null
+  if (curriculum == null) {
+    return null
+  } else {
   return (
-    <div className='subject-view'>
-      <br></br>
-      {createCourseViews(props)}
-    </div>
+    //else create the course views
+    createCourseViews(props)
   );
+}
   function createCourseViews(props) {
-    //if curriculm isn't updated from store yet, return null
-    if (curriculum == null) {
-      return null
-    }
-    //create course GUIs
-    const coursesList = curriculum.map((course, index) => {
+    return (
+      <div className='subject-view'>
+        <br></br>
+    {/*create course GUIs*/}
+   {curriculum.map((course, index) => {
       console.log(curriculum)
       return (
         <div key={index}>
@@ -32,8 +34,8 @@ const CurrciulumPage = (props) => {
           <br></br>
         </div>
       );
-    });
-    return coursesList
+    })}
+     </div>)
   }
 }
 export default CurrciulumPage;
