@@ -47,7 +47,7 @@ h1{color: rgb(255, 255, 255);}
 .nav-link:hover { background-color: royalblue; /* background-color: rgb(158, 89, 25); */ }
 .selected-nav-link {color: gold; 
     padding: 10px 10px 9px 14px; text-align: center; text-decoration: none; display: inline-block; 
-    border-radius: 0px;margin: 5px 0px 0px 0px; font-weight: 600; font-size: large; border-bottom: 5px solid rgb(19, 151, 59);}
+    border-radius: 0px;margin: 5px 0px 4px 0px; font-weight: 600; font-size: large; border-bottom: 5px solid rgb(19, 151, 59);}
 .mathquill-field { background-color: rgb(228, 171, 85); border-color: rgb(61, 32, 6);
     color: rgb(61, 32, 6); border-radius: 3.5px;}
 .mathquill-field:focus { outline: none !important; border-color: gold; box-shadow: 0 0 10px gold; }

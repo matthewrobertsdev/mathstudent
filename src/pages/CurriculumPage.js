@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import TeachingsOverview from '../components/teaching-views/TeachingsOverview'
+import CourseOverview from '../components/teaching-views/CourseOverview'
 import '../styles/app.css'
 //shows courses in sections
 //courses have a title, and a list of topics
@@ -13,29 +13,21 @@ const CurrciulumPage = (props) => {
   if (curriculum == null) {
     return null
   } else {
-  return (
-    //else create the course views
-    createCourseViews(props)
-  );
-}
-  function createCourseViews(props) {
     return (
+      //else create the course views
       <div className='subject-view'>
         <br></br>
-    {/*create course GUIs*/}
-   {curriculum.map((course, index) => {
-      console.log(curriculum)
-      return (
-        <div key={index}>
-          {/*course name*/}
-          <h1 className="heading-text-size">{course.name}</h1>
-          {/*all topics in course*/}
-          {<TeachingsOverview topics={course.topics} />}
-          <br></br>
-        </div>
-      );
-    })}
-     </div>)
+        {/*create course GUIs*/}
+        {curriculum.map((course, index) => {
+          return (
+            <div key={index}>
+              {/*create CourseOverview*/}
+              <CourseOverview course={course} />
+              <br></br>
+            </div>
+          );
+        })}
+      </div>);
   }
 }
 export default CurrciulumPage;

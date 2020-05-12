@@ -7,13 +7,15 @@ import '../styles/app.css'
 const TeachingsPage = () => {
   //there is a model for all topics
   const topics = useSelector(state => state.teaching.topics)
+  //set title on navigation to page
   useEffect(() => { document.title = "Teachings" })
   return (
+    //create TeachingOverview for all topics
     <div className='subject-view'>
       <br></br><br></br>
-      {/*contains title and code name*/}
+      {/*contains titles with code names*/}
       <TeachingsOverview topics={topics} />
     </div>
   );
 }
-export default (TeachingsPage);
+export default TeachingsPage;
