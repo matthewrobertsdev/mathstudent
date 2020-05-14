@@ -15,8 +15,6 @@ import ProblemPicker from './ProblemPicker'
 import { Accordion } from 'react-accessible-accordion'
 import { AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel } from 'react-accessible-accordion'
 
-const AboutComponent = React.lazy(() => import('../teachingviews/AboutFraction'));
-
 const mapStateToProps = (state) => {
   return {
     teacher: state.teacher.teacher, displayTeaching: state.teacher.displayTeaching,
@@ -45,6 +43,8 @@ const TeachingView = (props) => {
   const { match: { params } } = props;
   dispatch(setTeacher(params.teachingName));
   const teacher = useSelector(state => state.teaching.teacher)
+  const AboutComponent = React.lazy(() => import(`../teachingviews/About${params.teachingName}`));
+
   //let AboutComponent=null
   /*useEffect(()=>{{import("../teachingviews/AboutFraction").then(component => {
     AboutComponent=component.default
