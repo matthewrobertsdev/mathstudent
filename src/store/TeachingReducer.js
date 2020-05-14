@@ -25,6 +25,7 @@ export default function teachingReducer(state = initialState, action) {
                 console.log('teaching was null');
                 return { ...state, pageNotFound: true };
             }
+            console.log("shouldn't be here")
             return { ...state, teacher: action.payload, pageNotFound: false };
         }
         case 'CLEAR_TEACHING': return { ...state, teacher: action.teaching, pageNotFound: false };

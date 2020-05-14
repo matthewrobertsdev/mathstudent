@@ -11,7 +11,7 @@ const TellVersionView = () => {
     </h1>
     )
   } else {
-    //otherwise, tells that no cahced version was found
+    //otherwise, tells that no cached version was found
     return (
     <h1 className="center-text large-heading-size">
       No version fully cached yet.
