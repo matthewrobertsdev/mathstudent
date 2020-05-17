@@ -109,11 +109,11 @@ h1{color: rgb(255, 255, 255);}
     animation: fadein 0.35s ease-in;
 }
 .katex { color:gold; }
-@media (min-width: 700px){
+@media (min-width: 800px){
   .ad { width: 728px; height: 90px;}
 
 }
-@media (max-width: 700px){
+@media (max-width: 800px){
   .ad { width: 320; height: 100; display: inline-block; font-weight: 600; font-size: large;}
 
 }

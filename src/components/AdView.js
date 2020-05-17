@@ -3,7 +3,7 @@ import React from 'react';
 //for large and small-mobile banner for small
 function AdView() {
   return (
-      /* ad for large */
+      /* leader board ad or mobile banner */
       <div className='ad center-text'>
         <br></br>
 		    There is an ad here when you are online.
