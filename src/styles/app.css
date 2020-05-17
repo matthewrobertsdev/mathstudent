@@ -8,15 +8,6 @@ h1{color: rgb(255, 255, 255);}
 .sticky-for-small{ position: relative;}
 @media (min-width: 700px) { .hide-for-big{ display: none !important; }  }
 @media (max-width: 700px) { .hide-for-small{ display: none !important; } }
-@media (max-width: 500px){
-    .creator-text{ font-size: 45px; font-weight: 400;}
-    .heading{
-        color: black; font-size: 1.50em; margin-top: 1em; margin-bottom: 1em;
-      margin-left: 0; margin-right: 0; font-weight: bold; }
-    .heading-size { font-size: 1.50em }
-    .large-heading-size{ font-size: 2.00em; }
-    .sticky-for-small{ position: sticky; }
-}
 @media (min-width: 500px){
     .creator-text-size{ font-size: 30px; font-weight: 400;}
     .heading{
@@ -70,13 +61,11 @@ h1{color: rgb(255, 255, 255);}
 .not-number-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; }
 .close-button { background-color: rgb(61, 32, 6); color: gold; border-radius: 7px; }
 .nav-bar { margin: 0; padding: 0; width: 100%; overflow: auto; background-color: rgb(22, 49, 131);}
-.leader-board-ad { color: gold; width: 728px; height: 90px; /* background-color: rgb(110, 60, 14); */
+.ad { color: gold; /* background-color: rgb(110, 60, 14); */
     background-color: rgb(22, 49, 131); display: inline-block; font-weight: 600; font-size: large;}
 .medium-rectangle { color: rgb(110, 60, 14); width: 300; height: 250; background-color: gold; display: inline-block; }
 .full-width { width:90%; margin-left: 5%; margin-right: 5%;}
 .new-line-div { margin-bottom: 20px; }
-.mobile-banner { color: gold; width: 320; height: 100; /* background-color: rgb(110, 60, 14); */
-    background-color: rgb(22, 49, 131); display: inline-block; font-weight: 600; font-size: large;}
 .large-rectangle { color: gold; width: 336; height: 280; /* background-color: rgb(110, 60, 14); */
     background-color: rgb(22, 49, 131); display: inline-block;}
 .block-math { width: 200px; height: 200px; }
@@ -120,7 +109,23 @@ h1{color: rgb(255, 255, 255);}
     animation: fadein 0.35s ease-in;
 }
 .katex { color:gold; }
+@media (min-width: 700px){
+  .ad { width: 728px; height: 90px;}
 
+}
+@media (max-width: 700px){
+  .ad { width: 320; height: 100; display: inline-block; font-weight: 600; font-size: large;}
+
+}
+@media (max-width: 500px){
+    .creator-text{ font-size: 45px; font-weight: 400;}
+    .heading{
+        color: black; font-size: 1.50em; margin-top: 1em; margin-bottom: 1em;
+      margin-left: 0; margin-right: 0; font-weight: bold; }
+    .heading-size { font-size: 1.50em }
+    .large-heading-size{ font-size: 2.00em; }
+    .sticky-for-small{ position: sticky; }
+}
 @media (prefers-color-scheme: dark){
     .text-link{color: rgb(141, 164, 235);}
     .nav-bar {background-color: rgb(14, 0, 164);}
@@ -141,7 +146,7 @@ h1{color: rgb(255, 255, 255);}
     }
     .accordion__button:hover { background-color: rgb(34, 34, 33)}
     .main-text-color{color: white;}
-    .leader-board-ad{background-color:rgb(17, 0, 206); border-color: white;}
+    .ad{background-color:rgb(17, 0, 206); border-color: white;}
     .creator-view{color: white;}
     .create-button{color: white; border-color: white;}
     .create-button{background-color: rgb(13, 100, 39);}
