@@ -26,7 +26,8 @@ h1{color: rgb(255, 255, 255);}
 .text-margins{ margin-left: 3%; margin-right: 3%; }
 .link { color: gold; background-color: rgb(22, 49, 131); /* background-color: rgb(110, 60, 14); */
     padding: 6px 14px; text-align: center; text-decoration: none; display: inline-block;
-    border-radius: 10px; font-weight: 600; font-size: large;}
+    border-radius: 10px; font-weight: 600; font-size: large;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);}
 .link:hover { /* background-color: rgb(158, 89, 25); */ background-color: royalblue; }
 .creator-view{ color: black; }
 .main-text-color { color: gold; }
@@ -59,10 +60,12 @@ h1{color: rgb(255, 255, 255);}
 .not-number-modal{ position: absolute; width: 300px; height: 350px; background-color: royalblue; color: rgb(61, 32, 6);
     text-align: center; left: 50%; margin-left: -100px; top: 30%; margin-top: -75px; border-radius: 14px; font-size: 40px;}
 .not-number-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; }
-.close-button { background-color: rgb(61, 32, 6); color: gold; border-radius: 7px; }
-.nav-bar { margin: 0; padding: 0; width: 100%; overflow: auto; background-color: rgb(22, 49, 131);}
+.close-button { background-color: rgb(61, 32, 6); color: gold; border-radius: 7px;}
+.nav-bar { margin: 0; padding: 0; width: 100%; overflow: auto; background-color: rgb(22, 49, 131);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);}
 .ad { color: gold; /* background-color: rgb(110, 60, 14); */
-    background-color: rgb(22, 49, 131); display: inline-block; font-weight: 600; font-size: large;}
+    background-color: rgb(22, 49, 131); display: inline-block; font-weight: 600; font-size: large;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);}
 .medium-rectangle { color: rgb(110, 60, 14); width: 300; height: 250; background-color: gold; display: inline-block; }
 .full-width { width:90%; margin-left: 5%; margin-right: 5%;}
 .new-line-div { margin-bottom: 20px; }

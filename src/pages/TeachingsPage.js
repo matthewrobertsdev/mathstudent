@@ -11,10 +11,12 @@ const TeachingsPage = () => {
   useEffect(() => { document.title = "Teachings" })
   return (
     //create TeachingOverview for all topics
+    <div>
+    <br></br>
     <div className='subject-view'>
-      <br></br><br></br>
       {/*contains titles with code names*/}
       <TeachingsOverview topics={topics} />
+    </div>
     </div>
   );
 }

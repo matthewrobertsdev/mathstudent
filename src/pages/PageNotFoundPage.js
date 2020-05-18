@@ -5,7 +5,6 @@ const PageNotFoundPage = () => {
   useEffect(() => { document.title = "Not Found" })
   return (
     <div>
-      <br></br>
       {/* heading tells that page cannot be found*/}
       <h1 className="center-text text-margins large-heading-size">
         Sorry, but the page you are looking for cannot be found.

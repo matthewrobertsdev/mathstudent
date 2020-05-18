@@ -16,7 +16,6 @@ const CurrciulumPage = (props) => {
     return (
       //else create the course views
       <div className='subject-view'>
-        <br></br>
         {/*create course GUIs*/}
         {curriculum.map((course, index) => {
           return (
