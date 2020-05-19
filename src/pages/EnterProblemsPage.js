@@ -1,12 +1,30 @@
 import React from 'react';
-import {useDispatch } from 'react-redux';
+import {useDispatch, useSelector } from 'react-redux';
 import { setTeacher } from '../store/Actions';
+import ProblemEntryView from '../components/teaching-views/ProblemEntryView';
 const EnterProblemsPage = (props) => {
   const dispatch = useDispatch()
   const { match: { params } } = props;
   dispatch(setTeacher(params.teachingName));
-  return (
-    null
-  )
+  const teacher = useSelector(state => state.teaching.teacher)
+
+  console.log(teacher)
+    if (teacher) {
+      return (
+      <div>
+        <h1>{teacher.teaching.displayNamePlural}</h1>
+        {teacher.teaching.methods.map((method, index) => {
+        return (
+          <div key={index}>
+            <ProblemEntryView method={method}></ProblemEntryView>
+            <br></br>
+          </div>
+        );
+      })}
+      </div>
+      )
+    } else if (teacher == undefined) {
+      return null
+    }
 }
 export default EnterProblemsPage

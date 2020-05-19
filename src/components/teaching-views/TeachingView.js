@@ -30,7 +30,7 @@ const TeachingView = (props) => {
               </AccordionItemButton>
             </AccordionItemHeading>
             <AccordionItemPanel>
-              <ProblemPicker />
+              <ProblemPicker teachingName={params.teachingName}/>
               <div className='center-text text-margins'><AdView /></div>
             </AccordionItemPanel>
           </AccordionItem>
