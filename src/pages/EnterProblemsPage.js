@@ -12,7 +12,7 @@ const EnterProblemsPage = (props) => {
     if (teacher) {
       return (
       <div>
-        <h1>{teacher.teaching.displayNamePlural}</h1>
+        <h1 className className='large-left-margin'>{teacher.teaching.displayNamePlural}</h1>
         {teacher.teaching.methods.map((method, index) => {
         return (
           <div key={index}>

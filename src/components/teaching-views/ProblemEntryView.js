@@ -5,6 +5,10 @@ const ProblemEntryView = (props) => {
     return null;
   }
   //else return series of TeachingLinks
-  return <h1 className="heading">{props.method[0]}</h1>
+  return (
+    <span>
+      <h1 className="heading small-left-margin">{props.method[0]}</h1>
+    </span>
+  )
 }
 export default ProblemEntryView

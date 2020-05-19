@@ -74,7 +74,9 @@ h1{color: rgb(255, 255, 255);}
 .block-math { width: 200px; height: 200px; }
 .display-keyboard { transform: translateY(0px); }
 .hide-keyboard { transform: translateY(250px);}
-.mobile-input-size {font-size: 1.00em}
+.mobile-input-size {font-size: 1.00em;}
+.large-left-margin {margin-left: 10%;}
+.small-left-margin {margin-left: 5%;}
 .accordion {
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 2px;
