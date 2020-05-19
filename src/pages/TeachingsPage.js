@@ -12,7 +12,7 @@ const TeachingsPage = () => {
   return (
     //create TeachingOverview for all topics
     <div>
-    <br></br>
+    <br></br><br></br>
     <div className='subject-view'>
       {/*contains titles with code names*/}
       <TeachingsOverview topics={topics} />

@@ -26,7 +26,8 @@ const CurrciulumPage = (props) => {
             </div>
           );
         })}
-      </div>);
+      </div>
+      );
   }
 }
 export default CurrciulumPage;
