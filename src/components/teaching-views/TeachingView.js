@@ -5,8 +5,7 @@ import isMobile from '../../utilities/IsMobile';
 import UncreatedTeachingView from './UncreatedTeachingView'
 import AdView from '../AdView';
 import ProblemPicker from './ProblemPicker'
-import { Accordion } from 'react-accessible-accordion'
-import { AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel } from 'react-accessible-accordion'
+import { Accordion, AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel } from 'react-accessible-accordion'
 import 'react-simple-keyboard/build/css/index.css';
 import '../../styles/app.css'
 

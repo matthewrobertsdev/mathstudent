@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const ProblemPicker = (props) => {
   return (
     <div className='full-width center-text'>
-      <Link className='link center-text' to={`/enter_problems/${props.teachingName}`}>
+      <Link className='link center-text' to={`/EnterProblems/${props.teachingName}`}>
         Enter Problem
       </Link>
       <br></br>

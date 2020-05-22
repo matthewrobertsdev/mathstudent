@@ -13,18 +13,22 @@ class FractionTeaching extends MathTeaching {
         'numerator', 'integer', 'denominator', 'integer'],
       //create from an integer
       ['Create a fraction from an integer', 'fromInteger', 'integer', 'integer'],
-      //add a fraction to this fraction
-      ['Add a Fraction', 'addAFraction', 'numerator', 'integer', 'denominator',
-        'integer'],
-      //subtract a fraction from this fraction
-      ['Subtract a Fraction', 'subtractAFraction', 'numerator', 'integer',
-        'denominator', 'integer'],
-      //multiply a fraction by this fraction
-      ['Multiply by a Fraction', 'multiplyByAFraction', 'numerator', 'integer',
-        'denominator', 'integer'],
-      //divide this fraction by a fraction
-      ['Divide By a Fraction', 'divideByAFraction', 'numerator', 'integer',
-        'denominator', 'integer']
+      //add a fraction to a fraction
+      ['Add a fraction to a fraction', 'addAFraction', 'first numerator', 'integer',
+      'first denominator', 'integer', 'second numerator', 'integer',
+      'second denominator', 'integer'],
+      //subtract a fraction from a fraction
+      ['Subtract a fraction from a fraction', 'subtractAFraction', 'first numerator', 'integer',
+        'first denominator', 'integer', 'second numerator', 'integer',
+        'second denominator', 'integer'],
+      //multiply a fraction by a fraction
+      ['Multiply a fraction by a fraction', 'multiplyByAFraction', 'first numerator', 'integer',
+      'first denominator', 'integer', 'second numerator', 'integer',
+      'second denominator', 'integer'],
+      //divide a fraction by a fraction
+      ['Divide a fraction by a fraction', 'divideByAFraction', 'first numerator', 'integer',
+      'first denominator', 'integer', 'second numerator', 'integer',
+      'second denominator', 'integer']
     ]
   }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import {useDispatch, useSelector } from 'react-redux';
 import { setTeacher } from '../store/Actions';
 import ProblemEntryView from '../components/teaching-views/ProblemEntryView';
+import { Accordion } from 'react-accessible-accordion'
 const EnterProblemsPage = (props) => {
   const dispatch = useDispatch()
   const { match: { params } } = props;
@@ -11,17 +12,14 @@ const EnterProblemsPage = (props) => {
   console.log(teacher)
     if (teacher) {
       return (
-      <div>
+        <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
         <h1 className className='large-left-margin'>{teacher.teaching.displayNamePlural}</h1>
         {teacher.teaching.methods.map((method, index) => {
         return (
-          <div key={index}>
-            <ProblemEntryView method={method}></ProblemEntryView>
-            <br></br>
-          </div>
+            <ProblemEntryView method={method} key={index}/>
         );
       })}
-      </div>
+      </Accordion>
       )
     } else if (teacher == undefined) {
       return null

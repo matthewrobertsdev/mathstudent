@@ -17,7 +17,7 @@ const AppRouter= () => (
                 <Route path="/curriculum" exact component={CurriculumPage}/>
                 <Route path="/teachings" exact component={TeachingsPage}/>
                 <Route path="/version" exact component={VersionPage}/>
-                <Route path="/enter_problems/:teachingName" exact component={EnterProblemsPage}/>
+                <Route path="/EnterProblems/:teachingName" exact component={EnterProblemsPage}/>
                 <Route path="/teachings/:teachingName" exact component={TeachingView}/>
                 <Route component={PageNotFoundPage}/>
             </Switch>
