@@ -149,7 +149,7 @@ input{background-color: /*rgb(236, 126, 8);*/ rgb(236, 171, 8); border-color: bl
     .sticky-for-small{ position: sticky; }
 }
 @media (prefers-color-scheme: dark){
-  input{background-color: /*rgb(82, 43, 1);*/black; color: white; border-color: white;}
+  /*input{background-color: /*rgb(82, 43, 1);black; color: white; border-color: white;}*/
   .heading-type-2 {
     color: green; font-size: 1.50em; margin-top: 1em; margin-bottom: 1em;
     margin-left: 0; margin-right: 0; font-weight: bold;
@@ -175,7 +175,7 @@ input{background-color: /*rgb(236, 126, 8);*/ rgb(236, 171, 8); border-color: bl
     .main-text-color{color: white;}
     .ad{background-color:rgb(17, 0, 206); border-color: white;}
     .creator-view{color: white;}
-    .create-button{background-color: /*rgb(19, 126, 51)*/gold; color: black; border-color: white;}
+    /*.create-button{background-color: /*rgb(19, 126, 51)gold; color: black; border-color: white;}*/
     .math-text{ background-color: rgb(61, 32, 6); color: white; }
     .selected-math-text{ padding: 3px 14px; background-color: rgb(61, 32, 6); color: white;
         border-radius: 3.5px; width: 200px; height: 40px; border:1px solid gold; box-shadow: 0 0 10px gold; }
