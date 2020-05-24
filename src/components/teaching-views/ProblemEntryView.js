@@ -26,7 +26,7 @@ const ProblemEntryView = (props) => {
     const methodViews=[]
       for (let index=2; index<props.method.length; index++){
         if (index%2==0) {
-          methodViews.push(<label for={props.method[index]} className='heading medium-line-height small-left-margin'>{props.method[index]}:</label>)
+          methodViews.push(<label for={props.method[index]} className='heading medium-line-height small-left-margin label'>{props.method[index]}:</label>)
         } else {
           methodViews.push(<input id={props.method[index]} className='fixed-small-left-margin'/>)
           methodViews.push(<span className='small-space medium-line-height'></span>)
