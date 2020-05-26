@@ -8,6 +8,7 @@ import ProblemPicker from '../components/teaching-views/ProblemPicker'
 import { Accordion, AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel } from 'react-accessible-accordion'
 import 'react-simple-keyboard/build/css/index.css';
 import '../styles/app.css'
+import { Link } from 'react-router-dom';
 
 const TeachingView = (props) => {
   const dispatch = useDispatch()

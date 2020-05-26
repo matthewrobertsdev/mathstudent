@@ -15,9 +15,11 @@ const EnterProblemsPage = (props) => {
       return (
         <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
           <br></br>
-          <Link to={'/teachings/'+teacher.teaching.objectName} className='link-heading large-left-margin'>
-            {teacher.teaching.displayNamePlural}
-          </Link>
+          <h1>
+            <Link to={'/teachings/'+teacher.teaching.objectName} className='link-heading large-left-margin'>
+              {teacher.teaching.displayNamePlural}
+            </Link>
+          </h1>
           {teacher.teaching.methods.map((method, index) => {
           return (
               <ProblemEntryView method={method} key={index}/>
