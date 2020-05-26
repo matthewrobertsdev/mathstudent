@@ -7,7 +7,7 @@ import HomePage from './pages/HomePage';
 import CurriculumPage from './pages/CurriculumPage';
 import PageNotFoundPage from './pages/PageNotFoundPage';
 import EnterProblemsPage from './pages/EnterProblemsPage';
-import TeachingView from './components/teaching-views/TeachingView';
+import TeachingView from './pages/TeachingPage';
 const AppRouter= () => (
     <BrowserRouter>
         <div>
@@ -19,6 +19,7 @@ const AppRouter= () => (
                 <Route path="/version" exact component={VersionPage}/>
                 <Route path="/EnterProblems/:teachingName" exact component={EnterProblemsPage}/>
                 <Route path="/teachings/:teachingName" exact component={TeachingView}/>
+                <Route path="/teach/:teachingName" exact component={PageNotFoundPage}/>
                 <Route component={PageNotFoundPage}/>
             </Switch>
         </div>

@@ -3,6 +3,7 @@ import {useDispatch, useSelector } from 'react-redux';
 import { setTeacher } from '../store/Actions';
 import ProblemEntryView from '../components/teaching-views/ProblemEntryView';
 import { Accordion } from 'react-accessible-accordion'
+import { Link } from 'react-router-dom';
 const EnterProblemsPage = (props) => {
   const dispatch = useDispatch()
   const { match: { params } } = props;
@@ -13,11 +14,14 @@ const EnterProblemsPage = (props) => {
     if (teacher) {
       return (
         <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
-        <h1 className className='large-left-margin'>{teacher.teaching.displayNamePlural}</h1>
-        {teacher.teaching.methods.map((method, index) => {
-        return (
-            <ProblemEntryView method={method} key={index}/>
-        );
+          <br></br>
+          <Link to={'/teachings/'+teacher.teaching.objectName} className='link-heading large-left-margin'>
+            {teacher.teaching.displayNamePlural}
+          </Link>
+          {teacher.teaching.methods.map((method, index) => {
+          return (
+              <ProblemEntryView method={method} key={index}/>
+          );
       })}
       </Accordion>
       )

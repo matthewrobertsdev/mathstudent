@@ -1,20 +1,20 @@
 import React, {Suspense } from 'react';
 import {useDispatch, useSelector } from 'react-redux';
-import { setTeacher, setFound } from '../../store/Actions';
-import isMobile from '../../utilities/IsMobile';
-import UncreatedTeachingView from './UncreatedTeachingView'
-import AdView from '../AdView';
-import ProblemPicker from './ProblemPicker'
+import { setTeacher, setFound } from '../store/Actions';
+import isMobile from '../utilities/IsMobile';
+import UncreatedTeachingView from '../components/teaching-views/UncreatedTeachingView'
+import AdView from '../components/AdView';
+import ProblemPicker from '../components/teaching-views/ProblemPicker'
 import { Accordion, AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel } from 'react-accessible-accordion'
 import 'react-simple-keyboard/build/css/index.css';
-import '../../styles/app.css'
+import '../styles/app.css'
 
 const TeachingView = (props) => {
   const dispatch = useDispatch()
   const { match: { params } } = props;
   dispatch(setTeacher(params.teachingName));
   const teacher = useSelector(state => state.teaching.teacher)
-  const AboutComponent = React.lazy(() => import(`../teachingviews/About${params.teachingName}`));
+  const AboutComponent = React.lazy(() => import(`../components/teachingviews/About${params.teachingName}`));
 
   dispatch(setFound())
     console.log(teacher)

@@ -1,6 +1,6 @@
 body{background-color: rgb(209, 28, 28);}
 hr{border-color: rgb(109, 0, 109);}
-h1{color: rgb(255, 255, 255);}
+h1{color: rgb(255, 255, 255);/*rgb(0, 21, 84);*/}
 input{background-color: /*rgb(236, 126, 8);*/ rgb(236, 171, 8); border-color: black; font-size: large; 
   width: 150px; box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);}
 .creator-view{ text-align: center; }
@@ -57,7 +57,8 @@ input{background-color: /*rgb(236, 126, 8);*/ rgb(236, 171, 8); border-color: bl
 .create-button{ /* background-color: rgb(32, 66, 168); color: rgb(201, 188, 172); */
     /* background-color: rgb(139, 219, 199); color: rgb(61, 32, 6); */ background-color: rgb(19, 151, 59);
     color: rgb(0, 0, 0); border-radius: 7px; display: inline-block; margin-top: 10px; border: none;/*1px solid black;*/
-    font-size: large; box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);}
+    font-size: large; box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  text-decoration: none; padding: 0px 5px 0px 5px;}
 .text-link{
     color: rgb(22, 49, 131); font-size: 1.17em; margin-top: 1em; margin-bottom: 1em; margin-left: 0;
     margin-right: 0; font-weight: bold; text-decoration: none;
@@ -161,6 +162,7 @@ input{background-color: /*rgb(236, 126, 8);*/ rgb(236, 171, 8); border-color: bl
 
     body{background-color: rgb(34, 34, 33);}
     h1{color: /*rgb(231, 0, 35)*/rgb(255, 140, 0);/*rgb(165, 70, 165)*/}
+    .link-heading{color: rgb(255, 140, 0); font-size: xx-large; text-decoration: none;}
     .heading{color: white/*rgb(30, 214, 30)*/;}
     /*.label{color: rgb(91, 91, 255);}*/
     h2{color: white/*rgb(30, 214, 30)*/}

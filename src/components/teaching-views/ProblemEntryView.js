@@ -1,8 +1,11 @@
 import React from 'react';
 import {AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel } from 'react-accessible-accordion'
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 //just provides initial links to enter a problem or generate problems
 const ProblemEntryView = (props) => {
+  const teacher = useSelector(state => state.teaching.teacher)
   if (props.method == null) {
     return null;
   }
@@ -17,7 +20,7 @@ const ProblemEntryView = (props) => {
             </AccordionItemHeading>
             <AccordionItemPanel>
             {createMethodViews()}
-            <button className='create-button'>Solve</button>
+            <Link to={'./teach/'+teacher.teaching.objectName} className='create-button'>Solve</Link>
             </AccordionItemPanel>
           </AccordionItem>
     </span>
