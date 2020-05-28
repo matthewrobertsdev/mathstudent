@@ -1,7 +1,7 @@
 body{background-color: rgb(209, 28, 28);}
 hr{border-color: rgb(109, 0, 109);}
-h1{color: white;/*rgb(0, 21, 84);*/}
-.link-heading{color: white; font-size: xx-large; text-decoration: none;}
+h1{color: rgb(255, 196, 0);/*rgb(0, 21, 84);*/}
+.link-heading{color: rgb(255, 196, 0); font-size: xx-large;}
 input{background-color: /*rgb(236, 126, 8);*/ rgb(236, 171, 8); border-color: black; font-size: large; 
   width: 150px; box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);}
 .creator-view{ text-align: center; }
@@ -156,7 +156,7 @@ input{background-color: /*rgb(236, 126, 8);*/ rgb(236, 171, 8); border-color: bl
     .sticky-for-small{ position: sticky; }
 }
 @media (prefers-color-scheme: dark){
-  hr{border-color: gold;}
+  hr{border-color: /*rgb(231, 0, 35);*/gold;}
   /*input{background-color: /*rgb(82, 43, 1);black; color: white; border-color: white;}*/
   .heading-type-2 {
     color: green; font-size: 1.50em; margin-top: 1em; margin-bottom: 1em;
@@ -167,7 +167,7 @@ input{background-color: /*rgb(236, 126, 8);*/ rgb(236, 171, 8); border-color: bl
 
     body{background-color: rgb(34, 34, 33);}
     h1{color: /*rgb(231, 0, 35)*/rgb(255, 140, 0);/*rgb(165, 70, 165)*/}
-    .link-heading{color: rgb(255, 140, 0); font-size: xx-large; text-decoration: none;}
+    .link-heading{color: rgb(255, 140, 0); font-size: xx-large;}
     .heading{color: white/*rgb(30, 214, 30)*/;}
     /*.label{color: rgb(91, 91, 255);}*/
     h2{color: white/*rgb(30, 214, 30)*/}
