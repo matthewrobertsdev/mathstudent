@@ -3,7 +3,7 @@ import {useDispatch, useSelector } from 'react-redux';
 import { setTeacher } from '../store/Actions';
 import ProblemEntryView from '../components/teaching-views/ProblemEntryView';
 import { Accordion } from 'react-accessible-accordion'
-import { Link } from 'react-router-dom';
+import BackToTeachingView from '../components/teaching-views/BackToTeachingView'
 const EnterProblemsPage = (props) => {
   const dispatch = useDispatch()
   const { match: { params } } = props;
@@ -15,11 +15,9 @@ const EnterProblemsPage = (props) => {
     if (teacher) {
       return (
         <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
-          <br></br>
+          <BackToTeachingView teacher={teacher}/>
           <h1 className='large-left-margin'>
-            Enter <Link to={'/teachings/'+teacher.teaching.objectName} className='link-heading'>
-              {teacher.teaching.displayNameSingular}
-            </Link> Problems
+            Enter {teacher.teaching.displayNameSingular} Problems
           </h1>
           {teacher.teaching.methods.map((method, index) => {
           return (
