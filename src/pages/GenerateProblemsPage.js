@@ -3,6 +3,7 @@ import {useDispatch, useSelector } from 'react-redux';
 import { setTeacher } from '../store/Actions';
 import { Accordion } from 'react-accessible-accordion'
 import { Link } from 'react-router-dom';
+import AdView from '../components/AdView';
 import BackToTeachingView from '../components/teaching-views/BackToTeachingView'
 import ProblemGenerationView from '../components/teaching-views/ProblemGenerationView';
 const GenerateProblemsPage = (props) => {
@@ -17,6 +18,7 @@ const GenerateProblemsPage = (props) => {
       return (
         <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
           <BackToTeachingView teacher={teacher}/>
+          <div className='center-text text-margins'><AdView /></div>
           <h1 className='large-left-margin'>
             Generate {teacher.teaching.displayNameSingular} Problems:
           </h1>

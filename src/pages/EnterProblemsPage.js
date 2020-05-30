@@ -4,6 +4,7 @@ import { setTeacher } from '../store/Actions';
 import ProblemEntryView from '../components/teaching-views/ProblemEntryView';
 import { Accordion } from 'react-accessible-accordion'
 import BackToTeachingView from '../components/teaching-views/BackToTeachingView'
+import AdView from '../components/AdView';
 const EnterProblemsPage = (props) => {
   const dispatch = useDispatch()
   const { match: { params } } = props;
@@ -16,6 +17,7 @@ const EnterProblemsPage = (props) => {
       return (
         <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
           <BackToTeachingView teacher={teacher}/>
+          <div className='center-text text-margins'><AdView /></div>
           <h1 className='large-left-margin'>
             Enter {teacher.teaching.displayNameSingular} Problems
           </h1>

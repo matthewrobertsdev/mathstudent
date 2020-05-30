@@ -1,5 +1,5 @@
-import React, {Suspense } from 'react';
-import {useDispatch, useSelector } from 'react-redux';
+import React, { Suspense } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { setTeacher, setFound } from '../store/Actions';
 import isMobile from '../utilities/IsMobile';
 import UncreatedTeachingView from '../components/teaching-views/UncreatedTeachingView'
@@ -18,11 +18,12 @@ const TeachingView = (props) => {
   const AboutComponent = React.lazy(() => import(`../components/teachingviews/About${params.teachingName}`));
 
   dispatch(setFound())
-    console.log(teacher)
-    if (teacher) {
-      document.title = params.teachingName;
-      return (
-        <Accordion allowZeroExpanded={true} allowMultipleExpanded={true} preExpanded={expandTheseIfNotMobile()}>
+  console.log(teacher)
+  if (teacher) {
+    document.title = params.teachingName;
+    return (
+      <Accordion allowZeroExpanded={true} allowMultipleExpanded={true} preExpanded={expandTheseIfNotMobile()}>
+        <span>
           <AccordionItem uuid={'problems'}>
             <AccordionItemHeading className="heading large-heading-size">
               <AccordionItemButton>
@@ -30,10 +31,12 @@ const TeachingView = (props) => {
               </AccordionItemButton>
             </AccordionItemHeading>
             <AccordionItemPanel>
-              <ProblemPicker teachingName={params.teachingName}/>
+              <ProblemPicker teachingName={params.teachingName} />
               <div className='center-text text-margins'><AdView /></div>
             </AccordionItemPanel>
           </AccordionItem>
+        </span>
+        <span>
           <AccordionItem uuid='about'>
             <AccordionItemHeading className="heading large-heading-size">
               <AccordionItemButton>
@@ -46,11 +49,12 @@ const TeachingView = (props) => {
               </Suspense>
             </AccordionItemPanel>
           </AccordionItem>
-        </Accordion>
-      );
-    } else if (teacher == undefined) {
-      return <UncreatedTeachingView className='center-text' />
-    }
+        </span>
+      </Accordion>
+    );
+  } else if (teacher == undefined) {
+    return <UncreatedTeachingView className='center-text' />
+  }
   //for accordian tabs
   function expandTheseIfNotMobile() {
     if (!isMobile()) { return ['problems', 'about']; }
