@@ -23,7 +23,7 @@ const EnterProblemsPage = (props) => {
           </h1>
           {teacher.teaching.methods.map((method, index) => {
           return (
-              <ProblemEntryView method={method} key={index}/>
+              <ProblemEntryView method={method} key={index} number={index+1}/>
           );
       })}
       </Accordion>

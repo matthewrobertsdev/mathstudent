@@ -35,9 +35,9 @@ const GenerateProblemsPage = (props) => {
           </div>
           {teacher.teaching.methods.map((method, index) => {
           return (
-              <ProblemGenerationView method={method} key={index}/>
-          );
-          })};
+              <ProblemGenerationView method={method} key={index} number={index+1}/>
+          )
+          })}
           <br></br>
           <br></br>
           <br></br>
