@@ -159,7 +159,7 @@ input{background-color: /*rgb(236, 126, 8);*/ rgb(236, 171, 8); border-color: bl
     .sticky-for-small{ position: sticky; }
 }
 @media (prefers-color-scheme: dark){
-  hr{border-color: /*rgb(231, 0, 35);*/gold;}
+  hr{border-color: rgb(231, 0, 35)/*gold;*/}
   /*input{background-color: /*rgb(82, 43, 1);black; color: white; border-color: white;}*/
   /*.heading-type-2 {
     color: green; font-size: 1.50em; margin-top: 1em; margin-bottom: 1em;

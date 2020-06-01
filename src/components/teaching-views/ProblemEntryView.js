@@ -6,6 +6,13 @@ import { useSelector } from 'react-redux';
 //just provides initial links to enter a problem or generate problems
 const ProblemEntryView = (props) => {
   const teacher = useSelector(state => state.teaching.teacher)
+  let text={}
+  for (let index = 2; index < props.method.length; index++) {
+    if (index % 2 == 1) {
+      text[index.toString()]=""
+    }
+  }
+  console.log(text)
   if (props.method == null) {
     return null;
   }
@@ -29,10 +36,24 @@ const ProblemEntryView = (props) => {
     const methodViews = []
     for (let index = 2; index < props.method.length; index++) {
       if (index % 2 == 0) {
-        methodViews.push(<label for={props.method[index]} className='heading medium-line-height small-left-margin label'>{props.method[index]}:</label>)
+        methodViews.push(
+          <label htmlFor={props.method[0]+"-"+props.method[index]} 
+          className='heading medium-line-height small-left-margin label'
+          key={props.method[0]+"-"+props.method[index]+'label'}>
+          {props.method[index]}:
+          </label>
+        )
       } else {
-        methodViews.push(<input id={props.method[index]} className='fixed-small-left-margin' />)
-        methodViews.push(<span className='small-space medium-line-height'></span>)
+        methodViews.push(
+        <input id={props.method[0]+"-"+props.method[index-1]} 
+        className='fixed-small-left-margin'
+        key={props.method[0]+"-"+props.method[index-1]+'input'}/>
+        )
+        methodViews.push(
+        <span className='small-space medium-line-height'
+        key={props.method[0]+"-"+props.method[index-1]+'-span'}>
+        </span>
+        )
       }
     }
     return methodViews
