@@ -1,8 +1,4 @@
 import React, { useState } from 'react';
-import {
-  AccordionItem, AccordionItemButton, AccordionItemHeading,
-  AccordionItemPanel
-} from 'react-accessible-accordion'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -11,7 +7,7 @@ const MethodView = (props) => {
   const teacher = useSelector(state => state.teaching.teacher)
   let initialText = {}
   for (let index = 2; index < props.method.length; index++) {
-    if (index % 2 == 1) {
+    if (index % 2 === 1) {
       initialText[index.toString()] = ""
     }
   }
@@ -25,7 +21,7 @@ const MethodView = (props) => {
         if (index < 2) {
           return null
         }
-        else if (index % 2 == 0) {
+        else if (index % 2 === 0) {
           return (
             <label htmlFor={props.method[0] + "-" + props.method[index]}
               className='heading medium-line-height small-left-margin label'
@@ -60,13 +56,13 @@ const MethodView = (props) => {
           </Link>
     </span>
   )
-  function submitMethod(){
-    let url=props.method[1]
+  function submitMethod() {
+    let url = props.method[1]
     for (let index = 2; index < props.method.length; index++) {
       if (index % 2 == 0) {
-        url+="-"+props.method[index]
+        url += "-" + props.method[index]
       } else {
-        url+="-"+text[index.toString()]
+        url += "-" + text[index.toString()]
       }
     }
     console.log(url)

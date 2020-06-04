@@ -7,15 +7,15 @@ const ProblemPicker = (props) => {
       <Link className='link center-text' to={`/EnterProblems/${props.teachingName}`}>
         Enter Problem
       </Link>
-      <br></br>
-      <br></br>
+      <br/>
+      <br/>
       <Link className='link center-text' to={`/GenerateProblems/${props.teachingName}`}>
         Generate Problems
       </Link>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
     </div>);
 }
 export default ProblemPicker

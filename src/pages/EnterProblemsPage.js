@@ -13,18 +13,20 @@ const EnterProblemsPage = (props) => {
   const teacher = useSelector(state => state.teaching.teacher)
   if (teacher) {
     return (
-      <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
-        <BackToTeachingView teacher={teacher} />
-        <div className='center-text text-margins'><AdView /></div>
-        <h1 className='large-left-margin'>
-          Enter {teacher.teaching.displayNameSingular} Problems
+      <main>
+        <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
+          <BackToTeachingView teacher={teacher} />
+          <div className='center-text text-margins'><AdView /></div>
+          <h1 className='large-left-margin'>
+            Enter {teacher.teaching.displayNameSingular} Problems
           </h1>
-        {teacher.teaching.methods.map((method, index) => {
-          return (
-            <ProblemEntryView method={method} key={index} number={index + 1} />
-          );
-        })}
-      </Accordion>
+          {teacher.teaching.methods.map((method, index) => {
+            return (
+              <ProblemEntryView method={method} key={index} number={index + 1} />
+            );
+          })}
+        </Accordion>
+      </main>
     )
   } else if (teacher === undefined) {
     return null

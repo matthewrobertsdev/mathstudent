@@ -5,7 +5,7 @@ const HomePage = () => {
   //set page title on navigation to page
   useEffect(() => { document.title = "Math Teacher" })
   return (
-    <div className="text-margins">
+    <main className="text-margins">
       {/*declaration of purpose*/}
       <h1 className="large-heading-size center-text">
         Math Teacher is a website dedicated to helping you learn math,
@@ -46,7 +46,7 @@ const HomePage = () => {
       </div>
       {/*spacing at bottom*/}
       <br></br><br></br><br></br><br></br>
-    </div>
+    </main>
   );
 }
 export default HomePage

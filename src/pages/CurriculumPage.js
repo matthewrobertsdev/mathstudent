@@ -15,7 +15,7 @@ const CurrciulumPage = (props) => {
   } else {
     return (
       //else create the course views
-      <div className='subject-view'>
+      <main className='subject-view'>
         {/*create course GUIs*/}
         {curriculum.map((course, index) => {
           return (
@@ -26,7 +26,7 @@ const CurrciulumPage = (props) => {
             </div>
           );
         })}
-      </div>
+      </main>
       );
   }
 }

@@ -7,7 +7,7 @@ const VersionPage = () => {
   //update page title on navigation to page
   useEffect(() => { document.title = "Version" })
   return (
-    <div className="center-text">
+    <main className="center-text">
       {/*Tells if updates have been found*/}
       <LastCheckedVersionView />
       {/*Tells what, if any, update has been cached*/}
@@ -20,7 +20,7 @@ const VersionPage = () => {
         Latest cached version only runs if you have closed every single page in your browser that has Math Teacher,
         so that none were open so that the new version could be launched when you next opened a Math Teacher page.
       </h1>
-    </div>
+    </main>
   )
 }
 export default VersionPage;

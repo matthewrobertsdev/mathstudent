@@ -5,12 +5,12 @@ function AdView() {
   return (
       /* leader board ad or mobile banner */
       <div className='ad center-text'>
-        <br></br>
+        <br/>
 		    There is an ad here when you are online.
-        <br></br>
+        <br/>
         Ads help Math Teacher make money.
-        <br></br>
-        <br></br>
+        <br/>
+        <br/>
       </div>
   );
 }

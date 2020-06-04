@@ -3,33 +3,35 @@ import { withRouter, Link } from 'react-router-dom';
 //Header at top of each page with links to all main pages
 const Header = () => {
   return (
-    <div className="nav-bar">
-      {/*Home page*/}
-      <Link className={getClassNameLeft('/')}
-        to='/' key={0}>
-        Math Teacher
+    <header>
+      <nav className="nav-bar">
+        {/*Home page*/}
+        <Link className={getClassNameLeft('/')}
+          to='/' key={0}>
+          Math Teacher
       </Link>
-      {/*Curriculum page*/}
-      <Link className={getClassNameLeft('/curriculum')}
-        to='/curriculum' key={1}>
-        Curriculum
+        {/*Curriculum page*/}
+        <Link className={getClassNameLeft('/curriculum')}
+          to='/curriculum' key={1}>
+          Curriculum
       </Link>
-      {/*Topics page*/}
-      <Link className={getClassNameLeft('/teachings')}
-        to='/teachings' key={2}>
-        Teachings
+        {/*Topics page*/}
+        <Link className={getClassNameLeft('/teachings')}
+          to='/teachings' key={2}>
+          Teachings
       </Link>
-      {/*Cached version info page*/}
-      <Link className={getClassNameLeft('/version')}
-        to='/version' key={3}>
-        Version
+        {/*Cached version info page*/}
+        <Link className={getClassNameLeft('/version')}
+          to='/version' key={3}>
+          Version
       </Link>
-      {/*Login page*/}
-      <Link className={getClassNameRight('/login')}
-        to='/login' key={4}>
-        Login
+        {/*Login page*/}
+        <Link className={getClassNameRight('/login')}
+          to='/login' key={4}>
+          Login
       </Link>
-    </div>
+      </nav>
+    </header>
   );
   //selected or unslected css style that floats left
   function getClassNameLeft(url) {

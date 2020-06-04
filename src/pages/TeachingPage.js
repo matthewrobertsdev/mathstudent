@@ -19,6 +19,7 @@ const TeachingView = (props) => {
   if (teacher) {
     document.title = params.teachingName;
     return (
+      <main>
       <Accordion allowZeroExpanded={true} allowMultipleExpanded={true} preExpanded={expandTheseIfNotMobile()}>
         <span>
           <AccordionItem uuid={'problems'}>
@@ -48,9 +49,14 @@ const TeachingView = (props) => {
           </AccordionItem>
         </span>
       </Accordion>
+      </main>
     );
   } else if (teacher === undefined) {
-    return <UncreatedTeachingView className='center-text' />
+    return(
+    <main>
+      <UncreatedTeachingView className='center-text'/>
+    </main>
+    )
   }
   //for accordian tabs
   function expandTheseIfNotMobile() {

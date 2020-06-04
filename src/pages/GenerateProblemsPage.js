@@ -15,36 +15,38 @@ const GenerateProblemsPage = (props) => {
 
   if (teacher) {
     return (
-      <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
-        <BackToTeachingView teacher={teacher} />
-        <div className='center-text text-margins'>
-          <AdView />
-        </div>
-        <h1 className='large-left-margin'>
-          Generate {teacher.teaching.displayNameSingular} Problems:
+      <main>
+        <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
+          <BackToTeachingView teacher={teacher} />
+          <div className='center-text text-margins'>
+            <AdView />
+          </div>
+          <h1 className='large-left-margin'>
+            Generate {teacher.teaching.displayNameSingular} Problems:
           </h1>
-        <div className='center-text'>
-          <Link to="/" className="link">
-            Generate Problem Set
+          <div className='center-text'>
+            <Link to="/" className="link">
+              Generate Problem Set
           </Link>
-        </div>
-        <h1 className='large-left-margin'>Select Your Problems:</h1>
-        <div className='center-text'>
-          <Link to="/" className="link">
-            Generate Problems from Selection
+          </div>
+          <h1 className='large-left-margin'>Select Your Problems:</h1>
+          <div className='center-text'>
+            <Link to="/" className="link">
+              Generate Problems from Selection
           </Link>
-        </div>
-        {teacher.teaching.methods.map((method, index) => {
-          return (
-            <ProblemGenerationView method={method} key={index} number={index + 1} />
-          )
-        })}
-        <br></br>
-        <br></br>
-        <br></br>
-      </Accordion>
+          </div>
+          {teacher.teaching.methods.map((method, index) => {
+            return (
+              <ProblemGenerationView method={method} key={index} number={index + 1} />
+            )
+          })}
+          <br></br>
+          <br></br>
+          <br></br>
+        </Accordion>
+      </main>
     )
-  } else if (teacher == undefined) {
+  } else if (teacher === undefined) {
     return null
   }
 }
