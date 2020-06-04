@@ -1,3 +1,4 @@
+/*
 const initialState = { inputMap: {}, activeKey: '', displayTeaching: false, displayKeyboard: false
 };
 export default function inputReducer(state = initialState, action) {
@@ -20,3 +21,4 @@ export default function inputReducer(state = initialState, action) {
             return state
     }
 }
+*/

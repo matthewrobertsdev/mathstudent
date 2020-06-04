@@ -1,5 +1,5 @@
 import React from 'react';
-import {useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setTeacher } from '../store/Actions';
 import ProblemEntryView from '../components/teaching-views/ProblemEntryView';
 import { Accordion } from 'react-accessible-accordion'
@@ -9,27 +9,25 @@ const EnterProblemsPage = (props) => {
   const dispatch = useDispatch()
   const { match: { params } } = props;
   dispatch(setTeacher(params.teachingName));
-  document.title=`Enter ${params.teachingName} Problems`
+  document.title = `Enter ${params.teachingName} Problems`
   const teacher = useSelector(state => state.teaching.teacher)
-
-  console.log(teacher)
-    if (teacher) {
-      return (
-        <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
-          <BackToTeachingView teacher={teacher}/>
-          <div className='center-text text-margins'><AdView /></div>
-          <h1 className='large-left-margin'>
-            Enter {teacher.teaching.displayNameSingular} Problems
+  if (teacher) {
+    return (
+      <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
+        <BackToTeachingView teacher={teacher} />
+        <div className='center-text text-margins'><AdView /></div>
+        <h1 className='large-left-margin'>
+          Enter {teacher.teaching.displayNameSingular} Problems
           </h1>
-          {teacher.teaching.methods.map((method, index) => {
+        {teacher.teaching.methods.map((method, index) => {
           return (
-              <ProblemEntryView method={method} key={index} number={index+1}/>
+            <ProblemEntryView method={method} key={index} number={index + 1} />
           );
-      })}
+        })}
       </Accordion>
-      )
-    } else if (teacher == undefined) {
-      return null
-    }
+    )
+  } else if (teacher === undefined) {
+    return null
+  }
 }
 export default EnterProblemsPage

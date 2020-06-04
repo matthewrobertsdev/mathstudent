@@ -17,7 +17,7 @@ const HomePage = () => {
         Then, solve it, check your answer, or even let Math Teacher teach you how to solve
         the problem you are working on.
       </h2>
-      <hr></hr>
+      <hr/>
       {/*how we make money*/}
       <h2>
         Math Teacher makes money off advertsing when you are online,
