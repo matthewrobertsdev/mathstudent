@@ -1,6 +1,5 @@
-import React, { Suspense } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setTeacher } from '../store/Actions';
+import React, { Suspense, useState } from 'react';
+import { getTeacher } from '../store/Actions';
 import isMobile from '../utilities/IsMobile';
 import UncreatedTeachingView from '../components/teaching-views/UncreatedTeachingView'
 import AdView from '../components/AdView';
@@ -10,13 +9,13 @@ import 'react-simple-keyboard/build/css/index.css';
 import '../styles/app.css'
 
 const TeachingView = (props) => {
-  const dispatch = useDispatch()
   const { match: { params } } = props;
-  dispatch(setTeacher(params.teachingName));
-  const teacher = useSelector(state => state.teaching.teacher)
+  const [teacher, setTeacher] = useState(undefined);
+  getTeacher(params.teachingName, setTeacher)
   const AboutComponent = React.lazy(() => import(`../components/teachingviews/About${params.teachingName}`));
 
   if (teacher) {
+    console.log(teacher)
     document.title = params.teachingName;
     return (
       <main>

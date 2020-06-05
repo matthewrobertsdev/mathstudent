@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 //can enter a problem
 const MethodView = (props) => {
-  const teacher = useSelector(state => state.teaching.teacher)
+
   let initialText = {}
   for (let index = 2; index < props.method.length; index++) {
     if (index % 2 === 1) {
@@ -50,7 +49,7 @@ const MethodView = (props) => {
           )
         }
       })}}
-      <Link to={'./teach/' + teacher.teaching.objectName}
+      <Link to={'./teach/' + props.teacher.teaching.objectName}
         className='create-button' onClick={submitMethod}>
         Solve
           </Link>

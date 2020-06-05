@@ -1,17 +1,16 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setTeacher } from '../store/Actions';
+import React, { useState } from 'react';
 import ProblemEntryView from '../components/teaching-views/ProblemEntryView';
 import { Accordion } from 'react-accessible-accordion'
 import BackToTeachingView from '../components/teaching-views/BackToTeachingView'
 import AdView from '../components/AdView';
+import { getTeacher } from '../store/Actions';
 const EnterProblemsPage = (props) => {
-  const dispatch = useDispatch()
   const { match: { params } } = props;
-  dispatch(setTeacher(params.teachingName));
   document.title = `Enter ${params.teachingName} Problems`
-  const teacher = useSelector(state => state.teaching.teacher)
+  const [teacher, setTeacher] = useState(undefined);
+  getTeacher(params.teachingName, setTeacher)
   if (teacher) {
+    console.log(teacher)
     return (
       <main>
         <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
@@ -22,7 +21,7 @@ const EnterProblemsPage = (props) => {
           </h1>
           {teacher.teaching.methods.map((method, index) => {
             return (
-              <ProblemEntryView method={method} key={index} number={index + 1} />
+              <ProblemEntryView method={method} key={index} number={index + 1} teacher={teacher}/>
             );
           })}
         </Accordion>

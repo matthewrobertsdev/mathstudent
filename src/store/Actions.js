@@ -1,3 +1,4 @@
+/*
 export const setTeacher = (teachingName) => {
 	return (dispatch) => {
 		return import(`../model/mathteachers/${teachingName}Teacher`).then(
@@ -10,4 +11,15 @@ export const setTeacher = (teachingName) => {
 						{ type: "SET_TEACHER", payload: undefined })
 				});
 	};
+};
+*/
+
+export const getTeacher = (teachingName, callback) => {
+		import(`../model/mathteachers/${teachingName}Teacher`).then(
+			teacher => {
+        callback(teacher.default)
+			}).catch(
+				function (error) {
+					callback(undefined)
+				});
 };

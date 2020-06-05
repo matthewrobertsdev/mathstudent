@@ -19,7 +19,7 @@ const ProblemEntryView = (props) => {
           </AccordionItemButton>
         </AccordionItemHeading>
         <AccordionItemPanel>
-          <MethodView method={props.method} />
+          <MethodView method={props.method} teacher={props.teacher}/>
         </AccordionItemPanel>
       </AccordionItem>
     </span>

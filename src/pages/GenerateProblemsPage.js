@@ -1,18 +1,15 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setTeacher } from '../store/Actions';
+import React, { useState } from 'react';
 import { Accordion } from 'react-accessible-accordion'
 import { Link } from 'react-router-dom';
 import AdView from '../components/AdView';
 import BackToTeachingView from '../components/teaching-views/BackToTeachingView'
 import ProblemGenerationView from '../components/teaching-views/ProblemGenerationView';
+import { getTeacher } from '../store/Actions';
 const GenerateProblemsPage = (props) => {
-  const dispatch = useDispatch()
   const { match: { params } } = props;
-  dispatch(setTeacher(params.teachingName));
   document.title = `Generate ${params.teachingName} Problems`
-  const teacher = useSelector(state => state.teaching.teacher)
-
+  const [teacher, setTeacher] = useState(undefined);
+  getTeacher(params.teachingName, setTeacher)
   if (teacher) {
     return (
       <main>
