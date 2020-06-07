@@ -8,7 +8,7 @@ import { Accordion, AccordionItem, AccordionItemButton, AccordionItemHeading, Ac
 import 'react-simple-keyboard/build/css/index.css';
 import '../styles/app.css'
 
-const TeachingView = (props) => {
+const TeachingPage = (props) => {
   const { match: { params } } = props;
   const [teacher, setTeacher] = useState(undefined);
   getTeacher(params.teachingName, setTeacher)
@@ -66,4 +66,4 @@ const TeachingView = (props) => {
     }
   }
 }
-export default TeachingView;
+export default TeachingPage;

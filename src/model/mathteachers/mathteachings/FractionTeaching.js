@@ -30,16 +30,16 @@ class FractionTeaching extends MathTeaching {
       'first denominator', 'integer', 'second numerator', 'integer',
       'second denominator', 'integer'],
       //add a mixed number to a fraction
-      ['Add a mixed number to a fraction', 'addAMixedNumber', 'mixed number', 'mixed number', 'numerator', 'integer',
+      ['Add a mixed number to a fraction', 'addAMixedNumber', 'mixed number', 'mixedNumber', 'numerator', 'integer',
       'denominator', 'integer'],
       //subtract a mixed number from a fraction
-      ['Subtract a mixed number from a fraction', 'subtractAMixedNumber', 'mixed number', 'mixed number', 'numerator', 'integer',
+      ['Subtract a mixed number from a fraction', 'subtractAMixedNumber', 'mixed number', 'mixedNumber', 'numerator', 'integer',
         'denominator', 'integer'],
       //multiply a fraction by a mixed number
-      ['Multiply a fraction by a mixed number', 'multiplyByAMixedNumber', 'mixed number', 'mixed number', 'numerator', 'integer',
+      ['Multiply a fraction by a mixed number', 'multiplyByAMixedNumber', 'mixed number', 'mixedNumber', 'numerator', 'integer',
       'denominator', 'integer'],
       //divide a fraction by a mixed number
-      ['Divide a fraction by a mixed number', 'divideByAMixedNumber', 'mixed number', 'mixed number', 'numerator', 'integer',
+      ['Divide a fraction by a mixed number', 'divideByAMixedNumber', 'mixed number', 'mixedNumber', 'numerator', 'integer',
       'denominator', 'integer']
     ]
   }

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 //can enter a problem
 const MethodView = (props) => {
 
+  //initial state for inputs
   let initialText = {}
   for (let index = 2; index < props.method.length; index++) {
     if (index % 2 === 1) {
@@ -20,6 +21,7 @@ const MethodView = (props) => {
         if (index < 2) {
           return null
         }
+        //labels for the inputs
         else if (index % 2 === 0) {
           return (
             <label htmlFor={props.method[0] + "-" + props.method[index]}
@@ -29,6 +31,7 @@ const MethodView = (props) => {
             </label>
           )
         } else {
+          //the inputs--controlled components
           return (
             <span key={props.method[0] + "-" + props.method[index - 1] + 'input-and-span'}>
               <input id={props.method[0] + "-" + props.method[index - 1]}
@@ -48,23 +51,25 @@ const MethodView = (props) => {
             </span>
           )
         }
-      })}}
-      <Link to={'./teach/' + props.teacher.teaching.objectName}
-        className='create-button' onClick={submitMethod}>
+      })}
+      {/*solve button links to next page*/}
+      <Link to={{pathname: '../solve/' + getURL(), state: {from: "EnterProblemsPage"}}}
+        className='create-button'>
         Solve
-          </Link>
+      </Link>
     </span>
   )
-  function submitMethod() {
-    let url = props.method[1]
+  function getURL() {
+    let url=props.teacher.teaching.objectName+"/"
+    url +=props.method[1]+"/"
     for (let index = 2; index < props.method.length; index++) {
-      if (index % 2 == 0) {
-        url += "-" + props.method[index]
+      if (index % 2 === 0) {
+        url += "@" + props.method[index].replace(" ", "-")
       } else {
-        url += "-" + text[index.toString()]
+        url += "@" + text[index.toString()]
       }
     }
-    console.log(url)
+    return url
   }
 }
 export default MethodView

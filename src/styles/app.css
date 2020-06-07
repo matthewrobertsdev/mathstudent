@@ -5,6 +5,7 @@ h1{color: rgb(255, 209, 56);/*rgb(0, 21, 84);*/}
   color: white; font-size: 28px;
 }
 .link-heading{color: rgb(255, 209, 56); font-size: xx-large;}
+.link-text{color: rgb(255, 209, 56); font-size: xx-large; text-decoration: underline;}
 input{background-color: /*rgb(236, 126, 8);*/ rgb(236, 171, 8); border-color: black; font-size: large; 
   width: 150px; box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);}
 .creator-view{ text-align: center; }
@@ -173,7 +174,9 @@ input{background-color: /*rgb(236, 126, 8);*/ rgb(236, 171, 8); border-color: bl
 
     body{background-color: rgb(34, 34, 33);}
     h1{color: /*rgb(231, 0, 35)*/rgb(255, 140, 0);/*rgb(165, 70, 165)*/}
-    .link-heading{color: rgb(255, 140, 0); font-size: xx-large;}
+    .link-heading{color: rgb(255, 140, 0);}
+    .link-text{color: rgb(255, 140, 0);}
+
     .heading{color: white/*rgb(30, 214, 30)*/;}
     /*.label{color: rgb(91, 91, 255);}*/
     h2{color: white/*rgb(30, 214, 30)*/}

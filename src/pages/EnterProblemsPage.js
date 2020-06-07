@@ -10,7 +10,6 @@ const EnterProblemsPage = (props) => {
   const [teacher, setTeacher] = useState(undefined);
   getTeacher(params.teachingName, setTeacher)
   if (teacher) {
-    console.log(teacher)
     return (
       <main>
         <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
