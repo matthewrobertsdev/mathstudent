@@ -1,62 +1,78 @@
-import React, { useState } from 'react';
-import { getTeacher } from '../../store/Actions';
-import TeachingLink from '../links/TeachingLink';
+import React, { useState, useEffect } from 'react';
+import { getTeacher, setLesson } from '../../store/Actions';
 
 // the view where the solving is displayed
 const SolveView = (props) => {
   const [teacher, setTeacher] = useState(undefined);
+  //get the teacher
   getTeacher(props.params.teachingName, setTeacher)
+  const [lesson, setLesson] = useState([])
+  //get the lesson
+  useEffect(() => {
+    if (teacher !== undefined) {
+      setLesson(teacher[props.params.method](props.params.parameters.split('@')))
+    }
+    return () => {
+      if (teacher) {
+        teacher.prepared=false
+      }
+    }
+  }, [teacher, props.params.method, props.params.parameters])
+  //render the lesson
   return (
     <div>
       {createSolveView()}
     </div>
   )
-  function createSolveView(){
+  function createSolveView() {
     if (teacher) {
       return (
-        //the heading
-        <h1 className='large-left-margin'>{teacher.teaching.displayNameSingular}: {getMethodName()}</h1>
+        <div>
+          {/*the heading*/}
+          <h1 className='large-left-margin'>{teacher.teaching.displayNameSingular}: {getMethodName()}</h1>
+          {/*displauy the lesson of the method*/}
+          {displayLesson()}
+        </div>
       )
     }
   }
   //get the display name
-  function getMethodName(){
-    let methodName=""
+  function getMethodName() {
+    let methodName = ""
     teacher.teaching.methods.forEach(method => {
-      if(method[1]===props.params.method){
-        methodName=method[0]
+      if (method[1] === props.params.method) {
+        methodName = method[0]
       }
     })
     return methodName
   }
-  function displaySection(segmentArray){
-    var teachingDisplay=[]
-    for (var i=0; i<segmentArray.length; i++){
-      teachingDisplay.push(createSegment(segmentArray[i], i));
-    }
-    return teachingDisplay;
-  }
-  function createSegment(concept, c){
-    if(concept){
-      var teaching=[];
-        if ( typeof concept==='string'){
-          if (concept==='\n\n'){
-            teaching.push(<div key={c} ><br></br></div>);
-          } else if (concept.startsWith('{H}')){
-            teaching.push(<h1 key={c} className="main-text-color center-text">{concept.slice(3)}</h1>);
-          } else if (concept.startsWith('{IL}')) {
-            //teaching.push(<span aria-label="test number"><InlineMath aria-hidden="true" key={c} className='inline-math' >{concept.slice(4)}</InlineMath></span>);
-          } else if (concept.startsWith('{BL}')) {
-            //teaching.push(<div aria-label="test number"><BlockMath aria-hidden="true" key={c} className='block-math'>{concept.slice(4)}</BlockMath></div>);
-          }
-          else{
-            teaching.push(<span key={c} className="heading center-text">{concept}</span>);
-          }
-        } else {
-          teaching.push(<TeachingLink key={c} displayName={concept.displayName}
-                    codeName={this.props.teacher.main[c].codeName}></TeachingLink>);
+  //create the display of the lesson
+  function displayLesson() {
+    if (teacher.prepared) {
+      let teachingDisplay = []
+      //create lesson for method with arguments
+      for (let i = 0; i < lesson.length; i++) {
+        //create concept
+        for (let j = 0; j < lesson[i].length; j++) {
+          //create segments to build concept
+          teachingDisplay.push(createSegment(lesson[i][j], i + '-' + j));
         }
-      return teaching;
+      }
+      return teachingDisplay;
+    }
+  }
+  //create an individual segment for a concept
+  function createSegment(segment, key) {
+    if (segment) {
+      if (segment.startsWith('{br}')) {
+        return (<div key={key} ><br></br></div>);
+      } else if (segment.startsWith('{str}')) {
+        return (<span key={key} className="main-text-color heading">{segment.slice(5)}</span>);
+      } else if (segment.startsWith('{il}')) {
+        //teaching.push(<span aria-label="test number"><InlineMath aria-hidden="true" key={c} className='inline-math' >{concept.slice(4)}</InlineMath></span>);
+      } else if (segment.startsWith('{bl}')) {
+        //teaching.push(<div aria-label="test number"><BlockMath aria-hidden="true" key={c} className='block-math'>{concept.slice(4)}</BlockMath></div>);
+      }
     }
   }
 }

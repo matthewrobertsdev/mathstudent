@@ -4,13 +4,17 @@ import Fraction from './math/Fraction'
 import PrimeFactorization from './math/PrimeFactorization';
 import Product from './math/Product';
 import ListUtility from '../../utilities/ListUtility';
-class FractionTeacher extends MathTeacher{
+class FractionTeacher{
 	teaching=FractionTeaching; mathObject=Fraction; numerator; denominator; simplestForm;
-	
-	constructor(){ super();
-		this.creationMethodSignatures=this.teaching.creationMethodSignatures;
-		this.instanceMethodSignatures=this.teaching.instanceMethodSignatures;
-		this.concept=[]; }
+  lesson=[]
+  prepared=false
+    
+  fromNumeratorAndDenominator(args){
+    this.lesson=[]
+    this.lesson.push(this.teaching.fromNumeratorAndDenominator(parseInt(args[2]), parseInt(args[4])))
+    this.prepared=true
+    return this.lesson
+  }
 	
 	fromNumAndDenom(args){this.init(args);}
 	fromInteger(args){args.push(1);this.init(args);}
