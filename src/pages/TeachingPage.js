@@ -19,6 +19,9 @@ const TeachingPage = (props) => {
     document.title = params.teachingName;
     return (
       <main>
+        <h1 className='large-left-margin'>
+        {teacher.teaching.displayNamePlural}
+        </h1>
       <Accordion allowZeroExpanded={true} allowMultipleExpanded={true} preExpanded={expandTheseIfNotMobile()}>
         <span>
           <AccordionItem uuid={'problems'}>
