@@ -37,7 +37,7 @@ const MethodView = (props) => {
               <input id={props.method[0] + "-" + props.method[index - 1]}
                 className='fixed-small-left-margin'
                 key={props.method[0] + "-" + props.method[index - 1] + 'input'}
-                value={text[index.toString()]} onChange={
+                 value={text[index.toString()]} onChange={
                   (event) => {
                     setText({
                       ...text,
@@ -54,7 +54,7 @@ const MethodView = (props) => {
       })}
       {/*solve button links to next page*/}
       <Link to={{pathname: '../solve/' + getURL(), state: {from: "EnterProblemsPage"}}}
-        className='create-button'>
+        className='create-button' tabIndex={0}>
         Solve
       </Link>
     </span>

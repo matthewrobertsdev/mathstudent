@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getTeacher, setLesson } from '../../store/Actions';
-
+import { getTeacher } from '../../store/Actions';
+import MathJax from 'react-mathjax';
 // the view where the solving is displayed
 const SolveView = (props) => {
   const [teacher, setTeacher] = useState(undefined);
@@ -10,7 +10,10 @@ const SolveView = (props) => {
   //get the lesson
   useEffect(() => {
     if (teacher !== undefined) {
-      setLesson(teacher[props.params.method](props.params.parameters.split('@')))
+          if ( typeof teacher[props.params.method] === 'function') {
+            console.log('method found')
+            setLesson(teacher[props.params.method](props.params.parameters.split('@')))
+          }
     }
     return () => {
       if (teacher) {
@@ -30,7 +33,7 @@ const SolveView = (props) => {
         <div>
           {/*the heading*/}
           <h1 className='large-left-margin'>{teacher.teaching.displayNameSingular}: {getMethodName()}</h1>
-          {/*displauy the lesson of the method*/}
+          {/*display the lesson of the method*/}
           {displayLesson()}
         </div>
       )
@@ -71,6 +74,11 @@ const SolveView = (props) => {
       } else if (segment.startsWith('{il}')) {
         //teaching.push(<span aria-label="test number"><InlineMath aria-hidden="true" key={c} className='inline-math' >{concept.slice(4)}</InlineMath></span>);
       } else if (segment.startsWith('{bl}')) {
+        return (
+          <MathJax.Provider input="tex" key={key}>
+          <MathJax.Node className='heading' formula={segment.slice(4)}></MathJax.Node>
+        </MathJax.Provider>
+        )
         //teaching.push(<div aria-label="test number"><BlockMath aria-hidden="true" key={c} className='block-math'>{concept.slice(4)}</BlockMath></div>);
       }
     }
