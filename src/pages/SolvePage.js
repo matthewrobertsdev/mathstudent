@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SolveView from '../components/teaching-views/SolveView'
+import AdView from '../components/AdView'
 //Page for solving a problem
 const SolvePage = (props) => {
   const { match: { params } } = props;
@@ -9,6 +10,9 @@ const SolvePage = (props) => {
     <main>
       {/*a back link or nothing*/}
       {createBackLink()}
+      {/* an ad */}
+      {createSpacer()}
+      <div className='center-text text-margins'><AdView /></div>
       {/*the view where the actual solving is displayed*/}
       <SolveView params={params}/>
     </main>
@@ -25,6 +29,16 @@ const SolvePage = (props) => {
           </h1>
         )
       }
+    }
+  }
+  function createSpacer() {
+    if (!(props.location.state && props.location.state.from)) {
+      return (
+        <div>
+          <br></br>
+          <br></br>
+        </div>
+      )
     }
   }
 }

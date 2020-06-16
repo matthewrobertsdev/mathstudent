@@ -4,6 +4,7 @@ h1{color: rgb(255, 209, 56);/*rgb(0, 21, 84);*/}
 .h1-2{
   color: white; font-size: 28px;
 }
+.heading{color: black}
 .link-heading{color: rgb(255, 209, 56); font-size: xx-large;}
 .link-text{color: rgb(255, 209, 56); font-size: xx-large; text-decoration: underline;}
 input{background-color: /*rgb(236, 126, 8);*/ rgb(236, 171, 8); border-color: black; font-size: large; 
@@ -20,10 +21,10 @@ input{background-color: /*rgb(236, 126, 8);*/ rgb(236, 171, 8); border-color: bl
 @media (min-width: 500px){
     .creator-text-size{ font-size: 30px; font-weight: 400;}
     .heading{
-        color: black; font-size: 25px; margin-top: 1em; margin-bottom: 1em;
+         font-size: 25px; margin-top: 1em; margin-bottom: 1em;
       margin-left: 0; margin-right: 0; font-weight: bold; }
     .heading-type-2 {
-      color: green; font-size: 1.50em; margin-top: 1em; margin-bottom: 1em;
+       font-size: 1.50em; margin-top: 1em; margin-bottom: 1em;
       margin-left: 0; margin-right: 0; font-weight: bold;
     }
     .heading-size{ font-size: 1.80em;}
@@ -45,7 +46,7 @@ input{background-color: /*rgb(236, 126, 8);*/ rgb(236, 171, 8); border-color: bl
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);}
 .link:hover { /* background-color: rgb(158, 89, 25); */ background-color: royalblue; }
 .creator-view{ color: black; }
-.main-text-color { color: gold}
+.main-text-color { color: black}
 .main-colors { color: black; background-color: rgb(110, 60, 14); }
 .nav-link{ /* color: gold; background-color: rgb(110, 60, 14); */ color: gold;
     background-color: rgb(22, 49, 131); padding: 10px 10px 14px 14px; text-align: center; 
@@ -149,10 +150,10 @@ input{background-color: /*rgb(236, 126, 8);*/ rgb(236, 171, 8); border-color: bl
   .small-space {display: block; width:50px;}
     .creator-text{ font-size: 45px; font-weight: 400;}
     .heading{
-        color: black; font-size: 1.50em; margin-top: 1em; margin-bottom: 1em;
+       font-size: 1.50em; margin-top: 1em; margin-bottom: 1em;
       margin-left: 0; margin-right: 0; font-weight: bold; }
       .heading-type-2 {
-        color: green; font-size: 1.50em; margin-top: 1em; margin-bottom: 1em;
+         font-size: 1.50em; margin-top: 1em; margin-bottom: 1em;
         margin-left: 0; margin-right: 0; font-weight: bold;
       }
     .heading-size { font-size: 1.50em }
@@ -170,7 +171,7 @@ input{background-color: /*rgb(236, 126, 8);*/ rgb(236, 171, 8); border-color: bl
     color: rgb(231, 0, 35)
   }
     .text-link{color: rgb(141, 164, 235);}
-    .nav-bar {background-color: rgb(14, 0, 164);/*rgb(83, 0, 83)*/}
+    .nav-bar {background-color: rgb(17, 0, 206);/*rgb(83, 0, 83)*/}
 
     body{background-color: rgb(34, 34, 33);}
     h1{color: /*rgb(231, 0, 35)*/rgb(255, 140, 0);/*rgb(165, 70, 165)*/}
@@ -183,7 +184,7 @@ input{background-color: /*rgb(236, 126, 8);*/ rgb(236, 171, 8); border-color: bl
     .subject-view{background-color: rgb(34, 34, 33);}
     .link{  background-color: rgb(17, 0, 206);}
     .link:hover{ background-color:rgb(10, 0, 121);}
-    .nav-link{  background-color:rgb(14, 0, 164);/*rgb(83, 0, 83)*/}
+    .nav-link{  background-color:rgb(17, 0, 206);;/*rgb(83, 0, 83)*/}
     .nav-link:hover{  background-color:rgb(10, 0, 121);/*rgb(72, 0, 72)*/}
     .selected-nav-link{ border-bottom: 5px solid rgb(126, 51, 147);/*rgb(157, 20, 41);*/}
     .accordion__button {

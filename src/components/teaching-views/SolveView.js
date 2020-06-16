@@ -34,7 +34,9 @@ const SolveView = (props) => {
           {/*the heading*/}
           <h1 className='large-left-margin'>{teacher.teaching.displayNameSingular}: {getMethodName()}</h1>
           {/*display the lesson of the method*/}
-          {displayLesson()}
+          <div className='text-margins'>
+            {displayLesson()}
+          </div>
         </div>
       )
     }
