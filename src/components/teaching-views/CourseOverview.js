@@ -9,7 +9,7 @@ const CourseOverview = (props) => {
         {props.course.name}
       </h1>
       {/* all topics in course as links */}
-      <TeachingsOverview topics={props.course.topics} />
+      <TeachingsOverview topics={props.course.topics} type={props.type}/>
     </span>
   )
 }

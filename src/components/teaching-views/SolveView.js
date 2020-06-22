@@ -13,6 +13,7 @@ const SolveView = (props) => {
           if ( typeof teacher[props.params.method] === 'function') {
             console.log('method found')
             setLesson(teacher[props.params.method](props.params.parameters.split('@')))
+            console.log(lesson)
           }
     }
     return () => {

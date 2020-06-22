@@ -11,7 +11,7 @@ const TeachingsOverview = (props) => {
     return (
       <div key={index} i={index}>
         {/* create TeachingLink from topic */}
-        <TeachingLink topic={topic}></TeachingLink>
+        <TeachingLink topic={topic} type={props.type}></TeachingLink>
         <br></br>
       </div>
     );

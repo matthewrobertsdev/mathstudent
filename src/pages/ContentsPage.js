@@ -21,7 +21,7 @@ const CurrciulumPage = (props) => {
           return (
             <div key={index}>
               {/*create CourseOverview*/}
-              <CourseOverview course={course} type='teachings'/>
+              <CourseOverview course={course} type='textbook'/>
               <br></br>
             </div>
           );

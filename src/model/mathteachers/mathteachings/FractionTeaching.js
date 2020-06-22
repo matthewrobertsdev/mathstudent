@@ -43,8 +43,10 @@ class FractionTeaching extends MathTeaching {
       'denominator', 'integer']
     ]
   }
+
   fromNumeratorAndDenominator(numerator, denominator){
-    const concept=[
+    const teaching=[]
+    const solution=[
     `{str}You create a fraction from a numerator and a denominator by \
     placing the numerator above the denominator, with a horizontal bar \
     between them.  In this case, the numerator is ${numerator} and the \
@@ -52,7 +54,7 @@ class FractionTeaching extends MathTeaching {
     ${denominator}, which is the following:`,
     `{bl}\\frac{${numerator}}{${denominator}}`,
     ]
-    return concept
+    return {teaching: teaching, solution: solution}
   }
 
   indeterminate(inlineLatex) {

@@ -20,6 +20,6 @@ export const getTeacher = (teachingName, callback) => {
         callback(teacher.default)
 			}).catch(
 				function (error) {
-					callback(undefined)
+					callback(false)
 				});
 };

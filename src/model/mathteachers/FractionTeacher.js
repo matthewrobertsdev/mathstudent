@@ -1,4 +1,3 @@
-import MathTeacher from './MathTeacher';
 import FractionTeaching from './mathteachings/FractionTeaching';
 import Fraction from './math/Fraction'
 import PrimeFactorization from './math/PrimeFactorization';
@@ -11,7 +10,7 @@ class FractionTeacher{
     
   fromNumeratorAndDenominator(args){
     this.lesson=[]
-    this.lesson.push(this.teaching.fromNumeratorAndDenominator(parseInt(args[2]), parseInt(args[4])))
+    this.lesson.push(this.teaching.fromNumeratorAndDenominator(parseInt(args[2]), parseInt(args[4])).solution)
     this.prepared=true
     return this.lesson
   }

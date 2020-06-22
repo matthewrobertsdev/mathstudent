@@ -53,12 +53,14 @@ const TeachingPage = (props) => {
       </Accordion>
       </main>
     );
-  } else if (teacher === undefined) {
+  } else if (teacher === false) {
     return(
     <main>
       <UncreatedTeachingView className='center-text'/>
     </main>
     )
+  } else {
+    return null
   }
   //for accordian tabs
   function expandTheseIfNotMobile() {

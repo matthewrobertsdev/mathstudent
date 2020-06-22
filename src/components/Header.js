@@ -10,16 +10,22 @@ const Header = () => {
           to='/' key={0}>
           Math Teacher
       </Link>
+      <Link className={getClassNameLeft('/textbook')}
+          to='/textbook' key={1}>
+          Textbook
+      </Link>
         {/*Curriculum page*/}
         <Link className={getClassNameLeft('/curriculum')}
-          to='/curriculum' key={1}>
+          to='/curriculum' key={2}>
           Curriculum
       </Link>
         {/*Topics page*/}
+        {/*}
         <Link className={getClassNameLeft('/teachings')}
           to='/teachings' key={2}>
           Teachings
       </Link>
+      */}
         {/*Cached version info page*/}
         <Link className={getClassNameLeft('/version')}
           to='/version' key={3}>

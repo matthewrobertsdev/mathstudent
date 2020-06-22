@@ -171,7 +171,7 @@ input{background-color: /*rgb(236, 126, 8);*/ rgb(236, 171, 8); border-color: bl
     color: rgb(231, 0, 35)
   }
     .text-link{color: rgb(141, 164, 235);}
-    .nav-bar {background-color: rgb(17, 0, 206);/*rgb(83, 0, 83)*/}
+    .nav-bar {background-color: rgb(14, 0, 164);/*rgb(83, 0, 83)*/}
 
     body{background-color: rgb(34, 34, 33);}
     h1{color: /*rgb(231, 0, 35)*/rgb(255, 140, 0);/*rgb(165, 70, 165)*/}
@@ -184,7 +184,7 @@ input{background-color: /*rgb(236, 126, 8);*/ rgb(236, 171, 8); border-color: bl
     .subject-view{background-color: rgb(34, 34, 33);}
     .link{  background-color: rgb(17, 0, 206);}
     .link:hover{ background-color:rgb(10, 0, 121);}
-    .nav-link{  background-color:rgb(17, 0, 206);;/*rgb(83, 0, 83)*/}
+    .nav-link{  background-color:rgb(14, 0, 164);/*rgb(83, 0, 83)*/}
     .nav-link:hover{  background-color:rgb(10, 0, 121);/*rgb(72, 0, 72)*/}
     .selected-nav-link{ border-bottom: 5px solid rgb(126, 51, 147);/*rgb(157, 20, 41);*/}
     .accordion__button {
