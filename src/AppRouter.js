@@ -10,6 +10,7 @@ import GenerateProblemsPage from './pages/GenerateProblemsPage'
 import TeachingPage from './pages/TeachingPage'
 import SolvePage from './pages/SolvePage'
 import TeachPage from './pages/TeachPage'
+import AboutPage from './pages/AboutPage'
 import ContentsPage from './pages/ContentsPage'
 
 
@@ -21,8 +22,8 @@ const AppRouter= () => (
                 <Route path="/" exact component={HomePage}/>
                 <Route path="/curriculum" exact component={CurriculumPage}/>
                 {/*<Route path="/teachings" exact component={TeachingsPage}/>*/}
-                <Route path="/textbook" exact component={ContentsPage}/>
-                <Route path="/textbook/:teachingName" exact component={TeachPage}/>
+                {/*<Route path="/textbook" exact component={ContentsPage}/>*/}
+                <Route path="/textbook/:teachingName" exact component={AboutPage}/>
                 <Route path="/version" exact component={VersionPage}/>
                 <Route path='/solve/:teachingName/:method/:parameters' exact component={SolvePage}/>
                 <Route path="/EnterProblems/:teachingName" exact component={EnterProblemsPage}/>

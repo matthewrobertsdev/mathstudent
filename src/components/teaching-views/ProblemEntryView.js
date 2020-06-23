@@ -7,7 +7,7 @@ import MethodView from './MethodView'
 
 //can enter a problem
 const ProblemEntryView = (props) => {
-  if (props.method == null) {
+  if (props.method === undefined) {
     return null;
   }
   return (

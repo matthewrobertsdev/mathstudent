@@ -10,10 +10,11 @@ const Header = () => {
           to='/' key={0}>
           Math Teacher
       </Link>
-      <Link className={getClassNameLeft('/textbook')}
+      {/*<Link className={getClassNameLeft('/textbook')}
           to='/textbook' key={1}>
           Textbook
-      </Link>
+        </Link>
+      */}
         {/*Curriculum page*/}
         <Link className={getClassNameLeft('/curriculum')}
           to='/curriculum' key={2}>
