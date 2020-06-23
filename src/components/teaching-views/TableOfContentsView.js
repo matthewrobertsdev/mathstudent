@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 //can enter a problem
 const TableOfContentsView = (props) => {
   return (
-    <ol>
+    <ol className='large-left-margin'>
     {props.methods.map( (method, _) => {
       return (
         <li className='link-heading'>

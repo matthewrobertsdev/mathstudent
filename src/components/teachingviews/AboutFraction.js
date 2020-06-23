@@ -4,7 +4,7 @@ import MathJax from 'react-mathjax';
 const AboutFraction = () => {
   return (
     <span>
-      <h1>
+      <h1 className='large-left-margin'>
         What They Are
       </h1>
       <h3 className="heading">
@@ -17,7 +17,7 @@ const AboutFraction = () => {
         the value of the fraction.  The simplest fractions have just one number 
         on top of another number.  Fractions are a way of expressing division.
       </h3>
-      <h1>
+      <h1 className='large-left-margin'>
         Their Form
       </h1>
       <h3 className='heading'>
@@ -26,7 +26,7 @@ const AboutFraction = () => {
       <MathJax.Provider input="tex">
         <MathJax.Node className='heading' formula={`\\color{gold}{\\frac{numerator}{denominator}}`}></MathJax.Node>
       </MathJax.Provider>
-      <h1>
+      <h1 className='large-left-margin'>
         Their Value
       </h1>
       <h3 className="heading">
@@ -48,7 +48,7 @@ const AboutFraction = () => {
         and the fraction can be written as a number that is not a fraction and
         has no decimal point.  In other words, it can be written as an integer.
       </h3>
-      <h1>
+      <h1 className='large-left-margin'>
         What Next?
       </h1>
       <h3 className="heading">

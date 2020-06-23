@@ -71,6 +71,14 @@ const TeachingPage = (props) => {
           </AccordionItem>
         </span>
       </Accordion>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
       </main>
     );
   } else if (teacher === false) {
