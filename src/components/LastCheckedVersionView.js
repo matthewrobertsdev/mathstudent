@@ -1,4 +1,5 @@
 import React from 'react';
+
 //tells when last update was found
 const LastCheckedVersionView = () => {
   //stored in local storage

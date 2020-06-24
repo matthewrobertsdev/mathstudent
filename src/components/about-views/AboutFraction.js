@@ -8,13 +8,13 @@ const AboutFraction = () => {
         What They Are
       </h1>
       <h3 className="heading">
-        A fraction is a way of expressing a number or mathematical expression 
+        A fraction is a way of expressing a number or mathematical expression
         as being a part of another number or mathematical expression.
-        They have two mathematical expressions on top of each other, separated by a 
+        They have two mathematical expressions on top of each other, separated by a
         horizontal bar.  The number on top is called the numerator.
-        The number on the bottom is called the denominator.  
-        The numerator is divided by the denominator to give you 
-        the value of the fraction.  The simplest fractions have just one number 
+        The number on the bottom is called the denominator.
+        The numerator is divided by the denominator to give you
+        the value of the fraction.  The simplest fractions have just one number
         on top of another number.  Fractions are a way of expressing division.
       </h3>
       <h1 className='large-left-margin'>

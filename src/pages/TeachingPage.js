@@ -24,7 +24,7 @@ const TeachingPage = (props) => {
         {teacher.teaching.displayNamePlural}
         </h1>
         <div className='center-text text-margins'><AdView /></div>
-      <Accordion allowZeroExpanded={true} allowMultipleExpanded={true} preExpanded={expandTheseIfNotMobile()}>
+      <Accordion allowZeroExpanded={true} allowMultipleExpanded={true} preExpanded={[]}>
         <span>
           <AccordionItem uuid='about'>
             <AccordionItemHeading className="heading large-heading-size">

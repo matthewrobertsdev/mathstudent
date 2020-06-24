@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-class TopicView extends React.Component{
-    constructor(props) { super(props); this.state=this.props.topic;}
-      render() { 
-        return (
-          <div> <Link className="link" to={`/${this.props.type}/${this.props.topic.codeName}`}>{this.props.topic.displayName}</Link> </div>
-        ); }
+const TopicView = (props) => {
+  return (
+    <div>
+      <Link className="link" to={`/${props.type}/${props.topic.codeName}`}>
+        {props.topic.displayName}
+      </Link>
+    </div>
+  );
 }
 export default TopicView;

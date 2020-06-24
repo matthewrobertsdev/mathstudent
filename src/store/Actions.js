@@ -15,11 +15,11 @@ export const setTeacher = (teachingName) => {
 */
 
 export const getTeacher = (teachingName, callback) => {
-		import(`../model/mathteachers/${teachingName}Teacher`).then(
-			teacher => {
-        callback(teacher.default)
-			}).catch(
-				function (error) {
-					callback(false)
-				});
+  import(`../model/mathteachers/${teachingName}Teacher`).then(
+    teacher => {
+      callback(teacher.default)
+    }).catch(
+      function (error) {
+        callback(false)
+      });
 };
