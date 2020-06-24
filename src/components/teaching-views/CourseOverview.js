@@ -1,5 +1,6 @@
 import React from 'react';
 import TeachingsOverview from './TeachingsOverview'
+
 //displays course name and TeachingOverview with links to topics
 const CourseOverview = (props) => {
   return (

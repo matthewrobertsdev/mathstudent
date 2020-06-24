@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-//can enter a problem
+//all method teachings for this topic
 const TableOfContentsView = (props) => {
   return (
+    //ordered list for methods for table of contents
     <ol className='large-left-margin'>
     {props.methods.map( (method, _) => {
       return (
@@ -11,6 +12,7 @@ const TableOfContentsView = (props) => {
           <Link className='link-heading'>
           {method[0]}
           </Link>
+          {/* line breaks */}
           <br/>
           <br/>
         </li>

@@ -5,7 +5,7 @@ import {
 } from 'react-accessible-accordion'
 import MethodView from './MethodView'
 
-//can enter a problem
+//accordian that contains method view for entering a problem
 const ProblemEntryView = (props) => {
   if (props.method === undefined) {
     return null;
@@ -15,11 +15,13 @@ const ProblemEntryView = (props) => {
       <AccordionItem>
         <AccordionItemHeading className="heading-type-2">
           <AccordionItemButton>
+            {/* method name */}
             {props.number + ') ' + props.method[0]}
           </AccordionItemButton>
         </AccordionItemHeading>
         <AccordionItemPanel>
-          <MethodView method={props.method} teacher={props.teacher}/>
+          {/* actually let's you enter the problem for the method and link to SolvePage */}
+          <MethodView method={props.method} teacher={props.teacher} />
         </AccordionItemPanel>
       </AccordionItem>
     </span>

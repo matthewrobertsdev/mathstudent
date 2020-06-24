@@ -13,7 +13,7 @@ const TeachingPage = (props) => {
   const { match: { params } } = props;
   const [teacher, setTeacher] = useState(undefined);
   getTeacher(params.teachingName, setTeacher)
-  const AboutComponent = React.lazy(() => import(`../components/teachingviews/About${params.teachingName}`));
+  const AboutComponent = React.lazy(() => import(`../components/about-views/About${params.teachingName}`));
 
   if (teacher) {
     console.log(teacher)

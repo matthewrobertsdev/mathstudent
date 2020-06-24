@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+//back to main teaching page link
 const BackToTeachingView = (props) => {
   return (
   <h1 className='large-left-margin'>

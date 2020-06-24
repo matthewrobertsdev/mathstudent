@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-//just provides initial links to enter a problem or generate problems
+//just provides initial links to enter a problem page or generate problems page
 const ProblemPicker = (props) => {
   return (
     <div className='full-width center-text'>

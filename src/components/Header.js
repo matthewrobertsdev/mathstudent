@@ -1,38 +1,27 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
+
 //Header at top of each page with links to all main pages
 const Header = () => {
   return (
     <header>
       <nav className="nav-bar">
-        {/*Home page*/}
+        {/* Home page */}
         <Link className={getClassNameLeft('/')}
           to='/' key={0}>
           Math Teacher
       </Link>
-      {/*<Link className={getClassNameLeft('/textbook')}
-          to='/textbook' key={1}>
-          Textbook
-        </Link>
-      */}
-        {/*Curriculum page*/}
+        {/* Curriculum page */}
         <Link className={getClassNameLeft('/curriculum')}
           to='/curriculum' key={2}>
           Curriculum
       </Link>
-        {/*Topics page*/}
-        {/*}
-        <Link className={getClassNameLeft('/teachings')}
-          to='/teachings' key={2}>
-          Teachings
-      </Link>
-      */}
-        {/*Cached version info page*/}
+        {/* Cached version info page */}
         <Link className={getClassNameLeft('/version')}
           to='/version' key={3}>
           Version
       </Link>
-        {/*Login page*/}
+        {/* Login page */}
         <Link className={getClassNameRight('/login')}
           to='/login' key={4}>
           Login
@@ -40,6 +29,7 @@ const Header = () => {
       </nav>
     </header>
   );
+
   //selected or unslected css style that floats left
   function getClassNameLeft(url) {
     if (url === window.location.pathname) {
@@ -48,6 +38,7 @@ const Header = () => {
       return 'nav-link float-left';
     }
   }
+  
   //selected or unslected css style that floats right
   function getClassNameRight(url) {
     if (url === window.location.pathname) {

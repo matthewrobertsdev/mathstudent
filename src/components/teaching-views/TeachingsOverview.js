@@ -1,5 +1,6 @@
 import React from 'react';
 import TeachingLink from '../links/TeachingLink'
+
 //create a series of TeachingLinks based on topics passed in
 const TeachingsOverview = (props) => {
   //if topics is null return null

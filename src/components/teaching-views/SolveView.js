@@ -1,33 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { getTeacher } from '../../store/Actions';
 import MathJax from 'react-mathjax';
+
 // the view where the solving is displayed
 const SolveView = (props) => {
+
+  //set-up state
   const [teacher, setTeacher] = useState(undefined);
   //get the teacher
   getTeacher(props.params.teachingName, setTeacher)
   const [lesson, setLesson] = useState([])
+
   //get the lesson
   useEffect(() => {
     if (teacher !== undefined) {
-          if ( typeof teacher[props.params.method] === 'function') {
-            console.log('method found')
-            setLesson(teacher[props.params.method](props.params.parameters.split('@')))
-            console.log(lesson)
-          }
+      if (typeof teacher[props.params.method] === 'function') {
+        setLesson(teacher[props.params.method](props.params.parameters.split('@')))
+      }
     }
     return () => {
       if (teacher) {
-        teacher.prepared=false
+        teacher.prepared = false
       }
     }
   }, [teacher, props.params.method, props.params.parameters])
+
   //render the lesson
   return (
     <div>
       {createSolveView()}
     </div>
   )
+
+  //create the view
   function createSolveView() {
     if (teacher) {
       return (
@@ -52,6 +57,7 @@ const SolveView = (props) => {
     })
     return methodName
   }
+
   //create the display of the lesson
   function displayLesson() {
     if (teacher.prepared) {
@@ -67,24 +73,31 @@ const SolveView = (props) => {
       return teachingDisplay;
     }
   }
+
   //create an individual segment for a concept
   function createSegment(segment, key) {
     if (segment) {
       if (segment.startsWith('{br}')) {
-        return (<div key={key} ><br></br></div>);
+        return (
+        <div key={key} >
+          <br/>
+        </div>);
       } else if (segment.startsWith('{str}')) {
-        return (<span key={key} className="main-text-color heading">{segment.slice(5)}</span>);
+        return (
+        <span key={key} className="main-text-color heading">
+          {segment.slice(5)}
+        </span>);
       } else if (segment.startsWith('{il}')) {
-        //teaching.push(<span aria-label="test number"><InlineMath aria-hidden="true" key={c} className='inline-math' >{concept.slice(4)}</InlineMath></span>);
+          return null
       } else if (segment.startsWith('{bl}')) {
         return (
           <MathJax.Provider input="tex" key={key}>
-          <MathJax.Node className='heading' formula={segment.slice(4)}></MathJax.Node>
-        </MathJax.Provider>
+            <MathJax.Node className='heading' formula={`\\color{gold}{${segment.slice(4)}}`}/>
+          </MathJax.Provider>
         )
-        //teaching.push(<div aria-label="test number"><BlockMath aria-hidden="true" key={c} className='block-math'>{concept.slice(4)}</BlockMath></div>);
       }
     }
   }
 }
+
 export default SolveView

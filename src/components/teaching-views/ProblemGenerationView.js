@@ -1,5 +1,7 @@
 import React from 'react';
 
+//for generating a problem for a method
+//incomplete
 const ProblemGenerationView = (props) => {
   if (props.method == null) {
     return null;

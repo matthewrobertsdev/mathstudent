@@ -11,6 +11,7 @@ const MethodView = (props) => {
       initialText[index.toString()] = ""
     }
   }
+  //setText from useState hook
   const [text, setText] = useState(initialText);
   if (props.method == null) {
     return null;
