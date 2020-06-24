@@ -12,12 +12,14 @@ import SolvePage from './pages/SolvePage'
 import TeachPage from './pages/TeachPage'
 import AboutPage from './pages/AboutPage'
 import ContentsPage from './pages/ContentsPage'
+import ScrollToTop from './components/ScrollToTop'
 
 
 const AppRouter= () => (
     <BrowserRouter>
         <div>
             <Header/>
+            <ScrollToTop/>
             <Switch>
                 <Route path="/" exact component={HomePage}/>
                 <Route path="/curriculum" exact component={CurriculumPage}/>
