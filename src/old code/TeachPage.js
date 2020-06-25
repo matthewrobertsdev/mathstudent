@@ -1,27 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SolveView from '../components/teaching-views/SolveView'
-import AdView from '../components/AdView'
+import UncreatedTeachingView from '../components/teaching-views/UncreatedTeachingView'
 //Page for solving a problem
-const SolvePage = (props) => {
+const TeachPage = (props) => {
   const { match: { params } } = props;
-  //set page title
-  document.title=params.teachingName+" Problem"
+  document.title = params.teachingName + " Teaching"
   return (
     <main>
-      {/*a back link or nothing*/}
-      {createBackLink()}
-      {/* an ad */}
-      {createSpacer()}
-      <div className='center-text text-margins'><AdView /></div>
-      {/*the view where the actual solving is displayed*/}
-      <SolveView params={params}/>
+      <UncreatedTeachingView className='center-text' />
     </main>
   )
   //if there is a valid location to go back to, it will be described in this link
-  function createBackLink(){
+  function createBackLink() {
     if (props.location.state && props.location.state.from) {
-      if (props.location.state.from==="EnterProblemsPage"){
+      if (props.location.state.from === "EnterProblemsPage") {
         return (
           <h1 className='large-left-margin'>
             <Link to={`../../../EnterProblems/${params.teachingName}`} className='link-heading'>
@@ -32,8 +24,6 @@ const SolvePage = (props) => {
       }
     }
   }
-
-  //spacer for if no back button is present
   function createSpacer() {
     if (!(props.location.state && props.location.state.from)) {
       return (
@@ -45,4 +35,4 @@ const SolvePage = (props) => {
     }
   }
 }
-export default SolvePage
+export default TeachPage

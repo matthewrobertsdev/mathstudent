@@ -21,13 +21,13 @@ const CurrciulumPage = (props) => {
           return (
             <div key={index}>
               {/*create CourseOverview*/}
-              <CourseOverview course={course} type='teachings'/>
+              <CourseOverview course={course} type='teachings' />
               <br></br>
             </div>
           );
         })}
       </main>
-      );
+    );
   }
 }
 export default CurrciulumPage;

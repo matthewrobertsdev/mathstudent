@@ -4,9 +4,11 @@ import { Accordion } from 'react-accessible-accordion'
 import BackToTeachingView from '../components/teaching-views/BackToTeachingView'
 import AdView from '../components/AdView';
 import { getTeacher } from '../store/Actions';
+// a page for entering problems based on the methods
 const EnterProblemsPage = (props) => {
   const { match: { params } } = props;
   document.title = `Enter ${params.teachingName} Problems`
+  //state
   const [teacher, setTeacher] = useState(undefined);
   getTeacher(params.teachingName, setTeacher)
   if (teacher) {
@@ -18,6 +20,7 @@ const EnterProblemsPage = (props) => {
           <h1 className='large-left-margin'>
             Enter {teacher.teaching.displayNameSingular} Problems
           </h1>
+          {/* one ProblemEntryView for each of the teacher's teaching's methods */}
           {teacher.teaching.methods.map((method, index) => {
             return (
               <ProblemEntryView method={method} key={index} number={index + 1} teacher={teacher}/>

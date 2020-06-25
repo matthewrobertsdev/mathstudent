@@ -4,11 +4,14 @@ import { Link } from 'react-router-dom';
 import AdView from '../components/AdView';
 import BackToTeachingView from '../components/teaching-views/BackToTeachingView'
 import ProblemGenerationView from '../components/teaching-views/ProblemGenerationView';
+import UncreatedTeachingView from '../components/teaching-views/UncreatedTeachingView';
 import { getTeacher } from '../store/Actions';
+// genrate a problem set for the entire topic or for individual subtopics
 const GenerateProblemsPage = (props) => {
   const { match: { params } } = props;
   document.title = `Generate ${params.teachingName} Problems`
-  const [teacher, setTeacher] = useState(undefined);
+  //state
+  const [teacher, setTeacher] = useState(false);
   getTeacher(params.teachingName, setTeacher)
   if (teacher) {
     return (
@@ -22,7 +25,7 @@ const GenerateProblemsPage = (props) => {
             Generate {teacher.teaching.displayNameSingular} Problems:
           </h1>
           <div className='center-text'>
-            <Link to="/" className="link">
+          <Link to="/" className="link">
               Generate Problem Set
           </Link>
           </div>
@@ -32,6 +35,7 @@ const GenerateProblemsPage = (props) => {
               Generate Problems from Selection
           </Link>
           </div>
+          {/* one ProblemGenerationView for every method in teacher's teaching */}
           {teacher.teaching.methods.map((method, index) => {
             return (
               <ProblemGenerationView method={method} key={index} number={index + 1} />
@@ -43,8 +47,9 @@ const GenerateProblemsPage = (props) => {
         </Accordion>
       </main>
     )
-  } else if (teacher === undefined) {
-    return null
+  } else if (teacher===false){
+    //if teacher can't be retreived
+    return <UncreatedTeachingView/>
   }
 }
 export default GenerateProblemsPage
