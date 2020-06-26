@@ -54,14 +54,20 @@ const MethodView = (props) => {
         }
       })}
       {/*solve button links to next page*/}
-      <Link to={{pathname: '../solve/' + getURL(), state: {from: "EnterProblemsPage"}}}
+      <Link to={{pathname: getURL(), state: {from: props.from}}}
         className='create-button' tabIndex={0}>
         Solve
       </Link>
     </span>
   )
   function getURL() {
-    let url=props.teacher.teaching.objectName+"/"
+    let url=''
+    if (props.from==='teaching'){
+      url+='../../teachings/'
+    } else if (props.from==='EnterProblemsPage') {
+      url+='../solve/'
+    }
+    url+=props.teacher.teaching.objectName+"/"
     url +=props.method[1]+"/"
     for (let index = 2; index < props.method.length; index++) {
       if (index % 2 === 0) {

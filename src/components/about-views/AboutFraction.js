@@ -24,7 +24,7 @@ const AboutFraction = () => {
         A fraction looks like this:
       </h3>
       <MathJax.Provider input="tex">
-        <MathJax.Node className='heading' formula={`\\color{gold}{\\frac{\\textrm{numerator}}{\\textrm{denominator}}}`}></MathJax.Node>
+        <MathJax.Node className='heading' formula={`\\color{white}{\\frac{\\textrm{numerator}}{\\textrm{denominator}}}`}></MathJax.Node>
       </MathJax.Provider>
       <h1 className='large-left-margin'>
         Their Value

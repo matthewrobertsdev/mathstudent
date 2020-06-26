@@ -13,6 +13,7 @@ import EnterProblemsPage from './pages/EnterProblemsPage'
 import GenerateProblemsPage from './pages/GenerateProblemsPage'
 import TeachingPage from './pages/TeachingPage'
 import SolvePage from './pages/SolvePage'
+import MethodPage from './pages/MethodPage'
 
 //router for entire app
 const AppRouter = () => (
@@ -36,6 +37,10 @@ const AppRouter = () => (
       <Route path="/GenerateProblems/:teachingName" exact component={GenerateProblemsPage} />
       {/* about topic, teaching table of contents, and problem links for this topic */}
       <Route path="/teachings/:teachingName" exact component={TeachingPage} />
+      {/* teaching about a method */}
+      <Route path="/teachings/:teachingName/:method" exact component={MethodPage} />
+      {/* or solving a problem, again */}
+      <Route path='/teachings/:teachingName/:method/:parameters' exact component={SolvePage} />
       {/* if you don't match the route */}
       <Route component={PageNotFoundPage} />
     </Switch>

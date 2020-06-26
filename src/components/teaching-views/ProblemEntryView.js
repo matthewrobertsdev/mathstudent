@@ -21,7 +21,7 @@ const ProblemEntryView = (props) => {
         </AccordionItemHeading>
         <AccordionItemPanel>
           {/* actually let's you enter the problem for the method and link to SolvePage */}
-          <MethodView method={props.method} teacher={props.teacher} />
+          <MethodView method={props.method} teacher={props.teacher} from='EnterProblemsPage'/>
         </AccordionItemPanel>
       </AccordionItem>
     </span>

@@ -1,11 +1,11 @@
 import React, { Suspense, useState } from 'react';
 import { Accordion, AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel } from 'react-accessible-accordion'
 import { getTeacher } from '../store/Actions';
-import isMobile from '../utilities/IsMobile';
+//import isMobile from '../utilities/IsMobile';
 import UncreatedTeachingView from '../components/teaching-views/UncreatedTeachingView'
 import AdView from '../components/AdView';
 import ProblemPicker from '../components/teaching-views/ProblemPicker'
-import TableOfContentsView from '../components/teaching-views/TableOfContentsView'
+import TOCAccordianItem from '../components/teaching-views/TOCAccordianItem'
 import '../styles/app.css'
 
 //initial page for a topic
@@ -51,23 +51,7 @@ const TeachingPage = (props) => {
             </AccordionItem>
           </span>
           {/* teaching links and ad */}
-          <span>
-            <AccordionItem uuid='table_of_contents'>
-              <AccordionItemHeading className="heading large-heading-size">
-                <AccordionItemButton>
-                  {teacher.teaching.displayNameSingular + ' Teachings'}
-                </AccordionItemButton>
-              </AccordionItemHeading>
-              <AccordionItemPanel>
-                <TableOfContentsView methods={teacher.teaching.methods} />
-                <br />
-                <div className='center-text text-margins'>
-                  <AdView />
-                </div>
-                <br />
-              </AccordionItemPanel>
-            </AccordionItem>
-          </span>
+          <TOCAccordianItem teacher={teacher} />
           {/* problem links and ad */}
           <span>
             <AccordionItem uuid={'problems'}>
@@ -105,6 +89,7 @@ const TeachingPage = (props) => {
     return null
   }
   //for accordian
+  /*
   function expandTheseIfNotMobile() {
     if (!isMobile()) {
       return ['problems', 'about', 'table_of_contents'];
@@ -112,5 +97,6 @@ const TeachingPage = (props) => {
       return [];
     }
   }
+  */
 }
 export default TeachingPage;

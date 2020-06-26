@@ -52,7 +52,8 @@ class FractionTeaching extends MathTeaching {
     between them.  In this case, the numerator is ${numerator} and the \
     denominator is ${denominator}, so you have ${numerator} over \
     ${denominator}, which is the following:`,
-    `{bl}\\frac{${numerator}}{${denominator}}`,
+    `{$bl}\\frac{${numerator}}{${denominator}}{$bl}begin fraction \
+    ${numerator} over ${denominator} end fraction`,
     ]
     return {teaching: teaching, solution: solution}
   }

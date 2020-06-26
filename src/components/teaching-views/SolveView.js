@@ -38,7 +38,9 @@ const SolveView = (props) => {
       return (
         <div>
           {/*the heading*/}
-          <h1 className='large-left-margin'>{teacher.teaching.displayNameSingular}: {getMethodName()}</h1>
+          <h1 className='large-left-margin'>
+            {teacher.teaching.displayNameSingular}: {getMethodName()}
+          </h1>
           {/*display the lesson of the method*/}
           <div className='text-margins'>
             {displayLesson()}
@@ -87,13 +89,16 @@ const SolveView = (props) => {
         <span key={key} className="main-text-color heading">
           {segment.slice(5)}
         </span>);
-      } else if (segment.startsWith('{il}')) {
+      } else if (segment.startsWith('{$il}')) {
           return null
-      } else if (segment.startsWith('{bl}')) {
+      } else if (segment.startsWith('{$bl}')) {
+        const math=segment.split('{$bl}')
         return (
-          <MathJax.Provider input="tex" key={key}>
-            <MathJax.Node className='heading' formula={`\\color{gold}{${segment.slice(4)}}`}/>
-          </MathJax.Provider>
+          <span aria-label={math[2]} key={key}>
+            <MathJax.Provider input="tex" >
+              <MathJax.Node aria-hidden='true' className='heading' formula={`\\color{white}{${math[1]}}`}/>
+            </MathJax.Provider>
+          </span>
         )
       }
     }
