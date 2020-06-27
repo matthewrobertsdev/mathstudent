@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 //can enter a problem
@@ -6,6 +6,7 @@ const MethodView = (props) => {
 
   //initial state for inputs
   let initialText = {}
+
   for (let index = 2; index < props.method.length; index++) {
     if (index % 2 === 1) {
       initialText[index.toString()] = ""
@@ -13,11 +14,21 @@ const MethodView = (props) => {
   }
   //setText from useState hook
   const [text, setText] = useState(initialText);
+
+  const [paramsState, setParamsState]=useState(null)
+  
+  useEffect( () => {
+    if (props.params!==paramsState){
+      setParamsState(props.params)
+      setText(initialText)
+    }
+  }, [props.params, paramsState, initialText] )
+
   if (props.method == null) {
     return null;
   }
   return (
-    <span>
+    <div className='large-margins'>
       {props.method.map((_, index) => {
         if (index < 2) {
           return null
@@ -26,7 +37,7 @@ const MethodView = (props) => {
         else if (index % 2 === 0) {
           return (
             <label htmlFor={props.method[0] + "-" + props.method[index]}
-              className='heading medium-line-height small-left-margin label'
+              className='heading medium-line-height label small-right-margin'
               key={props.method[0] + "-" + props.method[index] + 'label'}>
               {props.method[index]}:
             </label>
@@ -34,9 +45,9 @@ const MethodView = (props) => {
         } else {
           //the inputs--controlled components
           return (
-            <span key={props.method[0] + "-" + props.method[index - 1] + 'input-and-span'}>
+            <span key={props.method[0] + "-" + props.method[index - 1] + 'input-and-span'}
+            className='large-right-margin'>
               <input id={props.method[0] + "-" + props.method[index - 1]}
-                className='fixed-small-left-margin'
                 key={props.method[0] + "-" + props.method[index - 1] + 'input'}
                  value={text[index.toString()]} onChange={
                   (event) => {
@@ -46,9 +57,6 @@ const MethodView = (props) => {
                     }); console.log(text[index.toString()])
                   }
                 } />
-              <span className='small-space medium-line-height'
-                key={props.method[0] + "-" + props.method[index - 1] + '-span'}>
-              </span>
             </span>
           )
         }
@@ -58,7 +66,7 @@ const MethodView = (props) => {
         className='create-button' tabIndex={0}>
         Solve
       </Link>
-    </span>
+    </div>
   )
   function getURL() {
     let url=''

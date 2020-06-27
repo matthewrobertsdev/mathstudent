@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import MethodView from '../components/teaching-views/MethodView'
 import AdView from '../components/AdView'
@@ -12,7 +12,7 @@ const MethodPage = (props) => {
   const { match: { params } } = props;
   //set page title
   document.title = params.teachingName + " Problem Teaching"
-
+  
   const [teacher, setTeacher] = useState(undefined);
   getTeacher(params.teachingName, setTeacher)
   if (teacher) {
@@ -26,13 +26,15 @@ const MethodPage = (props) => {
         </div>
         <h1 className='large-left-margin'>{getMethod()[0]}</h1>
         <h1 className='large-left-margin'>Try It Out:</h1>
-        <MethodView teacher={teacher} method={getMethod()} from='teachings'/>
+        <MethodView teacher={teacher} method={getMethod()} from='teachings' params={params}/>
         <br/>
         <br/>
         <div>
           {providePreviousLink()}
           {provideNextLink()}
         </div>
+        <br/>
+        <br/>
         <Accordion allowZeroExpanded={true}>
           <TOCAccordianItem teacher={teacher} />
         </Accordion>

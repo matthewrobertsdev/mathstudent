@@ -40,6 +40,9 @@ input{background-color: /*rgb(236, 126, 8);*/ rgb(236, 171, 8); border-color: bl
 .center-text{ text-align: center;}
 .left-text{ text-align: left; }
 .text-margins{ margin-left: 3%; margin-right: 3%; }
+.large-margins{ margin-left: 5%; margin-right: 5%; }
+.small-right-margin {margin-right: 1em;}
+.large-right-margin {margin-right: 4em;}
 .link { color: gold; background-color: rgb(22, 49, 131); /* background-color: rgb(110, 60, 14); */
     padding: 6px 14px; text-align: center; text-decoration: none; display: inline-block;
     border-radius: 10px; font-weight: 600; font-size: large;
