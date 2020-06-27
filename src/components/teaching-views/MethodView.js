@@ -62,7 +62,7 @@ const MethodView = (props) => {
   )
   function getURL() {
     let url=''
-    if (props.from==='teaching'){
+    if (props.from==='teachings'){
       url+='../../teachings/'
     } else if (props.from==='EnterProblemsPage') {
       url+='../solve/'

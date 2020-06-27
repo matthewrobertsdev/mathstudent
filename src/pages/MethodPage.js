@@ -26,10 +26,24 @@ const MethodPage = (props) => {
         </div>
         <h1 className='large-left-margin'>{getMethod()[0]}</h1>
         <h1 className='large-left-margin'>Try It Out:</h1>
-        <MethodView teacher={teacher} method={getMethod()} from='teaching'/>
+        <MethodView teacher={teacher} method={getMethod()} from='teachings'/>
+        <br/>
+        <br/>
+        <div>
+          {providePreviousLink()}
+          {provideNextLink()}
+        </div>
         <Accordion allowZeroExpanded={true}>
           <TOCAccordianItem teacher={teacher} />
         </Accordion>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </main>
     )
   } else if (teacher === false) {
@@ -45,7 +59,7 @@ const MethodPage = (props) => {
   function createBackLink() {
     return (
       <h1 className='large-left-margin'>
-        <Link to={`/teachings/${params.teachingName}`} className='link-heading'>
+        <Link to={`../../teachings/${params.teachingName}`} className='link-heading'>
           Go to {params.teachingName}'s  Page
         </Link>
       </h1>
@@ -58,6 +72,41 @@ const MethodPage = (props) => {
         return method[1] === params.method 
       }
     )
+  }
+  function getMethodIndex(){
+    return teacher.teaching.methods.findIndex(
+      method => {
+        return method[1] === params.method 
+      }
+    )
+  }
+  function providePreviousLink(){
+    if (getMethodIndex()===0) {
+      return (
+      <Link to={`../${teacher.teaching.objectName}`} className='text-margins link-heading float-left'>
+        Previous
+      </Link>
+      )
+    } else {
+      return (
+      <Link to={`../${teacher.teaching.objectName}/${teacher.teaching.methods[getMethodIndex()-1][1]}`} className='text-margins link-heading float-left'>
+        Previous
+      </Link>
+      )
+    }
+  }
+  function provideNextLink(){
+    if (getMethodIndex()===teacher.teaching.methods.length-1) {
+      return (
+        null
+      )
+    } else {
+      return (
+      <Link to={`../${teacher.teaching.objectName}/${teacher.teaching.methods[getMethodIndex()+1][1]}`} className='text-margins link-heading float-right'>
+        Next
+      </Link>
+      )
+    }
   }
 }
 export default MethodPage

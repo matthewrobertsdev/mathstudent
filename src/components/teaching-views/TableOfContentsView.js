@@ -20,12 +20,5 @@ const TableOfContentsView = (props) => {
     })}
     </ol>
   )
-  function getLink(method){
-    if (props.params.method){
-      return `../${method[1]}`
-    } else {
-      return `/${method[1]}`
-    }
-  }
 }
 export default TableOfContentsView

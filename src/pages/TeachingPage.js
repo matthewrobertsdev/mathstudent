@@ -7,6 +7,7 @@ import AdView from '../components/AdView';
 import ProblemPicker from '../components/teaching-views/ProblemPicker'
 import TOCAccordianItem from '../components/teaching-views/TOCAccordianItem'
 import '../styles/app.css'
+import { Link } from 'react-router-dom';
 
 //initial page for a topic
 const TeachingPage = (props) => {
@@ -19,7 +20,6 @@ const TeachingPage = (props) => {
   const AboutComponent = React.lazy(() => import(`../components/about-views/About${params.teachingName}`));
 
   if (teacher) {
-    console.log(teacher)
     document.title = params.teachingName;
     return (
       <main>
@@ -44,8 +44,15 @@ const TeachingPage = (props) => {
                 <Suspense fallback={<div>Loading {teacher.teaching.displayNameSingular} Teaching...</div>}>
                   <AboutComponent />
                 </Suspense>
+                <div className='text-margins float-right'>
+                  <Link to={`./${teacher.teaching.objectName}/${teacher.teaching.methods[0][1]}`} className='link-heading'>Next</Link>
+                </div>
                 <br />
-                <div className='center-text text-margins'><AdView /></div>
+                <br />
+                <br />
+                <div className='center-text text-margins'>
+                  <AdView />
+                </div>
                 <br />
               </AccordionItemPanel>
             </AccordionItem>
@@ -67,6 +74,9 @@ const TeachingPage = (props) => {
             </AccordionItem>
           </span>
         </Accordion>
+        <div>
+          <Link to={`./${teacher.teaching.objectName}/${teacher.teaching.methods[0][1]}`} className='link-heading text-margins float-right'>Next</Link>
+        </div>
         {/* line breaks to add space to bottom */}
         <br />
         <br />
