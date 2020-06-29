@@ -2,14 +2,14 @@ import Primes0to10_000 from "./Primes0to10_000";
 import AbsoluteValue from './AbsoluteValue';
 
 class PrimeFactorization{
-    static absValUnder10_000(value){
-        return AbsoluteValue.absoluteValueIsUnder(value, 10000);
+    static absVal100_000_000OrLess(value){
+        return AbsoluteValue.absoluteValueIsEqualOrLessThan(value, 100_000_000);
     }
     /* Take square root
     If it is divisible by prime up to square root,
     add to list
     */ 
-    static getPrimeFactorsUnder10_000(value){
+    static getPrimeFactorsUnder100_000_000(value){
         value=AbsoluteValue.absoluteValue(value);
         const primes=Primes0to10_000;
         var primeFactors=[];
@@ -22,6 +22,13 @@ class PrimeFactorization{
             i++;
         }
         return primeFactors;
+    }
+    static isPrime(){
+      if (PrimeFactorization.getPrimeFactorsUnder100_000_000.length===0) {
+        return true
+      } else {
+        return false
+      }
     }
 }
 export default PrimeFactorization;

@@ -4,8 +4,8 @@ class AbosoluteValue{
             return -value;
         } else return value;
     }
-    static absoluteValueIsUnder(input, value){
-        if (AbosoluteValue.absoluteValue(input)<value){
+    static absoluteValueIsEqualOrLessThan(input, value){
+        if (AbosoluteValue.absoluteValue(input)<=value){
             return true;
         } else { return false;}
     }

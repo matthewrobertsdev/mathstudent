@@ -4,8 +4,7 @@ import PrimeFactorization from './math/PrimeFactorization';
 import Product from './math/Product';
 import ListUtility from '../../utilities/ListUtility';
 class FractionTeacher{
-	teaching=FractionTeaching; mathObject=Fraction; numerator; denominator; simplestForm;
-  prepared=false
+	teaching=FractionTeaching; mathObject=Fraction;
 
   fractionLatex(numerator, denominator){
     return `\\frac{${numerator}}{${denominator}}`
@@ -30,26 +29,8 @@ class FractionTeacher{
     return lesson
   }
 	
-	fromNumAndDenom(args){this.init(args);}
 	fromInteger(args){return []}
-	init(args){ this.numerator=parseInt(args[0]); this.mathObject.numerator=parseInt(args[0]);
-		this.denominator=parseInt(args[1]); this.mathObject.denominator=parseInt(args[1]); this.simplify(); }
-	latex=()=>{
-		return `\\Huge`+this.basicLatex(this.numerator, this.denominator);
-	}
-	basicLatex(numerator, denominator){
-		return `\\frac{${numerator}}{${denominator}}`
-	}
-	inlineLatex(numerator, denominator){
-		return `{IL}\\Large`+this.basicLatex(numerator, denominator);
-	}
-	setSimplestForm(numerator, denominator){
-		this.simplestForm=`\\Large\\frac{${numerator}}{${denominator}}`;
-	}
 
-	basicVoice(numerator, denominator){
-		return `Begin fraction, ${numerator} over ${denominator}, end fraction.`
-  }
   simplify(args){
     let numerator=parseInt(args[2])
     let denominator=parseInt(args[4])
@@ -63,30 +44,40 @@ class FractionTeacher{
         solution: this.teaching.undefined(
           parseInt(args[2]), this.fractionLatex(parseInt(args[2]), parseInt(args[4]))
           )}
+    } else if (denominator===1) {
+      return {numerator: numerator, denominator: denominator, 
+        solution: this.teaching.denominatorIs1(
+          numerator, this.fractionLatex(parseInt(args[2]), parseInt(args[4]))
+        )
+        }
+    } else if (denominator===numerator) {
+      return {numerator: numerator, denominator: denominator, 
+        solution: this.teaching.numeratorEqualsDenominator(
+          numerator, denominator,
+          this.fractionLatex(parseInt(args[2]), parseInt(args[4]))
+        )
+        }
+    } else if (!PrimeFactorization.absVal100_000_000OrLess(numerator)
+    ||!PrimeFactorization.absVal100_000_000OrLess(denominator)) {
+      return {numerator: numerator, denominator: denominator, 
+        solution: this.teaching.tooLargeToSimplify
+        }
+    } else {
+      var nArray=PrimeFactorization.getPrimeFactorsUnder100_000_000(numerator);
+            var dArray=PrimeFactorization.getPrimeFactorsUnder100_000_000(denominator);
+            var primes=null;
+			primes=ListUtility.elementsInCommon(nArray, dArray);
+			const gcf=Product.getProductOfList(primes);
+			this.mathObject.numerator/=gcf;
+      this.mathObject.denominator/=gcf;
+			const solution=this.teaching.getPrimeFactors(numerator, nArray,
+                                denominator, dArray)
+      return {numerator: numerator, denominator: denominator, solution: solution}
     }
-    return {numerator: numerator, denominator: denominator, solution: ['']}
   }
 	simplify2(){
         this.concept=[];
-		if (this.mathObject.denominator===0&&this.mathObject.numerator===0){
-			this.concept=[]
-			this.concept=this.teaching.indeterminate(this.inlineLatex(this.numerator, this.denominator));
-		} else if(this.mathObject.denominator===0){
-			this.concept=[]
-			this.concept=this.teaching.notANumber(this.inlineLatex(this.numerator, this.denominator),
-													  this.mathObject.numerator);
-		} else if ( this.mathObject.numerator===0 && this.mathObject.denominator!==0){
-            this.concept=[]
-			this.concept.push(this.teaching.getSimplestFormHeading);
-			this.concept.push(this.teaching.simplestFormHeading);
-			this.concept.push(this.teaching.zeroNumerator);
-		} else if (this.mathObject.denominator===1 && this.mathObject.numerator !==0){
-            this.concept=[]
-            this.concept.push(this.teaching.getSimplestFormHeading);
-			this.concept.push(this.teaching.oneAsDenominator)
-			this.concept.push(this.teaching.simplestFormHeading);
-			this.concept.push(`{BL}\\Huge${this.mathObject.numerator}`);
-		} else {
+		 {
             this.concept=[]
             this.concept.push(this.teaching.getSimplestFormHeading);
 			var nArray=PrimeFactorization.getPrimeFactorsUnder10_000(this.numerator);
