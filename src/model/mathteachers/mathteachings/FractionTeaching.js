@@ -77,9 +77,15 @@ class FractionTeaching extends MathTeaching {
         by them, we do not change the value of the fraction, as we just are dividing by \
         one.  We then just multiply the remaining prime factors in the numerator and \
         denominator to get a single number for each.  Then the fraction is in \
-        simplest form.  The fraction is not simplifiable if it is indeterminate, undefined, \
+        simplest form.  `,
+        `{br}`,
+        `{str}The fraction is not simplifiable if it is indeterminate, undefined, \
         or if its numerator and denominator have no prime factors in common.  Then it is \
-        already in simplest form.`
+        already in simplest form.`,
+        `{br}`,
+        `{str}If either the numerator or the denominator is divisble \
+        by the other, you can simply divide them both by it.  Then prime factorization is \
+        not needed to make sure all primes in common are found.`
       ]
     } else {
       return (
@@ -130,16 +136,27 @@ class FractionTeaching extends MathTeaching {
       `{h}Try to simplify your fraction`,
       `{$il}${latex}{$il}begin fraction \
       ${numerator} over ${denominator} end fraction`,
-      `{str} has the value of 1, as any number divided by itself is 1`
+      `{str} has the value of 1, as any number divided by itself is 1.`
+    ]
+    )
+  }
+  numeratorModDenominatorIs0(numerator, denominator, newNumerator) {
+    return ([
+      `{h}Try to simplify your fraction`,
+      `{str}Because the numerator ${numerator} is divisble by the denominator \
+      ${denominator}, the fraction simplifies to ${newNumerator}.`
     ]
     )
   }
 
-  simplify() {
-    return (
-      [
-        `{str}We must see if we can simplify the fraction.`
-      ]
+  denominatorModNumeratorIs0(numerator, denominator, latex, newDenominator) {
+    return ([
+      `{h}Try to simplify your fraction`,
+      `{str}Because the denominator ${denominator} is divisble by the numerator \
+      ${numerator}, the fraction simplifies to:`,
+      `{$bl}${latex}{$bl}begin fraction \
+      1 over ${newDenominator} end fraction`
+    ]
     )
   }
 
@@ -148,15 +165,28 @@ class FractionTeaching extends MathTeaching {
     greater than 100,000,000.`
   ]
 
-  denominatorIs1(numerator, latex){
+  denominatorIs1(numerator, latex) {
     return [
       `{h}Try to simplify your fraction`,
       `{str}Whenever the denominator is 1, the fraction can be rewritten \
-      as just a regular number, as any number divided by 1 is itself.`,
-      `{str}  `,
+      as just a regular number, as any number divided by 1 is itself.  `,
       `{$il}${latex}{$il}begin fraction \
           ${numerator} over one end fraction`,
       `{str} simplifies to just ${numerator}.`
+    ]
+  }
+
+  numeratorIs1(denominator, latex) {
+    return [
+      `{h}Try to simplify your fraction`,
+      `{str}When the numerator is 1, but the denominator is not 1 or 0, the fraction \
+      is unsimplifiable because you cannot cancel out any primes with the denominator \
+      as the numerator is as small as it can be.`,
+      `{br}`,
+      `{str}So simplest form is just`,
+      `{$il}${latex}{$il}begin fraction \
+      ${denominator} over one end fraction`,
+      `{str}.`,
     ]
   }
 
@@ -172,54 +202,49 @@ class FractionTeaching extends MathTeaching {
       `{br}`,
       `{str}Basically, primes are divisble by \
       only themselves and 1, and prime factorization gives you all the primes \
-      that a number is divisble by.  The prime ${nArray.length===1 ? 'factor' : 'factors' } \
-      of the numerator, ${numerator}, ${nArray.length===1 ? 'is just' : 'are' } \
-      ${MathTeaching.makeListFromArray(nArray)}, and the prime ${dArray.length===1 ? 'factor' : 'factors' } \
-      of the denominator, ${denominator}, ${dArray.length===1 ? 'is just' : 'are' } \
+      that a number is divisble by.  The prime ${nArray.length === 1 ? 'factor' : 'factors'} \
+      of the numerator, ${numerator}, ${nArray.length === 1 ? 'is just' : 'are'} \
+      ${MathTeaching.makeListFromArray(nArray)}, and the prime ${dArray.length === 1 ? 'factor' : 'factors'} \
+      of the denominator, ${denominator}, ${dArray.length === 1 ? 'is just' : 'are'} \
       ${MathTeaching.makeListFromArray(dArray)}.`
     ]
   }
 
   tellPrimesInCommon(primes) {
-    return `They have prime ${primes.length===1 ? 'factor' : 'factors' } \
-    ${MathTeaching.makeListFromArray(primes)} in common.`;
+    return (
+      `{str}They have prime ${primes.length === 1 ? 'factor' : 'factors'} \
+      ${MathTeaching.makeListFromArray(primes)} in common.`
+    )
   }
   tellNoPrimesInCommon() {
-    return [
-      `{str}Because this fraction's numerator and denominator have no prime factors \`
-      in common, the fraction cannot be simplified`
-    ]
+    return (
+      `{str}Because this fraction's numerator and denominator have no prime factors \
+      in common, the fraction cannot be simplified.`
+    )
   }
-  tellGCF(gcf) {
-    return [
-      `{str}Therefore, the greatest common factor ' +
-      'is the product of them, ${gcf}.`
-    ]
-  }
-
-  getReducedForm(numerator, denominator, gcf) {
-    return 'To get the reduced form, divide both the numerator, ' + numerator +
-      ', and the denominator, ' + denominator + ', by ' + gcf + '.  Becuase this is ' +
-      'still greater than 10,000, we cannot promise that we have reduced it completely, ' +
-      'as we only use primes up through 10,000.  ';
+  tellGCF(gcf, product) {
+    return (
+      `{str}Therefore, the greatest common factor ${product ? 'is the product of the common factors,' : 'is just'} ${gcf}.`
+    )
   }
 
-  getSimplifiedForm(numerator, denominator, gcf) {
-    return 'To get the simplified form, divide both the numerator, ' + numerator +
-      ', and the denominator, ' + denominator + ', by the greatest common factor, ' + gcf + '.  ';
+  divideByGCF(numerator, denominator, GCF, objectNumerator, objectDenominator) {
+    return (
+      `{str}Dividing both the top and bottom by the GCF doesn't change the value of the \
+      fraction, as multiplying by GCF over the GCF is the same as multiplying by 1.  \
+      The results are numerator ${numerator} divided by ${GCF} is ${objectNumerator} \
+      and denominator ${denominator} divided by ${GCF} is ${objectDenominator}.`
+    )
   }
 
-  tellReducedForm(numerator, denominator) {
-    return 'The result is ' + numerator + ' over ' + denominator + '.';
+  tellSimplestFormHeading = `{h}Simplest Form`
+
+  tellSimplestForm(numerator, denominator, latex) {
+    return (
+      `{$bl}${latex}{$bl}begin fraction \
+      ${denominator} over ${numerator} end fraction`
+    )
   }
-
-  tellSimplifiedForm(numerator, denominator) {
-    return 'The result is ' + numerator + ' over ' + denominator + '.';
-  }
-
-  simplestFormHeading = '{H}Simplest Form:';
-
-  reducedFormHeading = '{H}Reduced Form';
 
 }
 export default new FractionTeaching();
