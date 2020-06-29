@@ -15,70 +15,76 @@ class FractionTeaching extends MathTeaching {
       ['Create a fraction from an integer', 'fromInteger', 'integer', 'integer'],
       //add a fraction to a fraction
       ['Add a fraction to a fraction', 'addAFraction', 'first numerator', 'integer',
-      'first denominator', 'integer', 'second numerator', 'integer',
-      'second denominator', 'integer'],
+        'first denominator', 'integer', 'second numerator', 'integer',
+        'second denominator', 'integer'],
       //subtract a fraction from a fraction
       ['Subtract a fraction from a fraction', 'subtractAFraction', 'first numerator', 'integer',
         'first denominator', 'integer', 'second numerator', 'integer',
         'second denominator', 'integer'],
       //multiply a fraction by a fraction
       ['Multiply a fraction by a fraction', 'multiplyByAFraction', 'first numerator', 'integer',
-      'first denominator', 'integer', 'second numerator', 'integer',
-      'second denominator', 'integer'],
+        'first denominator', 'integer', 'second numerator', 'integer',
+        'second denominator', 'integer'],
       //divide a fraction by a fraction
       ['Divide a fraction by a fraction', 'divideByAFraction', 'first numerator', 'integer',
-      'first denominator', 'integer', 'second numerator', 'integer',
-      'second denominator', 'integer'],
+        'first denominator', 'integer', 'second numerator', 'integer',
+        'second denominator', 'integer'],
       //add a mixed number to a fraction
       ['Add a mixed number to a fraction', 'addAMixedNumber', 'mixed number', 'mixedNumber', 'numerator', 'integer',
-      'denominator', 'integer'],
+        'denominator', 'integer'],
       //subtract a mixed number from a fraction
       ['Subtract a mixed number from a fraction', 'subtractAMixedNumber', 'mixed number', 'mixedNumber', 'numerator', 'integer',
         'denominator', 'integer'],
       //multiply a fraction by a mixed number
       ['Multiply a fraction by a mixed number', 'multiplyByAMixedNumber', 'mixed number', 'mixedNumber', 'numerator', 'integer',
-      'denominator', 'integer'],
+        'denominator', 'integer'],
       //divide a fraction by a mixed number
       ['Divide a fraction by a mixed number', 'divideByAMixedNumber', 'mixed number', 'mixedNumber', 'numerator', 'integer',
-      'denominator', 'integer']
+        'denominator', 'integer']
     ]
   }
 
-  fromNumeratorAndDenominator(numerator, denominator, latex){
-    const teaching=[]
-    const solution=[
-    `{str}You create a fraction from a numerator and a denominator by \
+  simplify(indeterminateLatex) {
+    return (
+      [
+        this.indeterminate(indeterminateLatex).solution
+      ]
+    )
+  }
+
+  fromNumeratorAndDenominator(numerator, denominator, latex) {
+    const construction = `{str}You create a fraction from a numerator and a denominator by \
     placing the numerator above the denominator, with a horizontal bar \
-    between them.  In this case, the numerator is ${numerator} and the \
-    denominator is ${denominator}, so you have ${numerator} over \
-    ${denominator}, which is the following:`,
-    `{$bl}${latex}{$bl}begin fraction \
-    ${numerator} over ${denominator} end fraction`,
-    ]
-    return {teaching: teaching, solution: solution}
+    between them.`
+    if (numerator === undefined || denominator === undefined || latex === undefined) {
+      return [construction]
+    } else {
+      return (
+        [
+          `${construction}  In this case, the numerator is ${numerator} and the \
+          denominator is ${denominator}, so you have ${numerator} over \
+          ${denominator}, which is the following:`,
+          `{$bl}${latex}{$bl}begin fraction \
+          ${numerator} over ${denominator} end fraction`,
+        ]
+      )
+    }
   }
 
   indeterminate(latex) {
-    let solution=[
+    let solution = [
       `{h}The value of the fraction of 0 over 0 is indeterminate`,
       `{$il}${latex}{$il}begin fraction \
       0 over 0 end fraction`,
       `{str} is indeterminate.  You cannot tell the value of `,
       `{$il}${latex}{$il}begin fraction \
       0 over 0 end fraction`,
-      `{str} as fractions just represent division so it's value is \
-      the number that multiplies by 0 (the denominator) to get 0 (the numerator), \
+      `{str} as fractions just represent division of the numerator by the \
+      denominator so it's value is the number that multiplies by 0 \
+      (the denominator) to get 0 (the numerator), \
       but that is any number, because any number times 0 is 0.`
     ]
-    var concept = []
-    concept.push('You cannot tell what the value of ')
-    concept.push(latex);
-    concept.push(' because the numerator is divided by the denominator and ' +
-      'this asks you to find what number times 0 gives you 0, ' +
-      "which could be any number because 0 multiplied by any number is 0.  ");
-    concept.push(latex);
-    concept.push(' is called indeterminate if other information can not be used to determine its value.  ')
-    return {solution: solution};
+    return { solution: solution };
   }
 
   notANumber(inlineLatex, numerator) {

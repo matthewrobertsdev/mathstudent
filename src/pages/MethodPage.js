@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import TeachView from '../components/teaching-views/TeachView'
 import MethodView from '../components/teaching-views/MethodView'
 import AdView from '../components/AdView'
 import { getTeacher } from '../store/Actions';
@@ -24,7 +25,9 @@ const MethodPage = (props) => {
         <div className='center-text text-margins'>
           <AdView />
         </div>
-        <h1 className='large-left-margin'>{getMethod()[0]}</h1>
+        <div className='text-margins'>
+          <TeachView params={params}/>
+        </div>
         <h1 className='large-left-margin'>Try It Out:</h1>
         <MethodView teacher={teacher} method={getMethod()} from='teachings' params={params}/>
         <br/>

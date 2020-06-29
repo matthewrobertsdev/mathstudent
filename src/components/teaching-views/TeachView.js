@@ -15,7 +15,7 @@ const SolveView = (props) => {
   useEffect(() => {
     if (teacher !== undefined) {
       if (typeof teacher[props.params.method] === 'function') {
-        setLesson(teacher[props.params.method](props.params.parameters.split('@')))
+        setLesson(teacher[props.params.method]())
       }
     }
   }, [teacher, props.params.method, props.params.parameters])
@@ -24,9 +24,6 @@ const SolveView = (props) => {
   return (
     <div>
       <LessonView params={props.params} teacher={teacher} lesson={lesson}/>
-      <br/>
-      <br/>
-      <br/>
       <br/>
     </div>
   )

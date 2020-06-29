@@ -12,13 +12,20 @@ class FractionTeacher{
   }
     
   fromNumeratorAndDenominator(args){
+    if (args===undefined){
+      let initialization=this.teaching.fromNumeratorAndDenominator()
+      let lesson=[
+        initialization,
+      ]
+      return lesson
+    }
     let initialization=this.teaching.fromNumeratorAndDenominator(
       parseInt(args[2]), parseInt(args[4]), this.fractionLatex(parseInt(args[2]), parseInt(args[4]))
     )
     let simplification=this.simplify(args)
     let lesson=[
-      initialization.solution,
-      simplification.solution
+      initialization,
+      simplification
     ]
     return lesson
   }
