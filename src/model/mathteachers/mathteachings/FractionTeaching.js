@@ -231,7 +231,8 @@ class FractionTeaching extends MathTeaching {
   divideByGCF(numerator, denominator, GCF, objectNumerator, objectDenominator) {
     return (
       `{str}Dividing both the top and bottom by the GCF doesn't change the value of the \
-      fraction, as multiplying by GCF over the GCF is the same as multiplying by 1.  \
+      fraction, as divding by GCF over the GCF is the same as dividing by 1, \
+      and anything divided by 1 is itself.  \
       The results are numerator ${numerator} divided by ${GCF} is ${objectNumerator} \
       and denominator ${denominator} divided by ${GCF} is ${objectDenominator}.`
     )

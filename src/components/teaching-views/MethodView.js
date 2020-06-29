@@ -54,7 +54,7 @@ const MethodView = (props) => {
                     setText({
                       ...text,
                       [index.toString()]: event.target.value
-                    }); console.log(text[index.toString()])
+                    });
                   }
                 } />
             </span>

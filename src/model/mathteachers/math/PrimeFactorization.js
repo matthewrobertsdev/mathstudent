@@ -21,6 +21,9 @@ class PrimeFactorization{
             }
             i++;
         }
+        if (value!==0) {
+          primeFactors.push(value)
+        }
         return primeFactors;
     }
     static isPrime(){

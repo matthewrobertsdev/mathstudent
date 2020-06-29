@@ -101,7 +101,7 @@ class FractionTeacher{
         numerator, nArray,
         denominator, dArray)
       primeFactorsTeaching.push('{br}')
-      if (primes>0){
+      if (primes.length>0){
         primeFactorsTeaching.push(this.teaching.tellPrimesInCommon(primes))
         primeFactorsTeaching.push('{br}')
         primeFactorsTeaching.push(this.teaching.tellGCF(gcf, primes.length>1))
