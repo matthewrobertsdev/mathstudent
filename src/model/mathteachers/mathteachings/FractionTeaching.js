@@ -44,7 +44,7 @@ class FractionTeaching extends MathTeaching {
     ]
   }
 
-  fromNumeratorAndDenominator(numerator, denominator){
+  fromNumeratorAndDenominator(numerator, denominator, latex){
     const teaching=[]
     const solution=[
     `{str}You create a fraction from a numerator and a denominator by \
@@ -52,22 +52,33 @@ class FractionTeaching extends MathTeaching {
     between them.  In this case, the numerator is ${numerator} and the \
     denominator is ${denominator}, so you have ${numerator} over \
     ${denominator}, which is the following:`,
-    `{$bl}\\frac{${numerator}}{${denominator}}{$bl}begin fraction \
+    `{$bl}${latex}{$bl}begin fraction \
     ${numerator} over ${denominator} end fraction`,
     ]
     return {teaching: teaching, solution: solution}
   }
 
-  indeterminate(inlineLatex) {
+  indeterminate(latex) {
+    let solution=[
+      `{h}The value of the fraction of 0 over 0 is indeterminate`,
+      `{$il}${latex}{$il}begin fraction \
+      0 over 0 end fraction`,
+      `{str} is indeterminate.  You cannot tell the value of `,
+      `{$il}${latex}{$il}begin fraction \
+      0 over 0 end fraction`,
+      `{str} as fractions just represent division so it's value is \
+      the number that multiplies by 0 (the denominator) to get 0 (the numerator), \
+      but that is any number, because any number times 0 is 0.`
+    ]
     var concept = []
     concept.push('You cannot tell what the value of ')
-    concept.push(inlineLatex);
+    concept.push(latex);
     concept.push(' because the numerator is divided by the denominator and ' +
       'this asks you to find what number times 0 gives you 0, ' +
       "which could be any number because 0 multiplied by any number is 0.  ");
-    concept.push(inlineLatex);
+    concept.push(latex);
     concept.push(' is called indeterminate if other information can not be used to determine its value.  ')
-    return concept;
+    return {solution: solution};
   }
 
   notANumber(inlineLatex, numerator) {

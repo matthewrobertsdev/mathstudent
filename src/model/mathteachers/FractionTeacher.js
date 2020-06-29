@@ -5,14 +5,22 @@ import Product from './math/Product';
 import ListUtility from '../../utilities/ListUtility';
 class FractionTeacher{
 	teaching=FractionTeaching; mathObject=Fraction; numerator; denominator; simplestForm;
-  lesson=[]
   prepared=false
+
+  fractionLatex(numerator, denominator){
+    return `\\frac{${numerator}}{${denominator}}`
+  }
     
   fromNumeratorAndDenominator(args){
-    this.lesson=[]
-    this.lesson.push(this.teaching.fromNumeratorAndDenominator(parseInt(args[2]), parseInt(args[4])).solution)
-    this.prepared=true
-    return this.lesson
+    let initialization=this.teaching.fromNumeratorAndDenominator(
+      parseInt(args[2]), parseInt(args[4]), this.fractionLatex(parseInt(args[2]), parseInt(args[4]))
+    )
+    let simplification=this.simplify(args)
+    let lesson=[
+      initialization.solution,
+      simplification.solution
+    ]
+    return lesson
   }
 	
 	fromNumAndDenom(args){this.init(args);}
@@ -34,8 +42,19 @@ class FractionTeacher{
 
 	basicVoice(numerator, denominator){
 		return `Begin fraction, ${numerator} over ${denominator}, end fraction.`
-	}
-	simplify(){
+  }
+  simplify(args){
+    let numerator=parseInt(args[2])
+    let denominator=parseInt(args[4])
+    if (numerator===0 && denominator===0) {
+      return {numerator: numerator, denominator: denominator, 
+        solution: this.teaching.indeterminate(this.fractionLatex(parseInt(args[2]), parseInt(args[4]))).solution}
+    } else if (denominator===0){
+      return {numerator: numerator, denominator: denominator, solution: ['{str}Undefined']}
+    }
+    return {numerator: numerator, denominator: denominator, solution: ['']}
+  }
+	simplify2(){
         this.concept=[];
 		if (this.mathObject.denominator===0&&this.mathObject.numerator===0){
 			this.concept=[]

@@ -29,6 +29,10 @@ const SolveView = (props) => {
   return (
     <div>
       {createSolveView()}
+      <br/>
+      <br/>
+      <br/>
+      <br/>
     </div>
   )
 
@@ -62,41 +66,51 @@ const SolveView = (props) => {
 
   //create the display of the lesson
   function displayLesson() {
-    if (teacher.prepared) {
-      let teachingDisplay = []
-      //create lesson for method with arguments
-      for (let i = 0; i < lesson.length; i++) {
-        //create concept
-        for (let j = 0; j < lesson[i].length; j++) {
-          //create segments to build concept
-          teachingDisplay.push(createSegment(lesson[i][j], i + '-' + j));
-        }
+    let teachingDisplay = []
+    //create lesson for method with arguments
+    for (let i = 0; i < lesson.length; i++) {
+      //create concept
+      for (let j = 0; j < lesson[i].length; j++) {
+        //create segments to build concept
+        teachingDisplay.push(createSegment(lesson[i][j], i + '-' + j));
       }
-      return teachingDisplay;
     }
+    return teachingDisplay;
   }
 
   //create an individual segment for a concept
   function createSegment(segment, key) {
     if (segment) {
-      if (segment.startsWith('{br}')) {
+      if (segment.startsWith('{h}')) {
         return (
-        <div key={key} >
-          <br/>
-        </div>);
+          <h1 key={key} className="large-left-margin">
+            {segment.slice(3)}
+          </h1>);
+      } else if (segment.startsWith('{br}')) {
+        return (
+          <div key={key} >
+            <br />
+          </div>);
       } else if (segment.startsWith('{str}')) {
         return (
-        <span key={key} className="main-text-color heading">
-          {segment.slice(5)}
-        </span>);
+          <span key={key} className="main-text-color heading">
+            {segment.slice(5)}
+          </span>);
       } else if (segment.startsWith('{$il}')) {
-          return null
-      } else if (segment.startsWith('{$bl}')) {
-        const math=segment.split('{$bl}')
+        const math = segment.split('{$il}')
         return (
           <span aria-label={math[2]} key={key}>
             <MathJax.Provider input="tex" >
-              <MathJax.Node aria-hidden='true' className='heading' formula={`\\color{white}{${math[1]}}`}/>
+              <MathJax.Node inline aria-hidden='true' className='heading' formula={`\\color{white}{${math[1]}}`} />
+            </MathJax.Provider>
+          </span>
+        )
+      } else if (segment.startsWith('{$bl}')) {
+        const math = segment.split('{$bl}')
+        return (
+          <span aria-label={math[2]} key={key}>
+            <MathJax.Provider input="tex" >
+              <MathJax.Node aria-hidden='true' className='heading' formula={`\\color{white}{${math[1]}}`} />
             </MathJax.Provider>
           </span>
         )
