@@ -21,7 +21,7 @@ class PrimeFactorization{
             }
             i++;
         }
-        if (value!==0) {
+        if (value!==1) {
           primeFactors.push(value)
         }
         return primeFactors;

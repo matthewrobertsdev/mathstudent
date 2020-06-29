@@ -120,7 +120,6 @@ class FractionTeacher{
         this.teaching.tellSimplestForm(
           this.mathObject.numerator, this.mathObject.denominator, this.fractionLatex(this.mathObject.numerator, this.mathObject.denominator))
         )
-          console.log(primeFactorsTeaching)
       return (
         primeFactorsTeaching
       )

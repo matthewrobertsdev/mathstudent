@@ -202,7 +202,9 @@ class FractionTeaching extends MathTeaching {
       `{br}`,
       `{str}Basically, primes are divisble by \
       only themselves and 1, and prime factorization gives you all the primes \
-      that a number is divisble by.  The prime ${nArray.length === 1 ? 'factor' : 'factors'} \
+      that a number is divisble by.  Because primes are the smallest whole numbers \
+      you can divide a number into, if their are numbers can be divided out, they \
+      are prime or can be divided into primes.  The prime ${nArray.length === 1 ? 'factor' : 'factors'} \
       of the numerator, ${numerator}, ${nArray.length === 1 ? 'is just' : 'are'} \
       ${MathTeaching.makeListFromArray(nArray)}, and the prime ${dArray.length === 1 ? 'factor' : 'factors'} \
       of the denominator, ${denominator}, ${dArray.length === 1 ? 'is just' : 'are'} \
