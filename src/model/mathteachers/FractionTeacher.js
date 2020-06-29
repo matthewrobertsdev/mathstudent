@@ -25,13 +25,13 @@ class FractionTeacher{
     let simplification=this.simplify(args)
     let lesson=[
       initialization,
-      simplification
+      simplification.solution
     ]
     return lesson
   }
 	
 	fromNumAndDenom(args){this.init(args);}
-	fromInteger(args){args.push(1);this.init(args);}
+	fromInteger(args){return []}
 	init(args){ this.numerator=parseInt(args[0]); this.mathObject.numerator=parseInt(args[0]);
 		this.denominator=parseInt(args[1]); this.mathObject.denominator=parseInt(args[1]); this.simplify(); }
 	latex=()=>{
@@ -55,9 +55,14 @@ class FractionTeacher{
     let denominator=parseInt(args[4])
     if (numerator===0 && denominator===0) {
       return {numerator: numerator, denominator: denominator, 
-        solution: this.teaching.indeterminate(this.fractionLatex(parseInt(args[2]), parseInt(args[4]))).solution}
+        solution: this.teaching.indeterminate(
+          this.fractionLatex(parseInt(args[2]), parseInt(args[4]))
+        )}
     } else if (denominator===0){
-      return {numerator: numerator, denominator: denominator, solution: ['{str}Undefined']}
+      return {numerator: numerator, denominator: denominator, 
+        solution: this.teaching.undefined(
+          parseInt(args[2]), this.fractionLatex(parseInt(args[2]), parseInt(args[4]))
+          )}
     }
     return {numerator: numerator, denominator: denominator, solution: ['']}
   }
@@ -154,23 +159,27 @@ class FractionTeacher{
 	}
 
 	addAFraction(args){
-		this.concept=[];
-		this.operateWithFraction(args, '+')
+		//this.concept=[];
+    //this.operateWithFraction(args, '+')
+    return []
 	}
 
 	subtractAFraction(args){
-		this.concept=[];
-		this.operateWithFraction(args, '-')
+		//this.concept=[];
+    //this.operateWithFraction(args, '-')
+    return []
 	}
 
 	multiplyByAFraction(args){
-		this.concept=[];
-		this.operateWithFraction(args, '\\cdot')
+		//this.concept=[];
+    //this.operateWithFraction(args, '\\cdot')
+    return []
 	}
 
 	divideByAFraction(args){
-		this.concept=[];
-		this.operateWithFraction(args, '\\div')
+		//this.concept=[];
+    //this.operateWithFraction(args, '\\div')
+    return []
 	}
 }
 export default new FractionTeacher();

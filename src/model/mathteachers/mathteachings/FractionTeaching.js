@@ -44,24 +44,47 @@ class FractionTeaching extends MathTeaching {
     ]
   }
 
-  simplify(indeterminateLatex) {
-    return (
-      [
-        this.indeterminate(indeterminateLatex).solution
-      ]
-    )
-  }
-
   fromNumeratorAndDenominator(numerator, denominator, latex) {
     const construction = `{str}You create a fraction from a numerator and a denominator by \
     placing the numerator above the denominator, with a horizontal bar \
     between them.`
     if (numerator === undefined || denominator === undefined || latex === undefined) {
-      return [construction]
+      return [
+        construction,
+        `{br}`,
+        `{str}They look like this:`,
+        `{$bl}\\frac{\\textrm{numerator}}{\\textrm{denominator}}{$bl}begin fraction \
+        numerator over denominator end fraction`,
+        `{h}Try to simplify your fraction`,
+        `{str}You should try to simplify fractions once you create them.  This way, \
+        it is easier to tell their value as simplified fractions are simpler \
+        than unsimplified fractions.`,
+        `{br}`,
+        `{str}If a fraction is 0 over 0, it cannot \
+        be simplified, as, as discussed in fraction's page, it is indeterminate, and, if \
+        it is any other number over 0, it is undefined, and also cannot be simplified, \
+        which is also discussed in fraction's page.  However, any other pair of \
+        numerator and denominator might be simplifiable.  `,
+        `{br}`,
+        `{str}The numerator and denominator \
+        can be rewritten as a product of their prime factors, the smallest numbers that \
+        they can be divided up into, if they are not \
+        themselves prime.  A prime factor is divisble by only 1 and itself.  \
+        Once you know the prime factors of a fraction, you can see if the numerator and \
+        denominator have any in common.  If they do, you can divide both the numerator \
+        and denominator by these prime factors, as they divide out to be equal to 1, \
+        and any number times 1 is itself, so by dividing both the numerator and denominator \
+        by them, we do not change the value of the fraction, as we just are dividing by \
+        one.  We then just multiply the remaining prime factors in the numerator and \
+        denominator to get a single number for each.  Then the fraction is in \
+        simplest form.  The fraction is not simplifiable if it is indeterminate, undefined, \
+        or if its numerator and denominator have no prime factors in common.  Then it is \
+        already in simplest form.`
+      ]
     } else {
       return (
         [
-          `${construction}  In this case, the numerator is ${numerator} and the \
+          `{str}In this case, the numerator is ${numerator} and the \
           denominator is ${denominator}, so you have ${numerator} over \
           ${denominator}, which is the following:`,
           `{$bl}${latex}{$bl}begin fraction \
@@ -72,7 +95,7 @@ class FractionTeaching extends MathTeaching {
   }
 
   indeterminate(latex) {
-    let solution = [
+    return ([
       `{h}The value of the fraction of 0 over 0 is indeterminate`,
       `{$il}${latex}{$il}begin fraction \
       0 over 0 end fraction`,
@@ -84,19 +107,23 @@ class FractionTeaching extends MathTeaching {
       (the denominator) to get 0 (the numerator), \
       but that is any number, because any number times 0 is 0.`
     ]
-    return { solution: solution };
+    )
   }
 
-  notANumber(inlineLatex, numerator) {
-    var concept = []
-    concept.push(inlineLatex);
-    concept.push(' is not a number becuase ')
-    concept.push(inlineLatex);
-    concept.push(' is asking you what number times 0 gives you ' + numerator + ' and no number can be multiplied by 0 to get' +
-      ' any number other than 0.  ');
-    return concept;
+  undefined(numerator, latex){
+    return ([
+      `{h}The value of the fraction of ${numerator} over 0 is undefined`,
+      `{$il}${latex}{$il}begin fraction \
+      ${numerator} over 0 end fraction`,
+      `{str} is undefined, as are all non-zero numbers divided by 0, 
+      as fractions just represent division of the \
+      numerator by the denominator so this fraction's value is the number that \
+      multiplies by 0 (the denominator) to get ${numerator}, \
+      but no number times 0 equals anything other than 0, as 0 multiplied by any \
+      number is 0.`
+    ]
+    )
   }
-  getSimplestFormHeading = '{H}Get simplest form:';
 
   tooLargeToSimplify = "Math Teacher was not able to simplify either of the numerator nor denominator to less than 10,000." +
     'This has to do with the number of primes we use.  Math Teacher can only know we have simplified the fraction completely ' +

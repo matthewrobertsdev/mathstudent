@@ -23,7 +23,7 @@ const SolveView = (props) => {
   //render the lesson
   return (
     <div>
-      <LessonView params={props.params} teacher={teacher} lesson={lesson}/>
+      <LessonView params={props.params} teacher={teacher} lesson={lesson} type="Teaching"/>
       <br/>
     </div>
   )

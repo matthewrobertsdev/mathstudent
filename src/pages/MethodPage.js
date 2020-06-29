@@ -25,8 +25,12 @@ const MethodPage = (props) => {
         <div className='center-text text-margins'>
           <AdView />
         </div>
-        <div className='text-margins'>
+        <div>
           <TeachView params={params}/>
+        </div>
+        <br/>
+        <div className='center-text text-margins'>
+          <AdView />
         </div>
         <h1 className='large-left-margin'>Try It Out:</h1>
         <MethodView teacher={teacher} method={getMethod()} from='teachings' params={params}/>
