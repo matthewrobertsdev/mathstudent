@@ -31,6 +31,24 @@ class FractionTeacher{
     ]
     return lesson
   }
+
+  addAFraction(args){
+    if (args===undefined){
+      //mathObject=undefined
+      let initialization=this.teaching.addAFraction()
+      let lesson=[
+        initialization
+      ]
+      return lesson
+    } else {
+      let initialization=this.teaching.addAFraction(
+        parseInt(args[2]), parseInt(args[4]), parseInt(args[6]), parseInt(args[8]), '')
+      let lesson=[
+        initialization
+      ]
+      return lesson
+    }
+  }
 	
 	fromInteger(args){
     //let mathObject=Fraction
@@ -161,12 +179,6 @@ class FractionTeacher{
     let mathObject=Fraction
 		return `begin fraction, ${mathObject.numerator} over ${mathObject.denominator}, `
 		+`end fraction ${operation} begin fraction, ${args[0]} over ${args[1]} end fraction`;
-	}
-
-	addAFraction(args){
-		//this.concept=[];
-    //this.operateWithFraction(args, '+')
-    return []
 	}
 
 	subtractAFraction(args){

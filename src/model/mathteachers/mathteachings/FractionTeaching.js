@@ -306,5 +306,47 @@ class FractionTeaching extends MathTeaching {
     }
   }
 
+  addAFraction(firstNumerator, firstDenominator, 
+    secondNumerator, secondDenominator, latex){
+    if (firstNumerator === undefined || firstDenominator===undefined || 
+      secondNumerator===undefined || secondDenominator===undefined ||
+      latex === undefined) {
+      return [
+        `{h}Find a common denominator`,
+        `{str}To add a fraction to a fraction, you must first manipulate them \
+        to have common denominators.  This is because the numerators can then \
+        be summed together because you will be summing quantities of the same 
+        value.  To get a common denominator, you can use prime factorization to get \
+        the smallest possible common denominator, known as the Least Common Denominator \
+        or LCD.  It will be the product that includes primes from both prime \
+        factorizations of both denomionators, but includes all primes from \
+        both, but using primes that appear in both once for each time they appear in \
+        both.  This way, because it will have in its product all the primes from both, \
+        ity will be divisble by botyhe denominators.`,
+        `{h}Manipulate both fractions to have the common denominator`,
+        `{str}For each fraction, divide the common denominator by the current \
+        denominator.  Then, multiply both the numerator and denominator by this value, \
+        which is like multiplying by 1 it is a fraction consisting of one value above \
+        itself.`,
+        `{h}Add the fractions with common denominators`,
+        `{str}Once you have fractions with common denominators, the numerators keep track \
+        of quantties of the same value, so you can just add the numerators together, \
+        keeping the common denominator.`
+      ]
+    }
+    else if (isNaN(firstNumerator)||isNaN(firstNumerator)||
+    isNaN(secondNumerator)||isNaN(secondDenominator)){
+      return (
+      [
+        `{h}Bad input`,
+        `{str}Sorry, but Math Teacher's lesson for fractions expects
+           your inputs to be counting numbers, 0 or negative numbers.`
+      ]
+      )
+    } else {
+      return []
+    }
+  }
+
 }
 export default new FractionTeaching();
