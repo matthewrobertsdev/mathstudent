@@ -4,21 +4,23 @@ import PrimeFactorization from './math/PrimeFactorization';
 import Product from './math/Product';
 import ListUtility from '../../utilities/ListUtility';
 class FractionTeacher{
-	teaching=FractionTeaching; mathObject=Fraction;
+	teaching=FractionTeaching;
 
   fractionLatex(numerator, denominator){
     return `\\frac{${numerator}}{${denominator}}`
   }
     
   fromNumeratorAndDenominator(args){
+    let mathObject=Fraction
     if (args===undefined){
+      mathObject=undefined
       let initialization=this.teaching.fromNumeratorAndDenominator()
       let lesson=[
         initialization,
       ]
       return lesson
     }
-    this.mathObject.createFromNumAndDenom([args[2], args[4]])
+    mathObject.createFromNumAndDenom([args[2], args[4]])
     let initialization=this.teaching.fromNumeratorAndDenominator(
       parseInt(args[2]), parseInt(args[4]), this.fractionLatex(parseInt(args[2]), parseInt(args[4]))
     )
@@ -30,17 +32,33 @@ class FractionTeacher{
     return lesson
   }
 	
-	fromInteger(args){return []}
+	fromInteger(args){
+    //let mathObject=Fraction
+    if (args===undefined){
+      //mathObject=undefined
+      let initialization=this.teaching.fromInteger()
+      let lesson=[
+        initialization
+      ]
+      return lesson
+    } else {
+      let initialization=this.teaching.fromInteger(parseInt(args[2]), this.fractionLatex(parseInt(args[2]), 1))
+      let lesson=[
+        initialization
+      ]
+      return lesson
+    }
+  }
 
   simplify(args){
+    let mathObject=Fraction
+    mathObject.createFromNumAndDenom([args[2], args[4]])
     let numerator=parseInt(args[2])
     let denominator=parseInt(args[4])
     if (isNaN(numerator) || isNaN(denominator)) {
+      mathObject=null
       return (
         [
-          `{h}Bad input`,
-          `{str}Sorry, but Math Teacher's lesson for fractions expects
-           your inputs to be counting numbers, 0 or negative numbers.`
         ]
       )
     } 
@@ -68,6 +86,7 @@ class FractionTeacher{
         )
       )
     } else if (denominator===numerator) {
+      mathObject.createFromNumAndDenom([1,1])
       return (
         this.teaching.numeratorEqualsDenominator(
           numerator, denominator,
@@ -75,12 +94,14 @@ class FractionTeacher{
         )
       )
     } else if (denominator%numerator===0) {
+      mathObject.createFromNumAndDenom([1,parseInt(args[4])/parseInt(args[2])])
       return (
         this.teaching.denominatorModNumeratorIs0(
           numerator, denominator, this.fractionLatex(1, parseInt(args[4])/parseInt(args[2])), parseInt(args[4])/parseInt(args[2])
           )
       )
     } else if (numerator%denominator===0) {
+      mathObject.createFromNumAndDenom([parseInt(args[2])/parseInt(args[4]),1])
       return (
         this.teaching.numeratorModDenominatorIs0(
           numerator, denominator, parseInt(args[2])/parseInt(args[4])
@@ -99,8 +120,8 @@ class FractionTeacher{
       let primes=null;
 			primes=ListUtility.elementsInCommon(nArray, dArray);
       const gcf=Product.getProductOfList(primes);
-			this.mathObject.numerator/=gcf;
-      this.mathObject.denominator/=gcf;
+			mathObject.numerator/=gcf;
+      mathObject.denominator/=gcf;
       let primeFactorsTeaching=this.teaching.getPrimeFactors(
         numerator, nArray,
         denominator, dArray)
@@ -112,7 +133,7 @@ class FractionTeacher{
         primeFactorsTeaching.push('{br}')
         primeFactorsTeaching.push(this.teaching.divideByGCF(
           numerator, denominator, gcf, 
-          this.mathObject.numerator, this.mathObject.denominator
+          mathObject.numerator, mathObject.denominator
           ))
       } else {
         primeFactorsTeaching.push(this.teaching.tellNoPrimesInCommon(primes))
@@ -122,7 +143,7 @@ class FractionTeacher{
       )
       primeFactorsTeaching.push(
         this.teaching.tellSimplestForm(
-          this.mathObject.numerator, this.mathObject.denominator, this.fractionLatex(this.mathObject.numerator, this.mathObject.denominator))
+          mathObject.numerator, mathObject.denominator, this.fractionLatex(mathObject.numerator, mathObject.denominator))
         )
       return (
         primeFactorsTeaching
@@ -131,12 +152,14 @@ class FractionTeacher{
   }
 
 	operateWithFraction(args, operator){
-		this.concept.push(`{IL}\\Huge\\frac{${this.mathObject.numerator}}{${this.mathObject.denominator}}${operator}\\frac{${args[0]}}{${args[1]}}`);
+    let mathObject=Fraction
+		this.concept.push(`{IL}\\Huge\\frac{${mathObject.numerator}}{${mathObject.denominator}}${operator}\\frac{${args[0]}}{${args[1]}}`);
 		this.concept.push('\n\n');
 	}
 
 	operateWithFractionVoice(args, operation){
-		return `begin fraction, ${this.mathObject.numerator} over ${this.mathObject.denominator}, `
+    let mathObject=Fraction
+		return `begin fraction, ${mathObject.numerator} over ${mathObject.denominator}, `
 		+`end fraction ${operation} begin fraction, ${args[0]} over ${args[1]} end fraction`;
 	}
 

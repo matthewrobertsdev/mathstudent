@@ -87,6 +87,14 @@ class FractionTeaching extends MathTeaching {
         by the other, you can simply divide them both by it.  Then prime factorization is \
         not needed to make sure all primes in common are found.`
       ]
+    } else if (isNaN(numerator)||isNaN(denominator)){
+      return (
+      [
+        `{h}Bad input`,
+          `{str}Sorry, but Math Teacher's lesson for fractions expects
+           your inputs to be counting numbers, 0 or negative numbers.`
+      ]
+      )
     } else {
       return (
         [
@@ -94,7 +102,7 @@ class FractionTeaching extends MathTeaching {
           denominator is ${denominator}, so you have ${numerator} over \
           ${denominator}, which is the following:`,
           `{$bl}${latex}{$bl}begin fraction \
-          ${numerator} over ${denominator} end fraction`,
+          ${numerator} over ${denominator} end fraction`
         ]
       )
     }
@@ -264,8 +272,38 @@ class FractionTeaching extends MathTeaching {
   tellSimplestForm(numerator, denominator, latex) {
     return (
       `{$bl}${latex}{$bl}begin fraction \
-      ${denominator} over ${numerator} end fraction`
+      ${numerator} over ${denominator} end fraction`
     )
+  }
+
+  fromInteger(numerator, latex) {
+    if (numerator === undefined || latex === undefined) {
+      return [
+        `{str}You create a fraction from an integer by simply placing the integer \
+        over 1, seprated by a horizontal bar, as any number divided by 1 \
+        is itself, so you will not change the value of the integer but you \
+        will get a numerator over a denominator, which is what you need to \
+        have to have a fraction.`
+      ]
+    }
+    else if (isNaN(numerator)){
+      return (
+      [
+        `{h}Bad input`,
+        `{str}Sorry, but Math Teacher's lesson for fractions expects
+           your inputs to be counting numbers, 0 or negative numbers.`
+      ]
+      )
+    } else {
+      return [
+        `{str}In this case, the integer is ${numerator} and we want to \
+        convert it to a fraction.  Since any number divided by 1 is just itself, \
+        we can just put ${numerator} over 1 and it will have the same value.  \
+        Therefore, we have:`,
+        `{$bl}${latex}{$bl}begin fraction \
+      ${numerator} over 1 end fraction`
+      ]
+    }
   }
 
 }
