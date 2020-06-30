@@ -55,7 +55,7 @@ class FractionTeaching extends MathTeaching {
         `{str}They look like this:`,
         `{$bl}\\frac{\\textrm{numerator}}{\\textrm{denominator}}{$bl}begin fraction \
         numerator over denominator end fraction`,
-        `{h}Try to simplify your fraction`,
+        this.tryToSimplifyHeading,
         `{str}You should try to simplify fractions once you create them.  This way, \
         it is easier to tell their value as simplified fractions are simpler \
         than unsimplified fractions.`,
@@ -133,7 +133,7 @@ class FractionTeaching extends MathTeaching {
 
   numeratorEqualsDenominator(numerator, denominator, latex) {
     return ([
-      `{h}Try to simplify your fraction`,
+      this.tryToSimplifyHeading,
       `{$il}${latex}{$il}begin fraction \
       ${numerator} over ${denominator} end fraction`,
       `{str} has the value of 1, as any number divided by itself is 1.`
@@ -142,32 +142,41 @@ class FractionTeaching extends MathTeaching {
   }
   numeratorModDenominatorIs0(numerator, denominator, newNumerator) {
     return ([
-      `{h}Try to simplify your fraction`,
-      `{str}Because the numerator ${numerator} is divisble by the denominator \
-      ${denominator}, the fraction simplifies to ${newNumerator}.`
+      this.tryToSimplifyHeading,
+      this.tryToSimplify,
+      `{br}`,
+      `{str}Because both the numerator ${numerator} and the denominator ${denominator} \
+      are divisble by the denominator ${denominator}, divide the numerator \
+      ${numerator} by the denominator ${denominator} to get ${newNumerator}.  \
+      Since a fraction is just division, it simplifies to ${newNumerator}.  \
+      The fraction simplifies to:`,
+      `{$bl}${newNumerator}{$bl}newNumerator`
     ]
     )
   }
 
   denominatorModNumeratorIs0(numerator, denominator, latex, newDenominator) {
     return ([
-      `{h}Try to simplify your fraction`,
-      `{str}Because the denominator ${denominator} is divisble by the numerator \
-      ${numerator}, the fraction simplifies to:`,
+      this.tryToSimplifyHeading,
+      this.tryToSimplify,
+      `{br}`,
+      `{str}Because both the denominator ${denominator} and numerator ${numerator} \
+      are divisble by the numerator ${numerator}, divide the denominator ${denominator} \
+      by the numerator ${numerator} to get ${newDenominator} and the numerator \
+      ${numerator} by ${numerator} to get 1.  The fraction simplifies to:`,
       `{$bl}${latex}{$bl}begin fraction \
       1 over ${newDenominator} end fraction`
     ]
     )
   }
 
-  tooLargeToSimplify = [
-    `{str}Sorry, but Math Teacher does not work with numbers \
-    greater than 100,000,000.`
-  ]
+  tooLargeToSimplify =
+    `{str}Sorry, but Math Teacher does not work when numbers \
+    used in the problem are greater than 100,000,000.`
 
   denominatorIs1(numerator, latex) {
     return [
-      `{h}Try to simplify your fraction`,
+      this.tryToSimplifyHeading,
       `{str}Whenever the denominator is 1, the fraction can be rewritten \
       as just a regular number, as any number divided by 1 is itself.  `,
       `{$il}${latex}{$il}begin fraction \
@@ -178,7 +187,7 @@ class FractionTeaching extends MathTeaching {
 
   numeratorIs1(denominator, latex) {
     return [
-      `{h}Try to simplify your fraction`,
+      this.tryToSimplifyHeading,
       `{str}When the numerator is 1, but the denominator is not 1 or 0, the fraction \
       is unsimplifiable because you cannot cancel out any primes with the denominator \
       as the numerator is as small as it can be.`,
@@ -192,7 +201,9 @@ class FractionTeaching extends MathTeaching {
 
   getPrimeFactors(numerator, nArray, denominator, dArray) {
     return [
-      `{h}Try to simplify your fraction`,
+      this.tryToSimplifyHeading,
+      `{br}`,
+      this.tryToSimplify,
       `{br}`,
       `{str}You can see if your fraction is simplifable by seeing if its numerator \
       and denominator have primes in common using Prime Factorization.  `,
@@ -241,6 +252,14 @@ class FractionTeaching extends MathTeaching {
   }
 
   tellSimplestFormHeading = `{h}Simplest Form`
+
+  tryToSimplifyHeading=`{h}Try to simplify your fraction`
+
+  tryToSimplify=`{str}To simplify a fraction, try to find all the numbers that \
+  both the numerator and denominator are divisible by.  Since these numbers are \
+  divided by themselves in the fraction, dividing the numerator and denominator \
+  by them is the same as dividing by 1, so it does not change the value of the \
+  fraction.  `
 
   tellSimplestForm(numerator, denominator, latex) {
     return (

@@ -46,7 +46,9 @@ class FractionTeacher{
     } 
     else if (numerator===0 && denominator===0) {
       return (
+        this.teaching.indeterminate(
           this.fractionLatex(parseInt(args[2]), parseInt(args[4]))
+        )
       )
     } else if (denominator===0){
       return (
@@ -86,8 +88,10 @@ class FractionTeacher{
       )
     } else if (!PrimeFactorization.absVal100_000_000OrLess(numerator)
     ||!PrimeFactorization.absVal100_000_000OrLess(denominator)) {
+      let disclaimer=[this.teaching.tryToSimplify]
+      disclaimer.push(this.teaching.tooLargeToSimplify)
       return (
-        this.teaching.tooLargeToSimplify
+        disclaimer
       )
     } else {
       const nArray=PrimeFactorization.getPrimeFactorsUnder100_000_000(numerator);
