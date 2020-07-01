@@ -11,7 +11,7 @@ class FractionTeacher{
   }
     
   fromNumeratorAndDenominator(args){
-    let mathObject=Fraction
+    let mathObject=new Fraction()
     if (args===undefined){
       mathObject=undefined
       let initialization=this.teaching.fromNumeratorAndDenominator()
@@ -24,30 +24,12 @@ class FractionTeacher{
     let initialization=this.teaching.fromNumeratorAndDenominator(
       parseInt(args[2]), parseInt(args[4]), this.fractionLatex(parseInt(args[2]), parseInt(args[4]))
     )
-    let simplification=this.simplify(args)
+    let simplification=this.simplify([args[2], args[4]])
     let lesson=[
       initialization,
-      simplification
+      simplification.solution
     ]
     return lesson
-  }
-
-  addAFraction(args){
-    if (args===undefined){
-      //mathObject=undefined
-      let initialization=this.teaching.addAFraction()
-      let lesson=[
-        initialization
-      ]
-      return lesson
-    } else {
-      let initialization=this.teaching.addAFraction(
-        parseInt(args[2]), parseInt(args[4]), parseInt(args[6]), parseInt(args[8]), '')
-      let lesson=[
-        initialization
-      ]
-      return lesson
-    }
   }
 	
 	fromInteger(args){
@@ -68,70 +50,104 @@ class FractionTeacher{
     }
   }
 
+  initAddAFraction(num1, denom1, num2, denom2){
+    return (
+        this.teaching.initAddAFraction(num1, denom1, num2, denom2, 
+          `${this.fractionLatex(num1, denom1)}+${this.fractionLatex(num2, denom2)}`)
+    )
+  }
+
+  addAFraction(args){
+    if (args===undefined){
+      //mathObject=undefined
+      let initialization=this.teaching.addAFraction()
+      let lesson=[
+        initialization
+      ]
+      return lesson
+    } else if (isNaN(parseInt(args[2])) || isNaN(parseInt(args[4])) ||
+    isNaN(parseInt(args[6])) || isNaN(parseInt(args[8]))) {
+      return [this.teaching.tellBadInput()]
+    } else {
+      let initialization=this.initAddAFraction(args[2], args[4], args[6], args[8])
+      let simplification1=this.simplify([args[2], args[4]])
+      let simplification2=null
+      if (args[2]===args[6] && args[4]===args[8]){
+        simplification2={
+          solution: this.teaching.secondFractionIsTheSameAsFirst(), 
+          mathObject: simplification1.mathObject}
+      } else {
+        simplification2=this.simplify([args[6], args[8]])
+      }
+      console.log(simplification1)
+      console.log(simplification2)
+      let lesson=[
+        initialization,
+        this.teaching.lookAtYourFirstFraction(args[2], args[4], 
+          this.fractionLatex(args[2], args[4])),
+        simplification1.solution,
+        this.teaching.lookAtYourSecondFraction(args[6], args[8],
+          this.fractionLatex(args[6], args[8])),
+        simplification2.solution,
+        this.initAddAFraction( simplification1.mathObject.numerator, simplification1.mathObject.denominator, 
+          simplification2.mathObject.numerator, simplification2.mathObject.denominator)
+
+      ]
+      return lesson
+    }
+  }
+
   simplify(args){
-    let mathObject=Fraction
-    mathObject.createFromNumAndDenom([args[2], args[4]])
-    let numerator=parseInt(args[2])
-    let denominator=parseInt(args[4])
+    let solution=[]
+    let mathObject=new Fraction()
+    mathObject.createFromNumAndDenom([args[0], args[1]])
+    console.log(mathObject)
+
+    let numerator=parseInt(args[0])
+    let denominator=parseInt(args[1])
     if (isNaN(numerator) || isNaN(denominator)) {
       mathObject=null
-      return (
-        [
-        ]
-      )
+      solution=[]
     } 
     else if (numerator===0 && denominator===0) {
-      return (
-        this.teaching.indeterminate(
-          this.fractionLatex(parseInt(args[2]), parseInt(args[4]))
-        )
+      solution=this.teaching.indeterminate(
+          this.fractionLatex(numerator, denominator)
       )
     } else if (denominator===0){
-      return (
-        this.teaching.undefined(
-          parseInt(args[2]), this.fractionLatex(parseInt(args[2]), parseInt(args[4]))
-          )
+      solution=this.teaching.undefined(
+          parseInt(args[2]), this.fractionLatex(numerator, denominator)
       )
     } else if (denominator===1) {
-      return (this.teaching.denominatorIs1(
-          numerator, this.fractionLatex(parseInt(args[2]), parseInt(args[4]))
-        )
+      solution=this.teaching.denominatorIs1(
+          numerator, this.fractionLatex(numerator, denominator)
       )
     } else if (numerator===1) {
-      return (
-        this.teaching.numeratorIs1(
-          denominator, this.fractionLatex(parseInt(args[2]), parseInt(args[4]))
-        )
+      solution=this.teaching.numeratorIs1(
+          denominator, this.fractionLatex(numerator, denominator)
       )
     } else if (denominator===numerator) {
       mathObject.createFromNumAndDenom([1,1])
-      return (
-        this.teaching.numeratorEqualsDenominator(
+      solution=this.teaching.numeratorEqualsDenominator(
           numerator, denominator,
-          this.fractionLatex(parseInt(args[2]), parseInt(args[4]))
-        )
+          this.fractionLatex(numerator, denominator)
       )
     } else if (denominator%numerator===0) {
-      mathObject.createFromNumAndDenom([1,parseInt(args[4])/parseInt(args[2])])
-      return (
+      mathObject.createFromNumAndDenom([1,denominator/numerator])
+      solution=
         this.teaching.denominatorModNumeratorIs0(
-          numerator, denominator, this.fractionLatex(1, parseInt(args[4])/parseInt(args[2])), parseInt(args[4])/parseInt(args[2])
-          )
+          numerator, denominator, this.fractionLatex(1, denominator/numerator, parseInt(args[2])/numerator)
       )
     } else if (numerator%denominator===0) {
-      mathObject.createFromNumAndDenom([parseInt(args[2])/parseInt(args[4]),1])
-      return (
+      mathObject.createFromNumAndDenom([numerator/denominator,1])
+      solution=
         this.teaching.numeratorModDenominatorIs0(
-          numerator, denominator, parseInt(args[2])/parseInt(args[4])
-        )
+          numerator, denominator, numerator/denominator
       )
     } else if (!PrimeFactorization.absVal100_000_000OrLess(numerator)
     ||!PrimeFactorization.absVal100_000_000OrLess(denominator)) {
       let disclaimer=[this.teaching.tryToSimplify]
       disclaimer.push(this.teaching.tooLargeToSimplify)
-      return (
-        disclaimer
-      )
+      solution=disclaimer
     } else {
       const nArray=PrimeFactorization.getPrimeFactorsUnder100_000_000(numerator);
       const dArray=PrimeFactorization.getPrimeFactorsUnder100_000_000(denominator);
@@ -163,10 +179,9 @@ class FractionTeacher{
         this.teaching.tellSimplestForm(
           mathObject.numerator, mathObject.denominator, this.fractionLatex(mathObject.numerator, mathObject.denominator))
         )
-      return (
-        primeFactorsTeaching
-      )
+        solution=primeFactorsTeaching
     }
+    return {solution: solution, mathObject: mathObject}
   }
 
 	operateWithFraction(args, operator){

@@ -31,3 +31,23 @@ const SolveView = (props) => {
 }
 
 export default SolveView
+
+/*
+<Accordion allowZeroExpanded={true} allowMultipleExpanded={true} preExpanded={[]}>
+      <AccordionItem uuid='about'>
+        <AccordionItemHeading className="heading large-heading-size">
+          <AccordionItemButton>
+            {teacher.teaching.displayNameSingular} Teaching: {getMethodName()}
+          </AccordionItemButton>
+        </AccordionItemHeading>
+        <AccordionItemPanel>
+            <LessonView params={props.params} teacher={teacher} lesson={lesson} type="Teaching"/>
+            <br/>
+            <br/>
+            <div className='center-text text-margins'>
+              <AdView />
+            </div>
+        </AccordionItemPanel>
+      </AccordionItem>
+    </Accordion>
+*/

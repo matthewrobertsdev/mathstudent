@@ -17,6 +17,10 @@ h1{
   color: rgb(255, 209, 56);
   font-size: xx-large;
 }
+.big-heading{
+  color: rgb(255, 209, 56);
+  font-size: xx-large;
+}
 .link-text{
   color: rgb(255, 209, 56);
   font-size: xx-large;
@@ -420,6 +424,9 @@ input{
     color: rgb(255, 140, 0);
   }
   .link-text{
+    color: rgb(255, 140, 0);
+  }
+  .big-heading{
     color: rgb(255, 140, 0);
   }
   .heading{

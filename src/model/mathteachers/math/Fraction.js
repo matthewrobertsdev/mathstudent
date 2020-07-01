@@ -9,7 +9,7 @@ class Fraction extends MathTeachingObject{
         this.denominator=0;
     }
     createFromNumAndDenom(args){ this.numerator=parseInt(args[0]); 
-        parseInt(this.denominator=args[1]);}
+        this.denominator=parseInt(args[1]);}
     createFromInteger(args){ parseInt(this.numerator=args[0]); 
         parseInt(this.denominator=1);}
     latex=()=>{
@@ -42,4 +42,4 @@ class Fraction extends MathTeachingObject{
     while array[i]
     */
 }
-export default new Fraction();
+export default Fraction;

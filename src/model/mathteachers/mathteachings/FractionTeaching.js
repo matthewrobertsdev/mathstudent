@@ -44,6 +44,11 @@ class FractionTeaching extends MathTeaching {
     ]
   }
 
+  fractionDescription(numerator, denominator) {
+    return `{$bl}begin fraction \
+    ${numerator} over ${denominator} end fraction`
+  }
+
   fromNumeratorAndDenominator(numerator, denominator, latex) {
     const construction = `{str}You create a fraction from a numerator and a denominator by \
     placing the numerator above the denominator, with a horizontal bar \
@@ -87,13 +92,13 @@ class FractionTeaching extends MathTeaching {
         by the other, you can simply divide them both by it.  Then prime factorization is \
         not needed to make sure all primes in common are found.`
       ]
-    } else if (isNaN(numerator)||isNaN(denominator)){
+    } else if (isNaN(numerator) || isNaN(denominator)) {
       return (
-      [
-        `{h}Bad input`,
+        [
+          `{h}Bad input`,
           `{str}Sorry, but Math Teacher's lesson for fractions expects
            your inputs to be counting numbers, 0 or negative numbers.`
-      ]
+        ]
       )
     } else {
       return (
@@ -261,9 +266,9 @@ class FractionTeaching extends MathTeaching {
 
   tellSimplestFormHeading = `{h}Simplest Form`
 
-  tryToSimplifyHeading=`{h}Try to simplify your fraction`
+  tryToSimplifyHeading = `{h}Try to simplify`
 
-  tryToSimplify=`{str}To simplify a fraction, try to find all the numbers that \
+  tryToSimplify = `{str}To simplify a fraction, try to find all the numbers that \
   both the numerator and denominator are divisible by.  Since these numbers are \
   divided by themselves in the fraction, dividing the numerator and denominator \
   by them is the same as dividing by 1, so it does not change the value of the \
@@ -286,13 +291,13 @@ class FractionTeaching extends MathTeaching {
         have to have a fraction.`
       ]
     }
-    else if (isNaN(numerator)){
+    else if (isNaN(numerator)) {
       return (
-      [
-        `{h}Bad input`,
-        `{str}Sorry, but Math Teacher's lesson for fractions expects
+        [
+          `{h}Bad input`,
+          `{str}Sorry, but Math Teacher's lesson for fractions expects
            your inputs to be counting numbers, 0 or negative numbers.`
-      ]
+        ]
       )
     } else {
       return [
@@ -306,10 +311,10 @@ class FractionTeaching extends MathTeaching {
     }
   }
 
-  addAFraction(firstNumerator, firstDenominator, 
-    secondNumerator, secondDenominator, latex){
-    if (firstNumerator === undefined || firstDenominator===undefined || 
-      secondNumerator===undefined || secondDenominator===undefined ||
+  addAFraction(firstNumerator, firstDenominator,
+    secondNumerator, secondDenominator, latex) {
+    if (firstNumerator === undefined || firstDenominator === undefined ||
+      secondNumerator === undefined || secondDenominator === undefined ||
       latex === undefined) {
       return [
         `{h}Find a common denominator`,
@@ -322,30 +327,61 @@ class FractionTeaching extends MathTeaching {
         factorizations of both denomionators, but includes all primes from \
         both, but using primes that appear in both once for each time they appear in \
         both.  This way, because it will have in its product all the primes from both, \
-        ity will be divisble by botyhe denominators.`,
+        it will be divisble by both denominators.`,
         `{h}Manipulate both fractions to have the common denominator`,
         `{str}For each fraction, divide the common denominator by the current \
         denominator.  Then, multiply both the numerator and denominator by this value, \
-        which is like multiplying by 1 it is a fraction consisting of one value above \
+        which is like multiplying by 1 as it is a fraction consisting of one value above \
         itself.`,
         `{h}Add the fractions with common denominators`,
         `{str}Once you have fractions with common denominators, the numerators keep track \
         of quantties of the same value, so you can just add the numerators together, \
         keeping the common denominator.`
       ]
+    } else {
+      return this.initAddAFraction(firstNumerator)
     }
-    else if (isNaN(firstNumerator)||isNaN(firstNumerator)||
-    isNaN(secondNumerator)||isNaN(secondDenominator)){
-      return (
+  }
+
+  tellBadInput() {
+    return (
       [
         `{h}Bad input`,
-        `{str}Sorry, but Math Teacher's lesson for fractions expects
-           your inputs to be counting numbers, 0 or negative numbers.`
+        `{str}Sorry, but Math Teacher's lesson for fractions expects \
+         your inputs to be counting numbers, 0 or negative numbers.`
       ]
-      )
-    } else {
-      return []
-    }
+    )
+  }
+
+  initAddAFraction(num1, denom1, num2, denom2, latex) {
+    return (
+      [
+        `{str}So we are trying to solve:`,
+        `{$bl}${latex}{$bl}${this.fractionDescription(num1, denom1)} \
+        plus ${this.fractionDescription(num2, denom2)}`
+      ]
+    )
+  }
+  lookAtYourFirstFraction(num, denom, latex) {
+    return [
+      `{h}Take a look at your first fraction:`,
+      `{$bl}${latex}{$bl}${this.fractionDescription(num, denom)}`
+    ]
+  }
+
+  lookAtYourSecondFraction(num, denom, latex) {
+    return [
+      `{h}Take a look at your second fraction:`,
+      `{$bl}${latex}{$bl}${this.fractionDescription(num, denom)}`
+
+    ]
+  }
+
+  secondFractionIsTheSameAsFirst() {
+    return [
+      `{str}Because the second fraction is the same as the first, it simplifies \
+      to the same value.`
+    ]
   }
 
 }
