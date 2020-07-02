@@ -45,7 +45,7 @@ class FractionTeaching extends MathTeaching {
   }
 
   fractionDescription(numerator, denominator) {
-    return `{$bl}begin fraction \
+    return `begin fraction \
     ${numerator} over ${denominator} end fraction`
   }
 
@@ -274,10 +274,18 @@ class FractionTeaching extends MathTeaching {
   by them is the same as dividing by 1, so it does not change the value of the \
   fraction.  `
 
-  tellSimplestForm(numerator, denominator, latex) {
+  tellFraction(numerator, denominator, latex) {
     return (
       `{$bl}${latex}{$bl}begin fraction \
       ${numerator} over ${denominator} end fraction`
+    )
+  }
+
+  tellSimplification(num1, denom1, num2, denom2, latex1, latex2){
+    return (
+      `{$bl}${latex1}=${latex2} \
+      {$bl}${this.fractionDescription(num1, denom1)} equals \
+      ${this.fractionDescription(num2, denom2)}`
     )
   }
 
@@ -377,12 +385,39 @@ class FractionTeaching extends MathTeaching {
     ]
   }
 
-  secondFractionIsTheSameAsFirst() {
+  denominatorIsTheSame(denominator) {
     return [
-      `{str}Because the second fraction is the same as the first, it simplifies \
-      to the same value.`
+      `{str}Because the two fractions already have the same denominator, \
+  ${denominator}, it is the Lowest Common Denominator (LCD), as it is the \
+  smallest number that is divisble by both denominators.`
     ]
   }
 
+  denomIsDivisbleByOtherDenom(denom1, denom2) {
+    return [
+      `{str}Because the denominator, ${denom1}, is divisble by \
+    denominator, ${denom2}, ${denom1} is the Lowest Common Denominator \
+    (LCD), as it is the smallest number that is divisble by both \
+    denominators.  This is because it is the smallest number that is divsible \
+    by the denominator ${denom1}.  That denominator, ${denom1}, is already \
+    divisible by ${denom2}.`
+    ]
+  }
+
+  tellNeedToSimplifyFirst=
+      `{str}Because no Lowest Common Denominator (LCD) is obvious, we must find \
+      one.  However, as working with big numbers is more tedious than working \
+      with smaller numbers, we will find out if we can simplify our fractions first.  `
+
+  forTheFirstFraction=`{h}For the first fraction, we have:`
+
+  forTheSecondFraction=`{h}For the second fraction, we have:`
+
+  itIsAlreadyInSimplestForm=`{str}It is already in simplest form.  `
+
+  checkOutSimplifyingFractions=`{str}If you don't know why, check out Simplify a Fraction \
+  for this fraction.  `
+
+  needLCD=`{h}So now we need to find the LCD.`
 }
 export default new FractionTeaching();

@@ -12,6 +12,15 @@ class Fraction extends MathTeachingObject{
         this.denominator=parseInt(args[1]);}
     createFromInteger(args){ parseInt(this.numerator=args[0]); 
         parseInt(this.denominator=1);}
+    simplify(){
+      const nArray=PrimeFactorization.getPrimeFactorsUnder100_000_000(this.numerator);
+      const dArray=PrimeFactorization.getPrimeFactorsUnder100_000_000(this.denominator);
+      let primes=null;
+			primes=ListUtility.elementsInCommon(nArray, dArray);
+      const gcf=Product.getProductOfList(primes);
+			this.numerator/=gcf;
+      this.denominator/=gcf;
+    }
     latex=()=>{
         return `\\Huge\\color{gold}`+this.basicLatex();
     }
