@@ -149,6 +149,9 @@ class FractionTeacher {
   }
 
   tellFactorLCDSolution(initialization, denom1, numerator1, numerator2, denom2, factor, newNumerator, sum){
+    let fractionSolution=new Fraction()
+    fractionSolution.createFromNumAndDenom([sum, denom1])
+    fractionSolution.simplify()
     return [
       initialization, this.teaching.denomIsDivisbleByOtherDenom(denom1, denom2),
           this.teaching.tellLCD(denom1), 
@@ -159,10 +162,13 @@ class FractionTeacher {
         this.teaching.tellAddNumerators(denom1, newNumerator, numerator1,
           this.fractionLatex(`${newNumerator}+${numerator1}`, denom1),
           this.fractionLatex(sum, denom1), sum),
+          [this.teaching.tryToSimplifyHeading],
+          this.tryToSimplify(sum, denom1,
+            fractionSolution),
           [
             this.teaching.solutoionHeading,
-            this.teaching.tellFraction(sum, denom1,
-              this.fractionLatex(sum, denom1))
+            this.teaching.tellFraction(fractionSolution.numerator, fractionSolution.denominator,
+              this.fractionLatex(fractionSolution.numerator, fractionSolution.denominator))
           ]
       ]
   }

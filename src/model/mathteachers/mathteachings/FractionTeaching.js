@@ -471,8 +471,5 @@ class FractionTeaching extends MathTeaching {
     )
   }
 
-  multiplySecondFraction(){
-    
-  }
 }
 export default new FractionTeaching();
