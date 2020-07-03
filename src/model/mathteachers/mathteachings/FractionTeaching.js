@@ -281,11 +281,19 @@ class FractionTeaching extends MathTeaching {
     )
   }
 
-  tellSimplification(num1, denom1, num2, denom2, latex1, latex2){
+  tellSimplificationToFraction(num1, denom1, num2, denom2, latex1, latex2){
     return (
       `{$bl}${latex1}=${latex2} \
       {$bl}${this.fractionDescription(num1, denom1)} equals \
       ${this.fractionDescription(num2, denom2)}`
+    )
+  }
+
+  tellSimplificationToInteger(num1, denom1, latex1, integer){
+    return (
+      `{$bl}${latex1}=${integer} \
+      {$bl}${this.fractionDescription(num1, denom1)} equals \
+      ${integer}`
     )
   }
 
@@ -406,7 +414,7 @@ class FractionTeaching extends MathTeaching {
 
   tellNeedToSimplifyFirst=
       `{str}Because no Lowest Common Denominator (LCD) is obvious, we must find \
-      one.  However, as working with big numbers is more tedious than working \
+      one.  However, as working with big numbers is harder than working \
       with smaller numbers, we will find out if we can simplify our fractions first.  `
 
   forTheFirstFraction=`{h}For the first fraction, we have:`
@@ -429,7 +437,7 @@ class FractionTeaching extends MathTeaching {
 
   tellAddNumerators(denom, numerator1, numerator2, latex1, latex2, sum){
     return [
-    `{str}Because th fractions have a common denominator, ${denom}, \
+    `{str}Because the fractions have a common denominator, ${denom}, \
     we can just add the numerators, ${numerator1} and ${numerator2}, \
     as they are keeping track of how many we have of fractions of the same size.
     We have ${numerator1} plus ${numerator2}, all over ${denom}.`,
@@ -439,12 +447,13 @@ class FractionTeaching extends MathTeaching {
     ]
   }
 
-  tellSolution(latex, numerator, denominator){
-    return [
-      `{h}The soliution is:`,
-      `{$bl}${latex}{$bl}${this.fractionDescription(numerator, denominator)}`
-    ]
+  tellInteger(integer){
+    return (
+      `{$bl}${integer}{$bl}${integer}`
+    )
   }
+
+  solutoionHeading=`{h}The solution is:`
 
 }
 export default new FractionTeaching();
