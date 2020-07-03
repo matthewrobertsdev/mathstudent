@@ -57,7 +57,6 @@ class FractionTeacher{
 
   addAFraction(args){
     if (args===undefined){
-      //mathObject=undefined
       let initialization=this.teaching.addAFraction()
       let lesson=[
         initialization
@@ -78,11 +77,25 @@ class FractionTeacher{
       let initialization=this.initAddAFraction(numerator1, denom1, numerator2, denom2)
       let solution=[]
       if (denom1===denom2){
-        solution=[initialization, this.teaching.denominatorIsTheSame(denom1)]
+      let sum=numerator1+numerator2
+        solution=[
+          initialization, this.teaching.denominatorIsTheSame(denom1),
+          this.teaching.tellLCD(denom1),
+          this.teaching.tellAddNumerators(denom1, numerator1, numerator2, 
+              this.fractionLatex(`${numerator1}+${numerator2}`, denom1),
+              this.fractionLatex(sum, denom1), sum),
+          this.teaching.tellSolution(this.fractionLatex(sum, denom1), sum, denom1)
+        ]
       } else if (denom1%denom2===0){
-        solution=[initialization, this.teaching.denomIsDivisbleByOtherDenom(denom1, denom2)]
+        solution=[
+          initialization, this.teaching.denomIsDivisbleByOtherDenom(denom1, denom2),
+          this.teaching.tellLCD(denom1)]
       } else if (denom2%denom1===0){
-        solution=[initialization, this.teaching.denomIsDivisbleByOtherDenom(denom2, denom1)]
+        solution=[
+          initialization, 
+          this.teaching.denomIsDivisbleByOtherDenom(denom2, denom1),
+          this.teaching.tellLCD(denom2)
+        ]
       } else {
         fraction1.simplify()
         fraction2.simplify()
@@ -121,7 +134,7 @@ class FractionTeacher{
         solution=[
           initialization,
           [this.teaching.tellNeedToSimplifyFirst,
-            this.teaching.tryToSimplifyHeading],
+          this.teaching.tryToSimplifyHeading],
           [this.teaching.forTheFirstFraction],
           simplification1,
           [this.teaching.forTheSecondFraction],
@@ -215,34 +228,5 @@ class FractionTeacher{
     }
   }
 
-	operateWithFraction(args, operator){
-    let mathObject=Fraction
-		this.concept.push(`{IL}\\Huge\\frac{${mathObject.numerator}}{${mathObject.denominator}}${operator}\\frac{${args[0]}}{${args[1]}}`);
-		this.concept.push('\n\n');
-	}
-
-	operateWithFractionVoice(args, operation){
-    let mathObject=Fraction
-		return `begin fraction, ${mathObject.numerator} over ${mathObject.denominator}, `
-		+`end fraction ${operation} begin fraction, ${args[0]} over ${args[1]} end fraction`;
-	}
-
-	subtractAFraction(args){
-		//this.concept=[];
-    //this.operateWithFraction(args, '-')
-    return []
-	}
-
-	multiplyByAFraction(args){
-		//this.concept=[];
-    //this.operateWithFraction(args, '\\cdot')
-    return []
-	}
-
-	divideByAFraction(args){
-		//this.concept=[];
-    //this.operateWithFraction(args, '\\div')
-    return []
-	}
 }
 export default new FractionTeacher();

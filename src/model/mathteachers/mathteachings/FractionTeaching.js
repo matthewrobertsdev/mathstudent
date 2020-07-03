@@ -419,5 +419,32 @@ class FractionTeaching extends MathTeaching {
   for this fraction.  `
 
   needLCD=`{h}So now we need to find the LCD.`
+
+  tellLCD(lcd){
+    return [
+      `{h}The LCD is:`,
+      `{$bl}${lcd}{$bl}${lcd}`
+    ]
+  }
+
+  tellAddNumerators(denom, numerator1, numerator2, latex1, latex2, sum){
+    return [
+    `{str}Because th fractions have a common denominator, ${denom}, \
+    we can just add the numerators, ${numerator1} and ${numerator2}, \
+    as they are keeping track of how many we have of fractions of the same size.
+    We have ${numerator1} plus ${numerator2}, all over ${denom}.`,
+    `{$bl}${latex1}=${latex2}{$bl}begin fraction ${numerator1} plus ${numerator2} \
+    over ${denom} end fraction equals begin fraction ${sum} \
+    over ${denom} end fraction equals`
+    ]
+  }
+
+  tellSolution(latex, numerator, denominator){
+    return [
+      `{h}The soliution is:`,
+      `{$bl}${latex}{$bl}${this.fractionDescription(numerator, denominator)}`
+    ]
+  }
+
 }
 export default new FractionTeaching();
