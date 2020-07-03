@@ -113,15 +113,18 @@ class FractionTeacher {
           answer
         ]
       } else if (denom1 % denom2 === 0) {
-        solution = [
-          initialization, this.teaching.denomIsDivisbleByOtherDenom(denom1, denom2),
-          this.teaching.tellLCD(denom1)]
+        let factor=denom1/denom2
+        let newNumerator=numerator2*factor
+        let sum=numerator1+newNumerator
+        
+        return this.tellFactorLCDSolution(initialization, denom1, numerator1, numerator2,
+          denom2, factor, newNumerator, sum)
       } else if (denom2 % denom1 === 0) {
-        solution = [
-          initialization,
-          this.teaching.denomIsDivisbleByOtherDenom(denom2, denom1),
-          this.teaching.tellLCD(denom2)
-        ]
+        let factor=denom2/denom1
+        let newNumerator=numerator1*factor
+        let sum=numerator2+newNumerator
+        return this.tellFactorLCDSolution(initialization, denom2, numerator2, numerator1,
+          denom1, factor, newNumerator, sum)
       } else {
         fraction1.simplify()
         fraction2.simplify()
@@ -143,6 +146,25 @@ class FractionTeacher {
       }
       return solution
     }
+  }
+
+  tellFactorLCDSolution(initialization, denom1, numerator1, numerator2, denom2, factor, newNumerator, sum){
+    return [
+      initialization, this.teaching.denomIsDivisbleByOtherDenom(denom1, denom2),
+          this.teaching.tellLCD(denom1), 
+      this.teaching.multiplyFractionByMultiple(denom1, numerator2, 
+        denom2, factor, newNumerator,
+        this.fractionLatex(`${numerator2}*${factor}`, `${denom2}*${factor}`)),
+        this.initAddAFraction(newNumerator, denom1, numerator1, denom1),
+        this.teaching.tellAddNumerators(denom1, newNumerator, numerator1,
+          this.fractionLatex(`${newNumerator}+${numerator1}`, denom1),
+          this.fractionLatex(sum, denom1), sum),
+          [
+            this.teaching.solutoionHeading,
+            this.teaching.tellFraction(sum, denom1,
+              this.fractionLatex(sum, denom1))
+          ]
+      ]
   }
 
   //simplifies a fraction

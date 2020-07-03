@@ -455,5 +455,24 @@ class FractionTeaching extends MathTeaching {
 
   solutoionHeading=`{h}The solution is:`
 
+  multiplyFractionByMultiple(lcd, numerator, denom, factor, newNumerator, latex){
+    return(
+      [
+      `{str}So we must multiply the fraction that doesn't have the LCD \
+       by what is needed to give it the LCD.  This is the LCD ${lcd} \
+       divided by its denominator, ${denom}, which is ${factor}, which \
+       we must place over itself so that when we multiply by it we will \
+       just be multiplying by 1, as that is what a number (other than 0) \
+       over it self simplifies to.  Here is the multiplication:`,
+      `{$bl}${latex}{$bl}${this.fractionDescription(
+        `${numerator} times ${factor}`, `${denom} times ${factor}`)} \
+        equals ${this.fractionDescription(newNumerator, lcd)}`
+      ]
+    )
+  }
+
+  multiplySecondFraction(){
+    
+  }
 }
 export default new FractionTeaching();
