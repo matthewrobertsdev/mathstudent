@@ -16,7 +16,7 @@ const MethodPage = (props) => {
   
   const [teacher, setTeacher] = useState(undefined);
   getTeacher(params.teachingName, setTeacher)
-  if (teacher) {
+  if (teacher && getMethodIndex()!==-1) {
     return (
       <main>
         {/*a back link or nothing*/}
@@ -55,7 +55,7 @@ const MethodPage = (props) => {
         <br />
       </main>
     )
-  } else if (teacher === false) {
+  } else if (teacher === false || getMethodIndex()===-1) {
     return (
       <main>
         <UncreatedTeachingView className='center-text' />
@@ -83,6 +83,9 @@ const MethodPage = (props) => {
     )
   }
   function getMethodIndex(){
+    if (teacher===undefined || teacher===false) {
+      return -1
+    }
     return teacher.teaching.methods.findIndex(
       method => {
         return method[1] === params.method 
@@ -90,7 +93,9 @@ const MethodPage = (props) => {
     )
   }
   function providePreviousLink(){
-    if (getMethodIndex()===0) {
+    if (getMethodIndex()===-1) {
+      return null
+    } else if (getMethodIndex()===0) {
       return (
       <Link to={`../${teacher.teaching.objectName}`} className='text-margins link-heading float-left'>
         Previous
