@@ -72,6 +72,12 @@ class FractionTeacher {
     } else if (isNaN(parseInt(args[2])) || isNaN(parseInt(args[4])) ||
       isNaN(parseInt(args[6])) || isNaN(parseInt(args[8]))) {
       return [this.teaching.tellBadInput()]
+    } else if (!PrimeFactorization.absVal100_000_000OrLess(parseInt(args[2]))
+      || !PrimeFactorization.absVal100_000_000OrLess(parseInt(args[4]))
+      || !PrimeFactorization.absVal100_000_000OrLess(parseInt(args[6]))
+      || !PrimeFactorization.absVal100_000_000OrLess(parseInt(args[8]))) {
+      let disclaimer = [[this.teaching.tooLargeToSimplify]]
+      return disclaimer
     } else {
       let numerator1 = parseInt(args[2])
       let denom1 = parseInt(args[4])
@@ -88,15 +94,15 @@ class FractionTeacher {
         let fraction = new Fraction()
         fraction.createFromNumAndDenom([sum, denom1])
         fraction.simplify()
-        let answer=[]
-        if (fraction.numerator%fraction.denominator===0) {
-          answer=[
-            this.teaching.solutoionHeading,
-            this.teaching.tellInteger(fraction.denominator/fraction.numerator)
+        let answer = []
+        if (fraction.numerator % fraction.denominator === 0) {
+          answer = [
+            this.teaching.solutionHeading,
+            this.teaching.tellInteger(fraction.denominator / fraction.numerator)
           ]
         } else {
-          answer=[
-            this.teaching.solutoionHeading,
+          answer = [
+            this.teaching.solutionHeading,
             this.teaching.tellFraction(fraction.numerator, fraction.denominator,
               this.fractionLatex(fraction.numerator, fraction.denominator))
           ]
@@ -113,16 +119,16 @@ class FractionTeacher {
           answer
         ]
       } else if (denom1 % denom2 === 0) {
-        let factor=denom1/denom2
-        let newNumerator=numerator2*factor
-        let sum=numerator1+newNumerator
-        
+        let factor = denom1 / denom2
+        let newNumerator = numerator2 * factor
+        let sum = numerator1 + newNumerator
+
         return this.tellFactorLCDSolution(initialization, denom1, numerator1, numerator2,
           denom2, factor, newNumerator, sum)
       } else if (denom2 % denom1 === 0) {
-        let factor=denom2/denom1
-        let newNumerator=numerator1*factor
-        let sum=numerator2+newNumerator
+        let factor = denom2 / denom1
+        let newNumerator = numerator1 * factor
+        let sum = numerator2 + newNumerator
         return this.tellFactorLCDSolution(initialization, denom2, numerator2, numerator1,
           denom1, factor, newNumerator, sum)
       } else {
@@ -132,6 +138,18 @@ class FractionTeacher {
         let simplification2 = this.tryToSimplify(numerator2, denom2, fraction2)
         let initialization2 = this.initAddAFraction(fraction1.numerator, fraction1.denominator,
           fraction2.numerator, fraction2.denominator)
+        let primes1=PrimeFactorization.getPrimeFactorsUnder100_000_000(denom1)
+        let primes2=PrimeFactorization.getPrimeFactorsUnder100_000_000(denom2)
+        let primesUnion=ListUtility.union(primes1, primes2)
+        let lcd=Product.getProductOfList(primesUnion)
+        let factor1=lcd/fraction1.denominator
+        let factor2=lcd/fraction2.denominator
+        let newNumerator1=factor1*fraction1.numerator
+        let newNumerator2=factor2*fraction2.numerator
+        let sum=newNumerator1+newNumerator2
+        let fractionSolution=new Fraction()
+        fractionSolution.createFromNumAndDenom([sum, lcd])
+        fractionSolution.simplify()
         solution = [
           initialization,
           [this.teaching.tellNeedToSimplifyFirst,
@@ -141,36 +159,60 @@ class FractionTeacher {
           [this.teaching.forTheSecondFraction],
           simplification2,
           [this.teaching.needLCD],
-          initialization2
+          initialization2,
+          this.teaching.tellPrimesUnion(fraction1.denominator, primes1, 
+            fraction2.denominator, primes2, primesUnion, lcd),
+            this.teaching.tellLCD(lcd),
+          this.teaching.multiplyFractionsByMultiple(this.fractionLatex(fraction1.numerator, fraction1.denominator),
+          `${this.fractionLatex(`${fraction1.numerator}\\cdot${factor1}`, `${fraction1.denominator}\\cdot${factor1}`)}
+          =${this.fractionLatex(newNumerator1, lcd)}`, 
+          numerator1, denom1, factor1, newNumerator1,
+          lcd),
+          this.teaching.multiplyFractionsByMultiple(this.fractionLatex(fraction2.numerator, fraction2.denominator),
+          `${this.fractionLatex(`${fraction2.numerator}\\cdot${factor2}`, `${fraction2.denominator}\\cdot${factor2}`)}
+          =${this.fractionLatex(newNumerator2, lcd)}`, 
+          numerator2, denom2, factor2, newNumerator2,
+          lcd),
+          this.teaching.tellAddNumerators(lcd, numerator1, numerator2,
+            this.fractionLatex(`${newNumerator1}+${newNumerator2}`, lcd),
+            this.fractionLatex(sum, lcd), sum),
+            [this.teaching.tryToSimplifyHeading],
+      this.tryToSimplify(sum, lcd,
+        fractionSolution),
+      [
+        this.teaching.solutionHeading,
+        this.teaching.tellFraction(fractionSolution.numerator, fractionSolution.denominator,
+          this.fractionLatex(fractionSolution.numerator, fractionSolution.denominator))
+      ]
         ]
       }
       return solution
     }
   }
 
-  tellFactorLCDSolution(initialization, denom1, numerator1, numerator2, denom2, factor, newNumerator, sum){
-    let fractionSolution=new Fraction()
+  tellFactorLCDSolution(initialization, denom1, numerator1, numerator2, denom2, factor, newNumerator, sum) {
+    let fractionSolution = new Fraction()
     fractionSolution.createFromNumAndDenom([sum, denom1])
     fractionSolution.simplify()
     return [
       initialization, this.teaching.denomIsDivisbleByOtherDenom(denom1, denom2),
-          this.teaching.tellLCD(denom1), 
-      this.teaching.multiplyFractionByMultiple(denom1, numerator2, 
+      this.teaching.tellLCD(denom1),
+      this.teaching.multiplyFractionByMultiple(denom1, numerator2,
         denom2, factor, newNumerator,
-        this.fractionLatex(`${numerator2}*${factor}`, `${denom2}*${factor}`)),
-        this.initAddAFraction(newNumerator, denom1, numerator1, denom1),
-        this.teaching.tellAddNumerators(denom1, newNumerator, numerator1,
-          this.fractionLatex(`${newNumerator}+${numerator1}`, denom1),
-          this.fractionLatex(sum, denom1), sum),
-          [this.teaching.tryToSimplifyHeading],
-          this.tryToSimplify(sum, denom1,
-            fractionSolution),
-          [
-            this.teaching.solutoionHeading,
-            this.teaching.tellFraction(fractionSolution.numerator, fractionSolution.denominator,
-              this.fractionLatex(fractionSolution.numerator, fractionSolution.denominator))
-          ]
+        this.fractionLatex(`${numerator2}\\cdot${factor}`, `${denom2}\\cdot${factor}`)),
+      this.initAddAFraction(newNumerator, denom1, numerator1, denom1),
+      this.teaching.tellAddNumerators(denom1, newNumerator, numerator1,
+        this.fractionLatex(`${newNumerator}+${numerator1}`, denom1),
+        this.fractionLatex(sum, denom1), sum),
+      [this.teaching.tryToSimplifyHeading],
+      this.tryToSimplify(sum, denom1,
+        fractionSolution),
+      [
+        this.teaching.solutionHeading,
+        this.teaching.tellFraction(fractionSolution.numerator, fractionSolution.denominator,
+          this.fractionLatex(fractionSolution.numerator, fractionSolution.denominator))
       ]
+    ]
   }
 
   //simplifies a fraction
@@ -179,7 +221,7 @@ class FractionTeacher {
       if (numerator % denom === 0) {
         return [this.teaching.tellSimplificationToInteger(numerator, denom,
           this.fractionLatex(numerator, denom), numerator / denom),
-          this.teaching.checkOutSimplifyingFractions]
+        this.teaching.checkOutSimplifyingFractions]
       } else {
         return [this.teaching.tellSimplificationToFraction(
           numerator, denom,
@@ -247,7 +289,7 @@ class FractionTeacher {
       const nArray = PrimeFactorization.getPrimeFactorsUnder100_000_000(numerator);
       const dArray = PrimeFactorization.getPrimeFactorsUnder100_000_000(denominator);
       let primes = null;
-      primes = ListUtility.elementsInCommon(nArray, dArray);
+      primes = ListUtility.intersection(nArray, dArray);
       const gcf = Product.getProductOfList(primes);
       mathObject.numerator /= gcf;
       mathObject.denominator /= gcf;

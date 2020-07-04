@@ -281,7 +281,7 @@ class FractionTeaching extends MathTeaching {
     )
   }
 
-  tellSimplificationToFraction(num1, denom1, num2, denom2, latex1, latex2){
+  tellSimplificationToFraction(num1, denom1, num2, denom2, latex1, latex2) {
     return (
       `{$bl}${latex1}=${latex2} \
       {$bl}${this.fractionDescription(num1, denom1)} equals \
@@ -289,7 +289,7 @@ class FractionTeaching extends MathTeaching {
     )
   }
 
-  tellSimplificationToInteger(num1, denom1, latex1, integer){
+  tellSimplificationToInteger(num1, denom1, latex1, integer) {
     return (
       `{$bl}${latex1}=${integer} \
       {$bl}${this.fractionDescription(num1, denom1)} equals \
@@ -339,16 +339,16 @@ class FractionTeaching extends MathTeaching {
         be summed together because you will be summing quantities of the same 
         value.  To get a common denominator, you can use prime factorization to get \
         the smallest possible common denominator, known as the Least Common Denominator \
-        or LCD.  It will be the product that includes primes from both prime \
-        factorizations of both denomionators, but includes all primes from \
-        both, but using primes that appear in both once for each time they appear in \
-        both.  This way, because it will have in its product all the primes from both, \
+        or LCD.  It will be the product that includes all primes from both prime \
+        factorizations, but using primes that appear in both once for each time they appear in \
+        both and including primes that appear in only one once each as well.  \
+        This way, because it will have in its product all the primes from both, \
         it will be divisble by both denominators.`,
         `{h}Manipulate both fractions to have the common denominator`,
-        `{str}For each fraction, divide the common denominator by the current \
-        denominator.  Then, multiply both the numerator and denominator by this value, \
-        which is like multiplying by 1 as it is a fraction consisting of one value above \
-        itself.`,
+        `{str}For each fraction, get the number that is the common denominator divided by \
+        the current denominator.  Then, multiply both the numerator and denominator by \
+        this value, which is like multiplying by 1 as it is a fraction consisting of \
+        one value above itself.  Then each fraction will have the LCD.`,
         `{h}Add the fractions with common denominators`,
         `{str}Once you have fractions with common denominators, the numerators keep track \
         of quantties of the same value, so you can just add the numerators together, \
@@ -412,63 +412,105 @@ class FractionTeaching extends MathTeaching {
     ]
   }
 
-  tellNeedToSimplifyFirst=
-      `{str}Because no Lowest Common Denominator (LCD) is obvious, we must find \
+  tellNeedToSimplifyFirst =
+    `{str}Because no Lowest Common Denominator (LCD) is obvious, we must find \
       one.  However, as working with big numbers is harder than working \
       with smaller numbers, we will find out if we can simplify our fractions first.  `
 
-  forTheFirstFraction=`{h}For the first fraction, we have:`
+  forTheFirstFraction = `{h}For the first fraction, we have:`
 
-  forTheSecondFraction=`{h}For the second fraction, we have:`
+  forTheSecondFraction = `{h}For the second fraction, we have:`
 
-  itIsAlreadyInSimplestForm=`{str}It is already in simplest form.  `
+  itIsAlreadyInSimplestForm = `{str}It is already in simplest form.  `
 
-  checkOutSimplifyingFractions=`{str}If you don't know why, check out Simplify a Fraction \
+  checkOutSimplifyingFractions = `{str}If you don't know why, check out Simplify a Fraction \
   for this fraction.  `
 
-  needLCD=`{h}So now we need to find the LCD.`
+  needLCD = `{h}So now we need to find the LCD.`
 
-  tellLCD(lcd){
+  tellLCD(lcd) {
     return [
       `{h}The LCD is:`,
       `{$bl}${lcd}{$bl}${lcd}`
     ]
   }
 
-  tellAddNumerators(denom, numerator1, numerator2, latex1, latex2, sum){
+  tellAddNumerators(denom, numerator1, numerator2, latex1, latex2, sum) {
     return [
-    `{str}Because the fractions have a common denominator, ${denom}, \
+      `{str}Because the fractions have a common denominator, ${denom}, \
     we can just add the numerators, ${numerator1} and ${numerator2}, \
     as they are keeping track of how many we have of fractions of the same size.
     We have ${numerator1} plus ${numerator2}, all over ${denom}.`,
-    `{$bl}${latex1}=${latex2}{$bl}begin fraction ${numerator1} plus ${numerator2} \
+      `{$bl}${latex1}=${latex2}{$bl}begin fraction ${numerator1} plus ${numerator2} \
     over ${denom} end fraction equals begin fraction ${sum} \
     over ${denom} end fraction equals`
     ]
   }
 
-  tellInteger(integer){
+  tellInteger(integer) {
     return (
       `{$bl}${integer}{$bl}${integer}`
     )
   }
 
-  solutoionHeading=`{h}The solution is:`
+  solutionHeading = `{h}The solution is:`
 
-  multiplyFractionByMultiple(lcd, numerator, denom, factor, newNumerator, latex){
-    return(
+  multiplyFractionByMultiple(lcd, numerator, denom, factor, newNumerator, latex) {
+    return (
       [
-      `{str}So we must multiply the fraction that doesn't have the LCD \
+        `{str}So we must multiply the fraction that doesn't have the LCD \
        by what is needed to give it the LCD.  This is the LCD ${lcd} \
        divided by its denominator, ${denom}, which is ${factor}, which \
        we must place over itself so that when we multiply by it we will \
        just be multiplying by 1, as that is what a number (other than 0) \
-       over it self simplifies to.  Here is the multiplication:`,
-      `{$bl}${latex}{$bl}${this.fractionDescription(
-        `${numerator} times ${factor}`, `${denom} times ${factor}`)} \
+       over itself simplifies to.  Here is the multiplication:`,
+        `{$bl}${latex}{$bl}${this.fractionDescription(
+          `${numerator} times ${factor}`, `${denom} times ${factor}`)} \
         equals ${this.fractionDescription(newNumerator, lcd)}`
       ]
     )
+  }
+
+  multiplyFractionsByMultiple(latex1, latex2, numerator, denom, factor, newNumerator, lcd) {
+    return (
+      [
+        `{str}We must get`,
+        `{$bl}${latex1}{$bl}${this.fractionDescription(
+          numerator, denom)} \
+          equals ${this.fractionDescription(numerator, denom)}`,
+        `{str}over the LCD ${lcd}. `,
+          `{br}`,
+        `{str}We do this by dividing the LCD, ${lcd}, by the denominator, ${denom}, \
+        to get ${factor}, which \
+        we place over itself and multiply the fraction by the result, as \
+        that is just multiplying by 1, as that is what a number (other than 0) \
+        over itself simplifies to.  We then will have an equal fraction with the LCD.  \
+        Here is the multiplication:`,
+        `{$bl}${latex2}{$bl}${this.fractionDescription(
+          `${numerator} times ${factor}`, `${denom} times ${factor}`)} \
+          equals ${this.fractionDescription(newNumerator, lcd)}`
+      ]
+
+    )
+  }
+
+  tellPrimesUnion(denom1, primes1, denom2, primes2, primesUnion, lcd) {
+    return [
+      `{str}To get the LCD, we first need to find all the prime factors of \
+    the two denominators, as they multiply together to get the LCD.  This way, both \
+    fractions will be divisble by it.  The prime \
+    ${primes1.length === 1 ? 'factor' : 'factors'} of the first fraction's \
+    denominator ${denom1} ${primes1.length === 1 ? 'is just' : 'are'} \
+    ${MathTeaching.makeListFromArray(primes1)}. \
+    The prime \
+    ${primes2.length === 1 ? 'factor' : 'factors'} of the first fraction's \
+    denominator ${denom2} ${primes2.length === 1 ? 'is just' : 'are'} \
+    ${MathTeaching.makeListFromArray(primes2)}.  If you get the primes from both \
+    not including primes twice for appearing in both, but counting duplicates from \
+    within the list of primes of each denominator, you get \
+    ${MathTeaching.makeListFromArray(primesUnion)}.  They multiply together to get \
+    the LCD, ${lcd}.`
+    ]
   }
 
 }
