@@ -498,14 +498,16 @@ class FractionTeaching extends MathTeaching {
     return [
       `{str}To get the LCD, we first need to find all the prime factors of \
     the two denominators, as they are used in getting the LCD.  The LCD \
-    needs to be a product that is gotten by including each of these prime factors \
-    once, not counting them twice if they appear as factors of both denominators.  \
+    needs to be a product that is gotten by including each of these prime factors,
+    including duplicates, but not counting them twice for every time they appear \
+    as factors of both denominators.  This way, both denominators will be divisble \
+    by this product, as it will have all the factors of each multiplied together.  \
     The prime \
-    ${primes1.length === 1 ? 'factor' : 'factors'} of the first fraction's \
+    ${primes1.length === 1 ? 'factor' : 'factors'} of the \
     denominator ${denom1} ${primes1.length === 1 ? 'is just' : 'are'} \
     ${MathTeaching.makeListFromArray(primes1)}. \
     The prime \
-    ${primes2.length === 1 ? 'factor' : 'factors'} of the first fraction's \
+    ${primes2.length === 1 ? 'factor' : 'factors'} of the \
     denominator ${denom2} ${primes2.length === 1 ? 'is just' : 'are'} \
     ${MathTeaching.makeListFromArray(primes2)}.  If you get the primes from both \
     not including primes twice for appearing in both, but counting duplicates from \
