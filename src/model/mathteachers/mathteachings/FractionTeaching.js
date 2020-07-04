@@ -497,8 +497,10 @@ class FractionTeaching extends MathTeaching {
   tellPrimesUnion(denom1, primes1, denom2, primes2, primesUnion, lcd) {
     return [
       `{str}To get the LCD, we first need to find all the prime factors of \
-    the two denominators, as they multiply together to get the LCD.  This way, both \
-    fractions will be divisble by it.  The prime \
+    the two denominators, as they are used in getting the LCD.  The LCD \
+    needs to be a product that is gotten by including each of these prime factors \
+    once, not counting them twice if they appear as factors of both denominators.  \
+    The prime \
     ${primes1.length === 1 ? 'factor' : 'factors'} of the first fraction's \
     denominator ${denom1} ${primes1.length === 1 ? 'is just' : 'are'} \
     ${MathTeaching.makeListFromArray(primes1)}. \

@@ -173,7 +173,7 @@ class FractionTeacher {
           =${this.fractionLatex(newNumerator2, lcd)}`, 
           numerator2, denom2, factor2, newNumerator2,
           lcd),
-          this.teaching.tellAddNumerators(lcd, numerator1, numerator2,
+          this.teaching.tellAddNumerators(lcd, newNumerator1, newNumerator2,
             this.fractionLatex(`${newNumerator1}+${newNumerator2}`, lcd),
             this.fractionLatex(sum, lcd), sum),
             [this.teaching.tryToSimplifyHeading],
