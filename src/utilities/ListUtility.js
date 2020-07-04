@@ -3,17 +3,16 @@ class ListUtility {
     return (array1.concat(array2.filter(value=>!array1.includes(value)))).sort()
   }
   static intersection(array1, array2) {
-    return array1.filter(value => array2.includes(value))
-    /*
+    //return array1.filter(value => array2.includes(value))
+    
     if (array1.length < array2.length) {
       return this.elementsInCommonOrderCounts(array1, array2);
     } else {
       return this.elementsInCommonOrderCounts(array2, array1);
     }
-    */
   }
 
-  /*
+  
   static elementsInCommonOrderCounts(array1, array2) {
     var a1 = array1.slice(); var a2 = array2.slice();
     var elementsInCommon = [];
@@ -31,6 +30,6 @@ class ListUtility {
     }
     return elementsInCommon;
   }
-  */
+  
 }
 export default ListUtility
