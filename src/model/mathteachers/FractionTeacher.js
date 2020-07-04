@@ -138,8 +138,8 @@ class FractionTeacher {
         let simplification2 = this.tryToSimplify(numerator2, denom2, fraction2)
         let initialization2 = this.initAddAFraction(fraction1.numerator, fraction1.denominator,
           fraction2.numerator, fraction2.denominator)
-        let primes1=PrimeFactorization.getPrimeFactorsUnder100_000_000(denom1)
-        let primes2=PrimeFactorization.getPrimeFactorsUnder100_000_000(denom2)
+        let primes1=PrimeFactorization.getPrimeFactorsUnder100_000_000(fraction1.denominator)
+        let primes2=PrimeFactorization.getPrimeFactorsUnder100_000_000(fraction2.denominator)
         let primesUnion=ListUtility.union(primes1, primes2)
         let lcd=Product.getProductOfList(primesUnion)
         let factor1=lcd/fraction1.denominator
