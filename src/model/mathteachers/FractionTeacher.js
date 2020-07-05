@@ -140,7 +140,7 @@ class FractionTeacher {
           fraction2.numerator, fraction2.denominator)
         let primes1=PrimeFactorization.getPrimeFactorsUnder100_000_000(fraction1.denominator)
         let primes2=PrimeFactorization.getPrimeFactorsUnder100_000_000(fraction2.denominator)
-        let primesUnion=ListUtility.union(primes1, primes2)
+        let primesUnion=ListUtility.elementsNoDuplicatesInCommon(primes1, primes2)
         let lcd=Product.getProductOfList(primesUnion)
         let factor1=lcd/fraction1.denominator
         let factor2=lcd/fraction2.denominator
@@ -289,7 +289,7 @@ class FractionTeacher {
       const nArray = PrimeFactorization.getPrimeFactorsUnder100_000_000(numerator);
       const dArray = PrimeFactorization.getPrimeFactorsUnder100_000_000(denominator);
       let primes = null;
-      primes = ListUtility.intersection(nArray, dArray);
+      primes = ListUtility.elementsInCommon(nArray, dArray);
       const gcf = Product.getProductOfList(primes);
       mathObject.numerator /= gcf;
       mathObject.denominator /= gcf;

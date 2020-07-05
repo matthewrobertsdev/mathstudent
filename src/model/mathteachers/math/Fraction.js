@@ -16,7 +16,7 @@ class Fraction extends MathTeachingObject{
       const nArray=PrimeFactorization.getPrimeFactorsUnder100_000_000(this.numerator);
       const dArray=PrimeFactorization.getPrimeFactorsUnder100_000_000(this.denominator);
       let primes=null;
-			primes=ListUtility.intersection(nArray, dArray);
+			primes=ListUtility.elementsInCommon(nArray, dArray);
       const gcf=Product.getProductOfList(primes);
 			this.numerator/=gcf;
       this.denominator/=gcf;
