@@ -16,7 +16,9 @@ class FractionTeaching extends MathTeaching {
       //add a fraction to a fraction
       ['Add a fraction to a fraction', 'addAFraction', 'first numerator', 'integer',
         'first denominator', 'integer', 'second numerator', 'integer',
-        'second denominator', 'integer'],
+        'second denominator', 'integer']
+        
+      /*,
       //subtract a fraction from a fraction
       ['Subtract a fraction from a fraction', 'subtractAFraction', 'first numerator', 'integer',
         'first denominator', 'integer', 'second numerator', 'integer',
@@ -41,6 +43,7 @@ class FractionTeaching extends MathTeaching {
       //divide a fraction by a mixed number
       ['Divide a fraction by a mixed number', 'divideByAMixedNumber', 'mixed number', 'mixedNumber', 'numerator', 'integer',
         'denominator', 'integer']
+        */
     ]
   }
 
@@ -482,9 +485,9 @@ class FractionTeaching extends MathTeaching {
           `{br}`,
         `{str}We do this by dividing the LCD, ${lcd}, by the denominator, ${denom}, \
         to get ${factor}, which \
-        we place over itself and multiply the fraction by the result, as \
-        that is just multiplying by 1, as that is what a number (other than 0) \
-        over itself simplifies to.  We then will have an equal fraction with the LCD.  \
+        we multiply both the numerator and the denominator by.  This way they divide \
+        out to get the original fraction, so we have not changed the value of the \
+        fraction.  We then will have an equal fraction with the LCD.  \
         Here is the multiplication:`,
         `{$bl}${latex2}{$bl}${this.fractionDescription(
           `${numerator} times ${factor}`, `${denom} times ${factor}`)} \
