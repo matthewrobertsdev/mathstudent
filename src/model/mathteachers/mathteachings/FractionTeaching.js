@@ -339,14 +339,29 @@ class FractionTeaching extends MathTeaching {
         `{h}Find a common denominator`,
         `{str}To add a fraction to a fraction, you must first manipulate them \
         to have common denominators.  This is because the numerators can then \
-        be summed together because you will be summing quantities of the same 
-        value.  To get a common denominator, you can use prime factorization to get \
-        the smallest possible common denominator, known as the Least Common Denominator \
-        or LCD.  It will be the product that includes all primes from both prime \
+        be summed together because you will be summing quantities of the same \
+        value.  To get a common denominator, you can use prime factorization, \
+        and some multiplication of the results to get the smallest possible \
+        common denominator, known as the Least Common Denominator or LCD.  \
+        The LCD will be the Lowest Common Multiple (LCM) of the denominators.  This way,
+        both denominators will be divisble by it, as it is a multiple of them, 
+        but it won't be larger than it has to be, as it is the lowest common 
+        multiple of them, meaning the smallest common multiple.  \
+        It's easiest to learn how with an example.  If you are trying to get \
+        the LCM of 4 and 6, you get 2 and 2 as the results of the prime factorization \
+        of 4 and 2 and 3 as the reuslts of the prime factorization of 6.  You need \
+        all the factors to appear the greatest time they appear in any one of the \
+        numbers, so that the LCM will be divisble by all factors of all numbers.  \
+        Therefore, you need two 2s, because the greatest number of times 2 appears \
+        in any of the numbers prime factorizations is twice, and one 3, because the \
+        greatest number of times 3 appears in any of the numbers prime factorizations \
+        is once.  The LCM is what you get multiplying these all together.  You get 2 \
+        times 2 times 3, which is 12.  Therefore, any fractions with denominators 4 \
+        and 6 have an LCD of 12, as the LCD will is the LCM of the dnominators.`/*It will be the product that includes all primes from both prime \
         factorizations, but using primes that appear in both once for each time they appear in \
         both and including primes that appear in only one once each as well.  \
         This way, because it will have in its product all the primes from both, \
-        it will be divisble by both denominators.`,
+        it will be divisble by both denominators.`*/,
         `{h}Manipulate both fractions to have the common denominator`,
         `{str}For each fraction, get the number that is the common denominator divided by \
         the current denominator.  Then, multiply both the numerator and denominator by \
@@ -458,6 +473,7 @@ class FractionTeaching extends MathTeaching {
 
   solutionHeading = `{h}The solution is:`
 
+  /*
   multiplyFractionByMultiple(lcd, numerator, denom, factor, newNumerator, latex) {
     return (
       [
@@ -473,6 +489,7 @@ class FractionTeaching extends MathTeaching {
       ]
     )
   }
+  */
 
   multiplyFractionsByMultiple(latex1, latex2, numerator, denom, factor, newNumerator, lcd) {
     return (
@@ -512,11 +529,14 @@ class FractionTeaching extends MathTeaching {
     The prime \
     ${primes2.length === 1 ? 'factor' : 'factors'} of the \
     denominator ${denom2} ${primes2.length === 1 ? 'is just' : 'are'} \
-    ${MathTeaching.makeListFromArray(primes2)}.  If you get the primes from both \
+    ${MathTeaching.makeListFromArray(primes2)}.  If you get each prime the greatest \
+    number of times it goes into any denominator, you get `,/*If you get the primes from both \
     not including primes twice for appearing in both, but counting duplicates from \
-    within the list of primes of each denominator, you get \
-    ${MathTeaching.makeListFromArray(primesUnion)}.  They multiply together to get \
-    the LCD, ${lcd}.`
+    within the list of primes of each denominator, you get \*/
+    `{str}${MathTeaching.makeListFromArray(primesUnion)}.  This way, the product of \
+    these primes will be divisble by all the denominators, as it will be divisble by \
+    all you multiply together to get each of denominators.  These primes multiply \
+    together to get the LCD, ${lcd}.`
     ]
   }
 

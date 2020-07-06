@@ -11,11 +11,23 @@ const AboutFraction = () => {
         A fraction is a way of expressing a number or mathematical expression
         as being a part of another number or mathematical expression.
         Fractions have two mathematical expressions on top of each other, separated by a
-        horizontal bar.  The exprerssion on top is called the numerator.
+        horizontal bar.  The expression on top is called the numerator.
         The expression on the bottom is called the denominator.
         The numerator is divided by the denominator to give you
         the value of the fraction.  The simplest fractions have just one number
         on top of another number.  Fractions are a way of expressing division.
+      </h3>
+      <h1 className='large-left-margin'>
+        Parts of a Whole
+      </h1>
+      <h3 className="heading">
+        A fraction can be thought of as being a number of equal parts of a whole.
+        The denominator says how many pieces the whole is divided into.  Once you know 
+        from the denominator how many pieces the whole has been divided into, you can 
+        look at the numerator to see how many of them you have.  For example, if you divide
+        a cake into 16 equal slices, the denominator is 16.  If you have 3 of these 16 
+        slices, the numerator is 3.  Fractions can describe less than a whole, 1 whole, 
+        greater than a whole, zero of a whole, or even a negative amount of a whole.
       </h3>
       <h1 className='large-left-margin'>
         Their Form

@@ -197,9 +197,14 @@ class FractionTeacher {
     return [
       initialization, this.teaching.denomIsDivisbleByOtherDenom(denom1, denom2),
       this.teaching.tellLCD(denom1),
-      this.teaching.multiplyFractionByMultiple(denom1, numerator2,
-        denom2, factor, newNumerator,
-        this.fractionLatex(`${numerator2}\\cdot${factor}`, `${denom2}\\cdot${factor}`)),
+      //this.teaching.multiplyFractionByMultiple(denom1, numerator2,
+        //denom2, factor, newNumerator,
+        //this.fractionLatex(`${numerator2}\\cdot${factor}`, `${denom2}\\cdot${factor}`)),
+        this.teaching.multiplyFractionsByMultiple(this.fractionLatex(numerator2, denom2),
+          `${this.fractionLatex(`${numerator2}\\cdot${factor}`, `${denom2}\\cdot${factor}`)}
+          =${this.fractionLatex(newNumerator, denom1)}`, 
+          numerator2, denom2, factor, newNumerator,
+          denom1),
       this.initAddAFraction(newNumerator, denom1, numerator1, denom1),
       this.teaching.tellAddNumerators(denom1, newNumerator, numerator1,
         this.fractionLatex(`${newNumerator}+${numerator1}`, denom1),
