@@ -63,6 +63,9 @@ class FractionTeaching extends MathTeaching {
         `{str}They look like this:`,
         `{$bl}\\frac{\\textrm{numerator}}{\\textrm{denominator}}{$bl}begin fraction \
         numerator over denominator end fraction`,
+        `{str}For example, 2 over 5 looks like this:`,
+        `{$bl}\\frac{2}{5}{$bl}begin fraction \
+        2 over 5 end fraction`,
         this.tryToSimplifyHeading,
         `{str}You should try to simplify fractions once you create them.  This way, \
         it is easier to tell their value as simplified fractions are simpler \
@@ -75,17 +78,23 @@ class FractionTeaching extends MathTeaching {
         numerator and denominator might be simplifiable.  `,
         `{br}`,
         `{str}The numerator and denominator \
-        can be rewritten as a product of their prime factors, the smallest numbers that \
-        they can be divided up into, if they are not \
-        themselves prime.  A prime factor is divisble by only 1 and itself.  \
-        Once you know the prime factors of a fraction, you can see if the numerator and \
-        denominator have any in common.  If they do, you can divide both the numerator \
+        can be rewritten as a product of their numbers found in their prime factorization,\
+         the smallest numbers that they can be divided up into.  \
+         A prime factor is divisble by only 1 and itself.  \
+        Once you know the numbers from the prime factorization of a fraction, you can \
+        if the numerator and denominator have any in common.  If they do, you can divide both the numerator \
         and denominator by these prime factors, as they divide out to be equal to 1, \
         and any number times 1 is itself, so by dividing both the numerator and denominator \
         by them, we do not change the value of the fraction, as we just are dividing by \
         one.  We then just multiply the remaining prime factors in the numerator and \
         denominator to get a single number for each.  Then the fraction is in \
         simplest form.  `,
+        `{br}`,
+        `{str}For example, if we have 4 over 8 (four eigths), the prime factorization of \
+        4 results in 2 times 2 and the prime factorization of 8 results in 2 times 2 \
+        times 2.  Because they have 2 times 2 in common, we can divide out 4 from both \
+        the numerator and denominator to get to 1 over 2 \
+        (1 half)`,
         `{br}`,
         `{str}The fraction is not simplifiable if it is indeterminate, undefined, \
         or if its numerator and denominator have no prime factors in common.  Then it is \
@@ -307,7 +316,13 @@ class FractionTeaching extends MathTeaching {
         over 1, seprated by a horizontal bar, as any number divided by 1 \
         is itself, so you will not change the value of the integer but you \
         will get a numerator over a denominator, which is what you need to \
-        have to have a fraction.`
+        have to have a fraction.  `,
+        `{$bl}\\text{integer}=\\frac{\\text{integer}}{1}{$bl}integer equals ${this.fractionDescription(
+          `integer`, `1`)} `,
+        `{str}For example, 5 can be written as 5 over 1.`,
+        `{$bl}5=\\frac{5}{1}{$bl}${this.fractionDescription(
+          `5`, `1`)} `,
+        
       ]
     }
     else if (isNaN(numerator)) {
@@ -357,7 +372,7 @@ class FractionTeaching extends MathTeaching {
         greatest number of times 3 appears in any of the numbers prime factorizations \
         is once.  The LCM is what you get multiplying these all together.  You get 2 \
         times 2 times 3, which is 12.  Therefore, any fractions with denominators 4 \
-        and 6 have an LCD of 12, as the LCD will is the LCM of the dnominators.`/*It will be the product that includes all primes from both prime \
+        and 6 have an LCD of 12, as the LCD will be the LCM of the denominators.`/*It will be the product that includes all primes from both prime \
         factorizations, but using primes that appear in both once for each time they appear in \
         both and including primes that appear in only one once each as well.  \
         This way, because it will have in its product all the primes from both, \

@@ -278,7 +278,7 @@ class FractionTeacher {
     } else if (denominator % numerator === 0) {
       mathObject.createFromNumAndDenom([1, denominator / numerator])
       return this.teaching.denominatorModNumeratorIs0(
-        numerator, denominator, this.fractionLatex(1, denominator / numerator, parseInt(args[2]) / numerator)
+        numerator, denominator, this.fractionLatex(1, denominator / numerator), denominator / numerator
       )
     } else if (numerator % denominator === 0) {
       mathObject.createFromNumAndDenom([numerator / denominator, 1])
