@@ -58,6 +58,7 @@ class FractionTeaching extends MathTeaching {
     between them.`
     if (numerator === undefined || denominator === undefined || latex === undefined) {
       return [
+        `{history}`,
         construction,
         `{br}`,
         `{str}They look like this:`,
@@ -115,6 +116,7 @@ class FractionTeaching extends MathTeaching {
     } else {
       return (
         [
+          `{history}`,
           `{str}In this case, the numerator is ${numerator} and the \
           denominator is ${denominator}, so you have ${numerator} over \
           ${denominator}, which is the following:`,

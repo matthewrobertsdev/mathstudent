@@ -22,7 +22,7 @@ const LessonView = (props) => {
           </h1>
           {/*display the lesson of the method*/}
           <div className='text-margins'>
-            {displayLesson()}
+            {teachLesson()}
           </div>
         </div>
       )
@@ -40,22 +40,21 @@ const LessonView = (props) => {
   }
 
   //create the display of the lesson
-  function displayLesson() {
+  function teachLesson() {
     let teachingDisplay = []
     //create lesson for method with arguments
     for (let i = 0; i < props.lesson.length; i++) {
       //create concept
       for (let j = 0; j < props.lesson[i].length; j++) {
         //create segments to build concept
-        teachingDisplay.push(createSegment(props.lesson[i][j], i + '-' + j));
+        teachingDisplay.push(handleSegment(props.lesson[i][j], i + '-' + j));
       }
     }
     return teachingDisplay;
   }
 
   //create an individual segment for a concept
-  function createSegment(segment, key) {
-    if (segment) {
+  function handleSegment(segment, key) {
       if (segment.startsWith('{h}')) {
         return (
           <h1 key={key} className="large-left-margin">
@@ -91,7 +90,6 @@ const LessonView = (props) => {
         )
       }
     }
-  }
 }
 
 export default LessonView

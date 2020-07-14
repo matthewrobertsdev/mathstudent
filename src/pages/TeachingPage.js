@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import { Accordion, AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel } from 'react-accessible-accordion'
 import { getTeacher } from '../store/Actions';
 //import isMobile from '../utilities/IsMobile';
@@ -16,6 +16,19 @@ const TeachingPage = (props) => {
   const { match: { params } } = props;
   const [teacher, setTeacher] = useState(undefined);
   getTeacher(params.teachingName, setTeacher)
+
+  useEffect(() => {
+    if (teacher&&params.teachingName!=='false') {
+      console.log()
+      fetch(`http://localhost:9000/teachings/${params.teachingName}`).then(
+        res => res.json()
+      ).then(
+        data =>console.log(data)
+      ).catch(
+        err => console.log(err)
+      )
+    }
+  }, [teacher, params.teachingName])
 
   const AboutComponent = React.lazy(() => import(`../components/about-views/About${params.teachingName}`));
 

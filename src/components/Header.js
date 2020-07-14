@@ -21,9 +21,13 @@ const Header = () => {
           to='/version' key={3}>
           Version
       </Link>
+      <Link className={getClassNameLeft('/recents')}
+          to='/recents' key={4}>
+          Recents
+      </Link>
         {/* Login page */}
         <Link className={getClassNameRight('/login')}
-          to='/login' key={4}>
+          to='/login' key={5}>
           Login
       </Link>
       </nav>

@@ -5,6 +5,8 @@ import Product from './math/Product';
 import ListUtility from '../../utilities/ListUtility';
 class FractionTeacher {
 
+  goodInput=false
+
   //the teaching with the String functions
   teaching = FractionTeaching;
 
@@ -23,6 +25,9 @@ class FractionTeacher {
         initialization,
       ]
       return lesson
+    } else if (!isNaN(parseInt(args[2]))&&!isNaN(parseInt(args[4]))){
+      this.goodInput=true
+      console.log('good input')
     }
     mathObject.createFromNumAndDenom([args[2], args[4]])
     let initialization = this.teaching.fromNumeratorAndDenominator(
@@ -44,13 +49,15 @@ class FractionTeacher {
         initialization
       ]
       return lesson
-    } else {
+    } else if (!isNaN(parseInt(args[2]))){
+      this.goodInput=true
+      console.log('good input')
+    }
       let initialization = this.teaching.fromInteger(parseInt(args[2]), this.fractionLatex(parseInt(args[2]), 1))
       let lesson = [
         initialization
       ]
       return lesson
-    }
   }
 
   //shows a fraction addition
@@ -72,7 +79,11 @@ class FractionTeacher {
     } else if (isNaN(parseInt(args[2])) || isNaN(parseInt(args[4])) ||
       isNaN(parseInt(args[6])) || isNaN(parseInt(args[8]))) {
       return [this.teaching.tellBadInput()]
-    } else if (!PrimeFactorization.absVal100_000_000OrLess(parseInt(args[2]))
+    } else {
+      this.goodInput=true
+      console.log('good input')
+    }
+    if (!PrimeFactorization.absVal100_000_000OrLess(parseInt(args[2]))
       || !PrimeFactorization.absVal100_000_000OrLess(parseInt(args[4]))
       || !PrimeFactorization.absVal100_000_000OrLess(parseInt(args[6]))
       || !PrimeFactorization.absVal100_000_000OrLess(parseInt(args[8]))) {

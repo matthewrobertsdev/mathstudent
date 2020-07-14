@@ -14,6 +14,7 @@ import GenerateProblemsPage from './pages/GenerateProblemsPage'
 import TeachingPage from './pages/TeachingPage'
 import SolvePage from './pages/SolvePage'
 import MethodPage from './pages/MethodPage'
+import RecentsPage from './pages/RecentsPage'
 
 //router for entire app
 const AppRouter = () => (
@@ -41,6 +42,8 @@ const AppRouter = () => (
       <Route path="/teachings/:teachingName/:method" exact component={MethodPage} />
       {/* or solving a problem, again */}
       <Route path='/teachings/:teachingName/:method/:parameters' exact component={SolvePage} />
+      {/* history from Math Teacher displayed */}
+      <Route path='/recents' exact component={RecentsPage} />
       {/* if you don't match the route */}
       <Route component={PageNotFoundPage} />
     </Switch>

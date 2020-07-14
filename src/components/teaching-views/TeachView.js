@@ -13,9 +13,18 @@ const SolveView = (props) => {
 
   //get the lesson
   useEffect(() => {
-    if (teacher !== undefined) {
+    if (teacher !== undefined && teacher!==false&&props.params.teachingName!==false) {
       if (typeof teacher[props.params.method] === 'function') {
         setLesson(teacher[props.params.method]())
+        fetch(`http://localhost:9000/teachings/${
+        props.params.teachingName}/${
+        props.params.method}`).then(
+        res => res.json()
+      ).then(
+        data =>console.log(data)
+      ).catch(
+        err => console.log(err)
+      )
       }
     }
   }, [teacher, props.params.method, props.params.parameters])
