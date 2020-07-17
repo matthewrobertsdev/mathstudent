@@ -100,6 +100,7 @@ input{
   text-align: left;
 }
 .text-margins{
+  display: block;
   margin-left: 3%;
   margin-right: 3%;
 }
@@ -302,6 +303,7 @@ input{
   font-size: 1.00em;
 }
 .large-left-margin {
+  display: block;
   margin-left: 10%;
 }
 .small-left-margin {

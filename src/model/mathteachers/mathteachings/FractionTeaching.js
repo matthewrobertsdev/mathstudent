@@ -413,6 +413,22 @@ class FractionTeaching extends MathTeaching {
       ]
     )
   }
+  addAFractionProblem(num1, denom1, num2, denom2, latex){
+    return (
+          `{$bl}${latex}{$bl}${this.fractionDescription(num1, denom1)} \
+        plus ${this.fractionDescription(num2, denom2)}`
+    )
+  }
+  fromNumeratorAndDenominatorProblem(num1, denom1, latex){
+    return (
+          `{$bl}${latex}{$bl}${this.fractionDescription(num1, denom1)}`
+    )
+  }
+  fromIntegerProblem(integer){
+    return (
+          `{$bl}${integer}{$bl}${integer}`
+    )
+  }
   lookAtYourFirstFraction(num, denom, latex) {
     return [
       `{h}Take a look at your first fraction:`,

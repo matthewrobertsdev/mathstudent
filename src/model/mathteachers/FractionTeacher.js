@@ -15,6 +15,36 @@ class FractionTeacher {
     return `\\frac{${numerator}}{${denominator}}`
   }
 
+  addAFractionProblem(args){
+    const splitArgs=args.split('@')
+    const num1=parseInt(splitArgs[2])
+    const denom1=parseInt(splitArgs[4])
+    const num2=parseInt(splitArgs[6])
+    const denom2=parseInt(splitArgs[8])
+    console.log(this)
+    return (
+      this.teaching.addAFractionProblem(num1, denom1, num2, denom2,
+        `${this.fractionLatex(num1, denom1)}+${this.fractionLatex(num2, denom2)}`)
+    )
+  }
+
+  fromNumeratorAndDenominatorProblem(args){
+    const splitArgs=args.split('@')
+    const num1=parseInt(splitArgs[2])
+    const denom1=parseInt(splitArgs[4])
+    console.log(this)
+    return (
+      this.teaching.fromNumeratorAndDenominatorProblem(num1, denom1,
+        `${this.fractionLatex(num1, denom1)}`)
+    )
+  }
+
+  fromIntegerProblem(args){
+    const splitArgs=args.split('@')
+    const integer=parseInt(splitArgs[2])
+    return this.teaching.fromIntegerProblem(integer)
+  }
+
   //tells lesson or creates a fraction and simplifies it
   fromNumeratorAndDenominator(args) {
     let mathObject = new Fraction()

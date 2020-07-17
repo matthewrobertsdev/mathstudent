@@ -27,7 +27,8 @@ const SolveView = (props) => {
       )
       }
     }
-  }, [teacher, props.params.method, props.params.parameters])
+  }, [teacher, props.params.method, props.params.parameters, 
+    props.params.teachingName])
 
   //render the lesson
   return (
