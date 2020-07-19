@@ -24,13 +24,11 @@ const SolveView = (props) => {
   useEffect(() => {
     if (teacher!==undefined&&teacher.goodInput&&props.params.teachingName!=='false'){
       let unescapedArgs=props.params.parameters
-      console.log(unescapedArgs)
       unescapedArgs=unescapedArgs.split('@')
       let escapedArgs=''
       for (let i=1; i<unescapedArgs.length; i++){
         escapedArgs+=`%40${unescapedArgs[i]}`
       }
-      console.log(escapedArgs)
       fetch(`http://localhost:9000/teachings/${
         props.params.teachingName}/${
         props.params.method}/${escapedArgs}`).then(
@@ -41,7 +39,7 @@ const SolveView = (props) => {
         err => console.log(err)
       )
     }
-  }, [lesson])
+  }, [lesson, teacher, props.params])
 
   //render the lesson
   return (

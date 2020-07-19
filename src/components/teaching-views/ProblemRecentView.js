@@ -11,7 +11,7 @@ const MethodRecentView = (props) => {
     <span>
       <h1 className='heading text-margins'>Problem</h1>
       <a href={`../teachings/${props.teachingName}/${props.method}/${props.arguments}`} className='link-heading text-margins'>
-        {props.teachingName} Teaching: {getMethod()[0]}
+        {props.teachingName} Problem: {getMethod()[0]}
       </a>
       <span aria-label={problemStrings[2]}>
       <MathJax.Provider input="tex" >

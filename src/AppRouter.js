@@ -15,6 +15,8 @@ import TeachingPage from './pages/TeachingPage'
 import SolvePage from './pages/SolvePage'
 import MethodPage from './pages/MethodPage'
 import RecentsPage from './pages/RecentsPage'
+import LoginPage from './pages/LoginPage'
+
 
 //router for entire app
 const AppRouter = () => (
@@ -44,6 +46,8 @@ const AppRouter = () => (
       <Route path='/teachings/:teachingName/:method/:parameters' exact component={SolvePage} />
       {/* history from Math Teacher displayed */}
       <Route path='/recents' exact component={RecentsPage} />
+      {/* page for logging in with link to page for creating account */}
+      <Route path='/login' exact component={LoginPage} />
       {/* if you don't match the route */}
       <Route component={PageNotFoundPage} />
     </Switch>

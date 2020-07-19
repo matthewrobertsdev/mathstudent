@@ -4,7 +4,7 @@ import MethodRecentView from '../components/teaching-views/MethodRecentView'
 import ProblemRecentView from '../components/teaching-views/ProblemRecentView'
 
 
-const RecentsPage = (props) => {
+const RecentsPage = () => {
 
   document.title='Recents'
 
