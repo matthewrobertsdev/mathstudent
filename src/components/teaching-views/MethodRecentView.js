@@ -8,10 +8,12 @@ const MethodRecentView = (props) => {
   return (
     <span>
       <h1 className='heading text-margins'>Teaching</h1>
-      <a href={`../teachings/${props.teachingName}/${props.method}`} className='link-heading text-margins'>
-        {props.teachingName} Teaching: {getMethod()[0]}
-      </a>
-
+      <span className='text-margins'>
+        <span className='big-heading'>{props.teachingName} Teaching: </span>
+        <a href={`../teachings/${props.teachingName}/${props.method}`} className='link-heading'>
+           {getMethod()[0]}
+        </a>
+      </span>
       <br />
       <br />
       <hr className='text-margins' />

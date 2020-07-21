@@ -21,7 +21,6 @@ class FractionTeacher {
     const denom1=parseInt(splitArgs[4])
     const num2=parseInt(splitArgs[6])
     const denom2=parseInt(splitArgs[8])
-    console.log(this)
     return (
       this.teaching.addAFractionProblem(num1, denom1, num2, denom2,
         `${this.fractionLatex(num1, denom1)}+${this.fractionLatex(num2, denom2)}`)
@@ -32,7 +31,6 @@ class FractionTeacher {
     const splitArgs=args.split('@')
     const num1=parseInt(splitArgs[2])
     const denom1=parseInt(splitArgs[4])
-    console.log(this)
     return (
       this.teaching.fromNumeratorAndDenominatorProblem(num1, denom1,
         `${this.fractionLatex(num1, denom1)}`)

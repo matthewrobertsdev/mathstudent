@@ -40,7 +40,7 @@ const HomePage = () => {
       </h2>
       {/* create account link */}
       <div className="center-text">
-        <Link to="/" className="link">
+        <Link to="/createAccount" className="link">
           Create Account
         </Link>
       </div>

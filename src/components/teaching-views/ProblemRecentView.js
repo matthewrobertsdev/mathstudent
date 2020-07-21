@@ -10,9 +10,12 @@ const MethodRecentView = (props) => {
   return (
     <span>
       <h1 className='heading text-margins'>Problem</h1>
-      <a href={`../teachings/${props.teachingName}/${props.method}/${props.arguments}`} className='link-heading text-margins'>
-        {props.teachingName} Problem: {getMethod()[0]}
-      </a>
+      <span className='text-margins'>
+        <span className='big-heading'>{props.teachingName} Problem: </span>
+        <a href={`../teachings/${props.teachingName}/${props.method}/${props.arguments}`} className='link-heading'>
+          {getMethod()[0]}
+        </a>
+      </span>
       <span aria-label={problemStrings[2]}>
       <MathJax.Provider input="tex" >
         <MathJax.Node aria-hidden='true' className='heading' formula={`\\color{white}{${problemStrings[1]}}`} />

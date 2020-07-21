@@ -24,13 +24,18 @@ h1{
 .link-text{
   color: rgb(255, 209, 56);
   font-size: xx-large;
-  text-decoration: underline;}
+  text-decoration: underline;
+}
 input{
   background-color: /*rgb(236, 126, 8);*/ rgb(236, 171, 8); 
   border-color: black; 
   font-size: large; 
   width: 150px; 
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);}
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.userInfoInput{
+  width: 300px;
+}
 .creator-view{
   text-align: center;
 }
@@ -125,6 +130,9 @@ input{
   font-weight: 600; 
   font-size: large;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);}
+button {
+    border: none;
+  }
 .link:hover { 
   /* background-color: rgb(158, 89, 25); */ background-color: royalblue; }
 .creator-view{ 

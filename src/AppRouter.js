@@ -16,6 +16,10 @@ import SolvePage from './pages/SolvePage'
 import MethodPage from './pages/MethodPage'
 import RecentsPage from './pages/RecentsPage'
 import LoginPage from './pages/LoginPage'
+import SignUpPage from './pages/SignUpPage'
+import FirstTimeUserLoginPage from './pages/FirstTimeUserLoginPage'
+
+
 
 
 //router for entire app
@@ -48,6 +52,10 @@ const AppRouter = () => (
       <Route path='/recents' exact component={RecentsPage} />
       {/* page for logging in with link to page for creating account */}
       <Route path='/login' exact component={LoginPage} />
+      {/* page for logging for the first time */}
+      <Route path='/firstTimeLogin' exact component={FirstTimeUserLoginPage} />
+      {/* page for creating an account */}
+      <Route path='/createAccount' exact component={SignUpPage} />
       {/* if you don't match the route */}
       <Route component={PageNotFoundPage} />
     </Switch>
