@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 import {useHistory } from 'react-router-dom';
 
+//create an account on this page
 const SignUpPage = () => {
+  //so we can navigate to welcome page on successfull account creation
   const history=useHistory()
   document.title='Create Account'
+  //state for our three fields
   const [email, setEmail]=useState("")
   const [password, setPassword]=useState("")
   const [confirmPassword, setConfirmPassword]=useState("")
   return (
     <main>
+      {/* title */}
       <h1 className='center-text'>Create an Account</h1>
+      {/* fields */}
       <div className='center-text'>
+        {/* email */}
         <label htmlFor='Email Input' className='heading'>Email:</label>
         <input id='Email Input' className='userInfoInput small-left-margin' 
         onChange={(event)=>{setEmail(event.target.value)}}/>
@@ -18,6 +24,7 @@ const SignUpPage = () => {
         <label className='heading'></label>
         <br />
         <br />
+        {/* password */}
         <label htmlFor='Password Input' className='heading'>Password:</label>
         <input type='password' id='Password Input' className='userInfoInput small-left-margin'
         onChange={(event)=>{setPassword(event.target.value)}}/>
@@ -25,6 +32,7 @@ const SignUpPage = () => {
         <label className='heading'></label>
         <br />
         <br />
+        {/* confirm password */}
         <label htmlFor='Confirm Password Input' className='heading'>Confirm Password:</label>
         <input type='password' id='Confirm Password Input' className='userInfoInput small-left-margin' 
         onChange={(event)=>{setConfirmPassword(event.target.value)}}/>
@@ -32,10 +40,12 @@ const SignUpPage = () => {
         <label className='heading'></label>
         <br />
         <br />
+        {/* try to sign up */}
         <button onClick={signUp} className="link">
           Sign up
         </button>
       </div>
+      {/* spacers at bottom of page */}
       <br/>
       <br/>
       <br/>
@@ -45,6 +55,7 @@ const SignUpPage = () => {
     </main>
   )
 
+  //if all looks good, send a post to /createAccount API endpoint
   function signUp(){
     if (email===null ||email===undefined||email===""){
       window.alert("Email must not be blank")
@@ -67,9 +78,11 @@ const SignUpPage = () => {
       res => res.json()
     ).then(
       data =>  {
+        /* if email is taken, tell the user */
         if (data.emailTaken){
           window.alert("Sorry, but that email is already taken.")
         } else {
+          /* if all good, take user to first time login page */
           history.push('/firstTimeLogin')
         }
     }
