@@ -24,6 +24,7 @@ const SolveView = (props) => {
     }
   }, [teacher, props.params.method, props.params.parameters])
 
+  //too update recents if jwt was valid
   useEffect(() => {
     if (teacher!==undefined&&teacher.goodInput&&props.params.teachingName!=='false'){
       let unescapedArgs=props.params.parameters
@@ -47,7 +48,7 @@ const SolveView = (props) => {
         err => console.log(err)
       )
     }
-  }, [lesson, teacher, props.params])
+  }, [lesson, teacher, props.params, jwt])
 
   //render the lesson
   return (

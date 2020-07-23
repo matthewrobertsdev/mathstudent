@@ -4,6 +4,7 @@ import MethodRecentView from '../components/teaching-views/MethodRecentView'
 import ProblemRecentView from '../components/teaching-views/ProblemRecentView'
 import { useSelector } from 'react-redux'
 
+//display recents if logged in if there are any
 const RecentsPage = () => {
 
   document.title = 'Recents'
@@ -69,11 +70,14 @@ const RecentsPage = () => {
       }
       return recents.map((recent) => {
         if (recent.method == null && recent.teachingName !== null) {
+          //teaching view is just a link to the teaching
           return <TeachingRecentView teachingName={recent.teachingName} key={recent.teachingName} />
         } else if (recent.arguments == null && recent.teachingName !== null && recent.method !== null) {
+          //method view is a link to the teaching's method
           return <MethodRecentView teachingName={recent.teachingName} method={recent.method}
             key={`${recent.teachingName}-${recent.method}`} />
         } else if (recent.arguments !== null && recent.teachingName !== null && recent.method !== null) {
+          //problem view is a link to a problem, with a mathjax description of the problem
           return <ProblemRecentView teachingName={recent.teachingName} method={recent.method}
             arguments={recent.arguments} key={`${recent.teachingName}-${recent.method}-${recent.arguments}`} />
         } else {

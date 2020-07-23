@@ -54,6 +54,7 @@ const LoginView = () => {
         if (data.error){
           window.alert("Invalid email or password")
         } else {
+          //if login was successfull, store jwt and email
           dispatch(storeJWT(data.jwt))
           dispatch(storeEmail(data.email))
           history.push('/')

@@ -35,7 +35,7 @@ const Header = () => {
   );
 
   function getLogInOrOut(){
-    if (jwt===undefined||jwt==='null'||jwt==null){
+    if (jwt==='undefined'||jwt===undefined||jwt==='null'||jwt==null){
       /* Login page */
       return (
       <Link className={getClassNameRight('/login')}

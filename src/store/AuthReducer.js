@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+//for jwt and email using redux toolkit
 const authSlice=createSlice({
   name: 'auth',
   initialState: {jwt: localStorage.getItem('jwt'), email: localStorage.getItem('email')},

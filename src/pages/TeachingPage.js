@@ -20,6 +20,7 @@ const TeachingPage = (props) => {
   const [teacher, setTeacher] = useState(undefined);
   getTeacher(params.teachingName, setTeacher)
 
+  //update recents if jwt is valid
   useEffect(() => {
     if (teacher&&params.teachingName!=='false') {
       console.log()
@@ -35,7 +36,7 @@ const TeachingPage = (props) => {
         err => console.log(err)
       )
     }
-  }, [teacher, params.teachingName])
+  }, [teacher, params.teachingName, jwt])
 
   const AboutComponent = React.lazy(() => import(`../components/about-views/About${params.teachingName}`));
 
