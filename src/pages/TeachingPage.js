@@ -8,9 +8,12 @@ import ProblemPicker from '../components/teaching-views/ProblemPicker'
 import TOCAccordianItem from '../components/teaching-views/TOCAccordianItem'
 import '../styles/app.css'
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux'
 
 //initial page for a topic
 const TeachingPage = (props) => {
+  
+  let jwt = useSelector(state => state.auth.jwt)
 
   //state
   const { match: { params } } = props;
@@ -20,7 +23,11 @@ const TeachingPage = (props) => {
   useEffect(() => {
     if (teacher&&params.teachingName!=='false') {
       console.log()
-      fetch(`http://localhost:9000/teachings/${params.teachingName}`).then(
+      fetch(`http://localhost:9000/teachings/${params.teachingName}`, {method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({jwt: jwt})}).then(
         res => res.json()
       ).then(
         data =>console.log(data)

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import {useHistory } from 'react-router-dom';
+import {useDispatch} from 'react-redux'
+import {storeJWT, storeEmail} from '../store/AuthReducer'
 
 //view for logging in
 const LoginView = () => {
   //for navigation on success
   const history=useHistory()
+  const dispatch=useDispatch()
   //state
   const [email, setEmail]=useState("")
   const [password, setPassword]=useState("")
@@ -48,10 +51,11 @@ const LoginView = () => {
       res => res.json()
     ).then(
       data =>  {
-        console.log(data)
         if (data.error){
           window.alert("Invalid email or password")
         } else {
+          dispatch(storeJWT(data.jwt))
+          dispatch(storeEmail(data.email))
           history.push('/')
         }
     }

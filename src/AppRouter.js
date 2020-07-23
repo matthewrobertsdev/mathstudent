@@ -18,9 +18,7 @@ import RecentsPage from './pages/RecentsPage'
 import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
 import FirstTimeUserLoginPage from './pages/FirstTimeUserLoginPage'
-
-
-
+import GoodByePage from './pages/GoodByePage'
 
 //router for entire app
 const AppRouter = () => (
@@ -56,6 +54,8 @@ const AppRouter = () => (
       <Route path='/firstTimeLogin' exact component={FirstTimeUserLoginPage} />
       {/* page for creating an account */}
       <Route path='/createAccount' exact component={SignUpPage} />
+      {/* page for thanking the user for using MathTeacher */}
+      <Route path='/logout' exact component={GoodByePage} />
       {/* if you don't match the route */}
       <Route component={PageNotFoundPage} />
     </Switch>

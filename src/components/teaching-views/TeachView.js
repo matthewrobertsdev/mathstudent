@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { getTeacher } from '../../store/Actions'
 import LessonView from './LessonView'
+import { useSelector } from 'react-redux'
 
 // the view where the solving is displayed
 const SolveView = (props) => {
+
+  let jwt = useSelector(state => state.auth.jwt)
 
   //set-up state
   const [teacher, setTeacher] = useState(undefined);
@@ -18,7 +21,11 @@ const SolveView = (props) => {
         setLesson(teacher[props.params.method]())
         fetch(`http://localhost:9000/teachings/${
         props.params.teachingName}/${
-        props.params.method}`).then(
+        props.params.method}`, {method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({jwt: jwt})}).then(
         res => res.json()
       ).then(
         data =>console.log(data)

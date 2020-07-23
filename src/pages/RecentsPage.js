@@ -2,52 +2,87 @@ import React, { useEffect, useState } from 'react';
 import TeachingRecentView from '../components/teaching-views/TeachingRecentView'
 import MethodRecentView from '../components/teaching-views/MethodRecentView'
 import ProblemRecentView from '../components/teaching-views/ProblemRecentView'
-
+import { useSelector } from 'react-redux'
 
 const RecentsPage = () => {
 
-  document.title='Recents'
+  document.title = 'Recents'
+  let jwt = useSelector(state => state.auth.jwt)
+  let email = useSelector(state => state.auth.email)
 
-  const [recents, setRecents]=useState([])
+  let [loggedIn, setLoggedIn] = useState(false)
+
+  const [recents, setRecents] = useState([])
   useEffect(() => {
-    fetch(`http://localhost:9000/recents`).then(
+    fetch(`http://localhost:9000/recents`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ jwt: jwt })
+    }).then(
       res => res.json()
     ).then(
-      data =>  {
-        setRecents(data.pages)
-        console.log(data.pages)
-    }
+      data => {
+        if (data.error) {
+          setLoggedIn(false)
+        } else {
+          console.log('logged in. should see recents')
+          setLoggedIn(true)
+          setRecents(data.pages)
+          console.log(data.pages)
+        }
+      }
     ).catch(
       err => console.log(err)
     )
-  }, [])
+  }, [jwt])
 
-  return(
+  return (
     <span>
-    <h1 className='large-left-margin'>Recents</h1>
-    <hr className='text-margins'/>
-    {generateRecents()}
-    <br/>
-    <br/>
-    <br/>
-    <br/>
+      <h1 className='large-left-margin'>Recents {showEmail()}</h1>
+      <hr className='text-margins' />
+      {generateRecents()}
+      <br />
+      <br />
+      <br />
+      <br />
     </span>
   )
 
-  function generateRecents(){
-    return recents.map( (recent) => {
-      if (recent.method==null&&recent.teachingName!==null){
-        return <TeachingRecentView teachingName={recent.teachingName} key={recent.teachingName}/>
-      } else if (recent.arguments==null&&recent.teachingName!==null&&recent.method!==null){
-        return <MethodRecentView teachingName={recent.teachingName} method={recent.method}
-        key={`${recent.teachingName}-${recent.method}`}/>
-      } else if (recent.arguments!==null&&recent.teachingName!==null&&recent.method!==null){
-        return <ProblemRecentView teachingName={recent.teachingName} method={recent.method}
-        arguments={recent.arguments} key={`${recent.teachingName}-${recent.method}-${recent.arguments}`}/>
+  function showEmail(){
+    if (loggedIn) {
+      if (email!==undefined&&email!==null&&email!=='null'){
+        return `for ${email}`
       } else {
-        return <span></span>
+        return null
       }
-    })
+    } else {
+      return null
+    }
+  }
+
+  function generateRecents() {
+    if (loggedIn) {
+      if (recents==null || recents.length===0){
+        return <h1 className='heading text-margins'>Please visit some teachings or problems to save them to recents.</h1>
+      }
+      return recents.map((recent) => {
+        if (recent.method == null && recent.teachingName !== null) {
+          return <TeachingRecentView teachingName={recent.teachingName} key={recent.teachingName} />
+        } else if (recent.arguments == null && recent.teachingName !== null && recent.method !== null) {
+          return <MethodRecentView teachingName={recent.teachingName} method={recent.method}
+            key={`${recent.teachingName}-${recent.method}`} />
+        } else if (recent.arguments !== null && recent.teachingName !== null && recent.method !== null) {
+          return <ProblemRecentView teachingName={recent.teachingName} method={recent.method}
+            arguments={recent.arguments} key={`${recent.teachingName}-${recent.method}-${recent.arguments}`} />
+        } else {
+          return <span></span>
+        }
+      })
+    } else {
+      return <h1 className='heading text-margins'>You must login to see your recents.</h1>
+    }
   }
 
 
