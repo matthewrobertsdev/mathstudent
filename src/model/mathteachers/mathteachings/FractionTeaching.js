@@ -415,7 +415,7 @@ class FractionTeaching extends MathTeaching {
   }
   addAFractionProblem(num1, denom1, num2, denom2, latex){
     return (
-          `{$bl}${latex}{$bl}${this.fractionDescription(num1, denom1)} \
+        `{$bl}${latex}{$bl}${this.fractionDescription(num1, denom1)} \
         plus ${this.fractionDescription(num2, denom2)}`
     )
   }
