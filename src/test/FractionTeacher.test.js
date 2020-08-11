@@ -19,7 +19,7 @@ test('provides description of adding two fractions problem',()=>{
     '@firstNumerator@2@firstDenominator@4@secondNumerator@5@secondDenominator@3'
     ).replace(/\s+/g, ' ')
     ).toBe(
-    `{$bl}${FractionTeacher.fractionLatex(2,4)}+${FractionTeacher.fractionLatex(5,3)}{$bl}${FractionTeacher.teaching.fractionDescription(2, 4)}     \
+    `{$bl}${FractionTeacher.fractionLatex(2,4)}+${FractionTeacher.fractionLatex(5,3)}{$bl}${FractionTeacher.teaching.fractionDescription(2, 4)} \
     plus ${FractionTeacher.teaching.fractionDescription(5, 3)}`.replace(/\s+/g, ' ')
   )
 })

@@ -143,6 +143,23 @@ class FractionTeaching extends MathTeaching {
     )
   }
 
+  undefinedAddition(problemDescription){
+    return ([
+    problemDescription,
+    `{h}is undefined.`,
+  `{str}Because any non-zero number over 0 is \
+undefined, we cannot determine the value of this.  Check out About Fractions Fractions' Page \
+to learn why.`])
+  }
+
+  indeterminateAddition(problemDescription){
+    return ([`{h}We cannot determine the value of`,
+    problemDescription,
+  `{str}Because 0 over 0 is \
+indeterminate, we cannot determine the value of this.  Check out About Fractions in Fractions' Page \
+to learn why.`])
+  }
+
   undefined(numerator, latex) {
     return ([
       `{h}The value of the fraction of ${numerator} over 0 is undefined`,

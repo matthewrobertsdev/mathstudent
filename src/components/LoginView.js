@@ -16,13 +16,13 @@ const LoginView = () => {
         {/* email field */}
         <label htmlFor='Email Input' className='heading'>Email:</label>
         <input id='Email Input' className='userInfoInput small-left-margin'
-        onChange={(event)=>{setEmail(event.target.value)}}/>
+        value={email} onChange={(event)=>{setEmail(event.target.value)}}/>
         <br/>
         <br/>
         {/* password field */}
         <label htmlFor='Password Input' className='heading'>Password:</label>
         <input type='password' id='Password Input' className='userInfoInput small-left-margin'
-        onChange={(event)=>{setPassword(event.target.value)}}/>
+        value={password} onChange={(event)=>{setPassword(event.target.value)}}/>
         <br/>
         <br/>
         {/* login button */}
