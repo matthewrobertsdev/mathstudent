@@ -1,3 +1,7 @@
+# Math Teacher Frontend--Math Student--In Progress--Not Release
+## Needs Testing
+## Currently Doesn't Handle Overflow or Underflow
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
