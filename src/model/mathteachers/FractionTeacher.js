@@ -45,30 +45,21 @@ class FractionTeacher {
   }
 
   fromNumeratorAndDenominator(args){
-    try{
-      const teaching=fromNumeratorAndDenominator(args)
-      this.goodInput=true
-      return teaching
-    } catch(error) {
-      console.log(error)
-      return [this.teaching.tellBadInput()]
-    }
+    return this.teach(fromNumeratorAndDenominator, args)
   }
 
   fromInteger(args){
-    try{
-      const teaching=fromInteger(args)
-      this.goodInput=true
-      return teaching
-    } catch(error) {
-      console.log(error)
-      return [this.teaching.tellBadInput()]
-    }
+    return this.teach(fromInteger, args)
   }
 
   addAFraction(args){
+    return this.teach(addAFraction, args)
+  }
+
+  teach(method, args){
     try{
-      const teaching=addAFraction(args)
+      const teaching=method(args)
+      console.log(teaching)
       this.goodInput=true
       return teaching
     } catch(error) {
