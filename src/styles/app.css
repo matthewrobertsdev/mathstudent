@@ -440,7 +440,7 @@ button {
     color: rgb(255, 140, 0);
   }
   .heading{
-    color: white/*rgb(30, 214, 30)*/;
+    color: rgb(255, 213, 0)/*rgb(30, 214, 30)*/;
   }
   /*.label{color: rgb(91, 91, 255);}*/
   h2{
@@ -472,7 +472,7 @@ button {
     background-color: rgb(34, 34, 33)
   }
   .main-text-color{
-    color: white;
+    color: rgb(255, 213, 0);
   }
   .ad{
     background-color:rgb(17, 0, 206); 
