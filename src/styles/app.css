@@ -2,7 +2,7 @@ body{
   background-color: rgb(157, 62, 157)/*rgb(209, 28, 28);rgb(157, 62, 157);*/;
 }
 hr{
-  border-color: rgb(138, 0, 21);/*rgb(109, 0, 109)*/;
+  border-color: rgb(231, 0, 35);/*rgb(109, 0, 109)*/;
 }
 h1{
   color: rgb(255, 209, 56); /*rgb(0, 21, 84);*/
@@ -27,7 +27,7 @@ h1{
   text-decoration: underline;
 }
 input{
-  background-color: /*rgb(236, 126, 8);*/ rgb(227, 36, 65);; 
+  background-color: lightblue;/*rgb(236, 126, 8);*/ /*rgb(227, 36, 65);*/
   border-color: black; 
   font-size: large; 
   width: 150px; 
