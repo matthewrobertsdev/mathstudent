@@ -1,30 +1,30 @@
 {
   "files": {
-    "static/js/0.5053259b.chunk.js": "/code4math/static/js/0.5053259b.chunk.js",
-    "static/js/0.5053259b.chunk.js.map": "/code4math/static/js/0.5053259b.chunk.js.map",
-    "main.css": "/code4math/static/css/main.35a33796.chunk.css",
-    "main.js": "/code4math/static/js/main.39829cad.chunk.js",
-    "main.js.map": "/code4math/static/js/main.39829cad.chunk.js.map",
-    "runtime-main.js": "/code4math/static/js/runtime-main.5434101a.js",
-    "runtime-main.js.map": "/code4math/static/js/runtime-main.5434101a.js.map",
-    "static/js/3.6c524893.chunk.js": "/code4math/static/js/3.6c524893.chunk.js",
-    "static/js/3.6c524893.chunk.js.map": "/code4math/static/js/3.6c524893.chunk.js.map",
-    "static/js/4.e5533cf8.chunk.js": "/code4math/static/js/4.e5533cf8.chunk.js",
-    "static/js/4.e5533cf8.chunk.js.map": "/code4math/static/js/4.e5533cf8.chunk.js.map",
-    "static/js/5.1b0f4c92.chunk.js": "/code4math/static/js/5.1b0f4c92.chunk.js",
-    "static/js/5.1b0f4c92.chunk.js.map": "/code4math/static/js/5.1b0f4c92.chunk.js.map",
-    "static/js/6.00c51ac2.chunk.js": "/code4math/static/js/6.00c51ac2.chunk.js",
-    "static/js/6.00c51ac2.chunk.js.map": "/code4math/static/js/6.00c51ac2.chunk.js.map",
-    "index.html": "/code4math/index.html",
-    "precache-manifest.ea7949e94851949b35e7250ccfa13334.js": "/code4math/precache-manifest.ea7949e94851949b35e7250ccfa13334.js",
-    "service-worker.js": "/code4math/service-worker.js",
-    "static/css/main.35a33796.chunk.css.map": "/code4math/static/css/main.35a33796.chunk.css.map",
-    "static/js/3.6c524893.chunk.js.LICENSE.txt": "/code4math/static/js/3.6c524893.chunk.js.LICENSE.txt"
+    "static/js/0.5053259b.chunk.js": "/mathstudent/static/js/0.5053259b.chunk.js",
+    "static/js/0.5053259b.chunk.js.map": "/mathstudent/static/js/0.5053259b.chunk.js.map",
+    "main.css": "/mathstudent/static/css/main.35a33796.chunk.css",
+    "main.js": "/mathstudent/static/js/main.4ab21dbc.chunk.js",
+    "main.js.map": "/mathstudent/static/js/main.4ab21dbc.chunk.js.map",
+    "runtime-main.js": "/mathstudent/static/js/runtime-main.76cd4b47.js",
+    "runtime-main.js.map": "/mathstudent/static/js/runtime-main.76cd4b47.js.map",
+    "static/js/3.6c524893.chunk.js": "/mathstudent/static/js/3.6c524893.chunk.js",
+    "static/js/3.6c524893.chunk.js.map": "/mathstudent/static/js/3.6c524893.chunk.js.map",
+    "static/js/4.e5533cf8.chunk.js": "/mathstudent/static/js/4.e5533cf8.chunk.js",
+    "static/js/4.e5533cf8.chunk.js.map": "/mathstudent/static/js/4.e5533cf8.chunk.js.map",
+    "static/js/5.1b0f4c92.chunk.js": "/mathstudent/static/js/5.1b0f4c92.chunk.js",
+    "static/js/5.1b0f4c92.chunk.js.map": "/mathstudent/static/js/5.1b0f4c92.chunk.js.map",
+    "static/js/6.00c51ac2.chunk.js": "/mathstudent/static/js/6.00c51ac2.chunk.js",
+    "static/js/6.00c51ac2.chunk.js.map": "/mathstudent/static/js/6.00c51ac2.chunk.js.map",
+    "index.html": "/mathstudent/index.html",
+    "precache-manifest.ed66b652ea2cb874cf2a0cd18e8dc60d.js": "/mathstudent/precache-manifest.ed66b652ea2cb874cf2a0cd18e8dc60d.js",
+    "service-worker.js": "/mathstudent/service-worker.js",
+    "static/css/main.35a33796.chunk.css.map": "/mathstudent/static/css/main.35a33796.chunk.css.map",
+    "static/js/3.6c524893.chunk.js.LICENSE.txt": "/mathstudent/static/js/3.6c524893.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.5434101a.js",
+    "static/js/runtime-main.76cd4b47.js",
     "static/js/3.6c524893.chunk.js",
     "static/css/main.35a33796.chunk.css",
-    "static/js/main.39829cad.chunk.js"
+    "static/js/main.4ab21dbc.chunk.js"
   ]
 }
