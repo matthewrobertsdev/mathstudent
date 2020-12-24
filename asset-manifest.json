@@ -3,8 +3,8 @@
     "static/js/0.5053259b.chunk.js": "/mathstudent/static/js/0.5053259b.chunk.js",
     "static/js/0.5053259b.chunk.js.map": "/mathstudent/static/js/0.5053259b.chunk.js.map",
     "main.css": "/mathstudent/static/css/main.35a33796.chunk.css",
-    "main.js": "/mathstudent/static/js/main.4ab21dbc.chunk.js",
-    "main.js.map": "/mathstudent/static/js/main.4ab21dbc.chunk.js.map",
+    "main.js": "/mathstudent/static/js/main.a23d919d.chunk.js",
+    "main.js.map": "/mathstudent/static/js/main.a23d919d.chunk.js.map",
     "runtime-main.js": "/mathstudent/static/js/runtime-main.76cd4b47.js",
     "runtime-main.js.map": "/mathstudent/static/js/runtime-main.76cd4b47.js.map",
     "static/js/3.6c524893.chunk.js": "/mathstudent/static/js/3.6c524893.chunk.js",
@@ -16,7 +16,7 @@
     "static/js/6.00c51ac2.chunk.js": "/mathstudent/static/js/6.00c51ac2.chunk.js",
     "static/js/6.00c51ac2.chunk.js.map": "/mathstudent/static/js/6.00c51ac2.chunk.js.map",
     "index.html": "/mathstudent/index.html",
-    "precache-manifest.ed66b652ea2cb874cf2a0cd18e8dc60d.js": "/mathstudent/precache-manifest.ed66b652ea2cb874cf2a0cd18e8dc60d.js",
+    "precache-manifest.515810e8a8c23659d4a9676de0322fbc.js": "/mathstudent/precache-manifest.515810e8a8c23659d4a9676de0322fbc.js",
     "service-worker.js": "/mathstudent/service-worker.js",
     "static/css/main.35a33796.chunk.css.map": "/mathstudent/static/css/main.35a33796.chunk.css.map",
     "static/js/3.6c524893.chunk.js.LICENSE.txt": "/mathstudent/static/js/3.6c524893.chunk.js.LICENSE.txt"
@@ -25,6 +25,6 @@
     "static/js/runtime-main.76cd4b47.js",
     "static/js/3.6c524893.chunk.js",
     "static/css/main.35a33796.chunk.css",
-    "static/js/main.4ab21dbc.chunk.js"
+    "static/js/main.a23d919d.chunk.js"
   ]
 }
