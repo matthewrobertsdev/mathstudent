@@ -1,0 +1,2 @@
+(this.webpackJsonpmathstudent=this.webpackJsonpmathstudent||[]).push([[6],{51:function(t,s,n){"use strict";n.r(s);var a=n(16);s.default=function t(){Object(a.a)(this,t)}}}]);
+//# sourceMappingURL=6.00c51ac2.chunk.js.map
