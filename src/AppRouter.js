@@ -1,6 +1,6 @@
 //react and react-router-dom
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import {HashRouter, Route, Switch } from 'react-router-dom'
 //components
 import Header from './components/Header'
 import ScrollToTop from './components/ScrollToTop'
@@ -22,7 +22,7 @@ import GoodByePage from './pages/GoodByePage'
 
 //router for entire app
 const AppRouter = () => (
-  <BrowserRouter>
+  <HashRouter>
     {/* links */}
     <Header />
     {/* scrolls to top on navigation */}
@@ -59,6 +59,6 @@ const AppRouter = () => (
       {/* if you don't match the route */}
       <Route component={PageNotFoundPage} />
     </Switch>
-  </BrowserRouter>
+  </HashRouter>
 );
 export default AppRouter;
