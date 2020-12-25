@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1aefba5ba99c4edfd16a00a406e883d9",
+    "revision": "54efe3ea31e9ba779446f2eee0084def",
     "url": "/mathstudent/index.html"
   },
   {
-    "revision": "664c124b08b67ca12a46",
+    "revision": "6855d847baf0e88a7a4f",
     "url": "/mathstudent/static/css/main.35a33796.chunk.css"
   },
   {
@@ -12,12 +12,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/mathstudent/static/js/0.5053259b.chunk.js"
   },
   {
-    "revision": "2f78b8f7b2b087b50c95",
-    "url": "/mathstudent/static/js/3.6c524893.chunk.js"
+    "revision": "70854d8bba731c6e2cb8",
+    "url": "/mathstudent/static/js/3.2cbdb3cb.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/mathstudent/static/js/3.6c524893.chunk.js.LICENSE.txt"
+    "url": "/mathstudent/static/js/3.2cbdb3cb.chunk.js.LICENSE.txt"
   },
   {
     "revision": "5f54b63d7f8d0d7c470d",
@@ -32,8 +32,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/mathstudent/static/js/6.00c51ac2.chunk.js"
   },
   {
-    "revision": "664c124b08b67ca12a46",
-    "url": "/mathstudent/static/js/main.a23d919d.chunk.js"
+    "revision": "6855d847baf0e88a7a4f",
+    "url": "/mathstudent/static/js/main.e6375461.chunk.js"
   },
   {
     "revision": "3a26ee6d97495d978e5b",
