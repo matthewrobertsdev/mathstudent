@@ -1,1 +1,0 @@
-{"version":3,"sources":["model/mathteachers/MathTeacher.js"],"names":["MathTeacher"],"mappings":"8HAEeA,U","file":"static/js/6.00c51ac2.chunk.js","sourcesContent":["class MathTeacher{\n}\nexport default MathTeacher;"],"sourceRoot":""}
