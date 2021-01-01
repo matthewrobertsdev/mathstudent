@@ -4,8 +4,6 @@ import MathJax from 'react-mathjax';
 const AboutFraction = () => {
   return (
     <span>
-      <br/>
-      <br/>
       <hr/>
       <h1 className='large-left-margin'>
         What They Are
@@ -20,8 +18,6 @@ const AboutFraction = () => {
         the value of the fraction.  The simplest fractions have just one number
         on top of another number.  Fractions are a way of expressing division.
       </h3>
-      <br/>
-      <br/>
       <hr/>
       <h1 className='large-left-margin'>
         Parts of a Whole
@@ -35,8 +31,6 @@ const AboutFraction = () => {
         slices, the numerator is 3.  Fractions can describe less than a whole, 1 whole, 
         greater than a whole, zero out of a whole, or even a negative amount of a whole.
       </h3>
-      <br/>
-      <br/>
       <hr/>
       <h1 className='large-left-margin'>
         Their Form
@@ -56,8 +50,6 @@ const AboutFraction = () => {
       <MathJax.Provider input="tex">
         <MathJax.Node className='heading' formula={`\\color{white}{\\frac{2}{12}}`}></MathJax.Node>
       </MathJax.Provider>
-      <br/>
-      <br/>
       <hr/>
       <h1 className='large-left-margin'>
         Special Cases: Division by 0 and 0 over 0
@@ -80,8 +72,6 @@ const AboutFraction = () => {
         number times 0 is 0.  Mathematicians say that 0 over 0 without more 
         information is indeterminate.
       </h3>
-      <br/>
-      <br/>
       <hr/>
       <h1 className='large-left-margin'>
         Fractions' Value
@@ -112,8 +102,6 @@ const AboutFraction = () => {
         exactly 2, as the numerator divided by the denominator works out to 2, so you 
         have 2 wholes.
       </h3>
-      <br/>
-      <br/>
       <hr/>
       <h1 className='large-left-margin'>
         What Next?
