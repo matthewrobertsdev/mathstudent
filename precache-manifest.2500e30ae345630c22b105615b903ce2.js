@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "88c51790af99ee28424d524d93915584",
+    "revision": "50a79afaebf4d7bcfe2a3d4e2a640028",
     "url": "/mathstudent/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/mathstudent/static/css/main.35a33796.chunk.css"
   },
   {
-    "revision": "d3d8200e1b12b9763fe3",
-    "url": "/mathstudent/static/js/0.ce404b77.chunk.js"
+    "revision": "1a3c8d0b0d9abdcf8571",
+    "url": "/mathstudent/static/js/0.1eee7ce7.chunk.js"
   },
   {
     "revision": "09eb3103d16e674453f3",
@@ -36,7 +36,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/mathstudent/static/js/main.e3b6e506.chunk.js"
   },
   {
-    "revision": "e153604e3c8cc2d95bc2",
-    "url": "/mathstudent/static/js/runtime-main.eb8b49b0.js"
+    "revision": "d1e7658a8c3d012c4137",
+    "url": "/mathstudent/static/js/runtime-main.22b6a160.js"
   }
 ]);
