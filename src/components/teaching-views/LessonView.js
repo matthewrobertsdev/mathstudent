@@ -57,9 +57,15 @@ const LessonView = (props) => {
   function handleSegment(segment, key) {
       if (segment.startsWith('{h}')) {
         return (
+          <span>
+            <br/>
+            <br/>
+            <hr/>
           <h1 key={key} className="large-left-margin">
             {segment.slice(3)}
-          </h1>);
+          </h1>
+          </span>
+        )
       } else if (segment.startsWith('{br}')) {
         return (
           <div key={key} >

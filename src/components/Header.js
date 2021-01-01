@@ -1,11 +1,12 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link, useLocation } from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux'
 import {clearJWT, clearEmail} from '../store/AuthReducer'
 
 //Header at top of each page with links to all main pages
 const Header = () => {
   let jwt=useSelector(state=>state.auth.jwt)
+  let location = useLocation();
   let dispatch=useDispatch()
   return (
     <header>
@@ -59,7 +60,9 @@ const Header = () => {
 
   //selected or unslected css style that floats left
   function getClassNameLeft(url) {
-    if (url === window.location.pathname) {
+    console.log(window.location.pathname)
+    console.log(location.pathname)
+    if (url === location.pathname) {
       return 'selected-nav-link float-left';
     } else {
       return 'nav-link float-left';
@@ -68,7 +71,7 @@ const Header = () => {
   
   //selected or unslected css style that floats right
   function getClassNameRight(url) {
-    if (url === window.location.pathname) {
+    if (url === location.pathname) {
       return 'selected-nav-link float-right';
     } else {
       return 'nav-link float-right';
