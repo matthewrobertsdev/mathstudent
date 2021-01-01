@@ -52,7 +52,7 @@ export const addAFraction=(args) =>{
       if (fraction.numerator % fraction.denominator === 0) {
         answer = [
           teaching.solutionHeading,
-          teaching.tellInteger(fraction.denominator / fraction.numerator)
+          teaching.tellInteger(fraction.numerator / fraction.denominator)
         ]
       } else {
         answer = [
