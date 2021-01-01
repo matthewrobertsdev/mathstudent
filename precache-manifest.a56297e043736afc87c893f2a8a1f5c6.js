@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "19c297c7a71653ba5eaa0cfbeea0085d",
+    "revision": "6ddb2e708396b79ef97786e3299199ea",
     "url": "/mathstudent/index.html"
   },
   {
-    "revision": "f48fcd2dfaa1d8482eea",
+    "revision": "f47c07c3b4e5cd4835fe",
     "url": "/mathstudent/static/css/main.35a33796.chunk.css"
   },
   {
@@ -32,8 +32,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/mathstudent/static/js/6.11567792.chunk.js"
   },
   {
-    "revision": "f48fcd2dfaa1d8482eea",
-    "url": "/mathstudent/static/js/main.c8055234.chunk.js"
+    "revision": "f47c07c3b4e5cd4835fe",
+    "url": "/mathstudent/static/js/main.9f565cc1.chunk.js"
   },
   {
     "revision": "738c70d1a319ac2ed0d8",
