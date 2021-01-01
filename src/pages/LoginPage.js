@@ -8,7 +8,7 @@ const LoginPage = () => {
   return (
     <main>
       {/* login for returning users */}
-      <h1 className='center-text'>Returning User?  Log in to Math Teacher</h1>
+      <h1 className='center-text'>Returning User?  Log in to Math Student</h1>
       <LoginView/>
       {/* link to sign up page for new users */}
       <h2 className='center-text'>Or</h2>

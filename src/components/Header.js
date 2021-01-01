@@ -14,7 +14,7 @@ const Header = () => {
         {/* Home page */}
         <Link className={getClassNameLeft('/')}
           to='/' key={0}>
-          Math Teacher
+          Math Student
       </Link>
         {/* Curriculum page */}
         <Link className={getClassNameLeft('/curriculum')}
