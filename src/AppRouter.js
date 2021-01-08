@@ -32,8 +32,6 @@ const AppRouter = () => (
       <Route path="/" exact component={HomePage} />
       {/* all the curriculum */}
       <Route path="/curriculum" exact component={CurriculumPage} />
-      {/* let's user know what version is chached by the service worker */}
-      <Route path="/version" exact component={VersionPage} />
       {/* for solving a problem */}
       <Route path='/solve/:teachingName/:method/:parameters' exact component={SolvePage} />
       {/* enter a problem for this topic */}

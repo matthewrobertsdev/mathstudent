@@ -21,11 +21,6 @@ const Header = () => {
           to='/curriculum' key={2}>
           Curriculum
       </Link>
-        {/* Cached version info page */}
-        <Link className={getClassNameLeft('/version')}
-          to='/version' key={3}>
-          Version
-      </Link>
       <Link className={getClassNameLeft('/recents')}
           to='/recents' key={4}>
           Recents

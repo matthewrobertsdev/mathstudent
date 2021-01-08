@@ -2,7 +2,7 @@ body{
   background-color: rgb(157, 62, 157)/*rgb(209, 28, 28);rgb(157, 62, 157);*/;
 }
 hr{
-  border-color: rgb(231, 0, 35);/*rgb(109, 0, 109)*/;
+  border-color: /*lightblue*/rgb(231, 0, 35);/*rgb(109, 0, 109)*/
 }
 h1{
   color: rgb(255, 209, 56); /*rgb(0, 21, 84);*/
@@ -408,7 +408,7 @@ button {
 }
 @media (prefers-color-scheme: dark){
   hr{
-    border-color: /*rgb(231, 0, 35)*/rgb(231, 0, 35);
+    border-color: lightblue;/*rgb(231, 0, 35)*//*rgb(231, 0, 35);*/
   }
   /*input{background-color: /*rgb(82, 43, 1);black; color: white; border-color: white;}*/
   /*.heading-type-2 {
@@ -466,7 +466,7 @@ button {
   }
   .accordion__button{
     background-color: rgb(34, 34, 33);
-    color: rgb(231, 0, 35)/*rgb(165, 70, 165)*/;
+    color: /*rgb(255, 209, 56);*/rgb(231, 0, 35);/*rgb(165, 70, 165)*/
   }
   .accordion__button:hover{ 
     background-color: rgb(34, 34, 33)
