@@ -461,9 +461,11 @@ button {
   .nav-link:hover{
     background-color:rgb(10, 0, 121);/*rgb(72, 0, 72)*/
   }
+  
   .selected-nav-link{ 
-    border-bottom: 5px solid rgb(126, 51, 147); /*rgb(157, 20, 41);*/
+    border-bottom: 5px solid/* rgb(231, 0, 35);*/lightblue/* rgb(19, 151, 59);*//*rgb(126, 51, 147);*/ /*rgb(157, 20, 41);*/
   }
+  
   .accordion__button{
     background-color: rgb(34, 34, 33);
     color: /*rgb(255, 209, 56);*/rgb(231, 0, 35);/*rgb(165, 70, 165)*/
