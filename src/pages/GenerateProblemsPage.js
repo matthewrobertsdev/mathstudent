@@ -24,21 +24,10 @@ const GenerateProblemsPage = (props) => {
           <h1 className='large-left-margin'>
             Generate {teacher.teaching.displayNameSingular} Problems:
           </h1>
-          <div className='center-text'>
-          <Link to="/" className="link">
-              Generate Problem Set
-          </Link>
-          </div>
-          <h1 className='large-left-margin'>Select Your Problems:</h1>
-          <div className='center-text'>
-            <Link to="/" className="link">
-              Generate Problems from Selection
-          </Link>
-          </div>
           {/* one ProblemGenerationView for every method in teacher's teaching */}
           {teacher.teaching.methods.map((method, index) => {
             return (
-              <ProblemGenerationView method={method} key={index} number={index + 1} />
+              <ProblemGenerationView teacher={teacher} method={method} key={index} number={index + 1} />
             )
           })}
           <br></br>
