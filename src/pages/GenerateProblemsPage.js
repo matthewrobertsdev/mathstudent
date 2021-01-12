@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Accordion } from 'react-accessible-accordion'
-import { Link } from 'react-router-dom';
 import AdView from '../components/AdView';
 import BackToTeachingView from '../components/teaching-views/BackToTeachingView'
 import ProblemGenerationView from '../components/teaching-views/ProblemGenerationView';

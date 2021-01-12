@@ -416,7 +416,7 @@ button {
     margin-left: 0; margin-right: 0; font-weight: bold;
   }*/
   .h1-2{
-    color: rgb(231, 0, 35)
+    color: /*white;*/rgb(231, 0, 35)
   }
   .text-link{
     color: rgb(141, 164, 235);

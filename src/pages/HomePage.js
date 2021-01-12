@@ -18,16 +18,6 @@ const HomePage = () => {
         the problem you are working on.
       </h2>
       <hr/>
-      {/* how we make money */}
-      <h2>
-        Math Student makes money off advertsing when you are online,
-        but, if you do not have internet available, many of our features--those that don't
-        require login--are available while you are offline, provided you have let Math Teacher
-        fully load one time with internet.  To access your past questions and results, you need
-        to login and have internet available as it requires your web browser to communicate
-        with our servers.
-      </h2>
-      <hr></hr>
       {/* create account heading */}
       <h1 className="large-heading-size center-text">
         Create an Account
