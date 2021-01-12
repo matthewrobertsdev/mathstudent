@@ -73,7 +73,7 @@ const MethodView = (props) => {
     if (props.from==='teachings'){
       url+='../../teachings/'
     } else if (props.from==='EnterProblemsPage') {
-      url+='../solve/'
+      url+='../teachings/'
     }
     url+=props.teacher.teaching.objectName+"/"
     url +=props.method[1]+"/"

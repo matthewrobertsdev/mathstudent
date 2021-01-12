@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import TeachView from '../components/teaching-views/TeachView'
+import TeachMethodView from '../components/teaching-views/TeachMethodView'
 import MethodView from '../components/teaching-views/MethodView'
 import AdView from '../components/AdView'
 import { getTeacher } from '../store/Actions';
@@ -9,7 +9,7 @@ import TOCAccordianItem from '../components/teaching-views/TOCAccordianItem'
 import { Accordion } from 'react-accessible-accordion';
 
 //Page for solving a problem
-const MethodPage = (props) => {
+const TeachMethodPage = (props) => {
   const { match: { params } } = props;
   //set page title
   document.title = params.teachingName + " Problem Teaching"
@@ -26,7 +26,7 @@ const MethodPage = (props) => {
           <AdView />
         </div>
         <div>
-          <TeachView params={params}/>
+          <TeachMethodView params={params}/>
         </div>
         <br/>
         <div className='center-text text-margins'>
@@ -123,4 +123,4 @@ const MethodPage = (props) => {
     }
   }
 }
-export default MethodPage
+export default TeachMethodPage

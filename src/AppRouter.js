@@ -5,15 +5,15 @@ import {HashRouter, Route, Switch } from 'react-router-dom'
 import Header from './components/Header'
 import ScrollToTop from './components/ScrollToTop'
 //pages
-import VersionPage from './pages/VersionPage'
 import HomePage from './pages/HomePage'
+import SolvePage from './pages/SolvePage'
 import CurriculumPage from './pages/CurriculumPage'
 import PageNotFoundPage from './pages/PageNotFoundPage'
 import EnterProblemsPage from './pages/EnterProblemsPage'
 import GenerateProblemsPage from './pages/GenerateProblemsPage'
 import TeachingPage from './pages/TeachingPage'
-import SolvePage from './pages/SolvePage'
-import MethodPage from './pages/MethodPage'
+import TeachProblemPage from './pages/TeachProblemPage'
+import TeachMethodPage from './pages/TeachMethodPage'
 import RecentsPage from './pages/RecentsPage'
 import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
@@ -33,7 +33,7 @@ const AppRouter = () => (
       {/* all the curriculum */}
       <Route path="/curriculum" exact component={CurriculumPage} />
       {/* for solving a problem */}
-      <Route path='/solve/:teachingName/:method/:parameters' exact component={SolvePage} />
+      <Route path='/solve/teachings/:teachingName/:method/:parameters' exact component={SolvePage} />
       {/* enter a problem for this topic */}
       <Route path="/EnterProblems/:teachingName" exact component={EnterProblemsPage} />
       {/* genrate problems for this topic */}
@@ -41,9 +41,9 @@ const AppRouter = () => (
       {/* about topic, teaching table of contents, and problem links for this topic */}
       <Route path="/teachings/:teachingName" exact component={TeachingPage} />
       {/* teaching about a method */}
-      <Route path="/teachings/:teachingName/:method" exact component={MethodPage} />
+      <Route path="/teachings/:teachingName/:method" exact component={TeachMethodPage} />
       {/* or solving a problem, again */}
-      <Route path='/teachings/:teachingName/:method/:parameters' exact component={SolvePage} />
+      <Route path='/teachings/:teachingName/:method/:parameters' exact component={TeachProblemPage} />
       {/* history from Math Teacher displayed */}
       <Route path='/recents' exact component={RecentsPage} />
       {/* page for logging in with link to page for creating account */}

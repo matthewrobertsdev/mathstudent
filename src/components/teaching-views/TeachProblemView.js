@@ -4,7 +4,7 @@ import LessonView from './LessonView'
 import { useSelector } from 'react-redux'
 
 // the view where the solving is displayed
-const SolveView = (props) => {
+const TeachProblemView = (props) => {
 
   let jwt = useSelector(state => state.auth.jwt)
 
@@ -63,4 +63,4 @@ const SolveView = (props) => {
 
 }
 
-export default SolveView
+export default TeachProblemView

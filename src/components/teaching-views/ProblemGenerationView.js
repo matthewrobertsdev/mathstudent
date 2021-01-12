@@ -17,15 +17,15 @@ const ProblemGenerationView = (props) => {
   )
   function getURL() {
     let url=''
-    url+='../teachings/'+props.teacher.teaching.objectName+"/"
+    url+='../solve/teachings/'+props.teacher.teaching.objectName+"/"
     url +=props.method[1]+"/"
-    const args=props.teacher['addAFractionArgs']()
+    const args=props.teacher[props.method[1]+'Args']()
     console.log(args)
     for (let index = 2; index < props.method.length; index++) {
       if (index % 2 === 0) {
         url += "@" + props.method[index].replace(" ", "-")
       } else {
-        url += '@'+args[Math.floor(index/2)-1]
+        url += '@'+args[index-2]
       }
     }
     return url

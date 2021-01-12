@@ -1,56 +1,39 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import SolveView from '../components/teaching-views/SolveView'
-import AdView from '../components/AdView'
-//Page for solving a problem
+import React, { useState } from 'react';
+import UncreatedTeachingView from '../components/teaching-views/UncreatedTeachingView'
+import { getTeacher } from '../store/Actions';
+
+
 const SolvePage = (props) => {
   const { match: { params } } = props;
-  //set page title
-  document.title=params.teachingName+" Problem"
-  return (
-    <main>
-      {/*a back link or nothing*/}
-      {createBackLink()}
-      {/* an ad */}
-      {createSpacer()}
-      <div className='center-text text-margins'><AdView /></div>
-      {/*the view where the actual solving is displayed*/}
-      <SolveView params={params}/>
-    </main>
-  )
-  //if there is a valid location to go back to, it will be described in this link
-  function createBackLink(){
-    if (props.location.state && props.location.state.from) {
-      if (props.location.state.from==="EnterProblemsPage"){
-        return (
-          <h1 className='large-left-margin'>
-            <Link to={`../../../EnterProblems/${params.teachingName}`} className='link-heading'>
-              Go to {params.teachingName}'s Enter Problem Page
-            </Link>
-          </h1>
-        )
-      } else if (props.location.state.from==="teachings"){
-        return (
-          <h1 className='large-left-margin'>
-            <Link to={`../../../teachings/${params.teachingName}/${params.method}`} className='link-heading'>
-              Back to Teaching
-            </Link>
-          </h1>
-        ) 
-      }
-    }
-  }
+  document.title = params.teachingName + " Problem"
 
-  //spacer for if no back button is present
-  function createSpacer() {
-    if (!(props.location.state && props.location.state.from)) {
-      return (
-        <div>
-          <br></br>
-          <br></br>
-        </div>
-      )
+  const [teacher, setTeacher] = useState(undefined);
+  getTeacher(params.teachingName, setTeacher)
+  if (teacher && getMethodIndex()!==-1) {
+    return (
+      <main>
+        <h1 className='large-left-margin'>{params.teachingName} Problem</h1>
+      </main>
+    )
+  } else if (teacher === false || getMethodIndex()===-1) {
+    return (
+      <main>
+        <UncreatedTeachingView className='center-text' />
+      </main>
+    )
+  } else {
+    return null
+  }
+  function getMethodIndex(){
+    if (teacher===undefined || teacher===false) {
+      return -1
     }
+    return teacher.teaching.methods.findIndex(
+      method => {
+        return method[1] === params.method 
+      }
+    )
   }
 }
+
 export default SolvePage
