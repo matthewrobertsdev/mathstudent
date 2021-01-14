@@ -26,7 +26,8 @@ const GenerateProblemsPage = (props) => {
           {/* one ProblemGenerationView for every method in teacher's teaching */}
           {teacher.teaching.methods.map((method, index) => {
             return (
-              <ProblemGenerationView teacher={teacher} method={method} key={index} number={index + 1} />
+              <ProblemGenerationView teacher={teacher} method={method} key={index} 
+              number={index + 1} from='GenerateProblems'/>
             )
           })}
           <br></br>

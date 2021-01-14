@@ -14,9 +14,10 @@ const SolvePage = (props) => {
     const mathProblem=teacher[params.method+"Problem"](params.parameters.split('@'))
     return (
       <main>
+        {createBackLink()}
         <LessonView lesson={mathProblem} teacher={teacher} params={params}/>
         <div className='center-text'>
-          <Link to={{pathname: getURL(), state: {from: props.from}}}
+          <Link to={{pathname: getURL(), state: {from: "SolvePage"}}}
           className='create-button' tabIndex={0}>
           Show Solution
           </Link>
@@ -26,6 +27,7 @@ const SolvePage = (props) => {
   } else if (teacher === false || getMethodIndex()===-1) {
     return (
       <main>
+        {createBackLink()}
         <UncreatedTeachingView className='center-text' />
       </main>
     )
@@ -44,6 +46,18 @@ const SolvePage = (props) => {
   }
   function getURL() {
     return `../../../../../../teachings/${params.teachingName}/${params.method}/${params.parameters}`
+  }
+
+  function createBackLink(){
+    if (props.location.state && props.location.state.from) {
+        return (
+          <h1 className='large-left-margin'>
+            <Link to={`../../../../GenerateProblems/${params.teachingName}`} className='link-heading'>
+              Go to {params.teachingName}'s Generate Problem Page
+            </Link>
+          </h1>
+        )
+    }
   }
 }
 

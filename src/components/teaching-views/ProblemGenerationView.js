@@ -10,7 +10,7 @@ const ProblemGenerationView = (props) => {
   return (
     <div className='center-text'>
       <h1 className='h1-2'>{props.number+') '+props.method[0]}:</h1>
-      <Link to={getURL} className="link">
+      <Link to={{pathname: getURL(), state: {from: props.from}}} className="link" >
         Generate Problem
       </Link>
     </div>

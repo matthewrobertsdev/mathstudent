@@ -37,6 +37,14 @@ const TeachProblemPage = (props) => {
             </Link>
           </h1>
         ) 
+      } else if (props.location.state.from==="SolvePage"){
+        return (
+          <h1 className='large-left-margin'>
+            <Link to={`../../../../solve/teachings/${params.teachingName}/${params.method}/${params.parameters}`} className='link-heading'>
+              Back to Enter Solution Page
+            </Link>
+          </h1>
+        ) 
       }
     }
   }
