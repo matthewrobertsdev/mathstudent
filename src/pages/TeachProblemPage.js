@@ -10,7 +10,7 @@ const TeachProblemPage = (props) => {
   return (
     <main>
       {/*a back link or nothing*/}
-      {createBackLink()}
+      {/*createBackLink()*/}
       {/* an ad */}
       {createSpacer()}
       <div className='center-text text-margins'><AdView /></div>
@@ -51,7 +51,6 @@ const TeachProblemPage = (props) => {
 
   //spacer for if no back button is present
   function createSpacer() {
-    if (!(props.location.state && props.location.state.from)) {
       return (
         <div>
           <br></br>
@@ -59,6 +58,5 @@ const TeachProblemPage = (props) => {
         </div>
       )
     }
-  }
 }
 export default TeachProblemPage

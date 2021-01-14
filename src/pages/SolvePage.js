@@ -14,7 +14,7 @@ const SolvePage = (props) => {
     const mathProblem=teacher[params.method+"Problem"](params.parameters.split('@'))
     return (
       <main>
-        {createBackLink()}
+        {/*createBackLink()*/}
         <LessonView lesson={mathProblem} teacher={teacher} params={params}/>
         <div className='center-text'>
           <Link to={{pathname: getURL(), state: {from: "SolvePage"}}}
