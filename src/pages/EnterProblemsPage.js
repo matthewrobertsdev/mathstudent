@@ -15,7 +15,9 @@ const EnterProblemsPage = (props) => {
     return (
       <main>
         <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
-          <BackToTeachingView teacher={teacher} />
+          {/*<BackToTeachingView teacher={teacher} />*/}
+          <br/>
+          <br/>
           <div className='center-text text-margins'><AdView /></div>
           <h1 className='large-left-margin'>
             Enter {teacher.teaching.displayNameSingular} Problems
