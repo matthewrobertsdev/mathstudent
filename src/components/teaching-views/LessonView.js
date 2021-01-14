@@ -94,6 +94,11 @@ const LessonView = (props) => {
             </MathJax.Provider>
           </span>
         )
+      } else if (segment.startsWith('{str-c}')) {
+        return (
+          <div key={key} className="main-text-color heading center-text">
+            {segment.slice(7)}
+          </div>);
       }
     }
 }

@@ -468,7 +468,7 @@ button {
   
   .accordion__button{
     background-color: rgb(34, 34, 33);
-    color: /*rgb(255, 209, 56);*/rgb(231, 0, 35);/*rgb(165, 70, 165)*/
+    color: /*rgb(255, 209, 56);*/rgb(231, 0, 35); /*rgb(172, 90, 172);*//*rgb(165, 70, 165)*/
   }
   .accordion__button:hover{ 
     background-color: rgb(34, 34, 33)
