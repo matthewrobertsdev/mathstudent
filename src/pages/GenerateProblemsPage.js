@@ -16,7 +16,9 @@ const GenerateProblemsPage = (props) => {
     return (
       <main>
         <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
-          <BackToTeachingView teacher={teacher} />
+          {/*<BackToTeachingView teacher={teacher} />*/}
+          <br/>
+          <br/>
           <div className='center-text text-margins'>
             <AdView />
           </div>
