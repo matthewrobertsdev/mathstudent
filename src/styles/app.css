@@ -26,12 +26,15 @@ h1{
   font-size: xx-large;
   text-decoration: underline;
 }
-input{
+.text-input{
   background-color: lightblue;/*rgb(236, 126, 8);*/ /*rgb(227, 36, 65);*/
   border-color: black; 
   font-size: large; 
   width: 150px; 
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.radio-button{
+  display: inline;
 }
 .userInfoInput{
   width: 300px;

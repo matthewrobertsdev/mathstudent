@@ -18,7 +18,7 @@ const SignUpPage = () => {
       <div className='center-text'>
         {/* email */}
         <label htmlFor='Email Input' className='heading'>Email:</label>
-        <input id='Email Input' className='userInfoInput small-left-margin' 
+        <input id='Email Input' className='text-input userInfoInput small-left-margin' 
         onChange={(event)=>{setEmail(event.target.value)}}/>
         <br />
         <label className='heading'></label>
@@ -26,7 +26,7 @@ const SignUpPage = () => {
         <br />
         {/* password */}
         <label htmlFor='Password Input' className='heading'>Password:</label>
-        <input type='password' id='Password Input' className='userInfoInput small-left-margin'
+        <input type='password' id='Password Input' className='text-input userInfoInput small-left-margin'
         onChange={(event)=>{setPassword(event.target.value)}}/>
         <br />
         <label className='heading'></label>
@@ -34,7 +34,7 @@ const SignUpPage = () => {
         <br />
         {/* confirm password */}
         <label htmlFor='Confirm Password Input' className='heading'>Confirm Password:</label>
-        <input type='password' id='Confirm Password Input' className='userInfoInput small-left-margin' 
+        <input type='password' id='Confirm Password Input' className='text-input userInfoInput small-left-margin' 
         onChange={(event)=>{setConfirmPassword(event.target.value)}}/>
         <br />
         <label className='heading'></label>

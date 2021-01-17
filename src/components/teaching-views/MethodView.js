@@ -47,7 +47,7 @@ const MethodView = (props) => {
           return (
             <span key={props.method[0] + "-" + props.method[index - 1] + 'input-and-span'}
             className='large-right-margin'>
-              <input id={props.method[0] + "-" + props.method[index - 1]}
+              <input className='text-input' id={props.method[0] + "-" + props.method[index - 1]}
                 key={props.method[0] + "-" + props.method[index - 1] + 'input'}
                  value={text[index.toString()]} onChange={
                   (event) => {

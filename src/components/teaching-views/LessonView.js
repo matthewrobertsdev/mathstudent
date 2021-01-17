@@ -18,7 +18,7 @@ const LessonView = (props) => {
         <div>
           {/*the heading*/}
           <h1 className='large-left-margin'>
-            {props.teacher.teaching.displayNameSingular} {props.type}: {getMethodName()}
+            {props.teacher.teaching.displayNameSingular}{props.type}: {getMethodName()}
           </h1>
           {/*display the lesson of the method*/}
           <div className='text-margins'>

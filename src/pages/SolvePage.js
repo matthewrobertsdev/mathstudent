@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import UncreatedTeachingView from '../components/teaching-views/UncreatedTeachingView'
 import { getTeacher } from '../store/Actions';
 import LessonView from '../components/teaching-views/LessonView'
+import EnterSolutionView from '../components/teaching-views/EnterSolutionView'
+
 import {Link} from 'react-router-dom'
 
 const SolvePage = (props) => {
@@ -15,12 +17,13 @@ const SolvePage = (props) => {
     return (
       <main>
         {/*createBackLink()*/}
-        <LessonView lesson={mathProblem} teacher={teacher} params={params}/>
+        <LessonView lesson={mathProblem.problem} teacher={teacher} params={params}/>
         <div className='center-text'>
           <Link to={{pathname: getURL(), state: {from: "SolvePage"}}}
           className='create-button' tabIndex={0}>
           Show Solution
           </Link>
+          <EnterSolutionView solutions={mathProblem.solutions}/>
         </div>
       </main>
     )

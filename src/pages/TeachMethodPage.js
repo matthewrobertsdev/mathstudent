@@ -22,6 +22,7 @@ const TeachMethodPage = (props) => {
         {/*a back link or nothing*/}
         {/*createBackLink()*/}
         {/* an ad */}
+        <br/><br/>
         <div className='center-text text-margins'>
           <AdView />
         </div>
