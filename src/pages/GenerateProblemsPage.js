@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Accordion } from 'react-accessible-accordion'
 import AdView from '../components/AdView';
-import BackToTeachingView from '../components/teaching-views/BackToTeachingView'
 import ProblemGenerationView from '../components/teaching-views/ProblemGenerationView';
 import UncreatedTeachingView from '../components/teaching-views/UncreatedTeachingView';
 import { getTeacher } from '../store/Actions';

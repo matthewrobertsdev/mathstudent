@@ -61,6 +61,10 @@ h1{
 .text{
   font-size: 1.5em;
 }
+.solution-modal {
+  width: 200px;
+  height: 200px;
+}
 @media (min-width: 500px){
     .creator-text-size{
       font-size: 30px;
@@ -231,33 +235,6 @@ button {
 .math-text:focus { 
   border:1px solid gold; 
   box-shadow: 0 0 10px gold; }
-.keyboard-container { position: fixed; 
-  width: 100%; 
-  height: 150; 
-  background-color: rgb(61, 32, 6);
-  bottom: 0; 
-  transform: translateY(250px); 
-  transition: transform 400ms ease-in;}
-.not-number-modal{ 
-  position: absolute; 
-  width: 300px; 
-  height: 350px; 
-  background-color: royalblue; 
-  color: rgb(61, 32, 6);
-  text-align: center; 
-  left: 50%; 
-  margin-left: -100px; 
-  top: 30%; 
-  margin-top: -75px; 
-  border-radius: 14px; 
-  font-size: 40px;}
-.not-number-overlay { 
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  right: 0; 
-  bottom: 0; 
-}
 .close-button { 
   background-color: rgb(61, 32, 6); 
   color: gold; 
@@ -364,7 +341,9 @@ button {
     padding: 0px 20px 20px 20px;
     animation: fadein 0.35s ease-in;
 }
-.katex { color:gold; }
+.center {
+  margin: auto;
+}
 @media (min-width: 800px){
   .ad { 
     width: 728px; 

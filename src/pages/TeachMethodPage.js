@@ -66,6 +66,7 @@ const TeachMethodPage = (props) => {
     return null
   }
   //if there is a valid location to go back to, it will be described in this link
+  /*
   function createBackLink() {
     return (
       <h1 className='large-left-margin'>
@@ -75,6 +76,7 @@ const TeachMethodPage = (props) => {
       </h1>
     )
   }
+  */
 
   function getMethod() {
     return teacher.teaching.methods.find(

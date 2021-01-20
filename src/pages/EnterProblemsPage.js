@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import ProblemEntryView from '../components/teaching-views/ProblemEntryView';
 import { Accordion } from 'react-accessible-accordion'
-import BackToTeachingView from '../components/teaching-views/BackToTeachingView'
 import AdView from '../components/AdView';
 import { getTeacher } from '../store/Actions';
 // a page for entering problems based on the methods

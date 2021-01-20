@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import TeachProblemView from '../components/teaching-views/TeachProblemView'
 import AdView from '../components/AdView'
 //Page for solving a problem
@@ -19,6 +18,7 @@ const TeachProblemPage = (props) => {
     </main>
   )
   //if there is a valid location to go back to, it will be described in this link
+  /*
   function createBackLink(){
     if (props.location.state && props.location.state.from) {
       if (props.location.state.from==="EnterProblemsPage"){
@@ -48,6 +48,7 @@ const TeachProblemPage = (props) => {
       }
     }
   }
+  */
 
   //spacer for if no back button is present
   function createSpacer() {
