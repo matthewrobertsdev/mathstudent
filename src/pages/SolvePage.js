@@ -23,7 +23,8 @@ const SolvePage = (props) => {
           className='create-button' tabIndex={0}>
           Show Solution
           </Link>
-          <EnterSolutionView solutions={mathProblem.solutions}/>
+          <EnterSolutionView teacher={teacher} method={params.method} parameters={params.parameters} 
+          solutions={mathProblem.solutions}/>
         </div>
       </main>
     )

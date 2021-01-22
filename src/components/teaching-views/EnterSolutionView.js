@@ -5,14 +5,15 @@ import ReactModal from 'react-modal'
 // the view where the solving is displayed
 const EnterSolutionView = (props) => {
   useEffect(()=>{
-    ReactModal.setAppElement('body')
-    setInitialText()
+    //ReactModal.setAppElement('body')
   })
-  let initialText = {}
-  let darkBackgroundColor='rgb(34, 34, 33)'
-  let lightBackgroundColor='rgb(157, 62, 157)'
-  let modalBackgroundColor=lightBackgroundColor
-  const [text, setText] = useState(initialText);
+  let darkPopUpColor='rgb(34, 34, 33)'
+  let lightPopUpColor='rgb(157, 62, 157)'
+  let darkOverlayColor='rgba(34, 34, 33, 0.8)'
+  let lightOverlayColor='rgb(255, 255, 255, 0.6)'
+  let popUpColor=lightPopUpColor
+  let overlayColor=lightOverlayColor
+  const [text, setText] = useState(setInitialText());
   const [isCorrect, setIsCorrect] = useState(undefined);
   const [isDarkMode, setIsDarkMode] = useState(window.matchMedia('(prefers-color-scheme: dark)').matches);
   const [selectedAnswer, setSelectedAnswer]=useState(0)
@@ -25,9 +26,11 @@ const EnterSolutionView = (props) => {
   }
 })
 if (isDarkMode) {
-  modalBackgroundColor=darkBackgroundColor
+  popUpColor=darkPopUpColor
+  overlayColor=darkOverlayColor
 } else {
-  modalBackgroundColor=lightBackgroundColor
+  popUpColor=lightPopUpColor
+  overlayColor=lightOverlayColor
 }
   return (
     <div>
@@ -38,12 +41,12 @@ if (isDarkMode) {
       <br/>
       <br/>
       <br/>
-      <ReactModal isOpen={isCorrect!==undefined} style={
-    { overlay: {}, content: {width: '200px', height: '200px', margin: 'auto', 
-    backgroundColor: modalBackgroundColor, display: 'flex', justifyContent: 'center',
+      <ReactModal appElement={document.getElementById('root')} isOpen={isCorrect!==undefined} style={
+    { overlay: {backgroundColor: overlayColor}, content: {width: '200px', height: '200px', margin: 'auto', 
+    backgroundColor: popUpColor, display: 'flex', justifyContent: 'center',
     alignItems: 'center', flexDirection: 'column', borderRadius: '20px'}}}>
-      <h1>Great Job!</h1>
-      <h2>You are correct.</h2>
+      <h1>{isCorrect ? 'Great Job!' : "Sorry."}</h1>
+      <h2>{isCorrect ? 'You are correct.' : "You are incorrect."}</h2>
       <button className='link' onClick={closeModal}>Got it</button></ReactModal>
     </div>
   )
@@ -51,13 +54,14 @@ if (isDarkMode) {
   function handleAnswerSubmit() {
     let answerNum=parseInt(selectedAnswer)
     let chosenSolution=props.solutions.solutions[answerNum]
-    console.log(chosenSolution.function)
     let inputTexts=[]
     for (let index=0; index<chosenSolution.inputs.length; index++) {
       inputTexts.push(text[selectedAnswer+'-'+index])
-      console.log(inputTexts[index])
     }
-    setIsCorrect(true)
+    let newArgs=props.teacher.normalizeFractionPairs(inputTexts)
+    const lesson=props.teacher[props.method](props.parameters.split('@'))
+    const correct=chosenSolution.function(newArgs)===lesson[lesson.length-1][0]
+    setIsCorrect(correct)
   }
 
   function closeModal() {
@@ -65,14 +69,14 @@ if (isDarkMode) {
   }
 
   function setInitialText() {
-      for (let index = 0; index < props.solutions.solutions.length; index++)
+    const initialText={}
+      for (let index = 0; index < props.solutions.solutions.length; index++) {
         for (let inputIndex = 0; inputIndex < inputIndex.length; inputIndex++) {
-          setText({
-            ...text,[index.toString()+'-'+inputIndex.toString()]: ""
-        })
+          initialText[index.toString()+'-'+inputIndex.toString()]=""
+        }
       }
+      return initialText
     }
-
   function createChoices() {
     return props.solutions.solutions.map((solution, index) => {
       
