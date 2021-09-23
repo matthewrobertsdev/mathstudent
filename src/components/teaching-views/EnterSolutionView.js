@@ -8,7 +8,7 @@ const EnterSolutionView = (props) => {
     //ReactModal.setAppElement('body')
   })
   let darkPopUpColor='rgb(34, 34, 33)'
-  let lightPopUpColor='rgb(157, 62, 157)'
+  let lightPopUpColor='rgb(146,38,256)'
   let darkOverlayColor='rgba(34, 34, 33, 0.8)'
   let lightOverlayColor='rgb(255, 255, 255, 0.6)'
   let popUpColor=lightPopUpColor
@@ -60,7 +60,7 @@ if (isDarkMode) {
     }
     let newArgs=props.teacher.normalizeFractionPairs(inputTexts)
     const lesson=props.teacher[props.method](props.parameters.split('@'))
-    const correct=chosenSolution.function(newArgs)===lesson[lesson.length-1][0]
+    const correct=chosenSolution.function(newArgs)===lesson[lesson.length-1][lesson[lesson.length-1].length-1]
     setIsCorrect(correct)
   }
 
